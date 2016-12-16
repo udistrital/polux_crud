@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"apiPolux/models"
+	"Polux_API/models"
 	"encoding/json"
 	"errors"
 	"strconv"

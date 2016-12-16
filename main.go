@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "apiPolux/routers"
+	_ "Polux_API/routers"
 	"github.com/astaxie/beego/plugins/cors"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
