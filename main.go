@@ -9,6 +9,14 @@ import (
 )
 
 func init() {
+	beego.Debug("Filters init...")
+	beego.InsertFilter("*", beego.BeforeRouter, cors.Allow(&cors.Options{
+		 AllowAllOrigins:  true,
+		 AllowMethods: 	[]string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		 AllowHeaders: 	[]string{"Origin", "Authorization", "Access-Control-Allow-Origin", "Content-Type"},
+		 ExposeHeaders:	[]string{"Content-Length", "Access-Control-Allow-Origin"},
+		 AllowCredentials: true,
+	}))
 	orm.RegisterDataBase("default", "postgres", "postgres://polux_admin:PolLu10Adm$2016@10.20.0.62:5432/udistrital?sslmode=disable&search_path=polux")
 }
 
