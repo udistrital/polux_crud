@@ -8,7 +8,7 @@
 package routers
 
 import (
-	"Polux_API/controllers"
+	"Polux_API_Crud/controllers"
 
 	"github.com/astaxie/beego"
 )
@@ -196,12 +196,6 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/paquete_respuestas",
-			beego.NSInclude(
-				&controllers.PaqueteRespuestasController{},
-			),
-		),
-
 		beego.NSNamespace("/formato_evaluacion_carrera",
 			beego.NSInclude(
 				&controllers.FormatoEvaluacionCarreraController{},
@@ -217,6 +211,30 @@ func init() {
 		beego.NSNamespace("/solicitud_materias",
 			beego.NSInclude(
 				&controllers.SolicitudMateriasController{},
+			),
+		),
+
+		beego.NSNamespace("/tr_solicitud",
+			beego.NSInclude(
+				&controllers.TrSolicitudController{},
+			),
+		),
+
+		beego.NSNamespace("/tr_trabajo_grado",
+			beego.NSInclude(
+				&controllers.TrTrabajoGradoController{},
+			),
+		),
+
+		beego.NSNamespace("/tr_formato",
+			beego.NSInclude(
+				&controllers.TrFormatoController{},
+			),
+		),
+
+		beego.NSNamespace("/carrera_elegible",
+			beego.NSInclude(
+				&controllers.CarreraElegibleController{},
 			),
 		),
 	)

@@ -13,7 +13,6 @@ type RespuestaFormato struct {
 	Id                  int                `orm:"column(id);pk;auto"`
 	IdPreguntaFormato   *PreguntaFormato   `orm:"column(id_pregunta_formato);rel(fk)"`
 	IdRespuesta         *Respuesta         `orm:"column(id_respuesta);rel(fk)"`
-	IdPaqueteRespuestas *PaqueteRespuestas `orm:"column(id_paquete_respuestas);rel(fk);null"`
 	Orden               float64            `orm:"column(orden);null"`
 	Valoracion          float64            `orm:"column(valoracion);null"`
 }

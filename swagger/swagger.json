@@ -1040,6 +1040,177 @@
                 }
             }
         },
+        "/carrera_elegible/": {
+            "get": {
+                "tags": [
+                    "carrera_elegible"
+                ],
+                "summary": "get CarreraElegible",
+                "operationId": "CarreraElegibleController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.CarreraElegible",
+                        "schema": {
+                            "$ref": "#/definitions/CarreraElegible"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "carrera_elegible"
+                ],
+                "summary": "create CarreraElegible",
+                "operationId": "CarreraElegibleController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CarreraElegible content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CarreraElegible"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "models.CarreraElegible"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/carrera_elegible/{id}": {
+            "get": {
+                "tags": [
+                    "carrera_elegible"
+                ],
+                "summary": "get CarreraElegible by id",
+                "operationId": "CarreraElegibleController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.CarreraElegible",
+                        "schema": {
+                            "$ref": "#/definitions/CarreraElegible"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "carrera_elegible"
+                ],
+                "summary": "update the CarreraElegible",
+                "operationId": "CarreraElegibleController.Update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CarreraElegible content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CarreraElegible"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.CarreraElegible",
+                        "schema": {
+                            "$ref": "#/definitions/CarreraElegible"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "carrera_elegible"
+                ],
+                "summary": "delete the CarreraElegible",
+                "operationId": "CarreraElegibleController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
         "/categoria/": {
             "get": {
                 "tags": [
@@ -3434,177 +3605,6 @@
                 }
             }
         },
-        "/paquete_respuestas/": {
-            "get": {
-                "tags": [
-                    "paquete_respuestas"
-                ],
-                "summary": "get PaqueteRespuestas",
-                "operationId": "PaqueteRespuestasController.Get All",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "query",
-                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "fields",
-                        "description": "Fields returned. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "sortby",
-                        "description": "Sorted-by fields. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "order",
-                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "limit",
-                        "description": "Limit the size of result set. Must be an integer",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "offset",
-                        "description": "Start position of result set. Must be an integer",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "models.PaqueteRespuestas",
-                        "schema": {
-                            "$ref": "#/definitions/PaqueteRespuestas"
-                        }
-                    },
-                    "403": {}
-                }
-            },
-            "post": {
-                "tags": [
-                    "paquete_respuestas"
-                ],
-                "summary": "create PaqueteRespuestas",
-                "operationId": "PaqueteRespuestasController.Post",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for PaqueteRespuestas content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/PaqueteRespuestas"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "models.PaqueteRespuestas"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/paquete_respuestas/{id}": {
-            "get": {
-                "tags": [
-                    "paquete_respuestas"
-                ],
-                "summary": "get PaqueteRespuestas by id",
-                "operationId": "PaqueteRespuestasController.Get",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The key for staticblock",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "models.PaqueteRespuestas",
-                        "schema": {
-                            "$ref": "#/definitions/PaqueteRespuestas"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is empty"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "paquete_respuestas"
-                ],
-                "summary": "update the PaqueteRespuestas",
-                "operationId": "PaqueteRespuestasController.Update",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to update",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for PaqueteRespuestas content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/PaqueteRespuestas"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "models.PaqueteRespuestas",
-                        "schema": {
-                            "$ref": "#/definitions/PaqueteRespuestas"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is not int"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "paquete_respuestas"
-                ],
-                "summary": "delete the PaqueteRespuestas",
-                "operationId": "PaqueteRespuestasController.Delete",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to delete",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "delete success!"
-                    },
-                    "403": {
-                        "description": "id is empty"
-                    }
-                }
-            }
-        },
         "/pregunta/": {
             "get": {
                 "tags": [
@@ -5930,11 +5930,24 @@
                 "Activo": {
                     "type": "boolean"
                 },
-                "Anio": {
+                "CodigoAsignatura": {
                     "type": "number",
                     "format": "double"
                 },
-                "CodigoAsignatura": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdCarreraElegible": {
+                    "$ref": "#/definitions/CarreraElegible"
+                }
+            }
+        },
+        "CarreraElegible": {
+            "title": "CarreraElegible",
+            "type": "object",
+            "properties": {
+                "Anio": {
                     "type": "number",
                     "format": "double"
                 },
@@ -5943,6 +5956,14 @@
                     "format": "double"
                 },
                 "CodigoPensum": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "CuposAdicionales": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "CuposExcelencia": {
                     "type": "number",
                     "format": "double"
                 },
@@ -6240,19 +6261,6 @@
                 }
             }
         },
-        "PaqueteRespuestas": {
-            "title": "PaqueteRespuestas",
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "Nombre": {
-                    "type": "string"
-                }
-            }
-        },
         "Pregunta": {
             "title": "Pregunta",
             "type": "object",
@@ -6335,9 +6343,6 @@
                 "Id": {
                     "type": "integer",
                     "format": "int64"
-                },
-                "IdPaqueteRespuestas": {
-                    "$ref": "#/definitions/PaqueteRespuestas"
                 },
                 "IdPreguntaFormato": {
                     "$ref": "#/definitions/PreguntaFormato"
@@ -6670,10 +6675,6 @@
             "description": "oprations for TipoVinculacion\n"
         },
         {
-            "name": "paquete_respuestas",
-            "description": "oprations for PaqueteRespuestas\n"
-        },
-        {
             "name": "formato_evaluacion_carrera",
             "description": "oprations for FormatoEvaluacionCarrera\n"
         },
@@ -6684,6 +6685,22 @@
         {
             "name": "solicitud_materias",
             "description": "oprations for SolicitudMaterias\n"
+        },
+        {
+            "name": "tr_solicitud",
+            "description": "oprations for TipoVinculacion\n"
+        },
+        {
+            "name": "tr_trabajo_grado",
+            "description": "oprations for TgTr\n"
+        },
+        {
+            "name": "tr_formato",
+            "description": "oprations for Formato\n"
+        },
+        {
+            "name": "carrera_elegible",
+            "description": "oprations for CarreraElegible\n"
         }
     ]
 }

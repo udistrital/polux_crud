@@ -11,12 +11,9 @@ import (
 
 type AsignaturasElegibles struct {
 	Id               int     `orm:"column(id);pk;auto"`
-	Periodo          float64 `orm:"column(periodo)"`
 	CodigoAsignatura float64 `orm:"column(codigo_asignatura)"`
-	Anio             float64 `orm:"column(anio)"`
-	CodigoCarrera    float64 `orm:"column(codigo_carrera)"`
-	CodigoPensum     float64 `orm:"column(codigo_pensum)"`
 	Activo           bool    `orm:"column(activo)"`
+	IdCarreraElegible 	*CarreraElegible     `orm:"column(id_carrera_elegible);rel(fk)"`
 }
 
 func (t *AsignaturasElegibles) TableName() string {

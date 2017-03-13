@@ -14,7 +14,7 @@ type PreguntaFormato struct {
 	IdFormato  *Formato  `orm:"column(id_formato);rel(fk)"`
 	IdPregunta *Pregunta `orm:"column(id_pregunta);rel(fk)"`
 	Tipo       string    `orm:"column(tipo)"`
-	Activo     bool      `orm:"column(Activo)"`
+	Activo     bool      `orm:"column(activo)"`
 	Orden      float64   `orm:"column(orden);null"`
 	Valoracion float64   `orm:"column(valoracion);null"`
 }
