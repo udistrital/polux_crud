@@ -9,7 +9,7 @@ import (
 )
 
 func init() {
-	orm.RegisterDataBase("default", "postgres", "postgres://postgres:postgres@127.0.0.1:5432/polux_pgmodeler3?sslmode=disable&search_path=polux")
+	orm.RegisterDataBase("default", "postgres", "postgres://polux_admin:PolLu10Adm$2016@10.20.0.62:5432/udistrital?sslmode=disable&search_path=polux")
 }
 
 func main() {
