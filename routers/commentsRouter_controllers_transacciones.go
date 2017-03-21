@@ -33,4 +33,26 @@ func init() {
 			Router:           `/:id`,
 			AllowHTTPMethods: []string{"get"},
 			Params:           nil})
+
+		beego.GlobalControllerRouter["Polux_API_Crud/controllers:SolicitudMateriasController"] = append(beego.GlobalControllerRouter["Polux_API_Crud/controllers:SolicitudMateriasController"],
+			beego.ControllerComments{
+				Method: "Solicitudes",
+				Router: `/Solicitudes`,
+				AllowHTTPMethods: []string{"get"},
+				Params: nil})
+
+		beego.GlobalControllerRouter["Polux_API_Crud/controllers:SolicitudMateriasController"] = append(beego.GlobalControllerRouter["Polux_API_Crud/controllers:SolicitudMateriasController"],
+			beego.ControllerComments{
+				Method: "SolicitudesPago",
+				Router: `/SolicitudesPago`,
+				AllowHTTPMethods: []string{"get"},
+				Params: nil})
+
+		beego.GlobalControllerRouter["Polux_API_Crud/controllers:SolicitudMateriasController"] = append(beego.GlobalControllerRouter["Polux_API_Crud/controllers:SolicitudMateriasController"],
+			beego.ControllerComments{
+				Method: "FormalizacionesPendientes",
+				Router: `/FormalizacionesPendientes/:estado`,
+				AllowHTTPMethods: []string{"get"},
+				Params: nil})
+
 }

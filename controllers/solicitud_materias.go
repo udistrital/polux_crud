@@ -6,6 +6,7 @@ import (
 	"errors"
 	"strconv"
 	"strings"
+	"fmt"
 
 	"github.com/astaxie/beego"
 )
@@ -21,6 +22,8 @@ func (c *SolicitudMateriasController) URLMapping() {
 	c.Mapping("GetAll", c.GetAll)
 	c.Mapping("Put", c.Put)
 	c.Mapping("Delete", c.Delete)
+	c.Mapping("Solicitudes", c.Solicitudes)
+	c.Mapping("SolicitudesPago", c.SolicitudesPago)
 }
 
 // @Title Post
@@ -161,5 +164,32 @@ func (c *SolicitudMateriasController) Delete() {
 	} else {
 		c.Data["json"] = err.Error()
 	}
+	c.ServeJSON()
+}
+
+
+func (c *SolicitudMateriasController) Solicitudes() {
+	v := models.SolicitudesAprobadas(2015,"1")
+	//v := models.SolicitudesAprobadas()
+	c.Data["json"] = v
+	//Generera el Json con los datos obtenidos
+	c.ServeJSON()
+}
+
+func (c *SolicitudMateriasController) SolicitudesPago() {
+	v := models.SolicitudesAprobadasPago(2015,"1")
+	//v := models.SolicitudesAprobadas()
+	c.Data["json"] = v
+	//Generera el Json con los datos obtenidos
+	c.ServeJSON()
+}
+
+func (c *SolicitudMateriasController) FormalizacionesPendientes() {
+	fmt.Println("######################################")
+	fmt.Println("param", c.Ctx.Input.Param(":estado"));
+	v := models.FormalizacionesPendientes(c.Ctx.Input.Param(":estado"))
+	//v := models.SolicitudesAprobadas()
+	c.Data["json"] = v
+	//Generera el Json con los datos obtenidos
 	c.ServeJSON()
 }
