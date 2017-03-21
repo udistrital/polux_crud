@@ -6,7 +6,6 @@ import (
 	"reflect"
 	"strings"
 	"time"
-	"strconv"
 	"github.com/astaxie/beego/orm"
 )
 
@@ -148,28 +147,6 @@ func DeleteSolicitudMaterias(id int) (err error) {
 		if num, err = o.Delete(&SolicitudMaterias{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
-	}
-	return
-}
-
-//funcion para obtener las solicitudes aprobadas y con formalizacion:confirmado
-func SolicitudesAprobadas(ano int, periodo string) (solicitud []SolicitudMaterias) {
-	o := orm.NewOrm()
-	anio := strconv.Itoa(ano)
-	_, err:= o.Raw("SELECT * FROM polux.solicitud_materias WHERE estado ='aprobado' AND formalizacion='confirmado' AND anio="+anio+" AND periodo='"+periodo+"'").QueryRows(&solicitud)
-	if err != nil {
-
-	}
-	return
-}
-
-//funcion para obtener las solicitudes aprobadas con pago y con formalizacion:confirmado
-func SolicitudesAprobadasPago(ano int, periodo string) (solicitud []SolicitudMaterias) {
-	o := orm.NewOrm()
-	anio := strconv.Itoa(ano)
-	_, err:= o.Raw("SELECT * FROM polux.solicitud_materias WHERE estado ='aprobado con pago' AND formalizacion='confirmado' AND anio="+anio+" AND periodo='"+periodo+"'").QueryRows(&solicitud)
-	if err != nil {
-
 	}
 	return
 }
