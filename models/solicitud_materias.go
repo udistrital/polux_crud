@@ -150,13 +150,3 @@ func DeleteSolicitudMaterias(id int) (err error) {
 	}
 	return
 }
-
-//funcion para obtener las solicitudes aprobadas con pago y con formalizacion:confirmado
-func FormalizacionesPendientes(estado string) (solicitud []SolicitudMaterias) {
-	o := orm.NewOrm()
-	_, err:= o.Raw("SELECT * FROM polux.solicitud_materias WHERE estado ='"+estado+"' AND formalizacion='pendiente'").QueryRows(&solicitud)
-	if err != nil {
-
-	}
-	return
-}

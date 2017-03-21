@@ -163,11 +163,3 @@ func (c *SolicitudMateriasController) Delete() {
 	}
 	c.ServeJSON()
 }
-
-func (c *SolicitudMateriasController) FormalizacionesPendientes() {
-	v := models.FormalizacionesPendientes(c.Ctx.Input.Param(":estado"))
-	//v := models.SolicitudesAprobadas()
-	c.Data["json"] = v
-	//Generera el Json con los datos obtenidos
-	c.ServeJSON()
-}
