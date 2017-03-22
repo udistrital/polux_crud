@@ -1,11 +1,11 @@
 package main
 
 import (
-	_ "Polux_API_Crud/routers"
-	"github.com/astaxie/beego/plugins/cors"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/plugins/cors"
 	_ "github.com/lib/pq"
+	_ "github.com/udistrital/Polux_API_Crud/routers"
 )
 
 func init() {

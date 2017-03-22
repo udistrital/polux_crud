@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"Polux_API_Crud/models"
+	"github.com/udistrital/Polux_API_Crud/models"
 	"encoding/json"
 	"fmt"
 	"strconv"
