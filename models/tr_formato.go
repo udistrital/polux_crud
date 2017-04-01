@@ -17,6 +17,87 @@ type TrFormato struct {
 	TrPreguntas *[]TrPregunta
 }
 
+type TrUpdatePregunta struct {
+	Pregunta   *PreguntaFormato
+	TypeUpdate string
+	Respuestas *[]TrUpdateRespuesta
+}
+
+type TrUpdateRespuesta struct {
+	Respuesta  *RespuestaFormato
+	TypeUpdate string
+}
+
+type TrUpdateFormato struct {
+	Formato    *Formato
+	TypeUpdate string
+	Preguntas  *[]TrUpdatePregunta
+}
+
+func UpdateTrFormato(m *TrUpdateFormato) (id int64, err error) {
+	o := orm.NewOrm()
+	o.Begin()
+	if m.TypeUpdate == "update" {
+		if _, err = o.Update(m.Formato); err != nil {
+			o.Rollback()
+			return 0, err
+		}
+	}
+	for _, preg := range *m.Preguntas {
+		if preg.Pregunta.IdPregunta.Id == 0 {
+			if _, err = o.Insert(preg.Pregunta.IdPregunta); err != nil {
+				o.Rollback()
+				return 0, err
+			}
+		}
+		switch tu := preg.TypeUpdate; tu {
+		case "update":
+			if _, err = o.Update(preg.Pregunta); err != nil {
+				o.Rollback()
+				return 0, err
+			}
+		case "delete":
+			if _, err = o.Delete(preg.Pregunta.Id); err != nil {
+				o.Rollback()
+				return 0, err
+			}
+		case "insert":
+			if _, err = o.Insert(preg.Pregunta); err != nil {
+				o.Rollback()
+				return 0, err
+			}
+		}
+		for _, res := range *preg.Respuestas {
+			if res.Respuesta.IdRespuesta.Id == 0 {
+				if _, err = o.Insert(res.Respuesta.IdRespuesta); err != nil {
+					o.Rollback()
+					return 0, err
+				}
+			}
+			switch tus := res.TypeUpdate; tus {
+			case "update":
+				if _, err = o.Update(res.Respuesta); err != nil {
+					o.Rollback()
+					return 0, err
+				}
+			case "delete":
+				if _, err = o.Delete(res.Respuesta.Id); err != nil {
+					o.Rollback()
+					return 0, err
+				}
+			case "insert":
+				if _, err = o.Insert(res.Respuesta); err != nil {
+					o.Rollback()
+					return 0, err
+				}
+			}
+		}
+
+	}
+	o.Commit()
+	return 0, nil
+}
+
 //funcion para la transaccion de solicitudes
 func AddTrFormato(m *TrFormato) (id int64, err error) {
 	fmt.Println("formato:", m.Formato)

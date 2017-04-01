@@ -1,10 +1,11 @@
 package controllers
 
 import (
-	"github.com/udistrital/Polux_API_Crud/models"
 	"encoding/json"
 	"fmt"
 	"strconv"
+
+	"github.com/udistrital/Polux_API_Crud/models"
 
 	"github.com/astaxie/beego"
 )
@@ -17,6 +18,26 @@ type TrFormatoController struct {
 func (c *TrFormatoController) URLMapping() {
 	c.Mapping("Get", c.Get)
 	c.Mapping("Post", c.Post)
+	c.Mapping("Put", c.Put)
+}
+
+// @Title UpdateTrFormato
+// @Description update the TrFormato
+// @Param	body		body 	models.TrUpdateFormato	true	"body for TrUpdateFormato content"
+// @Success 200 {object} msg
+// @Failure 403 :id is not int
+// @router / [put]
+func (c *TrFormatoController) Put() {
+	var v models.TrUpdateFormato
+	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		if _, err = models.UpdateTrFormato(&v); err == nil {
+			c.Ctx.Output.SetStatus(201)
+			c.Data["json"] = "exito"
+		} else {
+			c.Data["json"] = err.Error()
+		}
+		c.ServeJSON()
+	}
 }
 
 func (c *TrFormatoController) Get() {
