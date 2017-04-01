@@ -9,7 +9,6 @@ import (
 )
 
 func init() {
-	//orm.RegisterDataBase("default", "postgres", "postgres://polux_admin:PolLu10Adm$2016@10.20.0.62:5432/udistrital?sslmode=disable&search_path=polux")
 	orm.RegisterDataBase("default", "postgres", "postgres://"+beego.AppConfig.String("PGuser")+":"+beego.AppConfig.String("PGpass")+"@"+beego.AppConfig.String("PGurls")+"/"+beego.AppConfig.String("PGdb")+"?sslmode=disable&search_path="+beego.AppConfig.String("PGschemas")+"")
 }
 
