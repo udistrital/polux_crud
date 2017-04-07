@@ -10,7 +10,7 @@ import (
 )
 
 type CarreraElegible struct {
-	Id               int     `orm:"column(id);pk"`
+	Id               int     `orm:"column(id);pk;auto"`
 	CodigoCarrera    float64 `orm:"column(codigo_carrera)"`
 	CuposExcelencia  float64 `orm:"column(cupos_excelencia);null"`
 	CuposAdicionales float64 `orm:"column(cupos_adicionales);null"`
