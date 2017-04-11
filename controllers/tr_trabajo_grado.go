@@ -7,7 +7,7 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// oprations for TgTr
+// oprations for TrTrabajoGrado
 type TrTrabajoGradoController struct {
 	beego.Controller
 }

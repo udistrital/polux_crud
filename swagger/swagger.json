@@ -9,17 +9,18 @@
             "email": "astaxie@gmail.com"
         },
         "license": {
-            "name": "Url http://www.apache.org/licenses/LICENSE-2.0.html"
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "basePath": "/polux_api_crud/v1",
+    "basePath": "/v1",
     "paths": {
         "/area_conocimiento/": {
             "get": {
                 "tags": [
                     "area_conocimiento"
                 ],
-                "summary": "get AreaConocimiento",
+                "description": "get AreaConocimiento",
                 "operationId": "AreaConocimientoController.Get All",
                 "parameters": [
                     {
@@ -48,6 +49,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -61,9 +68,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AreaConocimiento",
                         "schema": {
-                            "$ref": "#/definitions/AreaConocimiento"
+                            "$ref": "#/definitions/models.AreaConocimiento"
                         }
                     },
                     "403": {}
@@ -73,7 +79,7 @@
                 "tags": [
                     "area_conocimiento"
                 ],
-                "summary": "create AreaConocimiento",
+                "description": "create AreaConocimiento",
                 "operationId": "AreaConocimientoController.Post",
                 "parameters": [
                     {
@@ -82,13 +88,13 @@
                         "description": "body for AreaConocimiento content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/AreaConocimiento"
+                            "$ref": "#/definitions/models.AreaConocimiento"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.AreaConocimiento"
+                        "description": "{int} models.AreaConocimiento"
                     },
                     "403": {
                         "description": "body is empty"
@@ -101,7 +107,7 @@
                 "tags": [
                     "area_conocimiento"
                 ],
-                "summary": "get AreaConocimiento by id",
+                "description": "get AreaConocimiento by id",
                 "operationId": "AreaConocimientoController.Get",
                 "parameters": [
                     {
@@ -114,9 +120,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AreaConocimiento",
                         "schema": {
-                            "$ref": "#/definitions/AreaConocimiento"
+                            "$ref": "#/definitions/models.AreaConocimiento"
                         }
                     },
                     "403": {
@@ -128,7 +133,7 @@
                 "tags": [
                     "area_conocimiento"
                 ],
-                "summary": "update the AreaConocimiento",
+                "description": "update the AreaConocimiento",
                 "operationId": "AreaConocimientoController.Update",
                 "parameters": [
                     {
@@ -144,15 +149,14 @@
                         "description": "body for AreaConocimiento content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/AreaConocimiento"
+                            "$ref": "#/definitions/models.AreaConocimiento"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AreaConocimiento",
                         "schema": {
-                            "$ref": "#/definitions/AreaConocimiento"
+                            "$ref": "#/definitions/models.AreaConocimiento"
                         }
                     },
                     "403": {
@@ -164,7 +168,7 @@
                 "tags": [
                     "area_conocimiento"
                 ],
-                "summary": "delete the AreaConocimiento",
+                "description": "delete the AreaConocimiento",
                 "operationId": "AreaConocimientoController.Delete",
                 "parameters": [
                     {
@@ -177,7 +181,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -190,7 +194,7 @@
                 "tags": [
                     "areas_docente"
                 ],
-                "summary": "get AreasDocente",
+                "description": "get AreasDocente",
                 "operationId": "AreasDocenteController.Get All",
                 "parameters": [
                     {
@@ -219,6 +223,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -232,9 +242,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AreasDocente",
                         "schema": {
-                            "$ref": "#/definitions/AreasDocente"
+                            "$ref": "#/definitions/models.AreasDocente"
                         }
                     },
                     "403": {}
@@ -244,7 +253,7 @@
                 "tags": [
                     "areas_docente"
                 ],
-                "summary": "create AreasDocente",
+                "description": "create AreasDocente",
                 "operationId": "AreasDocenteController.Post",
                 "parameters": [
                     {
@@ -253,13 +262,13 @@
                         "description": "body for AreasDocente content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/AreasDocente"
+                            "$ref": "#/definitions/models.AreasDocente"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.AreasDocente"
+                        "description": "{int} models.AreasDocente"
                     },
                     "403": {
                         "description": "body is empty"
@@ -272,7 +281,7 @@
                 "tags": [
                     "areas_docente"
                 ],
-                "summary": "get AreasDocente by id",
+                "description": "get AreasDocente by id",
                 "operationId": "AreasDocenteController.Get",
                 "parameters": [
                     {
@@ -285,9 +294,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AreasDocente",
                         "schema": {
-                            "$ref": "#/definitions/AreasDocente"
+                            "$ref": "#/definitions/models.AreasDocente"
                         }
                     },
                     "403": {
@@ -299,7 +307,7 @@
                 "tags": [
                     "areas_docente"
                 ],
-                "summary": "update the AreasDocente",
+                "description": "update the AreasDocente",
                 "operationId": "AreasDocenteController.Update",
                 "parameters": [
                     {
@@ -315,15 +323,14 @@
                         "description": "body for AreasDocente content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/AreasDocente"
+                            "$ref": "#/definitions/models.AreasDocente"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AreasDocente",
                         "schema": {
-                            "$ref": "#/definitions/AreasDocente"
+                            "$ref": "#/definitions/models.AreasDocente"
                         }
                     },
                     "403": {
@@ -335,7 +342,7 @@
                 "tags": [
                     "areas_docente"
                 ],
-                "summary": "delete the AreasDocente",
+                "description": "delete the AreasDocente",
                 "operationId": "AreasDocenteController.Delete",
                 "parameters": [
                     {
@@ -348,7 +355,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -361,7 +368,7 @@
                 "tags": [
                     "areas_trabajo_grado"
                 ],
-                "summary": "get AreasTrabajoGrado",
+                "description": "get AreasTrabajoGrado",
                 "operationId": "AreasTrabajoGradoController.Get All",
                 "parameters": [
                     {
@@ -390,6 +397,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -403,9 +416,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AreasTrabajoGrado",
                         "schema": {
-                            "$ref": "#/definitions/AreasTrabajoGrado"
+                            "$ref": "#/definitions/models.AreasTrabajoGrado"
                         }
                     },
                     "403": {}
@@ -415,7 +427,7 @@
                 "tags": [
                     "areas_trabajo_grado"
                 ],
-                "summary": "create AreasTrabajoGrado",
+                "description": "create AreasTrabajoGrado",
                 "operationId": "AreasTrabajoGradoController.Post",
                 "parameters": [
                     {
@@ -424,13 +436,13 @@
                         "description": "body for AreasTrabajoGrado content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/AreasTrabajoGrado"
+                            "$ref": "#/definitions/models.AreasTrabajoGrado"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.AreasTrabajoGrado"
+                        "description": "{int} models.AreasTrabajoGrado"
                     },
                     "403": {
                         "description": "body is empty"
@@ -443,7 +455,7 @@
                 "tags": [
                     "areas_trabajo_grado"
                 ],
-                "summary": "get AreasTrabajoGrado by id",
+                "description": "get AreasTrabajoGrado by id",
                 "operationId": "AreasTrabajoGradoController.Get",
                 "parameters": [
                     {
@@ -456,9 +468,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AreasTrabajoGrado",
                         "schema": {
-                            "$ref": "#/definitions/AreasTrabajoGrado"
+                            "$ref": "#/definitions/models.AreasTrabajoGrado"
                         }
                     },
                     "403": {
@@ -470,7 +481,7 @@
                 "tags": [
                     "areas_trabajo_grado"
                 ],
-                "summary": "update the AreasTrabajoGrado",
+                "description": "update the AreasTrabajoGrado",
                 "operationId": "AreasTrabajoGradoController.Update",
                 "parameters": [
                     {
@@ -486,15 +497,14 @@
                         "description": "body for AreasTrabajoGrado content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/AreasTrabajoGrado"
+                            "$ref": "#/definitions/models.AreasTrabajoGrado"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AreasTrabajoGrado",
                         "schema": {
-                            "$ref": "#/definitions/AreasTrabajoGrado"
+                            "$ref": "#/definitions/models.AreasTrabajoGrado"
                         }
                     },
                     "403": {
@@ -506,7 +516,7 @@
                 "tags": [
                     "areas_trabajo_grado"
                 ],
-                "summary": "delete the AreasTrabajoGrado",
+                "description": "delete the AreasTrabajoGrado",
                 "operationId": "AreasTrabajoGradoController.Delete",
                 "parameters": [
                     {
@@ -519,7 +529,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -532,7 +542,7 @@
                 "tags": [
                     "asignatura_inscrita"
                 ],
-                "summary": "get AsignaturaInscrita",
+                "description": "get AsignaturaInscrita",
                 "operationId": "AsignaturaInscritaController.Get All",
                 "parameters": [
                     {
@@ -561,6 +571,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -574,9 +590,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AsignaturaInscrita",
                         "schema": {
-                            "$ref": "#/definitions/AsignaturaInscrita"
+                            "$ref": "#/definitions/models.AsignaturaInscrita"
                         }
                     },
                     "403": {}
@@ -586,7 +601,7 @@
                 "tags": [
                     "asignatura_inscrita"
                 ],
-                "summary": "create AsignaturaInscrita",
+                "description": "create AsignaturaInscrita",
                 "operationId": "AsignaturaInscritaController.Post",
                 "parameters": [
                     {
@@ -595,13 +610,13 @@
                         "description": "body for AsignaturaInscrita content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/AsignaturaInscrita"
+                            "$ref": "#/definitions/models.AsignaturaInscrita"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.AsignaturaInscrita"
+                        "description": "{int} models.AsignaturaInscrita"
                     },
                     "403": {
                         "description": "body is empty"
@@ -614,7 +629,7 @@
                 "tags": [
                     "asignatura_inscrita"
                 ],
-                "summary": "get AsignaturaInscrita by id",
+                "description": "get AsignaturaInscrita by id",
                 "operationId": "AsignaturaInscritaController.Get",
                 "parameters": [
                     {
@@ -627,9 +642,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AsignaturaInscrita",
                         "schema": {
-                            "$ref": "#/definitions/AsignaturaInscrita"
+                            "$ref": "#/definitions/models.AsignaturaInscrita"
                         }
                     },
                     "403": {
@@ -641,7 +655,7 @@
                 "tags": [
                     "asignatura_inscrita"
                 ],
-                "summary": "update the AsignaturaInscrita",
+                "description": "update the AsignaturaInscrita",
                 "operationId": "AsignaturaInscritaController.Update",
                 "parameters": [
                     {
@@ -657,15 +671,14 @@
                         "description": "body for AsignaturaInscrita content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/AsignaturaInscrita"
+                            "$ref": "#/definitions/models.AsignaturaInscrita"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AsignaturaInscrita",
                         "schema": {
-                            "$ref": "#/definitions/AsignaturaInscrita"
+                            "$ref": "#/definitions/models.AsignaturaInscrita"
                         }
                     },
                     "403": {
@@ -677,7 +690,7 @@
                 "tags": [
                     "asignatura_inscrita"
                 ],
-                "summary": "delete the AsignaturaInscrita",
+                "description": "delete the AsignaturaInscrita",
                 "operationId": "AsignaturaInscritaController.Delete",
                 "parameters": [
                     {
@@ -690,7 +703,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -703,7 +716,7 @@
                 "tags": [
                     "asignatura_tg"
                 ],
-                "summary": "get AsignaturaTg",
+                "description": "get AsignaturaTg",
                 "operationId": "AsignaturaTgController.Get All",
                 "parameters": [
                     {
@@ -732,6 +745,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -745,9 +764,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AsignaturaTg",
                         "schema": {
-                            "$ref": "#/definitions/AsignaturaTg"
+                            "$ref": "#/definitions/models.AsignaturaTg"
                         }
                     },
                     "403": {}
@@ -757,7 +775,7 @@
                 "tags": [
                     "asignatura_tg"
                 ],
-                "summary": "create AsignaturaTg",
+                "description": "create AsignaturaTg",
                 "operationId": "AsignaturaTgController.Post",
                 "parameters": [
                     {
@@ -766,13 +784,13 @@
                         "description": "body for AsignaturaTg content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/AsignaturaTg"
+                            "$ref": "#/definitions/models.AsignaturaTg"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.AsignaturaTg"
+                        "description": "{int} models.AsignaturaTg"
                     },
                     "403": {
                         "description": "body is empty"
@@ -785,7 +803,7 @@
                 "tags": [
                     "asignatura_tg"
                 ],
-                "summary": "get AsignaturaTg by id",
+                "description": "get AsignaturaTg by id",
                 "operationId": "AsignaturaTgController.Get",
                 "parameters": [
                     {
@@ -798,9 +816,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AsignaturaTg",
                         "schema": {
-                            "$ref": "#/definitions/AsignaturaTg"
+                            "$ref": "#/definitions/models.AsignaturaTg"
                         }
                     },
                     "403": {
@@ -812,7 +829,7 @@
                 "tags": [
                     "asignatura_tg"
                 ],
-                "summary": "update the AsignaturaTg",
+                "description": "update the AsignaturaTg",
                 "operationId": "AsignaturaTgController.Update",
                 "parameters": [
                     {
@@ -828,15 +845,14 @@
                         "description": "body for AsignaturaTg content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/AsignaturaTg"
+                            "$ref": "#/definitions/models.AsignaturaTg"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AsignaturaTg",
                         "schema": {
-                            "$ref": "#/definitions/AsignaturaTg"
+                            "$ref": "#/definitions/models.AsignaturaTg"
                         }
                     },
                     "403": {
@@ -848,7 +864,7 @@
                 "tags": [
                     "asignatura_tg"
                 ],
-                "summary": "delete the AsignaturaTg",
+                "description": "delete the AsignaturaTg",
                 "operationId": "AsignaturaTgController.Delete",
                 "parameters": [
                     {
@@ -861,7 +877,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -874,7 +890,7 @@
                 "tags": [
                     "asignaturas_elegibles"
                 ],
-                "summary": "get AsignaturasElegibles",
+                "description": "get AsignaturasElegibles",
                 "operationId": "AsignaturasElegiblesController.Get All",
                 "parameters": [
                     {
@@ -903,6 +919,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -916,9 +938,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AsignaturasElegibles",
                         "schema": {
-                            "$ref": "#/definitions/AsignaturasElegibles"
+                            "$ref": "#/definitions/models.AsignaturasElegibles"
                         }
                     },
                     "403": {}
@@ -928,7 +949,7 @@
                 "tags": [
                     "asignaturas_elegibles"
                 ],
-                "summary": "create AsignaturasElegibles",
+                "description": "create AsignaturasElegibles",
                 "operationId": "AsignaturasElegiblesController.Post",
                 "parameters": [
                     {
@@ -937,13 +958,13 @@
                         "description": "body for AsignaturasElegibles content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/AsignaturasElegibles"
+                            "$ref": "#/definitions/models.AsignaturasElegibles"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.AsignaturasElegibles"
+                        "description": "{int} models.AsignaturasElegibles"
                     },
                     "403": {
                         "description": "body is empty"
@@ -956,7 +977,7 @@
                 "tags": [
                     "asignaturas_elegibles"
                 ],
-                "summary": "get AsignaturasElegibles by id",
+                "description": "get AsignaturasElegibles by id",
                 "operationId": "AsignaturasElegiblesController.Get",
                 "parameters": [
                     {
@@ -969,9 +990,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AsignaturasElegibles",
                         "schema": {
-                            "$ref": "#/definitions/AsignaturasElegibles"
+                            "$ref": "#/definitions/models.AsignaturasElegibles"
                         }
                     },
                     "403": {
@@ -983,7 +1003,7 @@
                 "tags": [
                     "asignaturas_elegibles"
                 ],
-                "summary": "update the AsignaturasElegibles",
+                "description": "update the AsignaturasElegibles",
                 "operationId": "AsignaturasElegiblesController.Update",
                 "parameters": [
                     {
@@ -999,15 +1019,14 @@
                         "description": "body for AsignaturasElegibles content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/AsignaturasElegibles"
+                            "$ref": "#/definitions/models.AsignaturasElegibles"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.AsignaturasElegibles",
                         "schema": {
-                            "$ref": "#/definitions/AsignaturasElegibles"
+                            "$ref": "#/definitions/models.AsignaturasElegibles"
                         }
                     },
                     "403": {
@@ -1019,7 +1038,7 @@
                 "tags": [
                     "asignaturas_elegibles"
                 ],
-                "summary": "delete the AsignaturasElegibles",
+                "description": "delete the AsignaturasElegibles",
                 "operationId": "AsignaturasElegiblesController.Delete",
                 "parameters": [
                     {
@@ -1032,7 +1051,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -1045,7 +1064,7 @@
                 "tags": [
                     "carrera_elegible"
                 ],
-                "summary": "get CarreraElegible",
+                "description": "get CarreraElegible",
                 "operationId": "CarreraElegibleController.Get All",
                 "parameters": [
                     {
@@ -1074,6 +1093,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -1087,9 +1112,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.CarreraElegible",
                         "schema": {
-                            "$ref": "#/definitions/CarreraElegible"
+                            "$ref": "#/definitions/models.CarreraElegible"
                         }
                     },
                     "403": {}
@@ -1099,7 +1123,7 @@
                 "tags": [
                     "carrera_elegible"
                 ],
-                "summary": "create CarreraElegible",
+                "description": "create CarreraElegible",
                 "operationId": "CarreraElegibleController.Post",
                 "parameters": [
                     {
@@ -1108,13 +1132,13 @@
                         "description": "body for CarreraElegible content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/CarreraElegible"
+                            "$ref": "#/definitions/models.CarreraElegible"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.CarreraElegible"
+                        "description": "{int} models.CarreraElegible"
                     },
                     "403": {
                         "description": "body is empty"
@@ -1127,7 +1151,7 @@
                 "tags": [
                     "carrera_elegible"
                 ],
-                "summary": "get CarreraElegible by id",
+                "description": "get CarreraElegible by id",
                 "operationId": "CarreraElegibleController.Get",
                 "parameters": [
                     {
@@ -1140,9 +1164,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.CarreraElegible",
                         "schema": {
-                            "$ref": "#/definitions/CarreraElegible"
+                            "$ref": "#/definitions/models.CarreraElegible"
                         }
                     },
                     "403": {
@@ -1154,7 +1177,7 @@
                 "tags": [
                     "carrera_elegible"
                 ],
-                "summary": "update the CarreraElegible",
+                "description": "update the CarreraElegible",
                 "operationId": "CarreraElegibleController.Update",
                 "parameters": [
                     {
@@ -1170,15 +1193,14 @@
                         "description": "body for CarreraElegible content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/CarreraElegible"
+                            "$ref": "#/definitions/models.CarreraElegible"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.CarreraElegible",
                         "schema": {
-                            "$ref": "#/definitions/CarreraElegible"
+                            "$ref": "#/definitions/models.CarreraElegible"
                         }
                     },
                     "403": {
@@ -1190,7 +1212,7 @@
                 "tags": [
                     "carrera_elegible"
                 ],
-                "summary": "delete the CarreraElegible",
+                "description": "delete the CarreraElegible",
                 "operationId": "CarreraElegibleController.Delete",
                 "parameters": [
                     {
@@ -1203,7 +1225,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -1216,7 +1238,7 @@
                 "tags": [
                     "categoria"
                 ],
-                "summary": "get Categoria",
+                "description": "get Categoria",
                 "operationId": "CategoriaController.Get All",
                 "parameters": [
                     {
@@ -1245,6 +1267,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -1258,9 +1286,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Categoria",
                         "schema": {
-                            "$ref": "#/definitions/Categoria"
+                            "$ref": "#/definitions/models.Categoria"
                         }
                     },
                     "403": {}
@@ -1270,7 +1297,7 @@
                 "tags": [
                     "categoria"
                 ],
-                "summary": "create Categoria",
+                "description": "create Categoria",
                 "operationId": "CategoriaController.Post",
                 "parameters": [
                     {
@@ -1279,13 +1306,13 @@
                         "description": "body for Categoria content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Categoria"
+                            "$ref": "#/definitions/models.Categoria"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.Categoria"
+                        "description": "{int} models.Categoria"
                     },
                     "403": {
                         "description": "body is empty"
@@ -1298,7 +1325,7 @@
                 "tags": [
                     "categoria"
                 ],
-                "summary": "get Categoria by id",
+                "description": "get Categoria by id",
                 "operationId": "CategoriaController.Get",
                 "parameters": [
                     {
@@ -1311,9 +1338,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Categoria",
                         "schema": {
-                            "$ref": "#/definitions/Categoria"
+                            "$ref": "#/definitions/models.Categoria"
                         }
                     },
                     "403": {
@@ -1325,7 +1351,7 @@
                 "tags": [
                     "categoria"
                 ],
-                "summary": "update the Categoria",
+                "description": "update the Categoria",
                 "operationId": "CategoriaController.Update",
                 "parameters": [
                     {
@@ -1341,15 +1367,14 @@
                         "description": "body for Categoria content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Categoria"
+                            "$ref": "#/definitions/models.Categoria"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Categoria",
                         "schema": {
-                            "$ref": "#/definitions/Categoria"
+                            "$ref": "#/definitions/models.Categoria"
                         }
                     },
                     "403": {
@@ -1361,7 +1386,7 @@
                 "tags": [
                     "categoria"
                 ],
-                "summary": "delete the Categoria",
+                "description": "delete the Categoria",
                 "operationId": "CategoriaController.Delete",
                 "parameters": [
                     {
@@ -1374,7 +1399,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -1387,7 +1412,7 @@
                 "tags": [
                     "comentario"
                 ],
-                "summary": "get Comentario",
+                "description": "get Comentario",
                 "operationId": "ComentarioController.Get All",
                 "parameters": [
                     {
@@ -1416,6 +1441,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -1429,9 +1460,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Comentario",
                         "schema": {
-                            "$ref": "#/definitions/Comentario"
+                            "$ref": "#/definitions/models.Comentario"
                         }
                     },
                     "403": {}
@@ -1441,7 +1471,7 @@
                 "tags": [
                     "comentario"
                 ],
-                "summary": "create Comentario",
+                "description": "create Comentario",
                 "operationId": "ComentarioController.Post",
                 "parameters": [
                     {
@@ -1450,13 +1480,13 @@
                         "description": "body for Comentario content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Comentario"
+                            "$ref": "#/definitions/models.Comentario"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.Comentario"
+                        "description": "{int} models.Comentario"
                     },
                     "403": {
                         "description": "body is empty"
@@ -1469,7 +1499,7 @@
                 "tags": [
                     "comentario"
                 ],
-                "summary": "get Comentario by id",
+                "description": "get Comentario by id",
                 "operationId": "ComentarioController.Get",
                 "parameters": [
                     {
@@ -1482,9 +1512,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Comentario",
                         "schema": {
-                            "$ref": "#/definitions/Comentario"
+                            "$ref": "#/definitions/models.Comentario"
                         }
                     },
                     "403": {
@@ -1496,7 +1525,7 @@
                 "tags": [
                     "comentario"
                 ],
-                "summary": "update the Comentario",
+                "description": "update the Comentario",
                 "operationId": "ComentarioController.Update",
                 "parameters": [
                     {
@@ -1512,15 +1541,14 @@
                         "description": "body for Comentario content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Comentario"
+                            "$ref": "#/definitions/models.Comentario"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Comentario",
                         "schema": {
-                            "$ref": "#/definitions/Comentario"
+                            "$ref": "#/definitions/models.Comentario"
                         }
                     },
                     "403": {
@@ -1532,7 +1560,7 @@
                 "tags": [
                     "comentario"
                 ],
-                "summary": "delete the Comentario",
+                "description": "delete the Comentario",
                 "operationId": "ComentarioController.Delete",
                 "parameters": [
                     {
@@ -1545,7 +1573,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -1558,7 +1586,7 @@
                 "tags": [
                     "correccion"
                 ],
-                "summary": "get Correccion",
+                "description": "get Correccion",
                 "operationId": "CorreccionController.Get All",
                 "parameters": [
                     {
@@ -1587,6 +1615,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -1600,9 +1634,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Correccion",
                         "schema": {
-                            "$ref": "#/definitions/Correccion"
+                            "$ref": "#/definitions/models.Correccion"
                         }
                     },
                     "403": {}
@@ -1612,7 +1645,7 @@
                 "tags": [
                     "correccion"
                 ],
-                "summary": "create Correccion",
+                "description": "create Correccion",
                 "operationId": "CorreccionController.Post",
                 "parameters": [
                     {
@@ -1621,13 +1654,13 @@
                         "description": "body for Correccion content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Correccion"
+                            "$ref": "#/definitions/models.Correccion"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.Correccion"
+                        "description": "{int} models.Correccion"
                     },
                     "403": {
                         "description": "body is empty"
@@ -1640,7 +1673,7 @@
                 "tags": [
                     "correccion"
                 ],
-                "summary": "get Correccion by id",
+                "description": "get Correccion by id",
                 "operationId": "CorreccionController.Get",
                 "parameters": [
                     {
@@ -1653,9 +1686,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Correccion",
                         "schema": {
-                            "$ref": "#/definitions/Correccion"
+                            "$ref": "#/definitions/models.Correccion"
                         }
                     },
                     "403": {
@@ -1667,7 +1699,7 @@
                 "tags": [
                     "correccion"
                 ],
-                "summary": "update the Correccion",
+                "description": "update the Correccion",
                 "operationId": "CorreccionController.Update",
                 "parameters": [
                     {
@@ -1683,15 +1715,14 @@
                         "description": "body for Correccion content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Correccion"
+                            "$ref": "#/definitions/models.Correccion"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Correccion",
                         "schema": {
-                            "$ref": "#/definitions/Correccion"
+                            "$ref": "#/definitions/models.Correccion"
                         }
                     },
                     "403": {
@@ -1703,7 +1734,7 @@
                 "tags": [
                     "correccion"
                 ],
-                "summary": "delete the Correccion",
+                "description": "delete the Correccion",
                 "operationId": "CorreccionController.Delete",
                 "parameters": [
                     {
@@ -1716,7 +1747,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -1729,7 +1760,7 @@
                 "tags": [
                     "documento"
                 ],
-                "summary": "get Documento",
+                "description": "get Documento",
                 "operationId": "DocumentoController.Get All",
                 "parameters": [
                     {
@@ -1758,6 +1789,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -1771,9 +1808,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Documento",
                         "schema": {
-                            "$ref": "#/definitions/Documento"
+                            "$ref": "#/definitions/models.Documento"
                         }
                     },
                     "403": {}
@@ -1783,7 +1819,7 @@
                 "tags": [
                     "documento"
                 ],
-                "summary": "create Documento",
+                "description": "create Documento",
                 "operationId": "DocumentoController.Post",
                 "parameters": [
                     {
@@ -1792,13 +1828,13 @@
                         "description": "body for Documento content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Documento"
+                            "$ref": "#/definitions/models.Documento"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.Documento"
+                        "description": "{int} models.Documento"
                     },
                     "403": {
                         "description": "body is empty"
@@ -1811,7 +1847,7 @@
                 "tags": [
                     "documento"
                 ],
-                "summary": "get Documento by id",
+                "description": "get Documento by id",
                 "operationId": "DocumentoController.Get",
                 "parameters": [
                     {
@@ -1824,9 +1860,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Documento",
                         "schema": {
-                            "$ref": "#/definitions/Documento"
+                            "$ref": "#/definitions/models.Documento"
                         }
                     },
                     "403": {
@@ -1838,7 +1873,7 @@
                 "tags": [
                     "documento"
                 ],
-                "summary": "update the Documento",
+                "description": "update the Documento",
                 "operationId": "DocumentoController.Update",
                 "parameters": [
                     {
@@ -1854,15 +1889,14 @@
                         "description": "body for Documento content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Documento"
+                            "$ref": "#/definitions/models.Documento"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Documento",
                         "schema": {
-                            "$ref": "#/definitions/Documento"
+                            "$ref": "#/definitions/models.Documento"
                         }
                     },
                     "403": {
@@ -1874,7 +1908,7 @@
                 "tags": [
                     "documento"
                 ],
-                "summary": "delete the Documento",
+                "description": "delete the Documento",
                 "operationId": "DocumentoController.Delete",
                 "parameters": [
                     {
@@ -1887,7 +1921,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -1900,7 +1934,7 @@
                 "tags": [
                     "documento_entidad"
                 ],
-                "summary": "get DocumentoEntidad",
+                "description": "get DocumentoEntidad",
                 "operationId": "DocumentoEntidadController.Get All",
                 "parameters": [
                     {
@@ -1929,6 +1963,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -1942,9 +1982,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.DocumentoEntidad",
                         "schema": {
-                            "$ref": "#/definitions/DocumentoEntidad"
+                            "$ref": "#/definitions/models.DocumentoEntidad"
                         }
                     },
                     "403": {}
@@ -1954,7 +1993,7 @@
                 "tags": [
                     "documento_entidad"
                 ],
-                "summary": "create DocumentoEntidad",
+                "description": "create DocumentoEntidad",
                 "operationId": "DocumentoEntidadController.Post",
                 "parameters": [
                     {
@@ -1963,13 +2002,13 @@
                         "description": "body for DocumentoEntidad content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/DocumentoEntidad"
+                            "$ref": "#/definitions/models.DocumentoEntidad"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.DocumentoEntidad"
+                        "description": "{int} models.DocumentoEntidad"
                     },
                     "403": {
                         "description": "body is empty"
@@ -1982,7 +2021,7 @@
                 "tags": [
                     "documento_entidad"
                 ],
-                "summary": "get DocumentoEntidad by id",
+                "description": "get DocumentoEntidad by id",
                 "operationId": "DocumentoEntidadController.Get",
                 "parameters": [
                     {
@@ -1995,9 +2034,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.DocumentoEntidad",
                         "schema": {
-                            "$ref": "#/definitions/DocumentoEntidad"
+                            "$ref": "#/definitions/models.DocumentoEntidad"
                         }
                     },
                     "403": {
@@ -2009,7 +2047,7 @@
                 "tags": [
                     "documento_entidad"
                 ],
-                "summary": "update the DocumentoEntidad",
+                "description": "update the DocumentoEntidad",
                 "operationId": "DocumentoEntidadController.Update",
                 "parameters": [
                     {
@@ -2025,15 +2063,14 @@
                         "description": "body for DocumentoEntidad content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/DocumentoEntidad"
+                            "$ref": "#/definitions/models.DocumentoEntidad"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.DocumentoEntidad",
                         "schema": {
-                            "$ref": "#/definitions/DocumentoEntidad"
+                            "$ref": "#/definitions/models.DocumentoEntidad"
                         }
                     },
                     "403": {
@@ -2045,7 +2082,7 @@
                 "tags": [
                     "documento_entidad"
                 ],
-                "summary": "delete the DocumentoEntidad",
+                "description": "delete the DocumentoEntidad",
                 "operationId": "DocumentoEntidadController.Delete",
                 "parameters": [
                     {
@@ -2058,7 +2095,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -2071,7 +2108,7 @@
                 "tags": [
                     "documento_tg"
                 ],
-                "summary": "get DocumentoTg",
+                "description": "get DocumentoTg",
                 "operationId": "DocumentoTgController.Get All",
                 "parameters": [
                     {
@@ -2100,6 +2137,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -2113,9 +2156,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.DocumentoTg",
                         "schema": {
-                            "$ref": "#/definitions/DocumentoTg"
+                            "$ref": "#/definitions/models.DocumentoTg"
                         }
                     },
                     "403": {}
@@ -2125,7 +2167,7 @@
                 "tags": [
                     "documento_tg"
                 ],
-                "summary": "create DocumentoTg",
+                "description": "create DocumentoTg",
                 "operationId": "DocumentoTgController.Post",
                 "parameters": [
                     {
@@ -2134,13 +2176,13 @@
                         "description": "body for DocumentoTg content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/DocumentoTg"
+                            "$ref": "#/definitions/models.DocumentoTg"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.DocumentoTg"
+                        "description": "{int} models.DocumentoTg"
                     },
                     "403": {
                         "description": "body is empty"
@@ -2153,7 +2195,7 @@
                 "tags": [
                     "documento_tg"
                 ],
-                "summary": "get DocumentoTg by id",
+                "description": "get DocumentoTg by id",
                 "operationId": "DocumentoTgController.Get",
                 "parameters": [
                     {
@@ -2166,9 +2208,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.DocumentoTg",
                         "schema": {
-                            "$ref": "#/definitions/DocumentoTg"
+                            "$ref": "#/definitions/models.DocumentoTg"
                         }
                     },
                     "403": {
@@ -2180,7 +2221,7 @@
                 "tags": [
                     "documento_tg"
                 ],
-                "summary": "update the DocumentoTg",
+                "description": "update the DocumentoTg",
                 "operationId": "DocumentoTgController.Update",
                 "parameters": [
                     {
@@ -2196,15 +2237,14 @@
                         "description": "body for DocumentoTg content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/DocumentoTg"
+                            "$ref": "#/definitions/models.DocumentoTg"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.DocumentoTg",
                         "schema": {
-                            "$ref": "#/definitions/DocumentoTg"
+                            "$ref": "#/definitions/models.DocumentoTg"
                         }
                     },
                     "403": {
@@ -2216,7 +2256,7 @@
                 "tags": [
                     "documento_tg"
                 ],
-                "summary": "delete the DocumentoTg",
+                "description": "delete the DocumentoTg",
                 "operationId": "DocumentoTgController.Delete",
                 "parameters": [
                     {
@@ -2229,7 +2269,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -2242,7 +2282,7 @@
                 "tags": [
                     "entidad"
                 ],
-                "summary": "get Entidad",
+                "description": "get Entidad",
                 "operationId": "EntidadController.Get All",
                 "parameters": [
                     {
@@ -2271,6 +2311,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -2284,9 +2330,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Entidad",
                         "schema": {
-                            "$ref": "#/definitions/Entidad"
+                            "$ref": "#/definitions/models.Entidad"
                         }
                     },
                     "403": {}
@@ -2296,7 +2341,7 @@
                 "tags": [
                     "entidad"
                 ],
-                "summary": "create Entidad",
+                "description": "create Entidad",
                 "operationId": "EntidadController.Post",
                 "parameters": [
                     {
@@ -2305,13 +2350,13 @@
                         "description": "body for Entidad content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Entidad"
+                            "$ref": "#/definitions/models.Entidad"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.Entidad"
+                        "description": "{int} models.Entidad"
                     },
                     "403": {
                         "description": "body is empty"
@@ -2324,7 +2369,7 @@
                 "tags": [
                     "entidad"
                 ],
-                "summary": "get Entidad by id",
+                "description": "get Entidad by id",
                 "operationId": "EntidadController.Get",
                 "parameters": [
                     {
@@ -2337,9 +2382,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Entidad",
                         "schema": {
-                            "$ref": "#/definitions/Entidad"
+                            "$ref": "#/definitions/models.Entidad"
                         }
                     },
                     "403": {
@@ -2351,7 +2395,7 @@
                 "tags": [
                     "entidad"
                 ],
-                "summary": "update the Entidad",
+                "description": "update the Entidad",
                 "operationId": "EntidadController.Update",
                 "parameters": [
                     {
@@ -2367,15 +2411,14 @@
                         "description": "body for Entidad content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Entidad"
+                            "$ref": "#/definitions/models.Entidad"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Entidad",
                         "schema": {
-                            "$ref": "#/definitions/Entidad"
+                            "$ref": "#/definitions/models.Entidad"
                         }
                     },
                     "403": {
@@ -2387,7 +2430,7 @@
                 "tags": [
                     "entidad"
                 ],
-                "summary": "delete the Entidad",
+                "description": "delete the Entidad",
                 "operationId": "EntidadController.Delete",
                 "parameters": [
                     {
@@ -2400,7 +2443,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -2413,7 +2456,7 @@
                 "tags": [
                     "estado_documento"
                 ],
-                "summary": "get EstadoDocumento",
+                "description": "get EstadoDocumento",
                 "operationId": "EstadoDocumentoController.Get All",
                 "parameters": [
                     {
@@ -2442,6 +2485,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -2455,9 +2504,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.EstadoDocumento",
                         "schema": {
-                            "$ref": "#/definitions/EstadoDocumento"
+                            "$ref": "#/definitions/models.EstadoDocumento"
                         }
                     },
                     "403": {}
@@ -2467,7 +2515,7 @@
                 "tags": [
                     "estado_documento"
                 ],
-                "summary": "create EstadoDocumento",
+                "description": "create EstadoDocumento",
                 "operationId": "EstadoDocumentoController.Post",
                 "parameters": [
                     {
@@ -2476,13 +2524,13 @@
                         "description": "body for EstadoDocumento content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/EstadoDocumento"
+                            "$ref": "#/definitions/models.EstadoDocumento"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.EstadoDocumento"
+                        "description": "{int} models.EstadoDocumento"
                     },
                     "403": {
                         "description": "body is empty"
@@ -2495,7 +2543,7 @@
                 "tags": [
                     "estado_documento"
                 ],
-                "summary": "get EstadoDocumento by id",
+                "description": "get EstadoDocumento by id",
                 "operationId": "EstadoDocumentoController.Get",
                 "parameters": [
                     {
@@ -2508,9 +2556,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.EstadoDocumento",
                         "schema": {
-                            "$ref": "#/definitions/EstadoDocumento"
+                            "$ref": "#/definitions/models.EstadoDocumento"
                         }
                     },
                     "403": {
@@ -2522,7 +2569,7 @@
                 "tags": [
                     "estado_documento"
                 ],
-                "summary": "update the EstadoDocumento",
+                "description": "update the EstadoDocumento",
                 "operationId": "EstadoDocumentoController.Update",
                 "parameters": [
                     {
@@ -2538,15 +2585,14 @@
                         "description": "body for EstadoDocumento content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/EstadoDocumento"
+                            "$ref": "#/definitions/models.EstadoDocumento"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.EstadoDocumento",
                         "schema": {
-                            "$ref": "#/definitions/EstadoDocumento"
+                            "$ref": "#/definitions/models.EstadoDocumento"
                         }
                     },
                     "403": {
@@ -2558,7 +2604,7 @@
                 "tags": [
                     "estado_documento"
                 ],
-                "summary": "delete the EstadoDocumento",
+                "description": "delete the EstadoDocumento",
                 "operationId": "EstadoDocumentoController.Delete",
                 "parameters": [
                     {
@@ -2571,7 +2617,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -2584,7 +2630,7 @@
                 "tags": [
                     "estructura_investigacion_tg"
                 ],
-                "summary": "get EstructuraInvestigacionTg",
+                "description": "get EstructuraInvestigacionTg",
                 "operationId": "EstructuraInvestigacionTgController.Get All",
                 "parameters": [
                     {
@@ -2613,6 +2659,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -2626,9 +2678,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.EstructuraInvestigacionTg",
                         "schema": {
-                            "$ref": "#/definitions/EstructuraInvestigacionTg"
+                            "$ref": "#/definitions/models.EstructuraInvestigacionTg"
                         }
                     },
                     "403": {}
@@ -2638,7 +2689,7 @@
                 "tags": [
                     "estructura_investigacion_tg"
                 ],
-                "summary": "create EstructuraInvestigacionTg",
+                "description": "create EstructuraInvestigacionTg",
                 "operationId": "EstructuraInvestigacionTgController.Post",
                 "parameters": [
                     {
@@ -2647,13 +2698,13 @@
                         "description": "body for EstructuraInvestigacionTg content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/EstructuraInvestigacionTg"
+                            "$ref": "#/definitions/models.EstructuraInvestigacionTg"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.EstructuraInvestigacionTg"
+                        "description": "{int} models.EstructuraInvestigacionTg"
                     },
                     "403": {
                         "description": "body is empty"
@@ -2666,7 +2717,7 @@
                 "tags": [
                     "estructura_investigacion_tg"
                 ],
-                "summary": "get EstructuraInvestigacionTg by id",
+                "description": "get EstructuraInvestigacionTg by id",
                 "operationId": "EstructuraInvestigacionTgController.Get",
                 "parameters": [
                     {
@@ -2679,9 +2730,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.EstructuraInvestigacionTg",
                         "schema": {
-                            "$ref": "#/definitions/EstructuraInvestigacionTg"
+                            "$ref": "#/definitions/models.EstructuraInvestigacionTg"
                         }
                     },
                     "403": {
@@ -2693,7 +2743,7 @@
                 "tags": [
                     "estructura_investigacion_tg"
                 ],
-                "summary": "update the EstructuraInvestigacionTg",
+                "description": "update the EstructuraInvestigacionTg",
                 "operationId": "EstructuraInvestigacionTgController.Update",
                 "parameters": [
                     {
@@ -2709,15 +2759,14 @@
                         "description": "body for EstructuraInvestigacionTg content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/EstructuraInvestigacionTg"
+                            "$ref": "#/definitions/models.EstructuraInvestigacionTg"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.EstructuraInvestigacionTg",
                         "schema": {
-                            "$ref": "#/definitions/EstructuraInvestigacionTg"
+                            "$ref": "#/definitions/models.EstructuraInvestigacionTg"
                         }
                     },
                     "403": {
@@ -2729,7 +2778,7 @@
                 "tags": [
                     "estructura_investigacion_tg"
                 ],
-                "summary": "delete the EstructuraInvestigacionTg",
+                "description": "delete the EstructuraInvestigacionTg",
                 "operationId": "EstructuraInvestigacionTgController.Delete",
                 "parameters": [
                     {
@@ -2742,7 +2791,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -2755,7 +2804,7 @@
                 "tags": [
                     "estudiante_tg"
                 ],
-                "summary": "get EstudianteTg",
+                "description": "get EstudianteTg",
                 "operationId": "EstudianteTgController.Get All",
                 "parameters": [
                     {
@@ -2784,6 +2833,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -2797,9 +2852,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.EstudianteTg",
                         "schema": {
-                            "$ref": "#/definitions/EstudianteTg"
+                            "$ref": "#/definitions/models.EstudianteTg"
                         }
                     },
                     "403": {}
@@ -2809,7 +2863,7 @@
                 "tags": [
                     "estudiante_tg"
                 ],
-                "summary": "create EstudianteTg",
+                "description": "create EstudianteTg",
                 "operationId": "EstudianteTgController.Post",
                 "parameters": [
                     {
@@ -2818,13 +2872,13 @@
                         "description": "body for EstudianteTg content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/EstudianteTg"
+                            "$ref": "#/definitions/models.EstudianteTg"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.EstudianteTg"
+                        "description": "{int} models.EstudianteTg"
                     },
                     "403": {
                         "description": "body is empty"
@@ -2837,7 +2891,7 @@
                 "tags": [
                     "estudiante_tg"
                 ],
-                "summary": "get EstudianteTg by id",
+                "description": "get EstudianteTg by id",
                 "operationId": "EstudianteTgController.Get",
                 "parameters": [
                     {
@@ -2850,9 +2904,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.EstudianteTg",
                         "schema": {
-                            "$ref": "#/definitions/EstudianteTg"
+                            "$ref": "#/definitions/models.EstudianteTg"
                         }
                     },
                     "403": {
@@ -2864,7 +2917,7 @@
                 "tags": [
                     "estudiante_tg"
                 ],
-                "summary": "update the EstudianteTg",
+                "description": "update the EstudianteTg",
                 "operationId": "EstudianteTgController.Update",
                 "parameters": [
                     {
@@ -2880,15 +2933,14 @@
                         "description": "body for EstudianteTg content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/EstudianteTg"
+                            "$ref": "#/definitions/models.EstudianteTg"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.EstudianteTg",
                         "schema": {
-                            "$ref": "#/definitions/EstudianteTg"
+                            "$ref": "#/definitions/models.EstudianteTg"
                         }
                     },
                     "403": {
@@ -2900,7 +2952,7 @@
                 "tags": [
                     "estudiante_tg"
                 ],
-                "summary": "delete the EstudianteTg",
+                "description": "delete the EstudianteTg",
                 "operationId": "EstudianteTgController.Delete",
                 "parameters": [
                     {
@@ -2913,7 +2965,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -2926,7 +2978,7 @@
                 "tags": [
                     "evaluacion"
                 ],
-                "summary": "get Evaluacion",
+                "description": "get Evaluacion",
                 "operationId": "EvaluacionController.Get All",
                 "parameters": [
                     {
@@ -2955,6 +3007,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -2968,9 +3026,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Evaluacion",
                         "schema": {
-                            "$ref": "#/definitions/Evaluacion"
+                            "$ref": "#/definitions/models.Evaluacion"
                         }
                     },
                     "403": {}
@@ -2980,7 +3037,7 @@
                 "tags": [
                     "evaluacion"
                 ],
-                "summary": "create Evaluacion",
+                "description": "create Evaluacion",
                 "operationId": "EvaluacionController.Post",
                 "parameters": [
                     {
@@ -2989,13 +3046,13 @@
                         "description": "body for Evaluacion content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Evaluacion"
+                            "$ref": "#/definitions/models.Evaluacion"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.Evaluacion"
+                        "description": "{int} models.Evaluacion"
                     },
                     "403": {
                         "description": "body is empty"
@@ -3008,7 +3065,7 @@
                 "tags": [
                     "evaluacion"
                 ],
-                "summary": "get Evaluacion by id",
+                "description": "get Evaluacion by id",
                 "operationId": "EvaluacionController.Get",
                 "parameters": [
                     {
@@ -3021,9 +3078,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Evaluacion",
                         "schema": {
-                            "$ref": "#/definitions/Evaluacion"
+                            "$ref": "#/definitions/models.Evaluacion"
                         }
                     },
                     "403": {
@@ -3035,7 +3091,7 @@
                 "tags": [
                     "evaluacion"
                 ],
-                "summary": "update the Evaluacion",
+                "description": "update the Evaluacion",
                 "operationId": "EvaluacionController.Update",
                 "parameters": [
                     {
@@ -3051,15 +3107,14 @@
                         "description": "body for Evaluacion content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Evaluacion"
+                            "$ref": "#/definitions/models.Evaluacion"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Evaluacion",
                         "schema": {
-                            "$ref": "#/definitions/Evaluacion"
+                            "$ref": "#/definitions/models.Evaluacion"
                         }
                     },
                     "403": {
@@ -3071,7 +3126,7 @@
                 "tags": [
                     "evaluacion"
                 ],
-                "summary": "delete the Evaluacion",
+                "description": "delete the Evaluacion",
                 "operationId": "EvaluacionController.Delete",
                 "parameters": [
                     {
@@ -3084,7 +3139,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -3097,7 +3152,7 @@
                 "tags": [
                     "formato"
                 ],
-                "summary": "get Formato",
+                "description": "get Formato",
                 "operationId": "FormatoController.Get All",
                 "parameters": [
                     {
@@ -3126,6 +3181,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -3139,9 +3200,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Formato",
                         "schema": {
-                            "$ref": "#/definitions/Formato"
+                            "$ref": "#/definitions/models.Formato"
                         }
                     },
                     "403": {}
@@ -3151,7 +3211,7 @@
                 "tags": [
                     "formato"
                 ],
-                "summary": "create Formato",
+                "description": "create Formato",
                 "operationId": "FormatoController.Post",
                 "parameters": [
                     {
@@ -3160,13 +3220,13 @@
                         "description": "body for Formato content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Formato"
+                            "$ref": "#/definitions/models.Formato"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.Formato"
+                        "description": "{int} models.Formato"
                     },
                     "403": {
                         "description": "body is empty"
@@ -3179,7 +3239,7 @@
                 "tags": [
                     "formato"
                 ],
-                "summary": "get Formato by id",
+                "description": "get Formato by id",
                 "operationId": "FormatoController.Get",
                 "parameters": [
                     {
@@ -3192,9 +3252,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Formato",
                         "schema": {
-                            "$ref": "#/definitions/Formato"
+                            "$ref": "#/definitions/models.Formato"
                         }
                     },
                     "403": {
@@ -3206,7 +3265,7 @@
                 "tags": [
                     "formato"
                 ],
-                "summary": "update the Formato",
+                "description": "update the Formato",
                 "operationId": "FormatoController.Update",
                 "parameters": [
                     {
@@ -3222,15 +3281,14 @@
                         "description": "body for Formato content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Formato"
+                            "$ref": "#/definitions/models.Formato"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Formato",
                         "schema": {
-                            "$ref": "#/definitions/Formato"
+                            "$ref": "#/definitions/models.Formato"
                         }
                     },
                     "403": {
@@ -3242,7 +3300,7 @@
                 "tags": [
                     "formato"
                 ],
-                "summary": "delete the Formato",
+                "description": "delete the Formato",
                 "operationId": "FormatoController.Delete",
                 "parameters": [
                     {
@@ -3255,7 +3313,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -3268,7 +3326,7 @@
                 "tags": [
                     "formato_evaluacion_carrera"
                 ],
-                "summary": "get FormatoEvaluacionCarrera",
+                "description": "get FormatoEvaluacionCarrera",
                 "operationId": "FormatoEvaluacionCarreraController.Get All",
                 "parameters": [
                     {
@@ -3297,6 +3355,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -3310,9 +3374,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.FormatoEvaluacionCarrera",
                         "schema": {
-                            "$ref": "#/definitions/FormatoEvaluacionCarrera"
+                            "$ref": "#/definitions/models.FormatoEvaluacionCarrera"
                         }
                     },
                     "403": {}
@@ -3322,7 +3385,7 @@
                 "tags": [
                     "formato_evaluacion_carrera"
                 ],
-                "summary": "create FormatoEvaluacionCarrera",
+                "description": "create FormatoEvaluacionCarrera",
                 "operationId": "FormatoEvaluacionCarreraController.Post",
                 "parameters": [
                     {
@@ -3331,13 +3394,13 @@
                         "description": "body for FormatoEvaluacionCarrera content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/FormatoEvaluacionCarrera"
+                            "$ref": "#/definitions/models.FormatoEvaluacionCarrera"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.FormatoEvaluacionCarrera"
+                        "description": "{int} models.FormatoEvaluacionCarrera"
                     },
                     "403": {
                         "description": "body is empty"
@@ -3350,7 +3413,7 @@
                 "tags": [
                     "formato_evaluacion_carrera"
                 ],
-                "summary": "get FormatoEvaluacionCarrera by id",
+                "description": "get FormatoEvaluacionCarrera by id",
                 "operationId": "FormatoEvaluacionCarreraController.Get",
                 "parameters": [
                     {
@@ -3363,9 +3426,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.FormatoEvaluacionCarrera",
                         "schema": {
-                            "$ref": "#/definitions/FormatoEvaluacionCarrera"
+                            "$ref": "#/definitions/models.FormatoEvaluacionCarrera"
                         }
                     },
                     "403": {
@@ -3377,7 +3439,7 @@
                 "tags": [
                     "formato_evaluacion_carrera"
                 ],
-                "summary": "update the FormatoEvaluacionCarrera",
+                "description": "update the FormatoEvaluacionCarrera",
                 "operationId": "FormatoEvaluacionCarreraController.Update",
                 "parameters": [
                     {
@@ -3393,15 +3455,14 @@
                         "description": "body for FormatoEvaluacionCarrera content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/FormatoEvaluacionCarrera"
+                            "$ref": "#/definitions/models.FormatoEvaluacionCarrera"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.FormatoEvaluacionCarrera",
                         "schema": {
-                            "$ref": "#/definitions/FormatoEvaluacionCarrera"
+                            "$ref": "#/definitions/models.FormatoEvaluacionCarrera"
                         }
                     },
                     "403": {
@@ -3413,7 +3474,7 @@
                 "tags": [
                     "formato_evaluacion_carrera"
                 ],
-                "summary": "delete the FormatoEvaluacionCarrera",
+                "description": "delete the FormatoEvaluacionCarrera",
                 "operationId": "FormatoEvaluacionCarreraController.Delete",
                 "parameters": [
                     {
@@ -3426,7 +3487,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -3439,7 +3500,7 @@
                 "tags": [
                     "modalidad"
                 ],
-                "summary": "get Modalidad",
+                "description": "get Modalidad",
                 "operationId": "ModalidadController.Get All",
                 "parameters": [
                     {
@@ -3468,6 +3529,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -3481,9 +3548,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Modalidad",
                         "schema": {
-                            "$ref": "#/definitions/Modalidad"
+                            "$ref": "#/definitions/models.Modalidad"
                         }
                     },
                     "403": {}
@@ -3493,7 +3559,7 @@
                 "tags": [
                     "modalidad"
                 ],
-                "summary": "create Modalidad",
+                "description": "create Modalidad",
                 "operationId": "ModalidadController.Post",
                 "parameters": [
                     {
@@ -3502,13 +3568,13 @@
                         "description": "body for Modalidad content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Modalidad"
+                            "$ref": "#/definitions/models.Modalidad"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.Modalidad"
+                        "description": "{int} models.Modalidad"
                     },
                     "403": {
                         "description": "body is empty"
@@ -3521,7 +3587,7 @@
                 "tags": [
                     "modalidad"
                 ],
-                "summary": "get Modalidad by id",
+                "description": "get Modalidad by id",
                 "operationId": "ModalidadController.Get",
                 "parameters": [
                     {
@@ -3534,9 +3600,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Modalidad",
                         "schema": {
-                            "$ref": "#/definitions/Modalidad"
+                            "$ref": "#/definitions/models.Modalidad"
                         }
                     },
                     "403": {
@@ -3548,7 +3613,7 @@
                 "tags": [
                     "modalidad"
                 ],
-                "summary": "update the Modalidad",
+                "description": "update the Modalidad",
                 "operationId": "ModalidadController.Update",
                 "parameters": [
                     {
@@ -3564,15 +3629,14 @@
                         "description": "body for Modalidad content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Modalidad"
+                            "$ref": "#/definitions/models.Modalidad"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Modalidad",
                         "schema": {
-                            "$ref": "#/definitions/Modalidad"
+                            "$ref": "#/definitions/models.Modalidad"
                         }
                     },
                     "403": {
@@ -3584,7 +3648,7 @@
                 "tags": [
                     "modalidad"
                 ],
-                "summary": "delete the Modalidad",
+                "description": "delete the Modalidad",
                 "operationId": "ModalidadController.Delete",
                 "parameters": [
                     {
@@ -3597,7 +3661,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -3610,7 +3674,7 @@
                 "tags": [
                     "pregunta"
                 ],
-                "summary": "get Pregunta",
+                "description": "get Pregunta",
                 "operationId": "PreguntaController.Get All",
                 "parameters": [
                     {
@@ -3639,6 +3703,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -3652,9 +3722,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Pregunta",
                         "schema": {
-                            "$ref": "#/definitions/Pregunta"
+                            "$ref": "#/definitions/models.Pregunta"
                         }
                     },
                     "403": {}
@@ -3664,7 +3733,7 @@
                 "tags": [
                     "pregunta"
                 ],
-                "summary": "create Pregunta",
+                "description": "create Pregunta",
                 "operationId": "PreguntaController.Post",
                 "parameters": [
                     {
@@ -3673,13 +3742,13 @@
                         "description": "body for Pregunta content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Pregunta"
+                            "$ref": "#/definitions/models.Pregunta"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.Pregunta"
+                        "description": "{int} models.Pregunta"
                     },
                     "403": {
                         "description": "body is empty"
@@ -3692,7 +3761,7 @@
                 "tags": [
                     "pregunta"
                 ],
-                "summary": "get Pregunta by id",
+                "description": "get Pregunta by id",
                 "operationId": "PreguntaController.Get",
                 "parameters": [
                     {
@@ -3705,9 +3774,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Pregunta",
                         "schema": {
-                            "$ref": "#/definitions/Pregunta"
+                            "$ref": "#/definitions/models.Pregunta"
                         }
                     },
                     "403": {
@@ -3719,7 +3787,7 @@
                 "tags": [
                     "pregunta"
                 ],
-                "summary": "update the Pregunta",
+                "description": "update the Pregunta",
                 "operationId": "PreguntaController.Update",
                 "parameters": [
                     {
@@ -3735,15 +3803,14 @@
                         "description": "body for Pregunta content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Pregunta"
+                            "$ref": "#/definitions/models.Pregunta"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Pregunta",
                         "schema": {
-                            "$ref": "#/definitions/Pregunta"
+                            "$ref": "#/definitions/models.Pregunta"
                         }
                     },
                     "403": {
@@ -3755,7 +3822,7 @@
                 "tags": [
                     "pregunta"
                 ],
-                "summary": "delete the Pregunta",
+                "description": "delete the Pregunta",
                 "operationId": "PreguntaController.Delete",
                 "parameters": [
                     {
@@ -3768,7 +3835,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -3781,7 +3848,7 @@
                 "tags": [
                     "pregunta_formato"
                 ],
-                "summary": "get PreguntaFormato",
+                "description": "get PreguntaFormato",
                 "operationId": "PreguntaFormatoController.Get All",
                 "parameters": [
                     {
@@ -3810,6 +3877,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -3823,9 +3896,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.PreguntaFormato",
                         "schema": {
-                            "$ref": "#/definitions/PreguntaFormato"
+                            "$ref": "#/definitions/models.PreguntaFormato"
                         }
                     },
                     "403": {}
@@ -3835,7 +3907,7 @@
                 "tags": [
                     "pregunta_formato"
                 ],
-                "summary": "create PreguntaFormato",
+                "description": "create PreguntaFormato",
                 "operationId": "PreguntaFormatoController.Post",
                 "parameters": [
                     {
@@ -3844,13 +3916,13 @@
                         "description": "body for PreguntaFormato content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/PreguntaFormato"
+                            "$ref": "#/definitions/models.PreguntaFormato"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.PreguntaFormato"
+                        "description": "{int} models.PreguntaFormato"
                     },
                     "403": {
                         "description": "body is empty"
@@ -3863,7 +3935,7 @@
                 "tags": [
                     "pregunta_formato"
                 ],
-                "summary": "get PreguntaFormato by id",
+                "description": "get PreguntaFormato by id",
                 "operationId": "PreguntaFormatoController.Get",
                 "parameters": [
                     {
@@ -3876,9 +3948,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.PreguntaFormato",
                         "schema": {
-                            "$ref": "#/definitions/PreguntaFormato"
+                            "$ref": "#/definitions/models.PreguntaFormato"
                         }
                     },
                     "403": {
@@ -3890,7 +3961,7 @@
                 "tags": [
                     "pregunta_formato"
                 ],
-                "summary": "update the PreguntaFormato",
+                "description": "update the PreguntaFormato",
                 "operationId": "PreguntaFormatoController.Update",
                 "parameters": [
                     {
@@ -3906,15 +3977,14 @@
                         "description": "body for PreguntaFormato content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/PreguntaFormato"
+                            "$ref": "#/definitions/models.PreguntaFormato"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.PreguntaFormato",
                         "schema": {
-                            "$ref": "#/definitions/PreguntaFormato"
+                            "$ref": "#/definitions/models.PreguntaFormato"
                         }
                     },
                     "403": {
@@ -3926,7 +3996,7 @@
                 "tags": [
                     "pregunta_formato"
                 ],
-                "summary": "delete the PreguntaFormato",
+                "description": "delete the PreguntaFormato",
                 "operationId": "PreguntaFormatoController.Delete",
                 "parameters": [
                     {
@@ -3939,7 +4009,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -3952,7 +4022,7 @@
                 "tags": [
                     "respuesta"
                 ],
-                "summary": "get Respuesta",
+                "description": "get Respuesta",
                 "operationId": "RespuestaController.Get All",
                 "parameters": [
                     {
@@ -3981,6 +4051,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -3994,9 +4070,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Respuesta",
                         "schema": {
-                            "$ref": "#/definitions/Respuesta"
+                            "$ref": "#/definitions/models.Respuesta"
                         }
                     },
                     "403": {}
@@ -4006,7 +4081,7 @@
                 "tags": [
                     "respuesta"
                 ],
-                "summary": "create Respuesta",
+                "description": "create Respuesta",
                 "operationId": "RespuestaController.Post",
                 "parameters": [
                     {
@@ -4015,13 +4090,13 @@
                         "description": "body for Respuesta content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Respuesta"
+                            "$ref": "#/definitions/models.Respuesta"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.Respuesta"
+                        "description": "{int} models.Respuesta"
                     },
                     "403": {
                         "description": "body is empty"
@@ -4034,7 +4109,7 @@
                 "tags": [
                     "respuesta"
                 ],
-                "summary": "get Respuesta by id",
+                "description": "get Respuesta by id",
                 "operationId": "RespuestaController.Get",
                 "parameters": [
                     {
@@ -4047,9 +4122,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Respuesta",
                         "schema": {
-                            "$ref": "#/definitions/Respuesta"
+                            "$ref": "#/definitions/models.Respuesta"
                         }
                     },
                     "403": {
@@ -4061,7 +4135,7 @@
                 "tags": [
                     "respuesta"
                 ],
-                "summary": "update the Respuesta",
+                "description": "update the Respuesta",
                 "operationId": "RespuestaController.Update",
                 "parameters": [
                     {
@@ -4077,15 +4151,14 @@
                         "description": "body for Respuesta content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Respuesta"
+                            "$ref": "#/definitions/models.Respuesta"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Respuesta",
                         "schema": {
-                            "$ref": "#/definitions/Respuesta"
+                            "$ref": "#/definitions/models.Respuesta"
                         }
                     },
                     "403": {
@@ -4097,7 +4170,7 @@
                 "tags": [
                     "respuesta"
                 ],
-                "summary": "delete the Respuesta",
+                "description": "delete the Respuesta",
                 "operationId": "RespuestaController.Delete",
                 "parameters": [
                     {
@@ -4110,7 +4183,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -4123,7 +4196,7 @@
                 "tags": [
                     "respuesta_evaluacion"
                 ],
-                "summary": "get RespuestaEvaluacion",
+                "description": "get RespuestaEvaluacion",
                 "operationId": "RespuestaEvaluacionController.Get All",
                 "parameters": [
                     {
@@ -4152,6 +4225,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -4165,9 +4244,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.RespuestaEvaluacion",
                         "schema": {
-                            "$ref": "#/definitions/RespuestaEvaluacion"
+                            "$ref": "#/definitions/models.RespuestaEvaluacion"
                         }
                     },
                     "403": {}
@@ -4177,7 +4255,7 @@
                 "tags": [
                     "respuesta_evaluacion"
                 ],
-                "summary": "create RespuestaEvaluacion",
+                "description": "create RespuestaEvaluacion",
                 "operationId": "RespuestaEvaluacionController.Post",
                 "parameters": [
                     {
@@ -4186,13 +4264,13 @@
                         "description": "body for RespuestaEvaluacion content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RespuestaEvaluacion"
+                            "$ref": "#/definitions/models.RespuestaEvaluacion"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.RespuestaEvaluacion"
+                        "description": "{int} models.RespuestaEvaluacion"
                     },
                     "403": {
                         "description": "body is empty"
@@ -4205,7 +4283,7 @@
                 "tags": [
                     "respuesta_evaluacion"
                 ],
-                "summary": "get RespuestaEvaluacion by id",
+                "description": "get RespuestaEvaluacion by id",
                 "operationId": "RespuestaEvaluacionController.Get",
                 "parameters": [
                     {
@@ -4218,9 +4296,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.RespuestaEvaluacion",
                         "schema": {
-                            "$ref": "#/definitions/RespuestaEvaluacion"
+                            "$ref": "#/definitions/models.RespuestaEvaluacion"
                         }
                     },
                     "403": {
@@ -4232,7 +4309,7 @@
                 "tags": [
                     "respuesta_evaluacion"
                 ],
-                "summary": "update the RespuestaEvaluacion",
+                "description": "update the RespuestaEvaluacion",
                 "operationId": "RespuestaEvaluacionController.Update",
                 "parameters": [
                     {
@@ -4248,15 +4325,14 @@
                         "description": "body for RespuestaEvaluacion content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RespuestaEvaluacion"
+                            "$ref": "#/definitions/models.RespuestaEvaluacion"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.RespuestaEvaluacion",
                         "schema": {
-                            "$ref": "#/definitions/RespuestaEvaluacion"
+                            "$ref": "#/definitions/models.RespuestaEvaluacion"
                         }
                     },
                     "403": {
@@ -4268,7 +4344,7 @@
                 "tags": [
                     "respuesta_evaluacion"
                 ],
-                "summary": "delete the RespuestaEvaluacion",
+                "description": "delete the RespuestaEvaluacion",
                 "operationId": "RespuestaEvaluacionController.Delete",
                 "parameters": [
                     {
@@ -4281,7 +4357,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -4294,7 +4370,7 @@
                 "tags": [
                     "respuesta_formato"
                 ],
-                "summary": "get RespuestaFormato",
+                "description": "get RespuestaFormato",
                 "operationId": "RespuestaFormatoController.Get All",
                 "parameters": [
                     {
@@ -4323,6 +4399,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -4336,9 +4418,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.RespuestaFormato",
                         "schema": {
-                            "$ref": "#/definitions/RespuestaFormato"
+                            "$ref": "#/definitions/models.RespuestaFormato"
                         }
                     },
                     "403": {}
@@ -4348,7 +4429,7 @@
                 "tags": [
                     "respuesta_formato"
                 ],
-                "summary": "create RespuestaFormato",
+                "description": "create RespuestaFormato",
                 "operationId": "RespuestaFormatoController.Post",
                 "parameters": [
                     {
@@ -4357,13 +4438,13 @@
                         "description": "body for RespuestaFormato content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RespuestaFormato"
+                            "$ref": "#/definitions/models.RespuestaFormato"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.RespuestaFormato"
+                        "description": "{int} models.RespuestaFormato"
                     },
                     "403": {
                         "description": "body is empty"
@@ -4376,7 +4457,7 @@
                 "tags": [
                     "respuesta_formato"
                 ],
-                "summary": "get RespuestaFormato by id",
+                "description": "get RespuestaFormato by id",
                 "operationId": "RespuestaFormatoController.Get",
                 "parameters": [
                     {
@@ -4389,9 +4470,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.RespuestaFormato",
                         "schema": {
-                            "$ref": "#/definitions/RespuestaFormato"
+                            "$ref": "#/definitions/models.RespuestaFormato"
                         }
                     },
                     "403": {
@@ -4403,7 +4483,7 @@
                 "tags": [
                     "respuesta_formato"
                 ],
-                "summary": "update the RespuestaFormato",
+                "description": "update the RespuestaFormato",
                 "operationId": "RespuestaFormatoController.Update",
                 "parameters": [
                     {
@@ -4419,15 +4499,14 @@
                         "description": "body for RespuestaFormato content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RespuestaFormato"
+                            "$ref": "#/definitions/models.RespuestaFormato"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.RespuestaFormato",
                         "schema": {
-                            "$ref": "#/definitions/RespuestaFormato"
+                            "$ref": "#/definitions/models.RespuestaFormato"
                         }
                     },
                     "403": {
@@ -4439,7 +4518,7 @@
                 "tags": [
                     "respuesta_formato"
                 ],
-                "summary": "delete the RespuestaFormato",
+                "description": "delete the RespuestaFormato",
                 "operationId": "RespuestaFormatoController.Delete",
                 "parameters": [
                     {
@@ -4452,7 +4531,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -4465,7 +4544,7 @@
                 "tags": [
                     "revision"
                 ],
-                "summary": "get Revision",
+                "description": "get Revision",
                 "operationId": "RevisionController.Get All",
                 "parameters": [
                     {
@@ -4494,6 +4573,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -4507,9 +4592,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Revision",
                         "schema": {
-                            "$ref": "#/definitions/Revision"
+                            "$ref": "#/definitions/models.Revision"
                         }
                     },
                     "403": {}
@@ -4519,7 +4603,7 @@
                 "tags": [
                     "revision"
                 ],
-                "summary": "create Revision",
+                "description": "create Revision",
                 "operationId": "RevisionController.Post",
                 "parameters": [
                     {
@@ -4528,13 +4612,13 @@
                         "description": "body for Revision content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Revision"
+                            "$ref": "#/definitions/models.Revision"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.Revision"
+                        "description": "{int} models.Revision"
                     },
                     "403": {
                         "description": "body is empty"
@@ -4547,7 +4631,7 @@
                 "tags": [
                     "revision"
                 ],
-                "summary": "get Revision by id",
+                "description": "get Revision by id",
                 "operationId": "RevisionController.Get",
                 "parameters": [
                     {
@@ -4560,9 +4644,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Revision",
                         "schema": {
-                            "$ref": "#/definitions/Revision"
+                            "$ref": "#/definitions/models.Revision"
                         }
                     },
                     "403": {
@@ -4574,7 +4657,7 @@
                 "tags": [
                     "revision"
                 ],
-                "summary": "update the Revision",
+                "description": "update the Revision",
                 "operationId": "RevisionController.Update",
                 "parameters": [
                     {
@@ -4590,15 +4673,14 @@
                         "description": "body for Revision content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Revision"
+                            "$ref": "#/definitions/models.Revision"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Revision",
                         "schema": {
-                            "$ref": "#/definitions/Revision"
+                            "$ref": "#/definitions/models.Revision"
                         }
                     },
                     "403": {
@@ -4610,7 +4692,7 @@
                 "tags": [
                     "revision"
                 ],
-                "summary": "delete the Revision",
+                "description": "delete the Revision",
                 "operationId": "RevisionController.Delete",
                 "parameters": [
                     {
@@ -4623,7 +4705,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -4636,7 +4718,7 @@
                 "tags": [
                     "socializacion"
                 ],
-                "summary": "get Socializacion",
+                "description": "get Socializacion",
                 "operationId": "SocializacionController.Get All",
                 "parameters": [
                     {
@@ -4665,6 +4747,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -4678,9 +4766,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Socializacion",
                         "schema": {
-                            "$ref": "#/definitions/Socializacion"
+                            "$ref": "#/definitions/models.Socializacion"
                         }
                     },
                     "403": {}
@@ -4690,7 +4777,7 @@
                 "tags": [
                     "socializacion"
                 ],
-                "summary": "create Socializacion",
+                "description": "create Socializacion",
                 "operationId": "SocializacionController.Post",
                 "parameters": [
                     {
@@ -4699,13 +4786,13 @@
                         "description": "body for Socializacion content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Socializacion"
+                            "$ref": "#/definitions/models.Socializacion"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.Socializacion"
+                        "description": "{int} models.Socializacion"
                     },
                     "403": {
                         "description": "body is empty"
@@ -4718,7 +4805,7 @@
                 "tags": [
                     "socializacion"
                 ],
-                "summary": "get Socializacion by id",
+                "description": "get Socializacion by id",
                 "operationId": "SocializacionController.Get",
                 "parameters": [
                     {
@@ -4731,9 +4818,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Socializacion",
                         "schema": {
-                            "$ref": "#/definitions/Socializacion"
+                            "$ref": "#/definitions/models.Socializacion"
                         }
                     },
                     "403": {
@@ -4745,7 +4831,7 @@
                 "tags": [
                     "socializacion"
                 ],
-                "summary": "update the Socializacion",
+                "description": "update the Socializacion",
                 "operationId": "SocializacionController.Update",
                 "parameters": [
                     {
@@ -4761,15 +4847,14 @@
                         "description": "body for Socializacion content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Socializacion"
+                            "$ref": "#/definitions/models.Socializacion"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Socializacion",
                         "schema": {
-                            "$ref": "#/definitions/Socializacion"
+                            "$ref": "#/definitions/models.Socializacion"
                         }
                     },
                     "403": {
@@ -4781,7 +4866,7 @@
                 "tags": [
                     "socializacion"
                 ],
-                "summary": "delete the Socializacion",
+                "description": "delete the Socializacion",
                 "operationId": "SocializacionController.Delete",
                 "parameters": [
                     {
@@ -4794,7 +4879,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -4807,7 +4892,7 @@
                 "tags": [
                     "solicitud_materias"
                 ],
-                "summary": "get SolicitudMaterias",
+                "description": "get SolicitudMaterias",
                 "operationId": "SolicitudMateriasController.Get All",
                 "parameters": [
                     {
@@ -4836,6 +4921,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -4849,9 +4940,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.SolicitudMaterias",
                         "schema": {
-                            "$ref": "#/definitions/SolicitudMaterias"
+                            "$ref": "#/definitions/models.SolicitudMaterias"
                         }
                     },
                     "403": {}
@@ -4861,7 +4951,7 @@
                 "tags": [
                     "solicitud_materias"
                 ],
-                "summary": "create SolicitudMaterias",
+                "description": "create SolicitudMaterias",
                 "operationId": "SolicitudMateriasController.Post",
                 "parameters": [
                     {
@@ -4870,13 +4960,13 @@
                         "description": "body for SolicitudMaterias content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/SolicitudMaterias"
+                            "$ref": "#/definitions/models.SolicitudMaterias"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.SolicitudMaterias"
+                        "description": "{int} models.SolicitudMaterias"
                     },
                     "403": {
                         "description": "body is empty"
@@ -4889,7 +4979,7 @@
                 "tags": [
                     "solicitud_materias"
                 ],
-                "summary": "get SolicitudMaterias by id",
+                "description": "get SolicitudMaterias by id",
                 "operationId": "SolicitudMateriasController.Get",
                 "parameters": [
                     {
@@ -4902,9 +4992,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.SolicitudMaterias",
                         "schema": {
-                            "$ref": "#/definitions/SolicitudMaterias"
+                            "$ref": "#/definitions/models.SolicitudMaterias"
                         }
                     },
                     "403": {
@@ -4916,7 +5005,7 @@
                 "tags": [
                     "solicitud_materias"
                 ],
-                "summary": "update the SolicitudMaterias",
+                "description": "update the SolicitudMaterias",
                 "operationId": "SolicitudMateriasController.Update",
                 "parameters": [
                     {
@@ -4932,15 +5021,14 @@
                         "description": "body for SolicitudMaterias content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/SolicitudMaterias"
+                            "$ref": "#/definitions/models.SolicitudMaterias"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.SolicitudMaterias",
                         "schema": {
-                            "$ref": "#/definitions/SolicitudMaterias"
+                            "$ref": "#/definitions/models.SolicitudMaterias"
                         }
                     },
                     "403": {
@@ -4952,7 +5040,7 @@
                 "tags": [
                     "solicitud_materias"
                 ],
-                "summary": "delete the SolicitudMaterias",
+                "description": "delete the SolicitudMaterias",
                 "operationId": "SolicitudMateriasController.Delete",
                 "parameters": [
                     {
@@ -4965,7 +5053,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -4978,7 +5066,7 @@
                 "tags": [
                     "tipo_documento"
                 ],
-                "summary": "get TipoDocumento",
+                "description": "get TipoDocumento",
                 "operationId": "TipoDocumentoController.Get All",
                 "parameters": [
                     {
@@ -5007,6 +5095,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -5020,9 +5114,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.TipoDocumento",
                         "schema": {
-                            "$ref": "#/definitions/TipoDocumento"
+                            "$ref": "#/definitions/models.TipoDocumento"
                         }
                     },
                     "403": {}
@@ -5032,7 +5125,7 @@
                 "tags": [
                     "tipo_documento"
                 ],
-                "summary": "create TipoDocumento",
+                "description": "create TipoDocumento",
                 "operationId": "TipoDocumentoController.Post",
                 "parameters": [
                     {
@@ -5041,13 +5134,13 @@
                         "description": "body for TipoDocumento content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/TipoDocumento"
+                            "$ref": "#/definitions/models.TipoDocumento"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.TipoDocumento"
+                        "description": "{int} models.TipoDocumento"
                     },
                     "403": {
                         "description": "body is empty"
@@ -5060,7 +5153,7 @@
                 "tags": [
                     "tipo_documento"
                 ],
-                "summary": "get TipoDocumento by id",
+                "description": "get TipoDocumento by id",
                 "operationId": "TipoDocumentoController.Get",
                 "parameters": [
                     {
@@ -5073,9 +5166,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.TipoDocumento",
                         "schema": {
-                            "$ref": "#/definitions/TipoDocumento"
+                            "$ref": "#/definitions/models.TipoDocumento"
                         }
                     },
                     "403": {
@@ -5087,7 +5179,7 @@
                 "tags": [
                     "tipo_documento"
                 ],
-                "summary": "update the TipoDocumento",
+                "description": "update the TipoDocumento",
                 "operationId": "TipoDocumentoController.Update",
                 "parameters": [
                     {
@@ -5103,15 +5195,14 @@
                         "description": "body for TipoDocumento content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/TipoDocumento"
+                            "$ref": "#/definitions/models.TipoDocumento"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.TipoDocumento",
                         "schema": {
-                            "$ref": "#/definitions/TipoDocumento"
+                            "$ref": "#/definitions/models.TipoDocumento"
                         }
                     },
                     "403": {
@@ -5123,7 +5214,7 @@
                 "tags": [
                     "tipo_documento"
                 ],
-                "summary": "delete the TipoDocumento",
+                "description": "delete the TipoDocumento",
                 "operationId": "TipoDocumentoController.Delete",
                 "parameters": [
                     {
@@ -5136,7 +5227,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -5149,7 +5240,7 @@
                 "tags": [
                     "tipo_vinculacion"
                 ],
-                "summary": "get TipoVinculacion",
+                "description": "get TipoVinculacion",
                 "operationId": "TipoVinculacionController.Get All",
                 "parameters": [
                     {
@@ -5178,6 +5269,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -5191,9 +5288,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.TipoVinculacion",
                         "schema": {
-                            "$ref": "#/definitions/TipoVinculacion"
+                            "$ref": "#/definitions/models.TipoVinculacion"
                         }
                     },
                     "403": {}
@@ -5203,7 +5299,7 @@
                 "tags": [
                     "tipo_vinculacion"
                 ],
-                "summary": "create TipoVinculacion",
+                "description": "create TipoVinculacion",
                 "operationId": "TipoVinculacionController.Post",
                 "parameters": [
                     {
@@ -5212,13 +5308,13 @@
                         "description": "body for TipoVinculacion content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/TipoVinculacion"
+                            "$ref": "#/definitions/models.TipoVinculacion"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.TipoVinculacion"
+                        "description": "{int} models.TipoVinculacion"
                     },
                     "403": {
                         "description": "body is empty"
@@ -5231,7 +5327,7 @@
                 "tags": [
                     "tipo_vinculacion"
                 ],
-                "summary": "get TipoVinculacion by id",
+                "description": "get TipoVinculacion by id",
                 "operationId": "TipoVinculacionController.Get",
                 "parameters": [
                     {
@@ -5244,9 +5340,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.TipoVinculacion",
                         "schema": {
-                            "$ref": "#/definitions/TipoVinculacion"
+                            "$ref": "#/definitions/models.TipoVinculacion"
                         }
                     },
                     "403": {
@@ -5258,7 +5353,7 @@
                 "tags": [
                     "tipo_vinculacion"
                 ],
-                "summary": "update the TipoVinculacion",
+                "description": "update the TipoVinculacion",
                 "operationId": "TipoVinculacionController.Update",
                 "parameters": [
                     {
@@ -5274,15 +5369,14 @@
                         "description": "body for TipoVinculacion content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/TipoVinculacion"
+                            "$ref": "#/definitions/models.TipoVinculacion"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.TipoVinculacion",
                         "schema": {
-                            "$ref": "#/definitions/TipoVinculacion"
+                            "$ref": "#/definitions/models.TipoVinculacion"
                         }
                     },
                     "403": {
@@ -5294,7 +5388,7 @@
                 "tags": [
                     "tipo_vinculacion"
                 ],
-                "summary": "delete the TipoVinculacion",
+                "description": "delete the TipoVinculacion",
                 "operationId": "TipoVinculacionController.Delete",
                 "parameters": [
                     {
@@ -5307,10 +5401,150 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tr_formato/": {
+            "put": {
+                "tags": [
+                    "tr_formato"
+                ],
+                "description": "update the TrFormato",
+                "operationId": "TrFormatoController.UpdateTrFormato",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrUpdateFormato content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrUpdateFormato"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/.msg"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tr_formato"
+                ],
+                "description": "create the Formato",
+                "operationId": "TrFormatoController.PostFormato",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrSolicitud content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrSolicitud"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TrFormato"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tr_formato/{id}": {
+            "get": {
+                "tags": [
+                    "tr_formato"
+                ],
+                "description": "get Formato by id",
+                "operationId": "TrFormatoController.GetFormato",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.TrFormato"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            }
+        },
+        "/tr_solicitud/": {
+            "post": {
+                "tags": [
+                    "tr_solicitud"
+                ],
+                "description": "create the TrSolicitud",
+                "operationId": "TrSolicitudController.PostTrSolicitud",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrSolicitud content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrSolicitud"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TrSolicitud"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tr_trabajo_grado/": {
+            "post": {
+                "tags": [
+                    "tr_trabajo_grado"
+                ],
+                "description": "create the TrTrabajoGrado",
+                "operationId": "TrTrabajoGradoController.PostTrTrabajoGrado",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrTrabajoGrado content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrabajoGradoTr"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TrabajoGradoTr"
+                    },
+                    "403": {
+                        "description": "body is empty"
                     }
                 }
             }
@@ -5320,7 +5554,7 @@
                 "tags": [
                     "trabajo_grado"
                 ],
-                "summary": "get TrabajoGrado",
+                "description": "get TrabajoGrado",
                 "operationId": "TrabajoGradoController.Get All",
                 "parameters": [
                     {
@@ -5349,6 +5583,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -5362,9 +5602,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.TrabajoGrado",
                         "schema": {
-                            "$ref": "#/definitions/TrabajoGrado"
+                            "$ref": "#/definitions/models.TrabajoGrado"
                         }
                     },
                     "403": {}
@@ -5374,7 +5613,7 @@
                 "tags": [
                     "trabajo_grado"
                 ],
-                "summary": "create TrabajoGrado",
+                "description": "create TrabajoGrado",
                 "operationId": "TrabajoGradoController.Post",
                 "parameters": [
                     {
@@ -5383,13 +5622,13 @@
                         "description": "body for TrabajoGrado content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/TrabajoGrado"
+                            "$ref": "#/definitions/models.TrabajoGrado"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.TrabajoGrado"
+                        "description": "{int} models.TrabajoGrado"
                     },
                     "403": {
                         "description": "body is empty"
@@ -5402,7 +5641,7 @@
                 "tags": [
                     "trabajo_grado"
                 ],
-                "summary": "get TrabajoGrado by id",
+                "description": "get TrabajoGrado by id",
                 "operationId": "TrabajoGradoController.Get",
                 "parameters": [
                     {
@@ -5415,9 +5654,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.TrabajoGrado",
                         "schema": {
-                            "$ref": "#/definitions/TrabajoGrado"
+                            "$ref": "#/definitions/models.TrabajoGrado"
                         }
                     },
                     "403": {
@@ -5429,7 +5667,7 @@
                 "tags": [
                     "trabajo_grado"
                 ],
-                "summary": "update the TrabajoGrado",
+                "description": "update the TrabajoGrado",
                 "operationId": "TrabajoGradoController.Update",
                 "parameters": [
                     {
@@ -5445,15 +5683,14 @@
                         "description": "body for TrabajoGrado content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/TrabajoGrado"
+                            "$ref": "#/definitions/models.TrabajoGrado"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.TrabajoGrado",
                         "schema": {
-                            "$ref": "#/definitions/TrabajoGrado"
+                            "$ref": "#/definitions/models.TrabajoGrado"
                         }
                     },
                     "403": {
@@ -5465,7 +5702,7 @@
                 "tags": [
                     "trabajo_grado"
                 ],
-                "summary": "delete the TrabajoGrado",
+                "description": "delete the TrabajoGrado",
                 "operationId": "TrabajoGradoController.Delete",
                 "parameters": [
                     {
@@ -5478,7 +5715,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -5491,7 +5728,7 @@
                 "tags": [
                     "vinculacion_docente"
                 ],
-                "summary": "get VinculacionDocente",
+                "description": "get VinculacionDocente",
                 "operationId": "VinculacionDocenteController.Get All",
                 "parameters": [
                     {
@@ -5520,6 +5757,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -5533,9 +5776,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.VinculacionDocente",
                         "schema": {
-                            "$ref": "#/definitions/VinculacionDocente"
+                            "$ref": "#/definitions/models.VinculacionDocente"
                         }
                     },
                     "403": {}
@@ -5545,7 +5787,7 @@
                 "tags": [
                     "vinculacion_docente"
                 ],
-                "summary": "create VinculacionDocente",
+                "description": "create VinculacionDocente",
                 "operationId": "VinculacionDocenteController.Post",
                 "parameters": [
                     {
@@ -5554,13 +5796,13 @@
                         "description": "body for VinculacionDocente content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/VinculacionDocente"
+                            "$ref": "#/definitions/models.VinculacionDocente"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.VinculacionDocente"
+                        "description": "{int} models.VinculacionDocente"
                     },
                     "403": {
                         "description": "body is empty"
@@ -5573,7 +5815,7 @@
                 "tags": [
                     "vinculacion_docente"
                 ],
-                "summary": "get VinculacionDocente by id",
+                "description": "get VinculacionDocente by id",
                 "operationId": "VinculacionDocenteController.Get",
                 "parameters": [
                     {
@@ -5586,9 +5828,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.VinculacionDocente",
                         "schema": {
-                            "$ref": "#/definitions/VinculacionDocente"
+                            "$ref": "#/definitions/models.VinculacionDocente"
                         }
                     },
                     "403": {
@@ -5600,7 +5841,7 @@
                 "tags": [
                     "vinculacion_docente"
                 ],
-                "summary": "update the VinculacionDocente",
+                "description": "update the VinculacionDocente",
                 "operationId": "VinculacionDocenteController.Update",
                 "parameters": [
                     {
@@ -5616,15 +5857,14 @@
                         "description": "body for VinculacionDocente content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/VinculacionDocente"
+                            "$ref": "#/definitions/models.VinculacionDocente"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.VinculacionDocente",
                         "schema": {
-                            "$ref": "#/definitions/VinculacionDocente"
+                            "$ref": "#/definitions/models.VinculacionDocente"
                         }
                     },
                     "403": {
@@ -5636,7 +5876,7 @@
                 "tags": [
                     "vinculacion_docente"
                 ],
-                "summary": "delete the VinculacionDocente",
+                "description": "delete the VinculacionDocente",
                 "operationId": "VinculacionDocenteController.Delete",
                 "parameters": [
                     {
@@ -5649,7 +5889,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -5662,7 +5902,7 @@
                 "tags": [
                     "vinculacion_externa"
                 ],
-                "summary": "get VinculacionExterna",
+                "description": "get VinculacionExterna",
                 "operationId": "VinculacionExternaController.Get All",
                 "parameters": [
                     {
@@ -5691,6 +5931,12 @@
                     },
                     {
                         "in": "query",
+                        "name": "related",
+                        "description": "Filter. e.g. col1__related1,col2__related2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
                         "name": "limit",
                         "description": "Limit the size of result set. Must be an integer",
                         "type": "string"
@@ -5704,9 +5950,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.VinculacionExterna",
                         "schema": {
-                            "$ref": "#/definitions/VinculacionExterna"
+                            "$ref": "#/definitions/models.VinculacionExterna"
                         }
                     },
                     "403": {}
@@ -5716,7 +5961,7 @@
                 "tags": [
                     "vinculacion_externa"
                 ],
-                "summary": "create VinculacionExterna",
+                "description": "create VinculacionExterna",
                 "operationId": "VinculacionExternaController.Post",
                 "parameters": [
                     {
@@ -5725,13 +5970,13 @@
                         "description": "body for VinculacionExterna content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/VinculacionExterna"
+                            "$ref": "#/definitions/models.VinculacionExterna"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.VinculacionExterna"
+                        "description": "{int} models.VinculacionExterna"
                     },
                     "403": {
                         "description": "body is empty"
@@ -5744,7 +5989,7 @@
                 "tags": [
                     "vinculacion_externa"
                 ],
-                "summary": "get VinculacionExterna by id",
+                "description": "get VinculacionExterna by id",
                 "operationId": "VinculacionExternaController.Get",
                 "parameters": [
                     {
@@ -5757,9 +6002,8 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.VinculacionExterna",
                         "schema": {
-                            "$ref": "#/definitions/VinculacionExterna"
+                            "$ref": "#/definitions/models.VinculacionExterna"
                         }
                     },
                     "403": {
@@ -5771,7 +6015,7 @@
                 "tags": [
                     "vinculacion_externa"
                 ],
-                "summary": "update the VinculacionExterna",
+                "description": "update the VinculacionExterna",
                 "operationId": "VinculacionExternaController.Update",
                 "parameters": [
                     {
@@ -5787,15 +6031,14 @@
                         "description": "body for VinculacionExterna content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/VinculacionExterna"
+                            "$ref": "#/definitions/models.VinculacionExterna"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.VinculacionExterna",
                         "schema": {
-                            "$ref": "#/definitions/VinculacionExterna"
+                            "$ref": "#/definitions/models.VinculacionExterna"
                         }
                     },
                     "403": {
@@ -5807,7 +6050,7 @@
                 "tags": [
                     "vinculacion_externa"
                 ],
-                "summary": "delete the VinculacionExterna",
+                "description": "delete the VinculacionExterna",
                 "operationId": "VinculacionExternaController.Delete",
                 "parameters": [
                     {
@@ -5820,7 +6063,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -5830,7 +6073,10 @@
         }
     },
     "definitions": {
-        "AreaConocimiento": {
+        ".msg": {
+            "type": "object"
+        },
+        "models.AreaConocimiento": {
             "title": "AreaConocimiento",
             "type": "object",
             "properties": {
@@ -5846,7 +6092,7 @@
                 }
             }
         },
-        "AreasDocente": {
+        "models.AreasDocente": {
             "title": "AreasDocente",
             "type": "object",
             "properties": {
@@ -5855,7 +6101,7 @@
                     "format": "int64"
                 },
                 "IdAreaConocimiento": {
-                    "$ref": "#/definitions/AreaConocimiento"
+                    "$ref": "#/definitions/models.AreaConocimiento"
                 },
                 "IdentificacionDocente": {
                     "type": "number",
@@ -5863,7 +6109,7 @@
                 }
             }
         },
-        "AreasTrabajoGrado": {
+        "models.AreasTrabajoGrado": {
             "title": "AreasTrabajoGrado",
             "type": "object",
             "properties": {
@@ -5872,14 +6118,14 @@
                     "format": "int64"
                 },
                 "IdAreaConocimiento": {
-                    "$ref": "#/definitions/AreaConocimiento"
+                    "$ref": "#/definitions/models.AreaConocimiento"
                 },
                 "IdTrabajoGrado": {
-                    "$ref": "#/definitions/TrabajoGrado"
+                    "$ref": "#/definitions/models.TrabajoGrado"
                 }
             }
         },
-        "AsignaturaInscrita": {
+        "models.AsignaturaInscrita": {
             "title": "AsignaturaInscrita",
             "type": "object",
             "properties": {
@@ -5891,10 +6137,10 @@
                     "format": "int64"
                 },
                 "IdAsignaturasElegibles": {
-                    "$ref": "#/definitions/AsignaturasElegibles"
+                    "$ref": "#/definitions/models.AsignaturasElegibles"
                 },
                 "IdSolicitudMaterias": {
-                    "$ref": "#/definitions/SolicitudMaterias"
+                    "$ref": "#/definitions/models.SolicitudMaterias"
                 },
                 "Nota": {
                     "type": "number",
@@ -5902,7 +6148,7 @@
                 }
             }
         },
-        "AsignaturaTg": {
+        "models.AsignaturaTg": {
             "title": "AsignaturaTg",
             "type": "object",
             "properties": {
@@ -5919,11 +6165,11 @@
                     "format": "int64"
                 },
                 "IdTrabajoGrado": {
-                    "$ref": "#/definitions/TrabajoGrado"
+                    "$ref": "#/definitions/models.TrabajoGrado"
                 }
             }
         },
-        "AsignaturasElegibles": {
+        "models.AsignaturasElegibles": {
             "title": "AsignaturasElegibles",
             "type": "object",
             "properties": {
@@ -5939,11 +6185,11 @@
                     "format": "int64"
                 },
                 "IdCarreraElegible": {
-                    "$ref": "#/definitions/CarreraElegible"
+                    "$ref": "#/definitions/models.CarreraElegible"
                 }
             }
         },
-        "CarreraElegible": {
+        "models.CarreraElegible": {
             "title": "CarreraElegible",
             "type": "object",
             "properties": {
@@ -5977,7 +6223,7 @@
                 }
             }
         },
-        "Categoria": {
+        "models.Categoria": {
             "title": "Categoria",
             "type": "object",
             "properties": {
@@ -5990,7 +6236,7 @@
                 }
             }
         },
-        "Comentario": {
+        "models.Comentario": {
             "title": "Comentario",
             "type": "object",
             "properties": {
@@ -6001,18 +6247,19 @@
                     "type": "string"
                 },
                 "Fecha": {
-                    "$ref": "#/definitions/\u0026{time Time}"
+                    "type": "string",
+                    "format": "string"
                 },
                 "Id": {
                     "type": "integer",
                     "format": "int64"
                 },
                 "IdCorreccion": {
-                    "$ref": "#/definitions/Correccion"
+                    "$ref": "#/definitions/models.Correccion"
                 }
             }
         },
-        "Correccion": {
+        "models.Correccion": {
             "title": "Correccion",
             "type": "object",
             "properties": {
@@ -6021,7 +6268,7 @@
                     "format": "int64"
                 },
                 "IdRevision": {
-                    "$ref": "#/definitions/Revision"
+                    "$ref": "#/definitions/models.Revision"
                 },
                 "Justificacion": {
                     "type": "string"
@@ -6035,7 +6282,7 @@
                 }
             }
         },
-        "Documento": {
+        "models.Documento": {
             "title": "Documento",
             "type": "object",
             "properties": {
@@ -6047,7 +6294,7 @@
                     "format": "int64"
                 },
                 "IdTipoDocumento": {
-                    "$ref": "#/definitions/TipoDocumento"
+                    "$ref": "#/definitions/models.TipoDocumento"
                 },
                 "Resumen": {
                     "type": "string"
@@ -6057,7 +6304,7 @@
                 }
             }
         },
-        "DocumentoEntidad": {
+        "models.DocumentoEntidad": {
             "title": "DocumentoEntidad",
             "type": "object",
             "properties": {
@@ -6066,17 +6313,17 @@
                     "format": "int64"
                 },
                 "IdDocumento": {
-                    "$ref": "#/definitions/Documento"
+                    "$ref": "#/definitions/models.Documento"
                 },
                 "IdEntidad": {
-                    "$ref": "#/definitions/Entidad"
+                    "$ref": "#/definitions/models.Entidad"
                 },
                 "Validado": {
                     "type": "boolean"
                 }
             }
         },
-        "DocumentoTg": {
+        "models.DocumentoTg": {
             "title": "DocumentoTg",
             "type": "object",
             "properties": {
@@ -6085,20 +6332,20 @@
                     "format": "int64"
                 },
                 "IdDocumento": {
-                    "$ref": "#/definitions/Documento"
+                    "$ref": "#/definitions/models.Documento"
                 },
                 "IdDocumentoRelacionado": {
-                    "$ref": "#/definitions/DocumentoTg"
+                    "$ref": "#/definitions/models.DocumentoTg"
                 },
                 "IdEstadoDocumento": {
-                    "$ref": "#/definitions/EstadoDocumento"
+                    "$ref": "#/definitions/models.EstadoDocumento"
                 },
                 "IdTrabajoGrado": {
-                    "$ref": "#/definitions/TrabajoGrado"
+                    "$ref": "#/definitions/models.TrabajoGrado"
                 }
             }
         },
-        "Entidad": {
+        "models.Entidad": {
             "title": "Entidad",
             "type": "object",
             "properties": {
@@ -6114,11 +6361,11 @@
                     "format": "int64"
                 },
                 "IdEntidadRelacionada": {
-                    "$ref": "#/definitions/Entidad"
+                    "$ref": "#/definitions/models.Entidad"
                 }
             }
         },
-        "EstadoDocumento": {
+        "models.EstadoDocumento": {
             "title": "EstadoDocumento",
             "type": "object",
             "properties": {
@@ -6134,7 +6381,7 @@
                 }
             }
         },
-        "EstructuraInvestigacionTg": {
+        "models.EstructuraInvestigacionTg": {
             "title": "EstructuraInvestigacionTg",
             "type": "object",
             "properties": {
@@ -6147,11 +6394,11 @@
                     "format": "int64"
                 },
                 "IdTrabajoGrado": {
-                    "$ref": "#/definitions/TrabajoGrado"
+                    "$ref": "#/definitions/models.TrabajoGrado"
                 }
             }
         },
-        "EstudianteTg": {
+        "models.EstudianteTg": {
             "title": "EstudianteTg",
             "type": "object",
             "properties": {
@@ -6167,11 +6414,11 @@
                     "format": "int64"
                 },
                 "IdTrabajoGrado": {
-                    "$ref": "#/definitions/TrabajoGrado"
+                    "$ref": "#/definitions/models.TrabajoGrado"
                 }
             }
         },
-        "Evaluacion": {
+        "models.Evaluacion": {
             "title": "Evaluacion",
             "type": "object",
             "properties": {
@@ -6180,13 +6427,13 @@
                     "format": "int64"
                 },
                 "IdFormatoEvaluacionCarrera": {
-                    "$ref": "#/definitions/FormatoEvaluacionCarrera"
+                    "$ref": "#/definitions/models.FormatoEvaluacionCarrera"
                 },
                 "IdSocializacion": {
-                    "$ref": "#/definitions/Socializacion"
+                    "$ref": "#/definitions/models.Socializacion"
                 },
                 "IdVinculacionDocente": {
-                    "$ref": "#/definitions/VinculacionDocente"
+                    "$ref": "#/definitions/models.VinculacionDocente"
                 },
                 "Nota": {
                     "type": "number",
@@ -6194,12 +6441,13 @@
                 }
             }
         },
-        "Formato": {
+        "models.Formato": {
             "title": "Formato",
             "type": "object",
             "properties": {
                 "FechaRealizacion": {
-                    "$ref": "#/definitions/\u0026{time Time}"
+                    "type": "string",
+                    "format": "string"
                 },
                 "Id": {
                     "type": "integer",
@@ -6213,7 +6461,7 @@
                 }
             }
         },
-        "FormatoEvaluacionCarrera": {
+        "models.FormatoEvaluacionCarrera": {
             "title": "FormatoEvaluacionCarrera",
             "type": "object",
             "properties": {
@@ -6225,24 +6473,26 @@
                     "format": "double"
                 },
                 "FechaFin": {
-                    "$ref": "#/definitions/\u0026{time Time}"
+                    "type": "string",
+                    "format": "string"
                 },
                 "FechaInicio": {
-                    "$ref": "#/definitions/\u0026{time Time}"
+                    "type": "string",
+                    "format": "string"
                 },
                 "Id": {
                     "type": "integer",
                     "format": "int64"
                 },
                 "IdFormato": {
-                    "$ref": "#/definitions/Formato"
+                    "$ref": "#/definitions/models.Formato"
                 },
                 "IdModalidad": {
-                    "$ref": "#/definitions/Modalidad"
+                    "$ref": "#/definitions/models.Modalidad"
                 }
             }
         },
-        "Modalidad": {
+        "models.Modalidad": {
             "title": "Modalidad",
             "type": "object",
             "properties": {
@@ -6261,7 +6511,7 @@
                 }
             }
         },
-        "Pregunta": {
+        "models.Pregunta": {
             "title": "Pregunta",
             "type": "object",
             "properties": {
@@ -6274,7 +6524,7 @@
                 }
             }
         },
-        "PreguntaFormato": {
+        "models.PreguntaFormato": {
             "title": "PreguntaFormato",
             "type": "object",
             "properties": {
@@ -6286,10 +6536,10 @@
                     "format": "int64"
                 },
                 "IdFormato": {
-                    "$ref": "#/definitions/Formato"
+                    "$ref": "#/definitions/models.Formato"
                 },
                 "IdPregunta": {
-                    "$ref": "#/definitions/Pregunta"
+                    "$ref": "#/definitions/models.Pregunta"
                 },
                 "Orden": {
                     "type": "number",
@@ -6304,7 +6554,7 @@
                 }
             }
         },
-        "Respuesta": {
+        "models.Respuesta": {
             "title": "Respuesta",
             "type": "object",
             "properties": {
@@ -6317,7 +6567,7 @@
                 }
             }
         },
-        "RespuestaEvaluacion": {
+        "models.RespuestaEvaluacion": {
             "title": "RespuestaEvaluacion",
             "type": "object",
             "properties": {
@@ -6326,17 +6576,17 @@
                     "format": "int64"
                 },
                 "IdEvaluacion": {
-                    "$ref": "#/definitions/Evaluacion"
+                    "$ref": "#/definitions/models.Evaluacion"
                 },
                 "IdRespuestaFormato": {
-                    "$ref": "#/definitions/RespuestaFormato"
+                    "$ref": "#/definitions/models.RespuestaFormato"
                 },
                 "Justificacion": {
                     "type": "string"
                 }
             }
         },
-        "RespuestaFormato": {
+        "models.RespuestaFormato": {
             "title": "RespuestaFormato",
             "type": "object",
             "properties": {
@@ -6345,10 +6595,10 @@
                     "format": "int64"
                 },
                 "IdPreguntaFormato": {
-                    "$ref": "#/definitions/PreguntaFormato"
+                    "$ref": "#/definitions/models.PreguntaFormato"
                 },
                 "IdRespuesta": {
-                    "$ref": "#/definitions/Respuesta"
+                    "$ref": "#/definitions/models.Respuesta"
                 },
                 "Orden": {
                     "type": "number",
@@ -6360,7 +6610,7 @@
                 }
             }
         },
-        "Revision": {
+        "models.Revision": {
             "title": "Revision",
             "type": "object",
             "properties": {
@@ -6368,20 +6618,22 @@
                     "type": "string"
                 },
                 "FechaRecepcion": {
-                    "$ref": "#/definitions/\u0026{time Time}"
+                    "type": "string",
+                    "format": "string"
                 },
                 "FechaRevision": {
-                    "$ref": "#/definitions/\u0026{time Time}"
+                    "type": "string",
+                    "format": "string"
                 },
                 "Id": {
                     "type": "integer",
                     "format": "int64"
                 },
                 "IdDocumentoTg": {
-                    "$ref": "#/definitions/DocumentoTg"
+                    "$ref": "#/definitions/models.DocumentoTg"
                 },
                 "IdVinculacionDocente": {
-                    "$ref": "#/definitions/VinculacionDocente"
+                    "$ref": "#/definitions/models.VinculacionDocente"
                 },
                 "NumeroRevision": {
                     "type": "number",
@@ -6389,26 +6641,27 @@
                 }
             }
         },
-        "Socializacion": {
+        "models.Socializacion": {
             "title": "Socializacion",
             "type": "object",
             "properties": {
                 "Fecha": {
-                    "$ref": "#/definitions/\u0026{time Time}"
+                    "type": "string",
+                    "format": "string"
                 },
                 "Id": {
                     "type": "integer",
                     "format": "int64"
                 },
                 "IdTrabajoGrado": {
-                    "$ref": "#/definitions/TrabajoGrado"
+                    "$ref": "#/definitions/models.TrabajoGrado"
                 },
                 "Lugar": {
                     "type": "string"
                 }
             }
         },
-        "SolicitudMaterias": {
+        "models.SolicitudMaterias": {
             "title": "SolicitudMaterias",
             "type": "object",
             "properties": {
@@ -6424,7 +6677,8 @@
                     "type": "string"
                 },
                 "Fecha": {
-                    "$ref": "#/definitions/\u0026{time Time}"
+                    "type": "string",
+                    "format": "string"
                 },
                 "Formalizacion": {
                     "type": "string"
@@ -6434,14 +6688,14 @@
                     "format": "int64"
                 },
                 "IdTrabajoGrado": {
-                    "$ref": "#/definitions/TrabajoGrado"
+                    "$ref": "#/definitions/models.TrabajoGrado"
                 },
                 "Periodo": {
                     "type": "string"
                 }
             }
         },
-        "TipoDocumento": {
+        "models.TipoDocumento": {
             "title": "TipoDocumento",
             "type": "object",
             "properties": {
@@ -6453,14 +6707,14 @@
                     "format": "int64"
                 },
                 "IdCategoria": {
-                    "$ref": "#/definitions/Categoria"
+                    "$ref": "#/definitions/models.Categoria"
                 },
                 "Nombre": {
                     "type": "string"
                 }
             }
         },
-        "TipoVinculacion": {
+        "models.TipoVinculacion": {
             "title": "TipoVinculacion",
             "type": "object",
             "properties": {
@@ -6476,7 +6730,85 @@
                 }
             }
         },
-        "TrabajoGrado": {
+        "models.TrFormato": {
+            "title": "TrFormato",
+            "type": "object",
+            "properties": {
+                "Formato": {
+                    "$ref": "#/definitions/models.Formato"
+                },
+                "TrPreguntas": {
+                    "$ref": "#/definitions/131052.\u003cnil\u003e.TrPregunta"
+                }
+            }
+        },
+        "models.TrPregunta": {
+            "title": "TrPregunta",
+            "type": "object",
+            "properties": {
+                "Pregunta": {
+                    "$ref": "#/definitions/models.PreguntaFormato"
+                },
+                "Respuestas": {
+                    "$ref": "#/definitions/130970.\u003cnil\u003e.RespuestaFormato"
+                }
+            }
+        },
+        "models.TrSolicitud": {
+            "title": "TrSolicitud",
+            "type": "object",
+            "properties": {
+                "MateriasSolicitadas": {
+                    "$ref": "#/definitions/135491.\u003cnil\u003e.AsignaturaInscrita"
+                },
+                "Solicitud": {
+                    "$ref": "#/definitions/models.SolicitudMaterias"
+                }
+            }
+        },
+        "models.TrUpdateFormato": {
+            "title": "TrUpdateFormato",
+            "type": "object",
+            "properties": {
+                "Formato": {
+                    "$ref": "#/definitions/models.Formato"
+                },
+                "Preguntas": {
+                    "$ref": "#/definitions/131350.\u003cnil\u003e.TrUpdatePregunta"
+                },
+                "TypeUpdate": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.TrUpdatePregunta": {
+            "title": "TrUpdatePregunta",
+            "type": "object",
+            "properties": {
+                "Pregunta": {
+                    "$ref": "#/definitions/models.PreguntaFormato"
+                },
+                "Respuestas": {
+                    "$ref": "#/definitions/131160.\u003cnil\u003e.TrUpdateRespuesta"
+                },
+                "TypeUpdate": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.TrUpdateRespuesta": {
+            "title": "TrUpdateRespuesta",
+            "type": "object",
+            "properties": {
+                "Respuesta": {
+                    "$ref": "#/definitions/models.RespuestaFormato"
+                },
+                "TypeUpdate": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.TrabajoGrado": {
             "title": "TrabajoGrado",
             "type": "object",
             "properties": {
@@ -6491,14 +6823,26 @@
                     "format": "int64"
                 },
                 "IdModalidad": {
-                    "$ref": "#/definitions/Modalidad"
+                    "$ref": "#/definitions/models.Modalidad"
                 },
                 "Titulo": {
                     "type": "string"
                 }
             }
         },
-        "VinculacionDocente": {
+        "models.TrabajoGradoTr": {
+            "title": "TrabajoGradoTr",
+            "type": "object",
+            "properties": {
+                "EstudianteTg": {
+                    "$ref": "#/definitions/models.EstudianteTg"
+                },
+                "TrabajoGrado": {
+                    "$ref": "#/definitions/models.TrabajoGrado"
+                }
+            }
+        },
+        "models.VinculacionDocente": {
             "title": "VinculacionDocente",
             "type": "object",
             "properties": {
@@ -6506,20 +6850,22 @@
                     "type": "boolean"
                 },
                 "FechaFin": {
-                    "$ref": "#/definitions/\u0026{time Time}"
+                    "type": "string",
+                    "format": "string"
                 },
                 "FechaInicio": {
-                    "$ref": "#/definitions/\u0026{time Time}"
+                    "type": "string",
+                    "format": "string"
                 },
                 "Id": {
                     "type": "integer",
                     "format": "int64"
                 },
                 "IdTipoVinculacion": {
-                    "$ref": "#/definitions/TipoVinculacion"
+                    "$ref": "#/definitions/models.TipoVinculacion"
                 },
                 "IdTrabajoGrado": {
-                    "$ref": "#/definitions/TrabajoGrado"
+                    "$ref": "#/definitions/models.TrabajoGrado"
                 },
                 "IdentificacionDocente": {
                     "type": "number",
@@ -6527,28 +6873,30 @@
                 }
             }
         },
-        "VinculacionExterna": {
+        "models.VinculacionExterna": {
             "title": "VinculacionExterna",
             "type": "object",
             "properties": {
                 "FechaFin": {
-                    "$ref": "#/definitions/\u0026{time Time}"
+                    "type": "string",
+                    "format": "string"
                 },
                 "FechaInicio": {
-                    "$ref": "#/definitions/\u0026{time Time}"
+                    "type": "string",
+                    "format": "string"
                 },
                 "Id": {
                     "type": "integer",
                     "format": "int64"
                 },
                 "IdEntidad": {
-                    "$ref": "#/definitions/Entidad"
+                    "$ref": "#/definitions/models.Entidad"
                 },
                 "IdTipoVinculacion": {
-                    "$ref": "#/definitions/TipoVinculacion"
+                    "$ref": "#/definitions/models.TipoVinculacion"
                 },
                 "IdTrabajoGrado": {
-                    "$ref": "#/definitions/TrabajoGrado"
+                    "$ref": "#/definitions/models.TrabajoGrado"
                 }
             }
         }
@@ -6688,11 +7036,11 @@
         },
         {
             "name": "tr_solicitud",
-            "description": "oprations for TipoVinculacion\n"
+            "description": "oprations for TrSolicitud\n"
         },
         {
             "name": "tr_trabajo_grado",
-            "description": "oprations for TgTr\n"
+            "description": "oprations for TrTrabajoGrado\n"
         },
         {
             "name": "tr_formato",

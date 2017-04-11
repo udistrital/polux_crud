@@ -40,6 +40,12 @@ func (c *TrFormatoController) Put() {
 	}
 }
 
+// @Title GetFormato
+// @Description get Formato by id
+// @Param	id		path 	string	true		"The key for staticblock"
+// @Success 200 {object} models.TrFormato
+// @Failure 403 :id is empty
+// @router /:id [get]
 func (c *TrFormatoController) Get() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
@@ -53,6 +59,12 @@ func (c *TrFormatoController) Get() {
 	c.ServeJSON()
 }
 
+// @Title PostFormato
+// @Description create the Formato
+// @Param	body		body 	models.TrSolicitud	true	"body for TrSolicitud content"
+// @Success 201 {int} models.TrFormato
+// @Failure 403 body is empty
+// @router / [post]
 func (c *TrFormatoController) Post() {
 	var v models.TrFormato
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {

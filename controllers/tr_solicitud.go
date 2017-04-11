@@ -7,7 +7,7 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// oprations for TipoVinculacion
+// oprations for TrSolicitud
 type TrSolicitudController struct {
 	beego.Controller
 }

@@ -1098,6 +1098,34 @@ func init() {
 			AllowHTTPMethods: []string{"put"},
 			Params: nil})
 
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrFormatoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrFormatoController"],
+		beego.ControllerComments{
+			Method: "Get",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"get"},
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrFormatoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrFormatoController"],
+		beego.ControllerComments{
+			Method: "Post",
+			Router: `/`,
+			AllowHTTPMethods: []string{"post"},
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrSolicitudController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrSolicitudController"],
+		beego.ControllerComments{
+			Method: "Post",
+			Router: `/`,
+			AllowHTTPMethods: []string{"post"},
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrTrabajoGradoController"],
+		beego.ControllerComments{
+			Method: "Post",
+			Router: `/`,
+			AllowHTTPMethods: []string{"post"},
+			Params: nil})
+
 	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "Post",
