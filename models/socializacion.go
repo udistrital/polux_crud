@@ -46,10 +46,10 @@ func GetSocializacionById(id int) (v *Socializacion, err error) {
 
 // GetAllSocializacion retrieves all Socializacion matches certain condition. Returns empty list if
 // no records exist
-func GetAllSocializacion(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllSocializacion(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Socializacion)).RelatedSel()
+	qs := o.QueryTable(new(Socializacion))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -96,7 +96,11 @@ func GetAllSocializacion(query map[string]string, fields []string, sortby []stri
 	}
 
 	var l []Socializacion
-	qs = qs.OrderBy(sortFields...)
+	if len(related) > 0 {
+		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
+	} else {
+		qs = qs.OrderBy(sortFields...)
+	}
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

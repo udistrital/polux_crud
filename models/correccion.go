@@ -46,10 +46,10 @@ func GetCorreccionById(id int) (v *Correccion, err error) {
 
 // GetAllCorreccion retrieves all Correccion matches certain condition. Returns empty list if
 // no records exist
-func GetAllCorreccion(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllCorreccion(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Correccion)).RelatedSel()
+	qs := o.QueryTable(new(Correccion))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -96,7 +96,11 @@ func GetAllCorreccion(query map[string]string, fields []string, sortby []string,
 	}
 
 	var l []Correccion
-	qs = qs.OrderBy(sortFields...)
+	if len(related) > 0 {
+		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
+	} else {
+		qs = qs.OrderBy(sortFields...)
+	}
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

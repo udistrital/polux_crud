@@ -44,10 +44,10 @@ func GetAreaConocimientoById(id int) (v *AreaConocimiento, err error) {
 
 // GetAllAreaConocimiento retrieves all AreaConocimiento matches certain condition. Returns empty list if
 // no records exist
-func GetAllAreaConocimiento(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllAreaConocimiento(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(AreaConocimiento)).RelatedSel()
+	qs := o.QueryTable(new(AreaConocimiento))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -94,7 +94,11 @@ func GetAllAreaConocimiento(query map[string]string, fields []string, sortby []s
 	}
 
 	var l []AreaConocimiento
-	qs = qs.OrderBy(sortFields...)
+	if len(related) > 0 {
+		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
+	} else {
+		qs = qs.OrderBy(sortFields...)
+	}
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

@@ -48,10 +48,10 @@ func GetPreguntaFormatoById(id int) (v *PreguntaFormato, err error) {
 
 // GetAllPreguntaFormato retrieves all PreguntaFormato matches certain condition. Returns empty list if
 // no records exist
-func GetAllPreguntaFormato(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllPreguntaFormato(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(PreguntaFormato)).RelatedSel()
+	qs := o.QueryTable(new(PreguntaFormato))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -98,7 +98,11 @@ func GetAllPreguntaFormato(query map[string]string, fields []string, sortby []st
 	}
 
 	var l []PreguntaFormato
-	qs = qs.OrderBy(sortFields...)
+	if len(related) > 0 {
+		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
+	} else {
+		qs = qs.OrderBy(sortFields...)
+	}
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {
