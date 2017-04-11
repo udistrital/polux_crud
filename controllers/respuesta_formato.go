@@ -68,6 +68,7 @@ func (c *RespuestaFormatoController) GetOne() {
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
+// @Param	related	query	string	false	"Filter. e.g. col1__related1,col2__related2 ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
 // @Success 200 {object} models.RespuestaFormato
@@ -77,6 +78,7 @@ func (c *RespuestaFormatoController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
+	var related []interface{}
 	var query map[string]string = make(map[string]string)
 	var limit int64 = 10
 	var offset int64 = 0
@@ -101,6 +103,13 @@ func (c *RespuestaFormatoController) GetAll() {
 	if v := c.GetString("order"); v != "" {
 		order = strings.Split(v, ",")
 	}
+	// related: value__related
+	if v := c.GetString("related"); v != "" {
+		rel := strings.Split(v, ",")
+		for _, val := range rel {
+			related = append(related, val)
+		}
+	}
 	// query: k:v,k:v
 	if v := c.GetString("query"); v != "" {
 		for _, cond := range strings.Split(v, ",") {
@@ -115,7 +124,7 @@ func (c *RespuestaFormatoController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllRespuestaFormato(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllRespuestaFormato(query, fields, sortby, order, related, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {

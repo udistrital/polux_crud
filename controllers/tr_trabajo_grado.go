@@ -16,6 +16,12 @@ func (c *TrTrabajoGradoController) URLMapping() {
 	c.Mapping("Post", c.Post)
 }
 
+// @Title PostTrTrabajoGrado
+// @Description create the TrTrabajoGrado
+// @Param	body		body 	models.TrabajoGradoTr	true	"body for TrTrabajoGrado content"
+// @Success 201 {int} models.TrabajoGradoTr
+// @Failure 403 body is empty
+// @router / [post]
 func (c *TrTrabajoGradoController) Post() {
 	var v models.TrabajoGradoTr
 
