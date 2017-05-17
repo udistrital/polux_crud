@@ -18,7 +18,7 @@ func main() {
 	//orm.Debug = true
 	if beego.BConfig.RunMode == "dev" {
 		beego.BConfig.WebConfig.DirectoryIndex = true
-		beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
+		beego.BConfig.WebConfig.StaticDir["http://10.20.0.254/titan_api_crud/swagger"] = "swagger"
 	}
 	beego.Debug("Filters init...")
 	beego.InsertFilter("*", beego.BeforeRouter, cors.Allow(&cors.Options{
