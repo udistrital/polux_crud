@@ -4479,7 +4479,7 @@ definitions:
       Formato:
         $ref: '#/definitions/models.Formato'
       TrPreguntas:
-        $ref: '#/definitions/131052.<nil>.TrPregunta'
+        $ref: '#/definitions/models.TrPregunta'
   models.TrPregunta:
     title: TrPregunta
     type: object
@@ -4487,13 +4487,13 @@ definitions:
       Pregunta:
         $ref: '#/definitions/models.PreguntaFormato'
       Respuestas:
-        $ref: '#/definitions/130970.<nil>.RespuestaFormato'
+        $ref: '#/definitions/models.RespuestaFormato'
   models.TrSolicitud:
     title: TrSolicitud
     type: object
     properties:
       MateriasSolicitadas:
-        $ref: '#/definitions/135491.<nil>.AsignaturaInscrita'
+        $ref: '#/definitions/models.AsignaturaInscrita'
       Solicitud:
         $ref: '#/definitions/models.SolicitudMaterias'
   models.TrUpdateFormato:
@@ -4503,7 +4503,7 @@ definitions:
       Formato:
         $ref: '#/definitions/models.Formato'
       Preguntas:
-        $ref: '#/definitions/131350.<nil>.TrUpdatePregunta'
+        $ref: '#/definitions/models.TrUpdatePregunta'
       TypeUpdate:
         type: string
   models.TrUpdatePregunta:
@@ -4513,7 +4513,7 @@ definitions:
       Pregunta:
         $ref: '#/definitions/models.PreguntaFormato'
       Respuestas:
-        $ref: '#/definitions/131160.<nil>.TrUpdateRespuesta'
+        $ref: '#/definitions/models.TrUpdateRespuesta'
       TypeUpdate:
         type: string
   models.TrUpdateRespuesta:

@@ -6739,7 +6739,7 @@
                     "$ref": "#/definitions/models.Formato"
                 },
                 "TrPreguntas": {
-                    "$ref": "#/definitions/131052.\u003cnil\u003e.TrPregunta"
+                    "$ref": "#/definitions/models.TrPregunta"
                 }
             }
         },
@@ -6751,7 +6751,7 @@
                     "$ref": "#/definitions/models.PreguntaFormato"
                 },
                 "Respuestas": {
-                    "$ref": "#/definitions/130970.\u003cnil\u003e.RespuestaFormato"
+                    "$ref": "#/definitions/models.RespuestaFormato"
                 }
             }
         },
@@ -6760,7 +6760,7 @@
             "type": "object",
             "properties": {
                 "MateriasSolicitadas": {
-                    "$ref": "#/definitions/135491.\u003cnil\u003e.AsignaturaInscrita"
+                    "$ref": "#/definitions/models.AsignaturaInscrita"
                 },
                 "Solicitud": {
                     "$ref": "#/definitions/models.SolicitudMaterias"
@@ -6775,7 +6775,7 @@
                     "$ref": "#/definitions/models.Formato"
                 },
                 "Preguntas": {
-                    "$ref": "#/definitions/131350.\u003cnil\u003e.TrUpdatePregunta"
+                    "$ref": "#/definitions/models.TrUpdatePregunta"
                 },
                 "TypeUpdate": {
                     "type": "string"
@@ -6790,7 +6790,7 @@
                     "$ref": "#/definitions/models.PreguntaFormato"
                 },
                 "Respuestas": {
-                    "$ref": "#/definitions/131160.\u003cnil\u003e.TrUpdateRespuesta"
+                    "$ref": "#/definitions/models.TrUpdateRespuesta"
                 },
                 "TypeUpdate": {
                     "type": "string"
