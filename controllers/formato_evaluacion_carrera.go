@@ -1,11 +1,15 @@
 package controllers
 
 import (
-	"github.com/udistrital/Polux_API_Crud/models"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"strconv"
 	"strings"
+
+	"github.com/fatih/structs"
+	"github.com/udistrital/Polux_API_Crud/models"
+	"github.com/udistrital/Polux_API_Crud/utilidades"
 
 	"github.com/astaxie/beego"
 )
@@ -40,6 +44,36 @@ func (c *FormatoEvaluacionCarreraController) Post() {
 		}
 	} else {
 		c.Data["json"] = err.Error()
+	}
+	c.ServeJSON()
+}
+
+// @Title Post
+// @Description create TrFormatoEvaluacionCarrera
+// @Param	body		body 	models.TrFormatoEvaluacionCarrera	true		"body for TrFormatoEvaluacionCarrera content"
+// @Success 201 {int} models.TrFormatoEvaluacionCarrera
+// @Failure 403 body is empty
+// @router TrFormatoEvaluacionCarrera/ [post]
+func (c *FormatoEvaluacionCarreraController) TrFormatoEvaluacionCarrera() {
+	fmt.Println("Se Lanzó la transacción")
+	var v interface{}
+	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		m := v.(map[string]interface{})
+		if res, err := models.TrFormatoEvaluacionCarrera(m); err == nil {
+			c.Ctx.Output.SetStatus(201)
+			alert := res
+			fmt.Println("fantastico: ", alert)
+		} else {
+			fmt.Println(err.Error())
+			alertdb := structs.Map(err)
+			var code string
+			utilidades.FillStruct(alertdb["Code"], &code)
+			alert := res
+			fmt.Println("error 2: ", alert)
+		}
+	} else {
+		c.Data["json"] = err.Error()
+		fmt.Println("error 3: ", err)
 	}
 	c.ServeJSON()
 }

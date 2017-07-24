@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/udistrital/Polux_API_Crud/utilidades"
 )
 
 type FormatoEvaluacionCarrera struct {
@@ -26,6 +27,42 @@ func (t *FormatoEvaluacionCarrera) TableName() string {
 
 func init() {
 	orm.RegisterModel(new(FormatoEvaluacionCarrera))
+}
+
+//Transaccion formato_evaluacion_carrera
+func TrFormatoEvaluacionCarrera(m map[string]interface{}) (aceptado string, err error) {
+	fmt.Println("modelo")
+	formato_evaluacion := []FormatoEvaluacionCarrera{}
+
+	err = utilidades.FillStruct(m["formato_facultad"], &formato_evaluacion)
+	fmt.Println("PPPPPPPPPPPPPPPPPPPPP")
+	o := orm.NewOrm()
+	o.Begin()
+	if err == nil {
+		fmt.Println("AAAAAAAA")
+		for _, data := range formato_evaluacion {
+			fmt.Println("CCCCCCCCCCCCCCCCCCC")
+			fmt.Println("formato: ", data)
+			_, err = o.Insert(&data)
+		}
+		fmt.Println("BBBBBBBBBBB")
+
+		if err == nil {
+			o.Commit()
+			aceptado = "OK"
+			return
+		} else {
+
+			fmt.Println(err.Error())
+			o.Rollback()
+			return
+		}
+	} else {
+		fmt.Println("111111111111111111111")
+		fmt.Println(err.Error())
+		o.Rollback()
+		return
+	}
 }
 
 // AddFormatoEvaluacionCarrera insert a new FormatoEvaluacionCarrera into database and returns

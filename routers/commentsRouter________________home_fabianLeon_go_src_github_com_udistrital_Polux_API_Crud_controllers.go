@@ -778,7 +778,7 @@ func init() {
 	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:FormatoEvaluacionCarreraController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:FormatoEvaluacionCarreraController"],
 		beego.ControllerComments{
 			Method: "TrFormatoEvaluacionCarrera",
-			Router: `TrFormatoEvaluacionCarrera/`,
+			Router: `/`,
 			AllowHTTPMethods: []string{"post"},
 			MethodParams: param.Make(),
 			Params: nil})
