@@ -232,6 +232,12 @@ func init() {
 			),
 		),
 
+		beego.NSNamespace("/formato_evaluacion_carrera/TrFormatoEvaluacionCarrera",
+			beego.NSInclude(
+				&controllers.TrFormatoController{},
+			),
+		),
+
 		beego.NSNamespace("/carrera_elegible",
 			beego.NSInclude(
 				&controllers.CarreraElegibleController{},
