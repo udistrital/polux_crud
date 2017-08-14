@@ -49,7 +49,7 @@ func GetSocializacionById(id int) (v *Socializacion, err error) {
 func GetAllSocializacion(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Socializacion))
+	qs := o.QueryTable(new(Socializacion)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
