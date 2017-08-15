@@ -47,7 +47,7 @@ func GetAreasDocenteById(id int) (v *AreasDocente, err error) {
 func GetAllAreasDocente(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(AreasDocente))
+	qs := o.QueryTable(new(AreasDocente)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
