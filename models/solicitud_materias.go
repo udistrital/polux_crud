@@ -6,6 +6,7 @@ import (
 	"reflect"
 	"strings"
 	"time"
+
 	"github.com/astaxie/beego/orm"
 )
 
@@ -52,7 +53,7 @@ func GetSolicitudMateriasById(id int) (v *SolicitudMaterias, err error) {
 func GetAllSolicitudMaterias(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(SolicitudMaterias))
+	qs := o.QueryTable(new(SolicitudMaterias)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
