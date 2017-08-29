@@ -10,10 +10,9 @@ import (
 )
 
 type DocumentoEntidad struct {
-	Id          int        `orm:"column(id);pk;auto"`
-	IdEntidad   *Entidad   `orm:"column(id_entidad);rel(fk)"`
-	IdDocumento *Documento `orm:"column(id_documento);rel(fk)"`
-	Validado    bool       `orm:"column(validado)"`
+	Id        int        `orm:"column(id);pk;auto"`
+	Documento *Documento `orm:"column(documento);rel(fk)"`
+	Entidad   *Entidad   `orm:"column(entidad);rel(fk)"`
 }
 
 func (t *DocumentoEntidad) TableName() string {
@@ -45,7 +44,7 @@ func GetDocumentoEntidadById(id int) (v *DocumentoEntidad, err error) {
 
 // GetAllDocumentoEntidad retrieves all DocumentoEntidad matches certain condition. Returns empty list if
 // no records exist
-func GetAllDocumentoEntidad(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
+func GetAllDocumentoEntidad(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
 	qs := o.QueryTable(new(DocumentoEntidad))
@@ -53,7 +52,11 @@ func GetAllDocumentoEntidad(query map[string]string, fields []string, sortby []s
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -95,11 +98,7 @@ func GetAllDocumentoEntidad(query map[string]string, fields []string, sortby []s
 	}
 
 	var l []DocumentoEntidad
-	if len(related) > 0 {
-		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
-	} else {
-		qs = qs.OrderBy(sortFields...)
-	}
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

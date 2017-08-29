@@ -1,8 +1,9 @@
 package controllers
 
 import (
-	"github.com/udistrital/Polux_API_Crud/models"
 	"encoding/json"
+
+	"github.com/udistrital/Polux_API_Crud/models"
 
 	"github.com/astaxie/beego"
 )
@@ -25,9 +26,9 @@ func (c *TrSolicitudController) URLMapping() {
 func (c *TrSolicitudController) Post() {
 	var v models.TrSolicitud
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err = models.AddTransaccionSolicitud(&v); err == nil {
+		if alerta, err := models.AddTransaccionSolicitud(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = v
+			c.Data["json"] = alerta
 		} else {
 			c.Data["json"] = err.Error()
 		}

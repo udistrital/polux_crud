@@ -16,21 +16,93 @@ import (
 func init() {
 	ns := beego.NewNamespace("/v1",
 
-		beego.NSNamespace("/trabajo_grado",
-			beego.NSInclude(
-				&controllers.TrabajoGradoController{},
-			),
-		),
-
 		beego.NSNamespace("/tipo_documento",
 			beego.NSInclude(
 				&controllers.TipoDocumentoController{},
 			),
 		),
 
-		beego.NSNamespace("/modalidad",
+		beego.NSNamespace("/estado_solicitud",
 			beego.NSInclude(
-				&controllers.ModalidadController{},
+				&controllers.EstadoSolicitudController{},
+			),
+		),
+
+		beego.NSNamespace("/documento_solicitud",
+			beego.NSInclude(
+				&controllers.DocumentoSolicitudController{},
+			),
+		),
+
+		beego.NSNamespace("/respuesta_solicitud",
+			beego.NSInclude(
+				&controllers.RespuestaSolicitudController{},
+			),
+		),
+
+		beego.NSNamespace("/usuario_solicitud",
+			beego.NSInclude(
+				&controllers.UsuarioSolicitudController{},
+			),
+		),
+
+		beego.NSNamespace("/tipo_solicitud",
+			beego.NSInclude(
+				&controllers.TipoSolicitudController{},
+			),
+		),
+
+		beego.NSNamespace("/tipo_detalle",
+			beego.NSInclude(
+				&controllers.TipoDetalleController{},
+			),
+		),
+
+		beego.NSNamespace("/detalle",
+			beego.NSInclude(
+				&controllers.DetalleController{},
+			),
+		),
+
+		beego.NSNamespace("/detalle_tipo_solicitud",
+			beego.NSInclude(
+				&controllers.DetalleTipoSolicitudController{},
+			),
+		),
+
+		beego.NSNamespace("/detalle_solicitud",
+			beego.NSInclude(
+				&controllers.DetalleSolicitudController{},
+			),
+		),
+
+		beego.NSNamespace("/documento_entidad",
+			beego.NSInclude(
+				&controllers.DocumentoEntidadController{},
+			),
+		),
+
+		beego.NSNamespace("/pregunta",
+			beego.NSInclude(
+				&controllers.PreguntaController{},
+			),
+		),
+
+		beego.NSNamespace("/respuesta",
+			beego.NSInclude(
+				&controllers.RespuestaController{},
+			),
+		),
+
+		beego.NSNamespace("/respuesta_formato",
+			beego.NSInclude(
+				&controllers.RespuestaFormatoController{},
+			),
+		),
+
+		beego.NSNamespace("/respuesta_evaluacion",
+			beego.NSInclude(
+				&controllers.RespuestaEvaluacionController{},
 			),
 		),
 
@@ -46,9 +118,27 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/revision",
+		beego.NSNamespace("/carrera_elegible",
 			beego.NSInclude(
-				&controllers.RevisionController{},
+				&controllers.CarreraElegibleController{},
+			),
+		),
+
+		beego.NSNamespace("/espacios_academicos_elegibles",
+			beego.NSInclude(
+				&controllers.EspaciosAcademicosElegiblesController{},
+			),
+		),
+
+		beego.NSNamespace("/estructura_investigacion_trabajo_grado",
+			beego.NSInclude(
+				&controllers.EstructuraInvestigacionTrabajoGradoController{},
+			),
+		),
+
+		beego.NSNamespace("/areas_docente",
+			beego.NSInclude(
+				&controllers.AreasDocenteController{},
 			),
 		),
 
@@ -64,33 +154,21 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/areas_docente",
+		beego.NSNamespace("/documento",
 			beego.NSInclude(
-				&controllers.AreasDocenteController{},
+				&controllers.DocumentoController{},
 			),
 		),
 
-		beego.NSNamespace("/vinculacion_docente",
+		beego.NSNamespace("/documento_trabajo_grado",
 			beego.NSInclude(
-				&controllers.VinculacionDocenteController{},
+				&controllers.DocumentoTrabajoGradoController{},
 			),
 		),
 
-		beego.NSNamespace("/respuesta",
+		beego.NSNamespace("/modalidad",
 			beego.NSInclude(
-				&controllers.RespuestaController{},
-			),
-		),
-
-		beego.NSNamespace("/socializacion",
-			beego.NSInclude(
-				&controllers.SocializacionController{},
-			),
-		),
-
-		beego.NSNamespace("/respuesta_formato",
-			beego.NSInclude(
-				&controllers.RespuestaFormatoController{},
+				&controllers.ModalidadController{},
 			),
 		),
 
@@ -100,99 +178,27 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/respuesta_evaluacion",
+		beego.NSNamespace("/rol_trabajo_grado",
 			beego.NSInclude(
-				&controllers.RespuestaEvaluacionController{},
+				&controllers.RolTrabajoGradoController{},
 			),
 		),
 
-		beego.NSNamespace("/pregunta",
+		beego.NSNamespace("/estado_espacio_academico_inscrito",
 			beego.NSInclude(
-				&controllers.PreguntaController{},
+				&controllers.EstadoEspacioAcademicoInscritoController{},
 			),
 		),
 
-		beego.NSNamespace("/pregunta_formato",
+		beego.NSNamespace("/espacio_academico_inscrito",
 			beego.NSInclude(
-				&controllers.PreguntaFormatoController{},
+				&controllers.EspacioAcademicoInscritoController{},
 			),
 		),
 
-		beego.NSNamespace("/estudiante_tg",
+		beego.NSNamespace("/vinculacion_trabajo_grado",
 			beego.NSInclude(
-				&controllers.EstudianteTgController{},
-			),
-		),
-
-		beego.NSNamespace("/estructura_investigacion_tg",
-			beego.NSInclude(
-				&controllers.EstructuraInvestigacionTgController{},
-			),
-		),
-
-		beego.NSNamespace("/categoria",
-			beego.NSInclude(
-				&controllers.CategoriaController{},
-			),
-		),
-
-		beego.NSNamespace("/asignatura_tg",
-			beego.NSInclude(
-				&controllers.AsignaturaTgController{},
-			),
-		),
-
-		beego.NSNamespace("/asignaturas_elegibles",
-			beego.NSInclude(
-				&controllers.AsignaturasElegiblesController{},
-			),
-		),
-
-		beego.NSNamespace("/documento",
-			beego.NSInclude(
-				&controllers.DocumentoController{},
-			),
-		),
-
-		beego.NSNamespace("/asignatura_inscrita",
-			beego.NSInclude(
-				&controllers.AsignaturaInscritaController{},
-			),
-		),
-
-		beego.NSNamespace("/vinculacion_externa",
-			beego.NSInclude(
-				&controllers.VinculacionExternaController{},
-			),
-		),
-
-		beego.NSNamespace("/documento_entidad",
-			beego.NSInclude(
-				&controllers.DocumentoEntidadController{},
-			),
-		),
-
-		beego.NSNamespace("/evaluacion",
-			beego.NSInclude(
-				&controllers.EvaluacionController{},
-			),
-		),
-
-		beego.NSNamespace("/documento_tg",
-			beego.NSInclude(
-				&controllers.DocumentoTgController{},
-			),
-		),
-
-		beego.NSNamespace("/entidad",
-			beego.NSInclude(
-				&controllers.EntidadController{},
-			),
-		),
-
-		beego.NSNamespace("/tipo_vinculacion",
-			beego.NSInclude(
-				&controllers.TipoVinculacionController{},
+				&controllers.VinculacionTrabajoGradoController{},
 			),
 		),
 
@@ -202,45 +208,122 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/estado_documento",
+		beego.NSNamespace("/socializacion",
 			beego.NSInclude(
-				&controllers.EstadoDocumentoController{},
+				&controllers.SocializacionController{},
 			),
 		),
 
-		beego.NSNamespace("/solicitud_materias",
+		beego.NSNamespace("/evaluacion",
 			beego.NSInclude(
-				&controllers.SolicitudMateriasController{},
+				&controllers.EvaluacionController{},
 			),
 		),
 
+		beego.NSNamespace("/estado_trabajo_grado",
+			beego.NSInclude(
+				&controllers.EstadoTrabajoGradoController{},
+			),
+		),
+
+		beego.NSNamespace("/distincion",
+			beego.NSInclude(
+				&controllers.DistincionController{},
+			),
+		),
+
+		beego.NSNamespace("/trabajo_grado",
+			beego.NSInclude(
+				&controllers.TrabajoGradoController{},
+			),
+		),
+
+		beego.NSNamespace("/estado_revision",
+			beego.NSInclude(
+				&controllers.EstadoRevisionController{},
+			),
+		),
+
+		beego.NSNamespace("/revision",
+			beego.NSInclude(
+				&controllers.RevisionController{},
+			),
+		),
+
+		beego.NSNamespace("/tipo_pregunta",
+			beego.NSInclude(
+				&controllers.TipoPreguntaController{},
+			),
+		),
+
+		beego.NSNamespace("/pregunta_formato",
+			beego.NSInclude(
+				&controllers.PreguntaFormatoController{},
+			),
+		),
+
+		beego.NSNamespace("/estado_estudiante_trabajo_grado",
+			beego.NSInclude(
+				&controllers.EstadoEstudianteTrabajoGradoController{},
+			),
+		),
+
+		beego.NSNamespace("/estudiante_trabajo_grado",
+			beego.NSInclude(
+				&controllers.EstudianteTrabajoGradoController{},
+			),
+		),
+
+		beego.NSNamespace("/tipo_contacto",
+			beego.NSInclude(
+				&controllers.TipoContactoController{},
+			),
+		),
+
+		beego.NSNamespace("/contacto_entidad",
+			beego.NSInclude(
+				&controllers.ContactoEntidadController{},
+			),
+		),
+
+		beego.NSNamespace("/tipo_identificacion",
+			beego.NSInclude(
+				&controllers.TipoIdentificacionController{},
+			),
+		),
+
+		beego.NSNamespace("/estado_asignatura_trabajo_grado",
+			beego.NSInclude(
+				&controllers.EstadoAsignaturaTrabajoGradoController{},
+			),
+		),
+
+		beego.NSNamespace("/asignatura_trabajo_grado",
+			beego.NSInclude(
+				&controllers.AsignaturaTrabajoGradoController{},
+			),
+		),
+
+		beego.NSNamespace("/modalidad_tipo_solicitud",
+			beego.NSInclude(
+				&controllers.ModalidadTipoSolicitudController{},
+			),
+		),
+
+		beego.NSNamespace("/solicitud_trabajo_grado",
+			beego.NSInclude(
+				&controllers.SolicitudTrabajoGradoController{},
+			),
+		),
+
+		beego.NSNamespace("/entidad",
+			beego.NSInclude(
+				&controllers.EntidadController{},
+			),
+		),
 		beego.NSNamespace("/tr_solicitud",
 			beego.NSInclude(
 				&controllers.TrSolicitudController{},
-			),
-		),
-
-		beego.NSNamespace("/tr_trabajo_grado",
-			beego.NSInclude(
-				&controllers.TrTrabajoGradoController{},
-			),
-		),
-
-		beego.NSNamespace("/tr_formato",
-			beego.NSInclude(
-				&controllers.TrFormatoController{},
-			),
-		),
-
-		beego.NSNamespace("/formato_evaluacion_carrera/TrFormatoEvaluacionCarrera",
-			beego.NSInclude(
-				&controllers.TrFormatoController{},
-			),
-		),
-
-		beego.NSNamespace("/carrera_elegible",
-			beego.NSInclude(
-				&controllers.CarreraElegibleController{},
 			),
 		),
 	)

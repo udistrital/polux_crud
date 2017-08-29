@@ -10,11 +10,11 @@ import (
 )
 
 type Evaluacion struct {
-	Id                         int                       `orm:"column(id);pk;auto"`
-	Nota                       float64                   `orm:"column(nota)"`
-	IdVinculacionDocente       *VinculacionDocente       `orm:"column(id_vinculacion_docente);rel(fk)"`
-	IdSocializacion            *Socializacion            `orm:"column(id_socializacion);rel(fk);null"`
-	IdFormatoEvaluacionCarrera *FormatoEvaluacionCarrera `orm:"column(id_formato_evaluacion_carrera);rel(fk)"`
+	Id                       int                       `orm:"column(id);pk;auto"`
+	Nota                     float64                   `orm:"column(nota)"`
+	VinculacionTrabajoGrado  *VinculacionTrabajoGrado  `orm:"column(vinculacion_trabajo_grado);rel(fk)"`
+	FormatoEvaluacionCarrera *FormatoEvaluacionCarrera `orm:"column(formato_evaluacion_carrera);rel(fk)"`
+	Socializacion            *Socializacion            `orm:"column(socializacion);rel(fk)"`
 }
 
 func (t *Evaluacion) TableName() string {
@@ -46,7 +46,7 @@ func GetEvaluacionById(id int) (v *Evaluacion, err error) {
 
 // GetAllEvaluacion retrieves all Evaluacion matches certain condition. Returns empty list if
 // no records exist
-func GetAllEvaluacion(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
+func GetAllEvaluacion(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
 	qs := o.QueryTable(new(Evaluacion))
@@ -54,7 +54,11 @@ func GetAllEvaluacion(query map[string]string, fields []string, sortby []string,
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -96,11 +100,7 @@ func GetAllEvaluacion(query map[string]string, fields []string, sortby []string,
 	}
 
 	var l []Evaluacion
-	if len(related) > 0 {
-		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
-	} else {
-		qs = qs.OrderBy(sortFields...)
-	}
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

@@ -11,13 +11,13 @@ import (
 )
 
 type Revision struct {
-	Id                   int                 `orm:"column(id);pk;auto"`
-	IdDocumentoTg        *DocumentoTg        `orm:"column(id_documento_tg);rel(fk)"`
-	IdVinculacionDocente *VinculacionDocente `orm:"column(id_vinculacion_docente);rel(fk)"`
-	NumeroRevision       float64             `orm:"column(numero_revision)"`
-	Estado               string              `orm:"column(estado)"`
-	FechaRecepcion       time.Time           `orm:"column(fecha_recepcion);type(date)"`
-	FechaRevision        time.Time           `orm:"column(fecha_revision);type(date);null"`
+	Id                      int                      `orm:"column(id);pk;auto"`
+	NumeroRevision          float64                  `orm:"column(numero_revision)"`
+	FechaRecepcion          time.Time                `orm:"column(fecha_recepcion);type(timestamp without time zone)"`
+	FechaRevision           time.Time                `orm:"column(fecha_revision);type(timestamp without time zone);null"`
+	EstadoRevision          *EstadoRevision          `orm:"column(estado_revision);rel(fk)"`
+	DocumentoTrabajoGrado   *DocumentoTrabajoGrado   `orm:"column(documento_trabajo_grado);rel(fk)"`
+	VinculacionTrabajoGrado *VinculacionTrabajoGrado `orm:"column(vinculacion_trabajo_grado);rel(fk)"`
 }
 
 func (t *Revision) TableName() string {
@@ -49,7 +49,7 @@ func GetRevisionById(id int) (v *Revision, err error) {
 
 // GetAllRevision retrieves all Revision matches certain condition. Returns empty list if
 // no records exist
-func GetAllRevision(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
+func GetAllRevision(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
 	qs := o.QueryTable(new(Revision))
@@ -57,7 +57,11 @@ func GetAllRevision(query map[string]string, fields []string, sortby []string, o
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -99,11 +103,7 @@ func GetAllRevision(query map[string]string, fields []string, sortby []string, o
 	}
 
 	var l []Revision
-	if len(related) > 0 {
-		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
-	} else {
-		qs = qs.OrderBy(sortFields...)
-	}
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

@@ -8,17 +8,16 @@ import (
 	"time"
 
 	"github.com/astaxie/beego/orm"
-	"github.com/udistrital/Polux_API_Crud/utilidades"
 )
 
 type FormatoEvaluacionCarrera struct {
 	Id             int        `orm:"column(id);pk;auto"`
-	IdFormato      *Formato   `orm:"column(id_formato);rel(fk)"`
-	IdModalidad    *Modalidad `orm:"column(id_modalidad);rel(fk);null"`
 	Activo         bool       `orm:"column(activo)"`
-	CodigoProyecto float64    `orm:"column(codigo_proyecto)"`
+	CodigoProyecto int        `orm:"column(codigo_proyecto)"`
 	FechaInicio    time.Time  `orm:"column(fecha_inicio);type(date)"`
 	FechaFin       time.Time  `orm:"column(fecha_fin);type(date);null"`
+	Modalidad      *Modalidad `orm:"column(modalidad);rel(fk)"`
+	Formato        *Formato   `orm:"column(formato);rel(fk)"`
 }
 
 func (t *FormatoEvaluacionCarrera) TableName() string {
@@ -27,42 +26,6 @@ func (t *FormatoEvaluacionCarrera) TableName() string {
 
 func init() {
 	orm.RegisterModel(new(FormatoEvaluacionCarrera))
-}
-
-//Transaccion formato_evaluacion_carrera
-func TrFormatoEvaluacionCarrera(m map[string]interface{}) (aceptado string, err error) {
-	fmt.Println("modelo")
-	formato_evaluacion := []FormatoEvaluacionCarrera{}
-
-	err = utilidades.FillStruct(m["formato_facultad"], &formato_evaluacion)
-	fmt.Println("PPPPPPPPPPPPPPPPPPPPP")
-	o := orm.NewOrm()
-	o.Begin()
-	if err == nil {
-		fmt.Println("AAAAAAAA")
-		for _, data := range formato_evaluacion {
-			fmt.Println("CCCCCCCCCCCCCCCCCCC")
-			fmt.Println("formato: ", data)
-			_, err = o.Insert(&data)
-		}
-		fmt.Println("BBBBBBBBBBB")
-
-		if err == nil {
-			o.Commit()
-			aceptado = "OK"
-			return
-		} else {
-
-			fmt.Println(err.Error())
-			o.Rollback()
-			return
-		}
-	} else {
-		fmt.Println("111111111111111111111")
-		fmt.Println(err.Error())
-		o.Rollback()
-		return
-	}
 }
 
 // AddFormatoEvaluacionCarrera insert a new FormatoEvaluacionCarrera into database and returns
@@ -86,7 +49,7 @@ func GetFormatoEvaluacionCarreraById(id int) (v *FormatoEvaluacionCarrera, err e
 
 // GetAllFormatoEvaluacionCarrera retrieves all FormatoEvaluacionCarrera matches certain condition. Returns empty list if
 // no records exist
-func GetAllFormatoEvaluacionCarrera(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
+func GetAllFormatoEvaluacionCarrera(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
 	qs := o.QueryTable(new(FormatoEvaluacionCarrera))
@@ -94,7 +57,11 @@ func GetAllFormatoEvaluacionCarrera(query map[string]string, fields []string, so
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -136,11 +103,7 @@ func GetAllFormatoEvaluacionCarrera(query map[string]string, fields []string, so
 	}
 
 	var l []FormatoEvaluacionCarrera
-	if len(related) > 0 {
-		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
-	} else {
-		qs = qs.OrderBy(sortFields...)
-	}
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

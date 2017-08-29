@@ -11,8 +11,8 @@ import (
 
 type AreasDocente struct {
 	Id                    int               `orm:"column(id);pk;auto"`
-	IdAreaConocimiento    *AreaConocimiento `orm:"column(id_area_conocimiento);rel(fk)"`
-	IdentificacionDocente float64           `orm:"column(identificacion_docente)"`
+	IdentificacionDocente int               `orm:"column(identificacion_docente)"`
+	AreaConocimiento      *AreaConocimiento `orm:"column(area_conocimiento);rel(fk)"`
 }
 
 func (t *AreasDocente) TableName() string {
@@ -44,15 +44,19 @@ func GetAreasDocenteById(id int) (v *AreasDocente, err error) {
 
 // GetAllAreasDocente retrieves all AreasDocente matches certain condition. Returns empty list if
 // no records exist
-func GetAllAreasDocente(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
+func GetAllAreasDocente(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(AreasDocente)).RelatedSel()
+	qs := o.QueryTable(new(AreasDocente))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -94,11 +98,7 @@ func GetAllAreasDocente(query map[string]string, fields []string, sortby []strin
 	}
 
 	var l []AreasDocente
-	if len(related) > 0 {
-		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
-	} else {
-		qs = qs.OrderBy(sortFields...)
-	}
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

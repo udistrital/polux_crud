@@ -46,7 +46,7 @@ func GetFormatoById(id int) (v *Formato, err error) {
 
 // GetAllFormato retrieves all Formato matches certain condition. Returns empty list if
 // no records exist
-func GetAllFormato(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
+func GetAllFormato(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
 	qs := o.QueryTable(new(Formato))
@@ -54,7 +54,11 @@ func GetAllFormato(query map[string]string, fields []string, sortby []string, or
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -96,11 +100,7 @@ func GetAllFormato(query map[string]string, fields []string, sortby []string, or
 	}
 
 	var l []Formato
-	if len(related) > 0 {
-		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
-	} else {
-		qs = qs.OrderBy(sortFields...)
-	}
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

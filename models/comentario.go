@@ -11,11 +11,11 @@ import (
 )
 
 type Comentario struct {
-	Id           int         `orm:"column(id);pk;auto"`
-	IdCorreccion *Correccion `orm:"column(id_correccion);rel(fk)"`
-	Comentario   string      `orm:"column(comentario)"`
-	Fecha        time.Time   `orm:"column(fecha);type(date)"`
-	Autor        string      `orm:"column(autor)"`
+	Id         int         `orm:"column(id);pk;auto"`
+	Comentario string      `orm:"column(comentario)"`
+	Fecha      time.Time   `orm:"column(fecha);type(timestamp without time zone)"`
+	Autor      string      `orm:"column(autor)"`
+	Correccion *Correccion `orm:"column(correccion);rel(fk)"`
 }
 
 func (t *Comentario) TableName() string {
@@ -47,7 +47,7 @@ func GetComentarioById(id int) (v *Comentario, err error) {
 
 // GetAllComentario retrieves all Comentario matches certain condition. Returns empty list if
 // no records exist
-func GetAllComentario(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
+func GetAllComentario(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
 	qs := o.QueryTable(new(Comentario))
@@ -55,7 +55,11 @@ func GetAllComentario(query map[string]string, fields []string, sortby []string,
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -97,11 +101,7 @@ func GetAllComentario(query map[string]string, fields []string, sortby []string,
 	}
 
 	var l []Comentario
-	if len(related) > 0 {
-		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
-	} else {
-		qs = qs.OrderBy(sortFields...)
-	}
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

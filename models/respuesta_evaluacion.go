@@ -10,10 +10,10 @@ import (
 )
 
 type RespuestaEvaluacion struct {
-	Id                 int               `orm:"column(id);pk;auto"`
-	IdRespuestaFormato *RespuestaFormato `orm:"column(id_respuesta_formato);rel(fk)"`
-	IdEvaluacion       *Evaluacion       `orm:"column(id_evaluacion);rel(fk)"`
-	Justificacion      string            `orm:"column(justificacion);null"`
+	Id               int               `orm:"column(id);pk;auto"`
+	Justificacion    string            `orm:"column(justificacion);null"`
+	RespuestaFormato *RespuestaFormato `orm:"column(respuesta_formato);rel(fk)"`
+	Evaluacion       *Evaluacion       `orm:"column(evaluacion);rel(fk)"`
 }
 
 func (t *RespuestaEvaluacion) TableName() string {
@@ -45,7 +45,7 @@ func GetRespuestaEvaluacionById(id int) (v *RespuestaEvaluacion, err error) {
 
 // GetAllRespuestaEvaluacion retrieves all RespuestaEvaluacion matches certain condition. Returns empty list if
 // no records exist
-func GetAllRespuestaEvaluacion(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
+func GetAllRespuestaEvaluacion(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
 	qs := o.QueryTable(new(RespuestaEvaluacion))
@@ -53,7 +53,11 @@ func GetAllRespuestaEvaluacion(query map[string]string, fields []string, sortby 
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -95,11 +99,7 @@ func GetAllRespuestaEvaluacion(query map[string]string, fields []string, sortby 
 	}
 
 	var l []RespuestaEvaluacion
-	if len(related) > 0 {
-		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
-	} else {
-		qs = qs.OrderBy(sortFields...)
-	}
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

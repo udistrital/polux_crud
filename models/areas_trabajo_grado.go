@@ -10,9 +10,9 @@ import (
 )
 
 type AreasTrabajoGrado struct {
-	Id                 int               `orm:"column(id);pk;auto"`
-	IdAreaConocimiento *AreaConocimiento `orm:"column(id_area_conocimiento);rel(fk)"`
-	IdTrabajoGrado     *TrabajoGrado     `orm:"column(id_trabajo_grado);rel(fk)"`
+	Id               int               `orm:"column(id);pk;auto"`
+	AreaConocimiento *AreaConocimiento `orm:"column(area_conocimiento);rel(fk)"`
+	TrabajoGrado     *TrabajoGrado     `orm:"column(trabajo_grado);rel(fk)"`
 }
 
 func (t *AreasTrabajoGrado) TableName() string {
@@ -44,15 +44,19 @@ func GetAreasTrabajoGradoById(id int) (v *AreasTrabajoGrado, err error) {
 
 // GetAllAreasTrabajoGrado retrieves all AreasTrabajoGrado matches certain condition. Returns empty list if
 // no records exist
-func GetAllAreasTrabajoGrado(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
+func GetAllAreasTrabajoGrado(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(AreasTrabajoGrado)).RelatedSel()
+	qs := o.QueryTable(new(AreasTrabajoGrado)).RelatedSel();
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -94,11 +98,7 @@ func GetAllAreasTrabajoGrado(query map[string]string, fields []string, sortby []
 	}
 
 	var l []AreasTrabajoGrado
-	if len(related) > 0 {
-		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
-	} else {
-		qs = qs.OrderBy(sortFields...)
-	}
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

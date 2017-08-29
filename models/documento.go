@@ -10,11 +10,11 @@ import (
 )
 
 type Documento struct {
-	Id              int            `orm:"column(id);pk;auto"`
-	IdTipoDocumento *TipoDocumento `orm:"column(id_tipo_documento);rel(fk)"`
-	Titulo          string         `orm:"column(titulo)"`
-	Enlace          string         `orm:"column(enlace)"`
-	Resumen         string         `orm:"column(resumen);null"`
+	Id            int            `orm:"column(id);pk;auto"`
+	Titulo        string         `orm:"column(titulo)"`
+	Enlace        string         `orm:"column(enlace)"`
+	Resumen       string         `orm:"column(resumen);null"`
+	TipoDocumento *TipoDocumento `orm:"column(tipo_documento);rel(fk)"`
 }
 
 func (t *Documento) TableName() string {
@@ -46,15 +46,19 @@ func GetDocumentoById(id int) (v *Documento, err error) {
 
 // GetAllDocumento retrieves all Documento matches certain condition. Returns empty list if
 // no records exist
-func GetAllDocumento(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
+func GetAllDocumento(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Documento))
+	qs := o.QueryTable(new(Documento)).RelatedSel();
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -96,11 +100,7 @@ func GetAllDocumento(query map[string]string, fields []string, sortby []string, 
 	}
 
 	var l []Documento
-	if len(related) > 0 {
-		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
-	} else {
-		qs = qs.OrderBy(sortFields...)
-	}
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {
