@@ -10,9 +10,12 @@ import (
 )
 
 type AreaConocimiento struct {
-	Id          int    `orm:"column(id);pk;auto"`
-	Nombre      string `orm:"column(nombre)"`
-	Descripcion string `orm:"column(descripcion);null"`
+	Id                int    `orm:"column(id);pk;auto"`
+	Nombre            string `orm:"column(nombre)"`
+	Descripcion       string `orm:"column(descripcion);null"`
+	CodigoAbreviacion string `orm:"column(codigo_abreviacion);null"`
+	Activo            bool   `orm:"column(activo)"`
+	SniesArea         int    `orm:"column(snies_area)"`
 }
 
 func (t *AreaConocimiento) TableName() string {
@@ -44,7 +47,7 @@ func GetAreaConocimientoById(id int) (v *AreaConocimiento, err error) {
 
 // GetAllAreaConocimiento retrieves all AreaConocimiento matches certain condition. Returns empty list if
 // no records exist
-func GetAllAreaConocimiento(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
+func GetAllAreaConocimiento(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
 	qs := o.QueryTable(new(AreaConocimiento))
@@ -52,7 +55,11 @@ func GetAllAreaConocimiento(query map[string]string, fields []string, sortby []s
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -94,11 +101,7 @@ func GetAllAreaConocimiento(query map[string]string, fields []string, sortby []s
 	}
 
 	var l []AreaConocimiento
-	if len(related) > 0 {
-		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
-	} else {
-		qs = qs.OrderBy(sortFields...)
-	}
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

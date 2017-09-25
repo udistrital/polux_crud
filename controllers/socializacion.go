@@ -1,20 +1,22 @@
 package controllers
 
 import (
-	"github.com/udistrital/Polux_API_Crud/models"
 	"encoding/json"
 	"errors"
 	"strconv"
 	"strings"
 
+	"github.com/udistrital/Polux_API_Crud/models"
+
 	"github.com/astaxie/beego"
 )
 
-// oprations for Socializacion
+// SocializacionController operations for Socializacion
 type SocializacionController struct {
 	beego.Controller
 }
 
+// URLMapping ...
 func (c *SocializacionController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
@@ -23,6 +25,7 @@ func (c *SocializacionController) URLMapping() {
 	c.Mapping("Delete", c.Delete)
 }
 
+// Post ...
 // @Title Post
 // @Description create Socializacion
 // @Param	body		body 	models.Socializacion	true		"body for Socializacion content"
@@ -44,7 +47,8 @@ func (c *SocializacionController) Post() {
 	c.ServeJSON()
 }
 
-// @Title Get
+// GetOne ...
+// @Title Get One
 // @Description get Socializacion by id
 // @Param	id		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.Socializacion
@@ -62,13 +66,13 @@ func (c *SocializacionController) GetOne() {
 	c.ServeJSON()
 }
 
+// GetAll ...
 // @Title Get All
 // @Description get Socializacion
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
-// @Param	related	query	string	false	"Filter. e.g. col1__related1,col2__related2 ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
 // @Success 200 {object} models.Socializacion
@@ -78,10 +82,9 @@ func (c *SocializacionController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
-	var related []interface{}
-	var query map[string]string = make(map[string]string)
+	var query = make(map[string]string)
 	var limit int64 = 10
-	var offset int64 = 0
+	var offset int64
 
 	// fields: col1,col2,entity.col3
 	if v := c.GetString("fields"); v != "" {
@@ -103,13 +106,6 @@ func (c *SocializacionController) GetAll() {
 	if v := c.GetString("order"); v != "" {
 		order = strings.Split(v, ",")
 	}
-	// related: value__related
-	if v := c.GetString("related"); v != "" {
-		rel := strings.Split(v, ",")
-		for _, val := range rel {
-			related = append(related, val)
-		}
-	}
 	// query: k:v,k:v
 	if v := c.GetString("query"); v != "" {
 		for _, cond := range strings.Split(v, ",") {
@@ -124,7 +120,7 @@ func (c *SocializacionController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllSocializacion(query, fields, sortby, order, related, offset, limit)
+	l, err := models.GetAllSocializacion(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -133,7 +129,8 @@ func (c *SocializacionController) GetAll() {
 	c.ServeJSON()
 }
 
-// @Title Update
+// Put ...
+// @Title Put
 // @Description update the Socializacion
 // @Param	id		path 	string	true		"The id you want to update"
 // @Param	body		body 	models.Socializacion	true		"body for Socializacion content"
@@ -156,6 +153,7 @@ func (c *SocializacionController) Put() {
 	c.ServeJSON()
 }
 
+// Delete ...
 // @Title Delete
 // @Description delete the Socializacion
 // @Param	id		path 	string	true		"The id you want to delete"

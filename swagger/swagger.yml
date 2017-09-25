@@ -9,7 +9,6 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-host: 10.20.0.254/polux_api_crud
 basePath: /v1
 paths:
   /area_conocimiento/:
@@ -35,10 +34,6 @@ paths:
         name: order
         description: Order corresponding to each sortby field, if single value, apply
           to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
         type: string
       - in: query
         name: limit
@@ -75,7 +70,7 @@ paths:
       tags:
       - area_conocimiento
       description: get AreaConocimiento by id
-      operationId: AreaConocimientoController.Get
+      operationId: AreaConocimientoController.Get One
       parameters:
       - in: path
         name: id
@@ -92,7 +87,7 @@ paths:
       tags:
       - area_conocimiento
       description: update the AreaConocimiento
-      operationId: AreaConocimientoController.Update
+      operationId: AreaConocimientoController.Put
       parameters:
       - in: path
         name: id
@@ -152,10 +147,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -190,7 +181,7 @@ paths:
       tags:
       - areas_docente
       description: get AreasDocente by id
-      operationId: AreasDocenteController.Get
+      operationId: AreasDocenteController.Get One
       parameters:
       - in: path
         name: id
@@ -207,7 +198,7 @@ paths:
       tags:
       - areas_docente
       description: update the AreasDocente
-      operationId: AreasDocenteController.Update
+      operationId: AreasDocenteController.Put
       parameters:
       - in: path
         name: id
@@ -267,10 +258,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -305,7 +292,7 @@ paths:
       tags:
       - areas_trabajo_grado
       description: get AreasTrabajoGrado by id
-      operationId: AreasTrabajoGradoController.Get
+      operationId: AreasTrabajoGradoController.Get One
       parameters:
       - in: path
         name: id
@@ -322,7 +309,7 @@ paths:
       tags:
       - areas_trabajo_grado
       description: update the AreasTrabajoGrado
-      operationId: AreasTrabajoGradoController.Update
+      operationId: AreasTrabajoGradoController.Put
       parameters:
       - in: path
         name: id
@@ -357,12 +344,12 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /asignatura_inscrita/:
+  /asignatura_trabajo_grado/:
     get:
       tags:
-      - asignatura_inscrita
-      description: get AsignaturaInscrita
-      operationId: AsignaturaInscritaController.Get All
+      - asignatura_trabajo_grado
+      description: get AsignaturaTrabajoGrado
+      operationId: AsignaturaTrabajoGradoController.Get All
       parameters:
       - in: query
         name: query
@@ -382,10 +369,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -396,31 +379,31 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.AsignaturaInscrita'
+            $ref: '#/definitions/models.AsignaturaTrabajoGrado'
         "403": {}
     post:
       tags:
-      - asignatura_inscrita
-      description: create AsignaturaInscrita
-      operationId: AsignaturaInscritaController.Post
+      - asignatura_trabajo_grado
+      description: create AsignaturaTrabajoGrado
+      operationId: AsignaturaTrabajoGradoController.Post
       parameters:
       - in: body
         name: body
-        description: body for AsignaturaInscrita content
+        description: body for AsignaturaTrabajoGrado content
         required: true
         schema:
-          $ref: '#/definitions/models.AsignaturaInscrita'
+          $ref: '#/definitions/models.AsignaturaTrabajoGrado'
       responses:
         "201":
-          description: '{int} models.AsignaturaInscrita'
+          description: '{int} models.AsignaturaTrabajoGrado'
         "403":
           description: body is empty
-  /asignatura_inscrita/{id}:
+  /asignatura_trabajo_grado/{id}:
     get:
       tags:
-      - asignatura_inscrita
-      description: get AsignaturaInscrita by id
-      operationId: AsignaturaInscritaController.Get
+      - asignatura_trabajo_grado
+      description: get AsignaturaTrabajoGrado by id
+      operationId: AsignaturaTrabajoGradoController.Get One
       parameters:
       - in: path
         name: id
@@ -430,14 +413,14 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.AsignaturaInscrita'
+            $ref: '#/definitions/models.AsignaturaTrabajoGrado'
         "403":
           description: :id is empty
     put:
       tags:
-      - asignatura_inscrita
-      description: update the AsignaturaInscrita
-      operationId: AsignaturaInscritaController.Update
+      - asignatura_trabajo_grado
+      description: update the AsignaturaTrabajoGrado
+      operationId: AsignaturaTrabajoGradoController.Put
       parameters:
       - in: path
         name: id
@@ -446,251 +429,21 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for AsignaturaInscrita content
+        description: body for AsignaturaTrabajoGrado content
         required: true
         schema:
-          $ref: '#/definitions/models.AsignaturaInscrita'
+          $ref: '#/definitions/models.AsignaturaTrabajoGrado'
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.AsignaturaInscrita'
+            $ref: '#/definitions/models.AsignaturaTrabajoGrado'
         "403":
           description: :id is not int
     delete:
       tags:
-      - asignatura_inscrita
-      description: delete the AsignaturaInscrita
-      operationId: AsignaturaInscritaController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /asignatura_tg/:
-    get:
-      tags:
-      - asignatura_tg
-      description: get AsignaturaTg
-      operationId: AsignaturaTgController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply
-          to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          schema:
-            $ref: '#/definitions/models.AsignaturaTg'
-        "403": {}
-    post:
-      tags:
-      - asignatura_tg
-      description: create AsignaturaTg
-      operationId: AsignaturaTgController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for AsignaturaTg content
-        required: true
-        schema:
-          $ref: '#/definitions/models.AsignaturaTg'
-      responses:
-        "201":
-          description: '{int} models.AsignaturaTg'
-        "403":
-          description: body is empty
-  /asignatura_tg/{id}:
-    get:
-      tags:
-      - asignatura_tg
-      description: get AsignaturaTg by id
-      operationId: AsignaturaTgController.Get
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          schema:
-            $ref: '#/definitions/models.AsignaturaTg'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - asignatura_tg
-      description: update the AsignaturaTg
-      operationId: AsignaturaTgController.Update
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for AsignaturaTg content
-        required: true
-        schema:
-          $ref: '#/definitions/models.AsignaturaTg'
-      responses:
-        "200":
-          schema:
-            $ref: '#/definitions/models.AsignaturaTg'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - asignatura_tg
-      description: delete the AsignaturaTg
-      operationId: AsignaturaTgController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /asignaturas_elegibles/:
-    get:
-      tags:
-      - asignaturas_elegibles
-      description: get AsignaturasElegibles
-      operationId: AsignaturasElegiblesController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply
-          to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          schema:
-            $ref: '#/definitions/models.AsignaturasElegibles'
-        "403": {}
-    post:
-      tags:
-      - asignaturas_elegibles
-      description: create AsignaturasElegibles
-      operationId: AsignaturasElegiblesController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for AsignaturasElegibles content
-        required: true
-        schema:
-          $ref: '#/definitions/models.AsignaturasElegibles'
-      responses:
-        "201":
-          description: '{int} models.AsignaturasElegibles'
-        "403":
-          description: body is empty
-  /asignaturas_elegibles/{id}:
-    get:
-      tags:
-      - asignaturas_elegibles
-      description: get AsignaturasElegibles by id
-      operationId: AsignaturasElegiblesController.Get
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          schema:
-            $ref: '#/definitions/models.AsignaturasElegibles'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - asignaturas_elegibles
-      description: update the AsignaturasElegibles
-      operationId: AsignaturasElegiblesController.Update
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for AsignaturasElegibles content
-        required: true
-        schema:
-          $ref: '#/definitions/models.AsignaturasElegibles'
-      responses:
-        "200":
-          schema:
-            $ref: '#/definitions/models.AsignaturasElegibles'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - asignaturas_elegibles
-      description: delete the AsignaturasElegibles
-      operationId: AsignaturasElegiblesController.Delete
+      - asignatura_trabajo_grado
+      description: delete the AsignaturaTrabajoGrado
+      operationId: AsignaturaTrabajoGradoController.Delete
       parameters:
       - in: path
         name: id
@@ -727,10 +480,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -765,7 +514,7 @@ paths:
       tags:
       - carrera_elegible
       description: get CarreraElegible by id
-      operationId: CarreraElegibleController.Get
+      operationId: CarreraElegibleController.Get One
       parameters:
       - in: path
         name: id
@@ -782,7 +531,7 @@ paths:
       tags:
       - carrera_elegible
       description: update the CarreraElegible
-      operationId: CarreraElegibleController.Update
+      operationId: CarreraElegibleController.Put
       parameters:
       - in: path
         name: id
@@ -806,121 +555,6 @@ paths:
       - carrera_elegible
       description: delete the CarreraElegible
       operationId: CarreraElegibleController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /categoria/:
-    get:
-      tags:
-      - categoria
-      description: get Categoria
-      operationId: CategoriaController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply
-          to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          schema:
-            $ref: '#/definitions/models.Categoria'
-        "403": {}
-    post:
-      tags:
-      - categoria
-      description: create Categoria
-      operationId: CategoriaController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for Categoria content
-        required: true
-        schema:
-          $ref: '#/definitions/models.Categoria'
-      responses:
-        "201":
-          description: '{int} models.Categoria'
-        "403":
-          description: body is empty
-  /categoria/{id}:
-    get:
-      tags:
-      - categoria
-      description: get Categoria by id
-      operationId: CategoriaController.Get
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          schema:
-            $ref: '#/definitions/models.Categoria'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - categoria
-      description: update the Categoria
-      operationId: CategoriaController.Update
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for Categoria content
-        required: true
-        schema:
-          $ref: '#/definitions/models.Categoria'
-      responses:
-        "200":
-          schema:
-            $ref: '#/definitions/models.Categoria'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - categoria
-      description: delete the Categoria
-      operationId: CategoriaController.Delete
       parameters:
       - in: path
         name: id
@@ -957,10 +591,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -995,7 +625,7 @@ paths:
       tags:
       - comentario
       description: get Comentario by id
-      operationId: ComentarioController.Get
+      operationId: ComentarioController.Get One
       parameters:
       - in: path
         name: id
@@ -1012,7 +642,7 @@ paths:
       tags:
       - comentario
       description: update the Comentario
-      operationId: ComentarioController.Update
+      operationId: ComentarioController.Put
       parameters:
       - in: path
         name: id
@@ -1072,10 +702,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -1110,7 +736,7 @@ paths:
       tags:
       - correccion
       description: get Correccion by id
-      operationId: CorreccionController.Get
+      operationId: CorreccionController.Get One
       parameters:
       - in: path
         name: id
@@ -1127,7 +753,7 @@ paths:
       tags:
       - correccion
       description: update the Correccion
-      operationId: CorreccionController.Update
+      operationId: CorreccionController.Put
       parameters:
       - in: path
         name: id
@@ -1162,12 +788,12 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /documento/:
+  /detalle/:
     get:
       tags:
-      - documento
-      description: get Documento
-      operationId: DocumentoController.Get All
+      - detalle
+      description: get Detalle
+      operationId: DetalleController.Get All
       parameters:
       - in: query
         name: query
@@ -1187,8 +813,115 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.Detalle'
+        "403": {}
+    post:
+      tags:
+      - detalle
+      description: create Detalle
+      operationId: DetalleController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Detalle content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Detalle'
+      responses:
+        "201":
+          description: '{int} models.Detalle'
+        "403":
+          description: body is empty
+  /detalle/{id}:
+    get:
+      tags:
+      - detalle
+      description: get Detalle by id
+      operationId: DetalleController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.Detalle'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - detalle
+      description: update the Detalle
+      operationId: DetalleController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for Detalle content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Detalle'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.Detalle'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - detalle
+      description: delete the Detalle
+      operationId: DetalleController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /detalle_solicitud/:
+    get:
+      tags:
+      - detalle_solicitud
+      description: get DetalleSolicitud
+      operationId: DetalleSolicitudController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -1201,31 +934,31 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.Documento'
+            $ref: '#/definitions/models.DetalleSolicitud'
         "403": {}
     post:
       tags:
-      - documento
-      description: create Documento
-      operationId: DocumentoController.Post
+      - detalle_solicitud
+      description: create DetalleSolicitud
+      operationId: DetalleSolicitudController.Post
       parameters:
       - in: body
         name: body
-        description: body for Documento content
+        description: body for DetalleSolicitud content
         required: true
         schema:
-          $ref: '#/definitions/models.Documento'
+          $ref: '#/definitions/models.DetalleSolicitud'
       responses:
         "201":
-          description: '{int} models.Documento'
+          description: '{int} models.DetalleSolicitud'
         "403":
           description: body is empty
-  /documento/{id}:
+  /detalle_solicitud/{id}:
     get:
       tags:
-      - documento
-      description: get Documento by id
-      operationId: DocumentoController.Get
+      - detalle_solicitud
+      description: get DetalleSolicitud by id
+      operationId: DetalleSolicitudController.Get One
       parameters:
       - in: path
         name: id
@@ -1235,14 +968,14 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.Documento'
+            $ref: '#/definitions/models.DetalleSolicitud'
         "403":
           description: :id is empty
     put:
       tags:
-      - documento
-      description: update the Documento
-      operationId: DocumentoController.Update
+      - detalle_solicitud
+      description: update the DetalleSolicitud
+      operationId: DetalleSolicitudController.Put
       parameters:
       - in: path
         name: id
@@ -1251,21 +984,243 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for Documento content
+        description: body for DetalleSolicitud content
         required: true
         schema:
-          $ref: '#/definitions/models.Documento'
+          $ref: '#/definitions/models.DetalleSolicitud'
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.Documento'
+            $ref: '#/definitions/models.DetalleSolicitud'
         "403":
           description: :id is not int
     delete:
       tags:
-      - documento
-      description: delete the Documento
-      operationId: DocumentoController.Delete
+      - detalle_solicitud
+      description: delete the DetalleSolicitud
+      operationId: DetalleSolicitudController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /detalle_tipo_solicitud/:
+    get:
+      tags:
+      - detalle_tipo_solicitud
+      description: get DetalleTipoSolicitud
+      operationId: DetalleTipoSolicitudController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.DetalleTipoSolicitud'
+        "403": {}
+    post:
+      tags:
+      - detalle_tipo_solicitud
+      description: create DetalleTipoSolicitud
+      operationId: DetalleTipoSolicitudController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for DetalleTipoSolicitud content
+        required: true
+        schema:
+          $ref: '#/definitions/models.DetalleTipoSolicitud'
+      responses:
+        "201":
+          description: '{int} models.DetalleTipoSolicitud'
+        "403":
+          description: body is empty
+  /detalle_tipo_solicitud/{id}:
+    get:
+      tags:
+      - detalle_tipo_solicitud
+      description: get DetalleTipoSolicitud by id
+      operationId: DetalleTipoSolicitudController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.DetalleTipoSolicitud'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - detalle_tipo_solicitud
+      description: update the DetalleTipoSolicitud
+      operationId: DetalleTipoSolicitudController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for DetalleTipoSolicitud content
+        required: true
+        schema:
+          $ref: '#/definitions/models.DetalleTipoSolicitud'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.DetalleTipoSolicitud'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - detalle_tipo_solicitud
+      description: delete the DetalleTipoSolicitud
+      operationId: DetalleTipoSolicitudController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /distincion_trabajo_grado/:
+    get:
+      tags:
+      - distincion_trabajo_grado
+      description: get DistincionTrabajoGrado
+      operationId: DistincionTrabajoGradoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.DistincionTrabajoGrado'
+        "403": {}
+    post:
+      tags:
+      - distincion_trabajo_grado
+      description: create DistincionTrabajoGrado
+      operationId: DistincionTrabajoGradoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for DistincionTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.DistincionTrabajoGrado'
+      responses:
+        "201":
+          description: '{int} models.DistincionTrabajoGrado'
+        "403":
+          description: body is empty
+  /distincion_trabajo_grado/{id}:
+    get:
+      tags:
+      - distincion_trabajo_grado
+      description: get DistincionTrabajoGrado by id
+      operationId: DistincionTrabajoGradoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.DistincionTrabajoGrado'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - distincion_trabajo_grado
+      description: update the DistincionTrabajoGrado
+      operationId: DistincionTrabajoGradoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for DistincionTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.DistincionTrabajoGrado'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.DistincionTrabajoGrado'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - distincion_trabajo_grado
+      description: delete the DistincionTrabajoGrado
+      operationId: DistincionTrabajoGradoController.Delete
       parameters:
       - in: path
         name: id
@@ -1302,10 +1257,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -1340,7 +1291,7 @@ paths:
       tags:
       - documento_entidad
       description: get DocumentoEntidad by id
-      operationId: DocumentoEntidadController.Get
+      operationId: DocumentoEntidadController.Get One
       parameters:
       - in: path
         name: id
@@ -1357,7 +1308,7 @@ paths:
       tags:
       - documento_entidad
       description: update the DocumentoEntidad
-      operationId: DocumentoEntidadController.Update
+      operationId: DocumentoEntidadController.Put
       parameters:
       - in: path
         name: id
@@ -1392,12 +1343,12 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /documento_tg/:
+  /documento_escrito/:
     get:
       tags:
-      - documento_tg
-      description: get DocumentoTg
-      operationId: DocumentoTgController.Get All
+      - documento_escrito
+      description: get DocumentoEscrito
+      operationId: DocumentoEscritoController.Get All
       parameters:
       - in: query
         name: query
@@ -1417,10 +1368,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -1431,31 +1378,31 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.DocumentoTg'
+            $ref: '#/definitions/models.DocumentoEscrito'
         "403": {}
     post:
       tags:
-      - documento_tg
-      description: create DocumentoTg
-      operationId: DocumentoTgController.Post
+      - documento_escrito
+      description: create DocumentoEscrito
+      operationId: DocumentoEscritoController.Post
       parameters:
       - in: body
         name: body
-        description: body for DocumentoTg content
+        description: body for DocumentoEscrito content
         required: true
         schema:
-          $ref: '#/definitions/models.DocumentoTg'
+          $ref: '#/definitions/models.DocumentoEscrito'
       responses:
         "201":
-          description: '{int} models.DocumentoTg'
+          description: '{int} models.DocumentoEscrito'
         "403":
           description: body is empty
-  /documento_tg/{id}:
+  /documento_escrito/{id}:
     get:
       tags:
-      - documento_tg
-      description: get DocumentoTg by id
-      operationId: DocumentoTgController.Get
+      - documento_escrito
+      description: get DocumentoEscrito by id
+      operationId: DocumentoEscritoController.Get One
       parameters:
       - in: path
         name: id
@@ -1465,14 +1412,14 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.DocumentoTg'
+            $ref: '#/definitions/models.DocumentoEscrito'
         "403":
           description: :id is empty
     put:
       tags:
-      - documento_tg
-      description: update the DocumentoTg
-      operationId: DocumentoTgController.Update
+      - documento_escrito
+      description: update the DocumentoEscrito
+      operationId: DocumentoEscritoController.Put
       parameters:
       - in: path
         name: id
@@ -1481,21 +1428,21 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for DocumentoTg content
+        description: body for DocumentoEscrito content
         required: true
         schema:
-          $ref: '#/definitions/models.DocumentoTg'
+          $ref: '#/definitions/models.DocumentoEscrito'
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.DocumentoTg'
+            $ref: '#/definitions/models.DocumentoEscrito'
         "403":
           description: :id is not int
     delete:
       tags:
-      - documento_tg
-      description: delete the DocumentoTg
-      operationId: DocumentoTgController.Delete
+      - documento_escrito
+      description: delete the DocumentoEscrito
+      operationId: DocumentoEscritoController.Delete
       parameters:
       - in: path
         name: id
@@ -1507,12 +1454,12 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /entidad/:
+  /documento_solicitud/:
     get:
       tags:
-      - entidad
-      description: get Entidad
-      operationId: EntidadController.Get All
+      - documento_solicitud
+      description: get DocumentoSolicitud
+      operationId: DocumentoSolicitudController.Get All
       parameters:
       - in: query
         name: query
@@ -1532,10 +1479,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -1546,31 +1489,31 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.Entidad'
+            $ref: '#/definitions/models.DocumentoSolicitud'
         "403": {}
     post:
       tags:
-      - entidad
-      description: create Entidad
-      operationId: EntidadController.Post
+      - documento_solicitud
+      description: create DocumentoSolicitud
+      operationId: DocumentoSolicitudController.Post
       parameters:
       - in: body
         name: body
-        description: body for Entidad content
+        description: body for DocumentoSolicitud content
         required: true
         schema:
-          $ref: '#/definitions/models.Entidad'
+          $ref: '#/definitions/models.DocumentoSolicitud'
       responses:
         "201":
-          description: '{int} models.Entidad'
+          description: '{int} models.DocumentoSolicitud'
         "403":
           description: body is empty
-  /entidad/{id}:
+  /documento_solicitud/{id}:
     get:
       tags:
-      - entidad
-      description: get Entidad by id
-      operationId: EntidadController.Get
+      - documento_solicitud
+      description: get DocumentoSolicitud by id
+      operationId: DocumentoSolicitudController.Get One
       parameters:
       - in: path
         name: id
@@ -1580,14 +1523,14 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.Entidad'
+            $ref: '#/definitions/models.DocumentoSolicitud'
         "403":
           description: :id is empty
     put:
       tags:
-      - entidad
-      description: update the Entidad
-      operationId: EntidadController.Update
+      - documento_solicitud
+      description: update the DocumentoSolicitud
+      operationId: DocumentoSolicitudController.Put
       parameters:
       - in: path
         name: id
@@ -1596,21 +1539,21 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for Entidad content
+        description: body for DocumentoSolicitud content
         required: true
         schema:
-          $ref: '#/definitions/models.Entidad'
+          $ref: '#/definitions/models.DocumentoSolicitud'
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.Entidad'
+            $ref: '#/definitions/models.DocumentoSolicitud'
         "403":
           description: :id is not int
     delete:
       tags:
-      - entidad
-      description: delete the Entidad
-      operationId: EntidadController.Delete
+      - documento_solicitud
+      description: delete the DocumentoSolicitud
+      operationId: DocumentoSolicitudController.Delete
       parameters:
       - in: path
         name: id
@@ -1622,12 +1565,12 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /estado_documento/:
+  /documento_trabajo_grado/:
     get:
       tags:
-      - estado_documento
-      description: get EstadoDocumento
-      operationId: EstadoDocumentoController.Get All
+      - documento_trabajo_grado
+      description: get DocumentoTrabajoGrado
+      operationId: DocumentoTrabajoGradoController.Get All
       parameters:
       - in: query
         name: query
@@ -1647,10 +1590,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -1661,31 +1600,31 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.EstadoDocumento'
+            $ref: '#/definitions/models.DocumentoTrabajoGrado'
         "403": {}
     post:
       tags:
-      - estado_documento
-      description: create EstadoDocumento
-      operationId: EstadoDocumentoController.Post
+      - documento_trabajo_grado
+      description: create DocumentoTrabajoGrado
+      operationId: DocumentoTrabajoGradoController.Post
       parameters:
       - in: body
         name: body
-        description: body for EstadoDocumento content
+        description: body for DocumentoTrabajoGrado content
         required: true
         schema:
-          $ref: '#/definitions/models.EstadoDocumento'
+          $ref: '#/definitions/models.DocumentoTrabajoGrado'
       responses:
         "201":
-          description: '{int} models.EstadoDocumento'
+          description: '{int} models.DocumentoTrabajoGrado'
         "403":
           description: body is empty
-  /estado_documento/{id}:
+  /documento_trabajo_grado/{id}:
     get:
       tags:
-      - estado_documento
-      description: get EstadoDocumento by id
-      operationId: EstadoDocumentoController.Get
+      - documento_trabajo_grado
+      description: get DocumentoTrabajoGrado by id
+      operationId: DocumentoTrabajoGradoController.Get One
       parameters:
       - in: path
         name: id
@@ -1695,14 +1634,14 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.EstadoDocumento'
+            $ref: '#/definitions/models.DocumentoTrabajoGrado'
         "403":
           description: :id is empty
     put:
       tags:
-      - estado_documento
-      description: update the EstadoDocumento
-      operationId: EstadoDocumentoController.Update
+      - documento_trabajo_grado
+      description: update the DocumentoTrabajoGrado
+      operationId: DocumentoTrabajoGradoController.Put
       parameters:
       - in: path
         name: id
@@ -1711,21 +1650,21 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for EstadoDocumento content
+        description: body for DocumentoTrabajoGrado content
         required: true
         schema:
-          $ref: '#/definitions/models.EstadoDocumento'
+          $ref: '#/definitions/models.DocumentoTrabajoGrado'
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.EstadoDocumento'
+            $ref: '#/definitions/models.DocumentoTrabajoGrado'
         "403":
           description: :id is not int
     delete:
       tags:
-      - estado_documento
-      description: delete the EstadoDocumento
-      operationId: EstadoDocumentoController.Delete
+      - documento_trabajo_grado
+      description: delete the DocumentoTrabajoGrado
+      operationId: DocumentoTrabajoGradoController.Delete
       parameters:
       - in: path
         name: id
@@ -1737,12 +1676,12 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /estructura_investigacion_tg/:
+  /espacio_academico_inscrito/:
     get:
       tags:
-      - estructura_investigacion_tg
-      description: get EstructuraInvestigacionTg
-      operationId: EstructuraInvestigacionTgController.Get All
+      - espacio_academico_inscrito
+      description: get EspacioAcademicoInscrito
+      operationId: EspacioAcademicoInscritoController.Get All
       parameters:
       - in: query
         name: query
@@ -1762,10 +1701,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -1776,31 +1711,31 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.EstructuraInvestigacionTg'
+            $ref: '#/definitions/models.EspacioAcademicoInscrito'
         "403": {}
     post:
       tags:
-      - estructura_investigacion_tg
-      description: create EstructuraInvestigacionTg
-      operationId: EstructuraInvestigacionTgController.Post
+      - espacio_academico_inscrito
+      description: create EspacioAcademicoInscrito
+      operationId: EspacioAcademicoInscritoController.Post
       parameters:
       - in: body
         name: body
-        description: body for EstructuraInvestigacionTg content
+        description: body for EspacioAcademicoInscrito content
         required: true
         schema:
-          $ref: '#/definitions/models.EstructuraInvestigacionTg'
+          $ref: '#/definitions/models.EspacioAcademicoInscrito'
       responses:
         "201":
-          description: '{int} models.EstructuraInvestigacionTg'
+          description: '{int} models.EspacioAcademicoInscrito'
         "403":
           description: body is empty
-  /estructura_investigacion_tg/{id}:
+  /espacio_academico_inscrito/{id}:
     get:
       tags:
-      - estructura_investigacion_tg
-      description: get EstructuraInvestigacionTg by id
-      operationId: EstructuraInvestigacionTgController.Get
+      - espacio_academico_inscrito
+      description: get EspacioAcademicoInscrito by id
+      operationId: EspacioAcademicoInscritoController.Get One
       parameters:
       - in: path
         name: id
@@ -1810,14 +1745,14 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.EstructuraInvestigacionTg'
+            $ref: '#/definitions/models.EspacioAcademicoInscrito'
         "403":
           description: :id is empty
     put:
       tags:
-      - estructura_investigacion_tg
-      description: update the EstructuraInvestigacionTg
-      operationId: EstructuraInvestigacionTgController.Update
+      - espacio_academico_inscrito
+      description: update the EspacioAcademicoInscrito
+      operationId: EspacioAcademicoInscritoController.Put
       parameters:
       - in: path
         name: id
@@ -1826,21 +1761,21 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for EstructuraInvestigacionTg content
+        description: body for EspacioAcademicoInscrito content
         required: true
         schema:
-          $ref: '#/definitions/models.EstructuraInvestigacionTg'
+          $ref: '#/definitions/models.EspacioAcademicoInscrito'
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.EstructuraInvestigacionTg'
+            $ref: '#/definitions/models.EspacioAcademicoInscrito'
         "403":
           description: :id is not int
     delete:
       tags:
-      - estructura_investigacion_tg
-      description: delete the EstructuraInvestigacionTg
-      operationId: EstructuraInvestigacionTgController.Delete
+      - espacio_academico_inscrito
+      description: delete the EspacioAcademicoInscrito
+      operationId: EspacioAcademicoInscritoController.Delete
       parameters:
       - in: path
         name: id
@@ -1852,12 +1787,12 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /estudiante_tg/:
+  /espacios_academicos_elegibles/:
     get:
       tags:
-      - estudiante_tg
-      description: get EstudianteTg
-      operationId: EstudianteTgController.Get All
+      - espacios_academicos_elegibles
+      description: get EspaciosAcademicosElegibles
+      operationId: EspaciosAcademicosElegiblesController.Get All
       parameters:
       - in: query
         name: query
@@ -1877,10 +1812,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -1891,31 +1822,31 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.EstudianteTg'
+            $ref: '#/definitions/models.EspaciosAcademicosElegibles'
         "403": {}
     post:
       tags:
-      - estudiante_tg
-      description: create EstudianteTg
-      operationId: EstudianteTgController.Post
+      - espacios_academicos_elegibles
+      description: create EspaciosAcademicosElegibles
+      operationId: EspaciosAcademicosElegiblesController.Post
       parameters:
       - in: body
         name: body
-        description: body for EstudianteTg content
+        description: body for EspaciosAcademicosElegibles content
         required: true
         schema:
-          $ref: '#/definitions/models.EstudianteTg'
+          $ref: '#/definitions/models.EspaciosAcademicosElegibles'
       responses:
         "201":
-          description: '{int} models.EstudianteTg'
+          description: '{int} models.EspaciosAcademicosElegibles'
         "403":
           description: body is empty
-  /estudiante_tg/{id}:
+  /espacios_academicos_elegibles/{id}:
     get:
       tags:
-      - estudiante_tg
-      description: get EstudianteTg by id
-      operationId: EstudianteTgController.Get
+      - espacios_academicos_elegibles
+      description: get EspaciosAcademicosElegibles by id
+      operationId: EspaciosAcademicosElegiblesController.Get One
       parameters:
       - in: path
         name: id
@@ -1925,14 +1856,14 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.EstudianteTg'
+            $ref: '#/definitions/models.EspaciosAcademicosElegibles'
         "403":
           description: :id is empty
     put:
       tags:
-      - estudiante_tg
-      description: update the EstudianteTg
-      operationId: EstudianteTgController.Update
+      - espacios_academicos_elegibles
+      description: update the EspaciosAcademicosElegibles
+      operationId: EspaciosAcademicosElegiblesController.Put
       parameters:
       - in: path
         name: id
@@ -1941,21 +1872,21 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for EstudianteTg content
+        description: body for EspaciosAcademicosElegibles content
         required: true
         schema:
-          $ref: '#/definitions/models.EstudianteTg'
+          $ref: '#/definitions/models.EspaciosAcademicosElegibles'
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.EstudianteTg'
+            $ref: '#/definitions/models.EspaciosAcademicosElegibles'
         "403":
           description: :id is not int
     delete:
       tags:
-      - estudiante_tg
-      description: delete the EstudianteTg
-      operationId: EstudianteTgController.Delete
+      - espacios_academicos_elegibles
+      description: delete the EspaciosAcademicosElegibles
+      operationId: EspaciosAcademicosElegiblesController.Delete
       parameters:
       - in: path
         name: id
@@ -1967,12 +1898,12 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /evaluacion/:
+  /estado_asignatura_trabajo_grado/:
     get:
       tags:
-      - evaluacion
-      description: get Evaluacion
-      operationId: EvaluacionController.Get All
+      - estado_asignatura_trabajo_grado
+      description: get EstadoAsignaturaTrabajoGrado
+      operationId: EstadoAsignaturaTrabajoGradoController.Get All
       parameters:
       - in: query
         name: query
@@ -1992,8 +1923,115 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstadoAsignaturaTrabajoGrado'
+        "403": {}
+    post:
+      tags:
+      - estado_asignatura_trabajo_grado
+      description: create EstadoAsignaturaTrabajoGrado
+      operationId: EstadoAsignaturaTrabajoGradoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for EstadoAsignaturaTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstadoAsignaturaTrabajoGrado'
+      responses:
+        "201":
+          description: '{int} models.EstadoAsignaturaTrabajoGrado'
+        "403":
+          description: body is empty
+  /estado_asignatura_trabajo_grado/{id}:
+    get:
+      tags:
+      - estado_asignatura_trabajo_grado
+      description: get EstadoAsignaturaTrabajoGrado by id
+      operationId: EstadoAsignaturaTrabajoGradoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstadoAsignaturaTrabajoGrado'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - estado_asignatura_trabajo_grado
+      description: update the EstadoAsignaturaTrabajoGrado
+      operationId: EstadoAsignaturaTrabajoGradoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for EstadoAsignaturaTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstadoAsignaturaTrabajoGrado'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstadoAsignaturaTrabajoGrado'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - estado_asignatura_trabajo_grado
+      description: delete the EstadoAsignaturaTrabajoGrado
+      operationId: EstadoAsignaturaTrabajoGradoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /estado_espacio_academico_inscrito/:
+    get:
+      tags:
+      - estado_espacio_academico_inscrito
+      description: get EstadoEspacioAcademicoInscrito
+      operationId: EstadoEspacioAcademicoInscritoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -2006,31 +2044,31 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.Evaluacion'
+            $ref: '#/definitions/models.EstadoEspacioAcademicoInscrito'
         "403": {}
     post:
       tags:
-      - evaluacion
-      description: create Evaluacion
-      operationId: EvaluacionController.Post
+      - estado_espacio_academico_inscrito
+      description: create EstadoEspacioAcademicoInscrito
+      operationId: EstadoEspacioAcademicoInscritoController.Post
       parameters:
       - in: body
         name: body
-        description: body for Evaluacion content
+        description: body for EstadoEspacioAcademicoInscrito content
         required: true
         schema:
-          $ref: '#/definitions/models.Evaluacion'
+          $ref: '#/definitions/models.EstadoEspacioAcademicoInscrito'
       responses:
         "201":
-          description: '{int} models.Evaluacion'
+          description: '{int} models.EstadoEspacioAcademicoInscrito'
         "403":
           description: body is empty
-  /evaluacion/{id}:
+  /estado_espacio_academico_inscrito/{id}:
     get:
       tags:
-      - evaluacion
-      description: get Evaluacion by id
-      operationId: EvaluacionController.Get
+      - estado_espacio_academico_inscrito
+      description: get EstadoEspacioAcademicoInscrito by id
+      operationId: EstadoEspacioAcademicoInscritoController.Get One
       parameters:
       - in: path
         name: id
@@ -2040,14 +2078,14 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.Evaluacion'
+            $ref: '#/definitions/models.EstadoEspacioAcademicoInscrito'
         "403":
           description: :id is empty
     put:
       tags:
-      - evaluacion
-      description: update the Evaluacion
-      operationId: EvaluacionController.Update
+      - estado_espacio_academico_inscrito
+      description: update the EstadoEspacioAcademicoInscrito
+      operationId: EstadoEspacioAcademicoInscritoController.Put
       parameters:
       - in: path
         name: id
@@ -2056,21 +2094,798 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for Evaluacion content
+        description: body for EstadoEspacioAcademicoInscrito content
         required: true
         schema:
-          $ref: '#/definitions/models.Evaluacion'
+          $ref: '#/definitions/models.EstadoEspacioAcademicoInscrito'
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.Evaluacion'
+            $ref: '#/definitions/models.EstadoEspacioAcademicoInscrito'
         "403":
           description: :id is not int
     delete:
       tags:
-      - evaluacion
-      description: delete the Evaluacion
-      operationId: EvaluacionController.Delete
+      - estado_espacio_academico_inscrito
+      description: delete the EstadoEspacioAcademicoInscrito
+      operationId: EstadoEspacioAcademicoInscritoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /estado_estudiante_trabajo_grado/:
+    get:
+      tags:
+      - estado_estudiante_trabajo_grado
+      description: get EstadoEstudianteTrabajoGrado
+      operationId: EstadoEstudianteTrabajoGradoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstadoEstudianteTrabajoGrado'
+        "403": {}
+    post:
+      tags:
+      - estado_estudiante_trabajo_grado
+      description: create EstadoEstudianteTrabajoGrado
+      operationId: EstadoEstudianteTrabajoGradoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for EstadoEstudianteTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstadoEstudianteTrabajoGrado'
+      responses:
+        "201":
+          description: '{int} models.EstadoEstudianteTrabajoGrado'
+        "403":
+          description: body is empty
+  /estado_estudiante_trabajo_grado/{id}:
+    get:
+      tags:
+      - estado_estudiante_trabajo_grado
+      description: get EstadoEstudianteTrabajoGrado by id
+      operationId: EstadoEstudianteTrabajoGradoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstadoEstudianteTrabajoGrado'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - estado_estudiante_trabajo_grado
+      description: update the EstadoEstudianteTrabajoGrado
+      operationId: EstadoEstudianteTrabajoGradoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for EstadoEstudianteTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstadoEstudianteTrabajoGrado'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstadoEstudianteTrabajoGrado'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - estado_estudiante_trabajo_grado
+      description: delete the EstadoEstudianteTrabajoGrado
+      operationId: EstadoEstudianteTrabajoGradoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /estado_revision_trabajo_grado/:
+    get:
+      tags:
+      - estado_revision_trabajo_grado
+      description: get EstadoRevisionTrabajoGrado
+      operationId: EstadoRevisionTrabajoGradoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstadoRevisionTrabajoGrado'
+        "403": {}
+    post:
+      tags:
+      - estado_revision_trabajo_grado
+      description: create EstadoRevisionTrabajoGrado
+      operationId: EstadoRevisionTrabajoGradoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for EstadoRevisionTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstadoRevisionTrabajoGrado'
+      responses:
+        "201":
+          description: '{int} models.EstadoRevisionTrabajoGrado'
+        "403":
+          description: body is empty
+  /estado_revision_trabajo_grado/{id}:
+    get:
+      tags:
+      - estado_revision_trabajo_grado
+      description: get EstadoRevisionTrabajoGrado by id
+      operationId: EstadoRevisionTrabajoGradoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstadoRevisionTrabajoGrado'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - estado_revision_trabajo_grado
+      description: update the EstadoRevisionTrabajoGrado
+      operationId: EstadoRevisionTrabajoGradoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for EstadoRevisionTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstadoRevisionTrabajoGrado'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstadoRevisionTrabajoGrado'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - estado_revision_trabajo_grado
+      description: delete the EstadoRevisionTrabajoGrado
+      operationId: EstadoRevisionTrabajoGradoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /estado_solicitud/:
+    get:
+      tags:
+      - estado_solicitud
+      description: get EstadoSolicitud
+      operationId: EstadoSolicitudController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstadoSolicitud'
+        "403": {}
+    post:
+      tags:
+      - estado_solicitud
+      description: create EstadoSolicitud
+      operationId: EstadoSolicitudController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for EstadoSolicitud content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstadoSolicitud'
+      responses:
+        "201":
+          description: '{int} models.EstadoSolicitud'
+        "403":
+          description: body is empty
+  /estado_solicitud/{id}:
+    get:
+      tags:
+      - estado_solicitud
+      description: get EstadoSolicitud by id
+      operationId: EstadoSolicitudController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstadoSolicitud'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - estado_solicitud
+      description: update the EstadoSolicitud
+      operationId: EstadoSolicitudController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for EstadoSolicitud content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstadoSolicitud'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstadoSolicitud'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - estado_solicitud
+      description: delete the EstadoSolicitud
+      operationId: EstadoSolicitudController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /estado_trabajo_grado/:
+    get:
+      tags:
+      - estado_trabajo_grado
+      description: get EstadoTrabajoGrado
+      operationId: EstadoTrabajoGradoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstadoTrabajoGrado'
+        "403": {}
+    post:
+      tags:
+      - estado_trabajo_grado
+      description: create EstadoTrabajoGrado
+      operationId: EstadoTrabajoGradoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for EstadoTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstadoTrabajoGrado'
+      responses:
+        "201":
+          description: '{int} models.EstadoTrabajoGrado'
+        "403":
+          description: body is empty
+  /estado_trabajo_grado/{id}:
+    get:
+      tags:
+      - estado_trabajo_grado
+      description: get EstadoTrabajoGrado by id
+      operationId: EstadoTrabajoGradoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstadoTrabajoGrado'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - estado_trabajo_grado
+      description: update the EstadoTrabajoGrado
+      operationId: EstadoTrabajoGradoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for EstadoTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstadoTrabajoGrado'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstadoTrabajoGrado'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - estado_trabajo_grado
+      description: delete the EstadoTrabajoGrado
+      operationId: EstadoTrabajoGradoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /estructura_investigacion_trabajo_grado/:
+    get:
+      tags:
+      - estructura_investigacion_trabajo_grado
+      description: get EstructuraInvestigacionTrabajoGrado
+      operationId: EstructuraInvestigacionTrabajoGradoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstructuraInvestigacionTrabajoGrado'
+        "403": {}
+    post:
+      tags:
+      - estructura_investigacion_trabajo_grado
+      description: create EstructuraInvestigacionTrabajoGrado
+      operationId: EstructuraInvestigacionTrabajoGradoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for EstructuraInvestigacionTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstructuraInvestigacionTrabajoGrado'
+      responses:
+        "201":
+          description: '{int} models.EstructuraInvestigacionTrabajoGrado'
+        "403":
+          description: body is empty
+  /estructura_investigacion_trabajo_grado/{id}:
+    get:
+      tags:
+      - estructura_investigacion_trabajo_grado
+      description: get EstructuraInvestigacionTrabajoGrado by id
+      operationId: EstructuraInvestigacionTrabajoGradoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstructuraInvestigacionTrabajoGrado'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - estructura_investigacion_trabajo_grado
+      description: update the EstructuraInvestigacionTrabajoGrado
+      operationId: EstructuraInvestigacionTrabajoGradoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for EstructuraInvestigacionTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstructuraInvestigacionTrabajoGrado'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstructuraInvestigacionTrabajoGrado'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - estructura_investigacion_trabajo_grado
+      description: delete the EstructuraInvestigacionTrabajoGrado
+      operationId: EstructuraInvestigacionTrabajoGradoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /estudiante_trabajo_grado/:
+    get:
+      tags:
+      - estudiante_trabajo_grado
+      description: get EstudianteTrabajoGrado
+      operationId: EstudianteTrabajoGradoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstudianteTrabajoGrado'
+        "403": {}
+    post:
+      tags:
+      - estudiante_trabajo_grado
+      description: create EstudianteTrabajoGrado
+      operationId: EstudianteTrabajoGradoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for EstudianteTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstudianteTrabajoGrado'
+      responses:
+        "201":
+          description: '{int} models.EstudianteTrabajoGrado'
+        "403":
+          description: body is empty
+  /estudiante_trabajo_grado/{id}:
+    get:
+      tags:
+      - estudiante_trabajo_grado
+      description: get EstudianteTrabajoGrado by id
+      operationId: EstudianteTrabajoGradoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstudianteTrabajoGrado'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - estudiante_trabajo_grado
+      description: update the EstudianteTrabajoGrado
+      operationId: EstudianteTrabajoGradoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for EstudianteTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstudianteTrabajoGrado'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EstudianteTrabajoGrado'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - estudiante_trabajo_grado
+      description: delete the EstudianteTrabajoGrado
+      operationId: EstudianteTrabajoGradoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /evaluacion_trabajo_grado/:
+    get:
+      tags:
+      - evaluacion_trabajo_grado
+      description: get EvaluacionTrabajoGrado
+      operationId: EvaluacionTrabajoGradoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EvaluacionTrabajoGrado'
+        "403": {}
+    post:
+      tags:
+      - evaluacion_trabajo_grado
+      description: create EvaluacionTrabajoGrado
+      operationId: EvaluacionTrabajoGradoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for EvaluacionTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EvaluacionTrabajoGrado'
+      responses:
+        "201":
+          description: '{int} models.EvaluacionTrabajoGrado'
+        "403":
+          description: body is empty
+  /evaluacion_trabajo_grado/{id}:
+    get:
+      tags:
+      - evaluacion_trabajo_grado
+      description: get EvaluacionTrabajoGrado by id
+      operationId: EvaluacionTrabajoGradoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EvaluacionTrabajoGrado'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - evaluacion_trabajo_grado
+      description: update the EvaluacionTrabajoGrado
+      operationId: EvaluacionTrabajoGradoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for EvaluacionTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EvaluacionTrabajoGrado'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.EvaluacionTrabajoGrado'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - evaluacion_trabajo_grado
+      description: delete the EvaluacionTrabajoGrado
+      operationId: EvaluacionTrabajoGradoController.Delete
       parameters:
       - in: path
         name: id
@@ -2107,10 +2922,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -2145,7 +2956,7 @@ paths:
       tags:
       - formato
       description: get Formato by id
-      operationId: FormatoController.Get
+      operationId: FormatoController.Get One
       parameters:
       - in: path
         name: id
@@ -2162,7 +2973,7 @@ paths:
       tags:
       - formato
       description: update the Formato
-      operationId: FormatoController.Update
+      operationId: FormatoController.Put
       parameters:
       - in: path
         name: id
@@ -2222,10 +3033,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -2260,7 +3067,7 @@ paths:
       tags:
       - formato_evaluacion_carrera
       description: get FormatoEvaluacionCarrera by id
-      operationId: FormatoEvaluacionCarreraController.Get
+      operationId: FormatoEvaluacionCarreraController.Get One
       parameters:
       - in: path
         name: id
@@ -2277,7 +3084,7 @@ paths:
       tags:
       - formato_evaluacion_carrera
       description: update the FormatoEvaluacionCarrera
-      operationId: FormatoEvaluacionCarreraController.Update
+      operationId: FormatoEvaluacionCarreraController.Put
       parameters:
       - in: path
         name: id
@@ -2337,10 +3144,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -2375,7 +3178,7 @@ paths:
       tags:
       - modalidad
       description: get Modalidad by id
-      operationId: ModalidadController.Get
+      operationId: ModalidadController.Get One
       parameters:
       - in: path
         name: id
@@ -2392,7 +3195,7 @@ paths:
       tags:
       - modalidad
       description: update the Modalidad
-      operationId: ModalidadController.Update
+      operationId: ModalidadController.Put
       parameters:
       - in: path
         name: id
@@ -2416,6 +3219,117 @@ paths:
       - modalidad
       description: delete the Modalidad
       operationId: ModalidadController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /modalidad_tipo_solicitud/:
+    get:
+      tags:
+      - modalidad_tipo_solicitud
+      description: get ModalidadTipoSolicitud
+      operationId: ModalidadTipoSolicitudController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.ModalidadTipoSolicitud'
+        "403": {}
+    post:
+      tags:
+      - modalidad_tipo_solicitud
+      description: create ModalidadTipoSolicitud
+      operationId: ModalidadTipoSolicitudController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for ModalidadTipoSolicitud content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ModalidadTipoSolicitud'
+      responses:
+        "201":
+          description: '{int} models.ModalidadTipoSolicitud'
+        "403":
+          description: body is empty
+  /modalidad_tipo_solicitud/{id}:
+    get:
+      tags:
+      - modalidad_tipo_solicitud
+      description: get ModalidadTipoSolicitud by id
+      operationId: ModalidadTipoSolicitudController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.ModalidadTipoSolicitud'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - modalidad_tipo_solicitud
+      description: update the ModalidadTipoSolicitud
+      operationId: ModalidadTipoSolicitudController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for ModalidadTipoSolicitud content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ModalidadTipoSolicitud'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.ModalidadTipoSolicitud'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - modalidad_tipo_solicitud
+      description: delete the ModalidadTipoSolicitud
+      operationId: ModalidadTipoSolicitudController.Delete
       parameters:
       - in: path
         name: id
@@ -2452,10 +3366,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -2490,7 +3400,7 @@ paths:
       tags:
       - pregunta
       description: get Pregunta by id
-      operationId: PreguntaController.Get
+      operationId: PreguntaController.Get One
       parameters:
       - in: path
         name: id
@@ -2507,7 +3417,7 @@ paths:
       tags:
       - pregunta
       description: update the Pregunta
-      operationId: PreguntaController.Update
+      operationId: PreguntaController.Put
       parameters:
       - in: path
         name: id
@@ -2567,10 +3477,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -2605,7 +3511,7 @@ paths:
       tags:
       - pregunta_formato
       description: get PreguntaFormato by id
-      operationId: PreguntaFormatoController.Get
+      operationId: PreguntaFormatoController.Get One
       parameters:
       - in: path
         name: id
@@ -2622,7 +3528,7 @@ paths:
       tags:
       - pregunta_formato
       description: update the PreguntaFormato
-      operationId: PreguntaFormatoController.Update
+      operationId: PreguntaFormatoController.Put
       parameters:
       - in: path
         name: id
@@ -2682,10 +3588,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -2720,7 +3622,7 @@ paths:
       tags:
       - respuesta
       description: get Respuesta by id
-      operationId: RespuestaController.Get
+      operationId: RespuestaController.Get One
       parameters:
       - in: path
         name: id
@@ -2737,7 +3639,7 @@ paths:
       tags:
       - respuesta
       description: update the Respuesta
-      operationId: RespuestaController.Update
+      operationId: RespuestaController.Put
       parameters:
       - in: path
         name: id
@@ -2797,10 +3699,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -2835,7 +3733,7 @@ paths:
       tags:
       - respuesta_evaluacion
       description: get RespuestaEvaluacion by id
-      operationId: RespuestaEvaluacionController.Get
+      operationId: RespuestaEvaluacionController.Get One
       parameters:
       - in: path
         name: id
@@ -2852,7 +3750,7 @@ paths:
       tags:
       - respuesta_evaluacion
       description: update the RespuestaEvaluacion
-      operationId: RespuestaEvaluacionController.Update
+      operationId: RespuestaEvaluacionController.Put
       parameters:
       - in: path
         name: id
@@ -2912,10 +3810,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -2950,7 +3844,7 @@ paths:
       tags:
       - respuesta_formato
       description: get RespuestaFormato by id
-      operationId: RespuestaFormatoController.Get
+      operationId: RespuestaFormatoController.Get One
       parameters:
       - in: path
         name: id
@@ -2967,7 +3861,7 @@ paths:
       tags:
       - respuesta_formato
       description: update the RespuestaFormato
-      operationId: RespuestaFormatoController.Update
+      operationId: RespuestaFormatoController.Put
       parameters:
       - in: path
         name: id
@@ -3002,12 +3896,12 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /revision/:
+  /respuesta_solicitud/:
     get:
       tags:
-      - revision
-      description: get Revision
-      operationId: RevisionController.Get All
+      - respuesta_solicitud
+      description: get RespuestaSolicitud
+      operationId: RespuestaSolicitudController.Get All
       parameters:
       - in: query
         name: query
@@ -3027,8 +3921,115 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.RespuestaSolicitud'
+        "403": {}
+    post:
+      tags:
+      - respuesta_solicitud
+      description: create RespuestaSolicitud
+      operationId: RespuestaSolicitudController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for RespuestaSolicitud content
+        required: true
+        schema:
+          $ref: '#/definitions/models.RespuestaSolicitud'
+      responses:
+        "201":
+          description: '{int} models.RespuestaSolicitud'
+        "403":
+          description: body is empty
+  /respuesta_solicitud/{id}:
+    get:
+      tags:
+      - respuesta_solicitud
+      description: get RespuestaSolicitud by id
+      operationId: RespuestaSolicitudController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.RespuestaSolicitud'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - respuesta_solicitud
+      description: update the RespuestaSolicitud
+      operationId: RespuestaSolicitudController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for RespuestaSolicitud content
+        required: true
+        schema:
+          $ref: '#/definitions/models.RespuestaSolicitud'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.RespuestaSolicitud'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - respuesta_solicitud
+      description: delete the RespuestaSolicitud
+      operationId: RespuestaSolicitudController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /revision_trabajo_grado/:
+    get:
+      tags:
+      - revision_trabajo_grado
+      description: get RevisionTrabajoGrado
+      operationId: RevisionTrabajoGradoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -3041,31 +4042,31 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.Revision'
+            $ref: '#/definitions/models.RevisionTrabajoGrado'
         "403": {}
     post:
       tags:
-      - revision
-      description: create Revision
-      operationId: RevisionController.Post
+      - revision_trabajo_grado
+      description: create RevisionTrabajoGrado
+      operationId: RevisionTrabajoGradoController.Post
       parameters:
       - in: body
         name: body
-        description: body for Revision content
+        description: body for RevisionTrabajoGrado content
         required: true
         schema:
-          $ref: '#/definitions/models.Revision'
+          $ref: '#/definitions/models.RevisionTrabajoGrado'
       responses:
         "201":
-          description: '{int} models.Revision'
+          description: '{int} models.RevisionTrabajoGrado'
         "403":
           description: body is empty
-  /revision/{id}:
+  /revision_trabajo_grado/{id}:
     get:
       tags:
-      - revision
-      description: get Revision by id
-      operationId: RevisionController.Get
+      - revision_trabajo_grado
+      description: get RevisionTrabajoGrado by id
+      operationId: RevisionTrabajoGradoController.Get One
       parameters:
       - in: path
         name: id
@@ -3075,14 +4076,14 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.Revision'
+            $ref: '#/definitions/models.RevisionTrabajoGrado'
         "403":
           description: :id is empty
     put:
       tags:
-      - revision
-      description: update the Revision
-      operationId: RevisionController.Update
+      - revision_trabajo_grado
+      description: update the RevisionTrabajoGrado
+      operationId: RevisionTrabajoGradoController.Put
       parameters:
       - in: path
         name: id
@@ -3091,21 +4092,132 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for Revision content
+        description: body for RevisionTrabajoGrado content
         required: true
         schema:
-          $ref: '#/definitions/models.Revision'
+          $ref: '#/definitions/models.RevisionTrabajoGrado'
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.Revision'
+            $ref: '#/definitions/models.RevisionTrabajoGrado'
         "403":
           description: :id is not int
     delete:
       tags:
-      - revision
-      description: delete the Revision
-      operationId: RevisionController.Delete
+      - revision_trabajo_grado
+      description: delete the RevisionTrabajoGrado
+      operationId: RevisionTrabajoGradoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /rol_trabajo_grado/:
+    get:
+      tags:
+      - rol_trabajo_grado
+      description: get RolTrabajoGrado
+      operationId: RolTrabajoGradoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.RolTrabajoGrado'
+        "403": {}
+    post:
+      tags:
+      - rol_trabajo_grado
+      description: create RolTrabajoGrado
+      operationId: RolTrabajoGradoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for RolTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.RolTrabajoGrado'
+      responses:
+        "201":
+          description: '{int} models.RolTrabajoGrado'
+        "403":
+          description: body is empty
+  /rol_trabajo_grado/{id}:
+    get:
+      tags:
+      - rol_trabajo_grado
+      description: get RolTrabajoGrado by id
+      operationId: RolTrabajoGradoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.RolTrabajoGrado'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - rol_trabajo_grado
+      description: update the RolTrabajoGrado
+      operationId: RolTrabajoGradoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for RolTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.RolTrabajoGrado'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.RolTrabajoGrado'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - rol_trabajo_grado
+      description: delete the RolTrabajoGrado
+      operationId: RolTrabajoGradoController.Delete
       parameters:
       - in: path
         name: id
@@ -3142,10 +4254,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -3180,7 +4288,7 @@ paths:
       tags:
       - socializacion
       description: get Socializacion by id
-      operationId: SocializacionController.Get
+      operationId: SocializacionController.Get One
       parameters:
       - in: path
         name: id
@@ -3197,7 +4305,7 @@ paths:
       tags:
       - socializacion
       description: update the Socializacion
-      operationId: SocializacionController.Update
+      operationId: SocializacionController.Put
       parameters:
       - in: path
         name: id
@@ -3232,12 +4340,12 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /solicitud_materias/:
+  /solicitud_trabajo_grado/:
     get:
       tags:
-      - solicitud_materias
-      description: get SolicitudMaterias
-      operationId: SolicitudMateriasController.Get All
+      - solicitud_trabajo_grado
+      description: get SolicitudTrabajoGrado
+      operationId: SolicitudTrabajoGradoController.Get All
       parameters:
       - in: query
         name: query
@@ -3257,10 +4365,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -3271,31 +4375,31 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.SolicitudMaterias'
+            $ref: '#/definitions/models.SolicitudTrabajoGrado'
         "403": {}
     post:
       tags:
-      - solicitud_materias
-      description: create SolicitudMaterias
-      operationId: SolicitudMateriasController.Post
+      - solicitud_trabajo_grado
+      description: create SolicitudTrabajoGrado
+      operationId: SolicitudTrabajoGradoController.Post
       parameters:
       - in: body
         name: body
-        description: body for SolicitudMaterias content
+        description: body for SolicitudTrabajoGrado content
         required: true
         schema:
-          $ref: '#/definitions/models.SolicitudMaterias'
+          $ref: '#/definitions/models.SolicitudTrabajoGrado'
       responses:
         "201":
-          description: '{int} models.SolicitudMaterias'
+          description: '{int} models.SolicitudTrabajoGrado'
         "403":
           description: body is empty
-  /solicitud_materias/{id}:
+  /solicitud_trabajo_grado/{id}:
     get:
       tags:
-      - solicitud_materias
-      description: get SolicitudMaterias by id
-      operationId: SolicitudMateriasController.Get
+      - solicitud_trabajo_grado
+      description: get SolicitudTrabajoGrado by id
+      operationId: SolicitudTrabajoGradoController.Get One
       parameters:
       - in: path
         name: id
@@ -3305,14 +4409,14 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.SolicitudMaterias'
+            $ref: '#/definitions/models.SolicitudTrabajoGrado'
         "403":
           description: :id is empty
     put:
       tags:
-      - solicitud_materias
-      description: update the SolicitudMaterias
-      operationId: SolicitudMateriasController.Update
+      - solicitud_trabajo_grado
+      description: update the SolicitudTrabajoGrado
+      operationId: SolicitudTrabajoGradoController.Put
       parameters:
       - in: path
         name: id
@@ -3321,21 +4425,21 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for SolicitudMaterias content
+        description: body for SolicitudTrabajoGrado content
         required: true
         schema:
-          $ref: '#/definitions/models.SolicitudMaterias'
+          $ref: '#/definitions/models.SolicitudTrabajoGrado'
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.SolicitudMaterias'
+            $ref: '#/definitions/models.SolicitudTrabajoGrado'
         "403":
           description: :id is not int
     delete:
       tags:
-      - solicitud_materias
-      description: delete the SolicitudMaterias
-      operationId: SolicitudMateriasController.Delete
+      - solicitud_trabajo_grado
+      description: delete the SolicitudTrabajoGrado
+      operationId: SolicitudTrabajoGradoController.Delete
       parameters:
       - in: path
         name: id
@@ -3347,12 +4451,12 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /tipo_documento/:
+  /tipo_detalle/:
     get:
       tags:
-      - tipo_documento
-      description: get TipoDocumento
-      operationId: TipoDocumentoController.Get All
+      - tipo_detalle
+      description: get TipoDetalle
+      operationId: TipoDetalleController.Get All
       parameters:
       - in: query
         name: query
@@ -3372,10 +4476,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -3386,31 +4486,31 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.TipoDocumento'
+            $ref: '#/definitions/models.TipoDetalle'
         "403": {}
     post:
       tags:
-      - tipo_documento
-      description: create TipoDocumento
-      operationId: TipoDocumentoController.Post
+      - tipo_detalle
+      description: create TipoDetalle
+      operationId: TipoDetalleController.Post
       parameters:
       - in: body
         name: body
-        description: body for TipoDocumento content
+        description: body for TipoDetalle content
         required: true
         schema:
-          $ref: '#/definitions/models.TipoDocumento'
+          $ref: '#/definitions/models.TipoDetalle'
       responses:
         "201":
-          description: '{int} models.TipoDocumento'
+          description: '{int} models.TipoDetalle'
         "403":
           description: body is empty
-  /tipo_documento/{id}:
+  /tipo_detalle/{id}:
     get:
       tags:
-      - tipo_documento
-      description: get TipoDocumento by id
-      operationId: TipoDocumentoController.Get
+      - tipo_detalle
+      description: get TipoDetalle by id
+      operationId: TipoDetalleController.Get One
       parameters:
       - in: path
         name: id
@@ -3420,14 +4520,14 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.TipoDocumento'
+            $ref: '#/definitions/models.TipoDetalle'
         "403":
           description: :id is empty
     put:
       tags:
-      - tipo_documento
-      description: update the TipoDocumento
-      operationId: TipoDocumentoController.Update
+      - tipo_detalle
+      description: update the TipoDetalle
+      operationId: TipoDetalleController.Put
       parameters:
       - in: path
         name: id
@@ -3436,21 +4536,21 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for TipoDocumento content
+        description: body for TipoDetalle content
         required: true
         schema:
-          $ref: '#/definitions/models.TipoDocumento'
+          $ref: '#/definitions/models.TipoDetalle'
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.TipoDocumento'
+            $ref: '#/definitions/models.TipoDetalle'
         "403":
           description: :id is not int
     delete:
       tags:
-      - tipo_documento
-      description: delete the TipoDocumento
-      operationId: TipoDocumentoController.Delete
+      - tipo_detalle
+      description: delete the TipoDetalle
+      operationId: TipoDetalleController.Delete
       parameters:
       - in: path
         name: id
@@ -3462,12 +4562,12 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /tipo_vinculacion/:
+  /tipo_pregunta/:
     get:
       tags:
-      - tipo_vinculacion
-      description: get TipoVinculacion
-      operationId: TipoVinculacionController.Get All
+      - tipo_pregunta
+      description: get TipoPregunta
+      operationId: TipoPreguntaController.Get All
       parameters:
       - in: query
         name: query
@@ -3487,8 +4587,115 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.TipoPregunta'
+        "403": {}
+    post:
+      tags:
+      - tipo_pregunta
+      description: create TipoPregunta
+      operationId: TipoPreguntaController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for TipoPregunta content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TipoPregunta'
+      responses:
+        "201":
+          description: '{int} models.TipoPregunta'
+        "403":
+          description: body is empty
+  /tipo_pregunta/{id}:
+    get:
+      tags:
+      - tipo_pregunta
+      description: get TipoPregunta by id
+      operationId: TipoPreguntaController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.TipoPregunta'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - tipo_pregunta
+      description: update the TipoPregunta
+      operationId: TipoPreguntaController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for TipoPregunta content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TipoPregunta'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.TipoPregunta'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - tipo_pregunta
+      description: delete the TipoPregunta
+      operationId: TipoPreguntaController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /tipo_solicitud/:
+    get:
+      tags:
+      - tipo_solicitud
+      description: get TipoSolicitud
+      operationId: TipoSolicitudController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -3501,31 +4708,31 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.TipoVinculacion'
+            $ref: '#/definitions/models.TipoSolicitud'
         "403": {}
     post:
       tags:
-      - tipo_vinculacion
-      description: create TipoVinculacion
-      operationId: TipoVinculacionController.Post
+      - tipo_solicitud
+      description: create TipoSolicitud
+      operationId: TipoSolicitudController.Post
       parameters:
       - in: body
         name: body
-        description: body for TipoVinculacion content
+        description: body for TipoSolicitud content
         required: true
         schema:
-          $ref: '#/definitions/models.TipoVinculacion'
+          $ref: '#/definitions/models.TipoSolicitud'
       responses:
         "201":
-          description: '{int} models.TipoVinculacion'
+          description: '{int} models.TipoSolicitud'
         "403":
           description: body is empty
-  /tipo_vinculacion/{id}:
+  /tipo_solicitud/{id}:
     get:
       tags:
-      - tipo_vinculacion
-      description: get TipoVinculacion by id
-      operationId: TipoVinculacionController.Get
+      - tipo_solicitud
+      description: get TipoSolicitud by id
+      operationId: TipoSolicitudController.Get One
       parameters:
       - in: path
         name: id
@@ -3535,14 +4742,14 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.TipoVinculacion'
+            $ref: '#/definitions/models.TipoSolicitud'
         "403":
           description: :id is empty
     put:
       tags:
-      - tipo_vinculacion
-      description: update the TipoVinculacion
-      operationId: TipoVinculacionController.Update
+      - tipo_solicitud
+      description: update the TipoSolicitud
+      operationId: TipoSolicitudController.Put
       parameters:
       - in: path
         name: id
@@ -3551,21 +4758,21 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for TipoVinculacion content
+        description: body for TipoSolicitud content
         required: true
         schema:
-          $ref: '#/definitions/models.TipoVinculacion'
+          $ref: '#/definitions/models.TipoSolicitud'
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.TipoVinculacion'
+            $ref: '#/definitions/models.TipoSolicitud'
         "403":
           description: :id is not int
     delete:
       tags:
-      - tipo_vinculacion
-      description: delete the TipoVinculacion
-      operationId: TipoVinculacionController.Delete
+      - tipo_solicitud
+      description: delete the TipoSolicitud
+      operationId: TipoSolicitudController.Delete
       parameters:
       - in: path
         name: id
@@ -3577,60 +4784,6 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /tr_formato/:
-    put:
-      tags:
-      - tr_formato
-      description: update the TrFormato
-      operationId: TrFormatoController.UpdateTrFormato
-      parameters:
-      - in: body
-        name: body
-        description: body for TrUpdateFormato content
-        required: true
-        schema:
-          $ref: '#/definitions/models.TrUpdateFormato'
-      responses:
-        "200":
-          schema:
-            $ref: '#/definitions/.msg'
-        "403":
-          description: :id is not int
-    post:
-      tags:
-      - tr_formato
-      description: create the Formato
-      operationId: TrFormatoController.PostFormato
-      parameters:
-      - in: body
-        name: body
-        description: body for TrSolicitud content
-        required: true
-        schema:
-          $ref: '#/definitions/models.TrSolicitud'
-      responses:
-        "201":
-          description: '{int} models.TrFormato'
-        "403":
-          description: body is empty
-  /tr_formato/{id}:
-    get:
-      tags:
-      - tr_formato
-      description: get Formato by id
-      operationId: TrFormatoController.GetFormato
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          schema:
-            $ref: '#/definitions/models.TrFormato'
-        "403":
-          description: :id is empty
   /tr_solicitud/:
     post:
       tags:
@@ -3647,24 +4800,6 @@ paths:
       responses:
         "201":
           description: '{int} models.TrSolicitud'
-        "403":
-          description: body is empty
-  /tr_trabajo_grado/:
-    post:
-      tags:
-      - tr_trabajo_grado
-      description: create the TrTrabajoGrado
-      operationId: TrTrabajoGradoController.PostTrTrabajoGrado
-      parameters:
-      - in: body
-        name: body
-        description: body for TrTrabajoGrado content
-        required: true
-        schema:
-          $ref: '#/definitions/models.TrabajoGradoTr'
-      responses:
-        "201":
-          description: '{int} models.TrabajoGradoTr'
         "403":
           description: body is empty
   /trabajo_grado/:
@@ -3690,10 +4825,6 @@ paths:
         name: order
         description: Order corresponding to each sortby field, if single value, apply
           to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
         type: string
       - in: query
         name: limit
@@ -3730,7 +4861,7 @@ paths:
       tags:
       - trabajo_grado
       description: get TrabajoGrado by id
-      operationId: TrabajoGradoController.Get
+      operationId: TrabajoGradoController.Get One
       parameters:
       - in: path
         name: id
@@ -3747,7 +4878,7 @@ paths:
       tags:
       - trabajo_grado
       description: update the TrabajoGrado
-      operationId: TrabajoGradoController.Update
+      operationId: TrabajoGradoController.Put
       parameters:
       - in: path
         name: id
@@ -3782,12 +4913,12 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /vinculacion_docente/:
+  /usuario_solicitud/:
     get:
       tags:
-      - vinculacion_docente
-      description: get VinculacionDocente
-      operationId: VinculacionDocenteController.Get All
+      - usuario_solicitud
+      description: get UsuarioSolicitud
+      operationId: UsuarioSolicitudController.Get All
       parameters:
       - in: query
         name: query
@@ -3807,10 +4938,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -3821,31 +4948,31 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.VinculacionDocente'
+            $ref: '#/definitions/models.UsuarioSolicitud'
         "403": {}
     post:
       tags:
-      - vinculacion_docente
-      description: create VinculacionDocente
-      operationId: VinculacionDocenteController.Post
+      - usuario_solicitud
+      description: create UsuarioSolicitud
+      operationId: UsuarioSolicitudController.Post
       parameters:
       - in: body
         name: body
-        description: body for VinculacionDocente content
+        description: body for UsuarioSolicitud content
         required: true
         schema:
-          $ref: '#/definitions/models.VinculacionDocente'
+          $ref: '#/definitions/models.UsuarioSolicitud'
       responses:
         "201":
-          description: '{int} models.VinculacionDocente'
+          description: '{int} models.UsuarioSolicitud'
         "403":
           description: body is empty
-  /vinculacion_docente/{id}:
+  /usuario_solicitud/{id}:
     get:
       tags:
-      - vinculacion_docente
-      description: get VinculacionDocente by id
-      operationId: VinculacionDocenteController.Get
+      - usuario_solicitud
+      description: get UsuarioSolicitud by id
+      operationId: UsuarioSolicitudController.Get One
       parameters:
       - in: path
         name: id
@@ -3855,14 +4982,14 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.VinculacionDocente'
+            $ref: '#/definitions/models.UsuarioSolicitud'
         "403":
           description: :id is empty
     put:
       tags:
-      - vinculacion_docente
-      description: update the VinculacionDocente
-      operationId: VinculacionDocenteController.Update
+      - usuario_solicitud
+      description: update the UsuarioSolicitud
+      operationId: UsuarioSolicitudController.Put
       parameters:
       - in: path
         name: id
@@ -3871,21 +4998,21 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for VinculacionDocente content
+        description: body for UsuarioSolicitud content
         required: true
         schema:
-          $ref: '#/definitions/models.VinculacionDocente'
+          $ref: '#/definitions/models.UsuarioSolicitud'
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.VinculacionDocente'
+            $ref: '#/definitions/models.UsuarioSolicitud'
         "403":
           description: :id is not int
     delete:
       tags:
-      - vinculacion_docente
-      description: delete the VinculacionDocente
-      operationId: VinculacionDocenteController.Delete
+      - usuario_solicitud
+      description: delete the UsuarioSolicitud
+      operationId: UsuarioSolicitudController.Delete
       parameters:
       - in: path
         name: id
@@ -3897,12 +5024,12 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /vinculacion_externa/:
+  /vinculacion_trabajo_grado/:
     get:
       tags:
-      - vinculacion_externa
-      description: get VinculacionExterna
-      operationId: VinculacionExternaController.Get All
+      - vinculacion_trabajo_grado
+      description: get VinculacionTrabajoGrado
+      operationId: VinculacionTrabajoGradoController.Get All
       parameters:
       - in: query
         name: query
@@ -3922,10 +5049,6 @@ paths:
           to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
-        name: related
-        description: Filter. e.g. col1__related1,col2__related2 ...
-        type: string
-      - in: query
         name: limit
         description: Limit the size of result set. Must be an integer
         type: string
@@ -3936,31 +5059,31 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.VinculacionExterna'
+            $ref: '#/definitions/models.VinculacionTrabajoGrado'
         "403": {}
     post:
       tags:
-      - vinculacion_externa
-      description: create VinculacionExterna
-      operationId: VinculacionExternaController.Post
+      - vinculacion_trabajo_grado
+      description: create VinculacionTrabajoGrado
+      operationId: VinculacionTrabajoGradoController.Post
       parameters:
       - in: body
         name: body
-        description: body for VinculacionExterna content
+        description: body for VinculacionTrabajoGrado content
         required: true
         schema:
-          $ref: '#/definitions/models.VinculacionExterna'
+          $ref: '#/definitions/models.VinculacionTrabajoGrado'
       responses:
         "201":
-          description: '{int} models.VinculacionExterna'
+          description: '{int} models.VinculacionTrabajoGrado'
         "403":
           description: body is empty
-  /vinculacion_externa/{id}:
+  /vinculacion_trabajo_grado/{id}:
     get:
       tags:
-      - vinculacion_externa
-      description: get VinculacionExterna by id
-      operationId: VinculacionExternaController.Get
+      - vinculacion_trabajo_grado
+      description: get VinculacionTrabajoGrado by id
+      operationId: VinculacionTrabajoGradoController.Get One
       parameters:
       - in: path
         name: id
@@ -3970,14 +5093,14 @@ paths:
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.VinculacionExterna'
+            $ref: '#/definitions/models.VinculacionTrabajoGrado'
         "403":
           description: :id is empty
     put:
       tags:
-      - vinculacion_externa
-      description: update the VinculacionExterna
-      operationId: VinculacionExternaController.Update
+      - vinculacion_trabajo_grado
+      description: update the VinculacionTrabajoGrado
+      operationId: VinculacionTrabajoGradoController.Put
       parameters:
       - in: path
         name: id
@@ -3986,21 +5109,21 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for VinculacionExterna content
+        description: body for VinculacionTrabajoGrado content
         required: true
         schema:
-          $ref: '#/definitions/models.VinculacionExterna'
+          $ref: '#/definitions/models.VinculacionTrabajoGrado'
       responses:
         "200":
           schema:
-            $ref: '#/definitions/models.VinculacionExterna'
+            $ref: '#/definitions/models.VinculacionTrabajoGrado'
         "403":
           description: :id is not int
     delete:
       tags:
-      - vinculacion_externa
-      description: delete the VinculacionExterna
-      operationId: VinculacionExternaController.Delete
+      - vinculacion_trabajo_grado
+      description: delete the VinculacionTrabajoGrado
+      operationId: VinculacionTrabajoGradoController.Delete
       parameters:
       - in: path
         name: id
@@ -4013,12 +5136,14 @@ paths:
         "403":
           description: id is empty
 definitions:
-  .msg:
-    type: object
   models.AreaConocimiento:
     title: AreaConocimiento
     type: object
     properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
       Descripcion:
         type: string
       Id:
@@ -4026,74 +5151,55 @@ definitions:
         format: int64
       Nombre:
         type: string
+      SniesArea:
+        type: integer
+        format: int64
   models.AreasDocente:
     title: AreasDocente
     type: object
     properties:
+      AreaConocimiento:
+        $ref: '#/definitions/models.AreaConocimiento'
+      Docente:
+        type: integer
+        format: int64
       Id:
         type: integer
         format: int64
-      IdAreaConocimiento:
-        $ref: '#/definitions/models.AreaConocimiento'
-      IdentificacionDocente:
-        type: number
-        format: double
   models.AreasTrabajoGrado:
     title: AreasTrabajoGrado
     type: object
     properties:
+      AreaConocimiento:
+        $ref: '#/definitions/models.AreaConocimiento'
       Id:
         type: integer
         format: int64
-      IdAreaConocimiento:
-        $ref: '#/definitions/models.AreaConocimiento'
-      IdTrabajoGrado:
+      TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
-  models.AsignaturaInscrita:
-    title: AsignaturaInscrita
+  models.AsignaturaTrabajoGrado:
+    title: AsignaturaTrabajoGrado
     type: object
     properties:
-      Estado:
-        type: string
-      Id:
-        type: integer
-        format: int64
-      IdAsignaturasElegibles:
-        $ref: '#/definitions/models.AsignaturasElegibles'
-      IdSolicitudMaterias:
-        $ref: '#/definitions/models.SolicitudMaterias'
-      Nota:
+      Anio:
         type: number
         format: double
-  models.AsignaturaTg:
-    title: AsignaturaTg
-    type: object
-    properties:
       Calificacion:
         type: number
         format: double
       CodigoAsignatura:
-        type: number
-        format: double
+        type: integer
+        format: int64
+      EstadoAsignaturaTrabajoGrado:
+        $ref: '#/definitions/models.EstadoAsignaturaTrabajoGrado'
       Id:
         type: integer
         format: int64
-      IdTrabajoGrado:
+      Periodo:
+        type: number
+        format: double
+      TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
-  models.AsignaturasElegibles:
-    title: AsignaturasElegibles
-    type: object
-    properties:
-      Activo:
-        type: boolean
-      CodigoAsignatura:
-        type: number
-        format: double
-      Id:
-        type: integer
-        format: int64
-      IdCarreraElegible:
-        $ref: '#/definitions/models.CarreraElegible'
   models.CarreraElegible:
     title: CarreraElegible
     type: object
@@ -4102,8 +5208,8 @@ definitions:
         type: number
         format: double
       CodigoCarrera:
-        type: number
-        format: double
+        type: integer
+        format: int64
       CodigoPensum:
         type: number
         format: double
@@ -4119,15 +5225,6 @@ definitions:
       Periodo:
         type: number
         format: double
-  models.Categoria:
-    title: Categoria
-    type: object
-    properties:
-      Id:
-        type: integer
-        format: int64
-      Nombre:
-        type: string
   models.Comentario:
     title: Comentario
     type: object
@@ -4136,14 +5233,14 @@ definitions:
         type: string
       Comentario:
         type: string
+      Correccion:
+        $ref: '#/definitions/models.Correccion'
       Fecha:
         type: string
         format: string
       Id:
         type: integer
         format: int64
-      IdCorreccion:
-        $ref: '#/definitions/models.Correccion'
   models.Correccion:
     title: Correccion
     type: object
@@ -4151,76 +5248,90 @@ definitions:
       Id:
         type: integer
         format: int64
-      IdRevision:
-        $ref: '#/definitions/models.Revision'
-      Justificacion:
-        type: string
       Observacion:
         type: string
       Pagina:
         type: number
         format: double
-  models.Documento:
-    title: Documento
-    type: object
-    properties:
-      Enlace:
-        type: string
-      Id:
-        type: integer
-        format: int64
-      IdTipoDocumento:
-        $ref: '#/definitions/models.TipoDocumento'
-      Resumen:
-        type: string
-      Titulo:
-        type: string
-  models.DocumentoEntidad:
-    title: DocumentoEntidad
-    type: object
-    properties:
-      Id:
-        type: integer
-        format: int64
-      IdDocumento:
-        $ref: '#/definitions/models.Documento'
-      IdEntidad:
-        $ref: '#/definitions/models.Entidad'
-      Validado:
-        type: boolean
-  models.DocumentoTg:
-    title: DocumentoTg
-    type: object
-    properties:
-      Id:
-        type: integer
-        format: int64
-      IdDocumento:
-        $ref: '#/definitions/models.Documento'
-      IdDocumentoRelacionado:
-        $ref: '#/definitions/models.DocumentoTg'
-      IdEstadoDocumento:
-        $ref: '#/definitions/models.EstadoDocumento'
-      IdTrabajoGrado:
-        $ref: '#/definitions/models.TrabajoGrado'
-  models.Entidad:
-    title: Entidad
+      RevisionTrabajoGrado:
+        $ref: '#/definitions/models.RevisionTrabajoGrado'
+  models.Detalle:
+    title: Detalle
     type: object
     properties:
       Activo:
         type: boolean
-      CodigoEntidad:
-        type: number
-        format: double
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      Enunciado:
+        type: string
       Id:
         type: integer
         format: int64
-      IdEntidadRelacionada:
-        $ref: '#/definitions/models.Entidad'
-  models.EstadoDocumento:
-    title: EstadoDocumento
+      Nombre:
+        type: string
+      TipoDetalle:
+        $ref: '#/definitions/models.TipoDetalle'
+  models.DetallePasantia:
+    title: DetallePasantia
     type: object
     properties:
+      Empresa:
+        type: integer
+        format: int64
+      Horas:
+        type: integer
+        format: int64
+      Id:
+        type: integer
+        format: int64
+      ObjetoContrato:
+        type: string
+      Observaciones:
+        type: string
+      TrabajoGrado:
+        $ref: '#/definitions/models.TrabajoGrado'
+  models.DetalleSolicitud:
+    title: DetalleSolicitud
+    type: object
+    properties:
+      Descripcion:
+        type: string
+      DetalleTipoSolicitud:
+        $ref: '#/definitions/models.DetalleTipoSolicitud'
+      Id:
+        type: integer
+        format: int64
+      SolicitudTrabajoGrado:
+        $ref: '#/definitions/models.SolicitudTrabajoGrado'
+  models.DetalleTipoSolicitud:
+    title: DetalleTipoSolicitud
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      Detalle:
+        $ref: '#/definitions/models.Detalle'
+      Id:
+        type: integer
+        format: int64
+      ModalidadTipoSolicitud:
+        $ref: '#/definitions/models.ModalidadTipoSolicitud'
+      NumeroOrden:
+        type: integer
+        format: int64
+      Requerido:
+        type: boolean
+  models.DistincionTrabajoGrado:
+    title: DistincionTrabajoGrado
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
       Descripcion:
         type: string
       Id:
@@ -4228,48 +5339,218 @@ definitions:
         format: int64
       Nombre:
         type: string
-  models.EstructuraInvestigacionTg:
-    title: EstructuraInvestigacionTg
+  models.DocumentoEntidad:
+    title: DocumentoEntidad
     type: object
     properties:
-      CodigoEstructuraInvestigacion:
-        type: number
-        format: double
+      DocumentoEscrito:
+        $ref: '#/definitions/models.DocumentoEscrito'
+      Entidad:
+        type: integer
+        format: int64
       Id:
         type: integer
         format: int64
-      IdTrabajoGrado:
-        $ref: '#/definitions/models.TrabajoGrado'
-  models.EstudianteTg:
-    title: EstudianteTg
+  models.DocumentoEscrito:
+    title: DocumentoEscrito
     type: object
     properties:
-      CodigoEstudiante:
-        type: number
-        format: double
-      Estado:
+      Enlace:
         type: string
       Id:
         type: integer
         format: int64
-      IdTrabajoGrado:
-        $ref: '#/definitions/models.TrabajoGrado'
-  models.Evaluacion:
-    title: Evaluacion
+      Resumen:
+        type: string
+      TipoDocumentoEscrito:
+        type: integer
+        format: int64
+      Titulo:
+        type: string
+  models.DocumentoSolicitud:
+    title: DocumentoSolicitud
     type: object
     properties:
+      DocumentoEscrito:
+        $ref: '#/definitions/models.DocumentoEscrito'
       Id:
         type: integer
         format: int64
-      IdFormatoEvaluacionCarrera:
-        $ref: '#/definitions/models.FormatoEvaluacionCarrera'
-      IdSocializacion:
-        $ref: '#/definitions/models.Socializacion'
-      IdVinculacionDocente:
-        $ref: '#/definitions/models.VinculacionDocente'
+      SolicitudTrabajoGrado:
+        $ref: '#/definitions/models.SolicitudTrabajoGrado'
+  models.DocumentoTrabajoGrado:
+    title: DocumentoTrabajoGrado
+    type: object
+    properties:
+      DocumentoEscrito:
+        $ref: '#/definitions/models.DocumentoEscrito'
+      Id:
+        type: integer
+        format: int64
+      TrabajoGrado:
+        $ref: '#/definitions/models.TrabajoGrado'
+  models.EspacioAcademicoInscrito:
+    title: EspacioAcademicoInscrito
+    type: object
+    properties:
+      EspaciosAcademicosElegibles:
+        $ref: '#/definitions/models.EspaciosAcademicosElegibles'
+      EstadoEspacioAcademicoInscrito:
+        $ref: '#/definitions/models.EstadoEspacioAcademicoInscrito'
+      Id:
+        type: integer
+        format: int64
       Nota:
         type: number
         format: double
+      TrabajoGrado:
+        $ref: '#/definitions/models.TrabajoGrado'
+  models.EspaciosAcademicosElegibles:
+    title: EspaciosAcademicosElegibles
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CarreraElegible:
+        $ref: '#/definitions/models.CarreraElegible'
+      CodigoAsignatura:
+        type: integer
+        format: int64
+      Id:
+        type: integer
+        format: int64
+  models.EstadoAsignaturaTrabajoGrado:
+    title: EstadoAsignaturaTrabajoGrado
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+  models.EstadoEspacioAcademicoInscrito:
+    title: EstadoEspacioAcademicoInscrito
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+  models.EstadoEstudianteTrabajoGrado:
+    title: EstadoEstudianteTrabajoGrado
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+  models.EstadoRevisionTrabajoGrado:
+    title: EstadoRevisionTrabajoGrado
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+  models.EstadoSolicitud:
+    title: EstadoSolicitud
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+  models.EstadoTrabajoGrado:
+    title: EstadoTrabajoGrado
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+  models.EstructuraInvestigacionTrabajoGrado:
+    title: EstructuraInvestigacionTrabajoGrado
+    type: object
+    properties:
+      CodigoEstructuraInvestigacion:
+        type: integer
+        format: int64
+      Id:
+        type: integer
+        format: int64
+      TrabajoGrado:
+        $ref: '#/definitions/models.TrabajoGrado'
+  models.EstudianteTrabajoGrado:
+    title: EstudianteTrabajoGrado
+    type: object
+    properties:
+      EstadoEstudianteTrabajoGrado:
+        $ref: '#/definitions/models.EstadoEstudianteTrabajoGrado'
+      Estudiante:
+        type: integer
+        format: int64
+      Id:
+        type: integer
+        format: int64
+      TrabajoGrado:
+        $ref: '#/definitions/models.TrabajoGrado'
+  models.EvaluacionTrabajoGrado:
+    title: EvaluacionTrabajoGrado
+    type: object
+    properties:
+      FormatoEvaluacionCarrera:
+        $ref: '#/definitions/models.FormatoEvaluacionCarrera'
+      Id:
+        type: integer
+        format: int64
+      Nota:
+        type: number
+        format: double
+      Socializacion:
+        $ref: '#/definitions/models.Socializacion'
+      VinculacionTrabajoGrado:
+        $ref: '#/definitions/models.VinculacionTrabajoGrado'
   models.Formato:
     title: Formato
     type: object
@@ -4291,20 +5572,20 @@ definitions:
       Activo:
         type: boolean
       CodigoProyecto:
-        type: number
-        format: double
+        type: integer
+        format: int64
       FechaFin:
         type: string
         format: string
       FechaInicio:
         type: string
         format: string
+      Formato:
+        $ref: '#/definitions/models.Formato'
       Id:
         type: integer
         format: int64
-      IdFormato:
-        $ref: '#/definitions/models.Formato'
-      IdModalidad:
+      Modalidad:
         $ref: '#/definitions/models.Modalidad'
   models.Modalidad:
     title: Modalidad
@@ -4312,6 +5593,8 @@ definitions:
     properties:
       Activa:
         type: boolean
+      CodigoAbreviacion:
+        type: string
       Descripcion:
         type: string
       Id:
@@ -4319,10 +5602,27 @@ definitions:
         format: int64
       Nombre:
         type: string
+  models.ModalidadTipoSolicitud:
+    title: ModalidadTipoSolicitud
+    type: object
+    properties:
+      Id:
+        type: integer
+        format: int64
+      Modalidad:
+        $ref: '#/definitions/models.Modalidad'
+      TipoSolicitud:
+        $ref: '#/definitions/models.TipoSolicitud'
   models.Pregunta:
     title: Pregunta
     type: object
     properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
       Enunciado:
         type: string
       Id:
@@ -4334,18 +5634,18 @@ definitions:
     properties:
       Activo:
         type: boolean
+      Formato:
+        $ref: '#/definitions/models.Formato'
       Id:
         type: integer
         format: int64
-      IdFormato:
-        $ref: '#/definitions/models.Formato'
-      IdPregunta:
-        $ref: '#/definitions/models.Pregunta'
       Orden:
         type: number
         format: double
-      Tipo:
-        type: string
+      Pregunta:
+        $ref: '#/definitions/models.Pregunta'
+      TipoPregunta:
+        $ref: '#/definitions/models.TipoPregunta'
       Valoracion:
         type: number
         format: double
@@ -4353,24 +5653,30 @@ definitions:
     title: Respuesta
     type: object
     properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
       Descripcion:
         type: string
       Id:
         type: integer
         format: int64
+      Nombre:
+        type: string
   models.RespuestaEvaluacion:
     title: RespuestaEvaluacion
     type: object
     properties:
+      EvaluacionTrabajoGrado:
+        $ref: '#/definitions/models.EvaluacionTrabajoGrado'
       Id:
         type: integer
         format: int64
-      IdEvaluacion:
-        $ref: '#/definitions/models.Evaluacion'
-      IdRespuestaFormato:
-        $ref: '#/definitions/models.RespuestaFormato'
       Justificacion:
         type: string
+      RespuestaFormato:
+        $ref: '#/definitions/models.RespuestaFormato'
   models.RespuestaFormato:
     title: RespuestaFormato
     type: object
@@ -4378,22 +5684,46 @@ definitions:
       Id:
         type: integer
         format: int64
-      IdPreguntaFormato:
-        $ref: '#/definitions/models.PreguntaFormato'
-      IdRespuesta:
-        $ref: '#/definitions/models.Respuesta'
       Orden:
         type: number
         format: double
+      PreguntaFormato:
+        $ref: '#/definitions/models.PreguntaFormato'
+      Respuesta:
+        $ref: '#/definitions/models.Respuesta'
       Valoracion:
         type: number
         format: double
-  models.Revision:
-    title: Revision
+  models.RespuestaSolicitud:
+    title: RespuestaSolicitud
     type: object
     properties:
-      Estado:
+      EnteResponsable:
+        type: integer
+        format: int64
+      EstadoSolicitud:
+        $ref: '#/definitions/models.EstadoSolicitud'
+      Fecha:
         type: string
+        format: string
+      Id:
+        type: integer
+        format: int64
+      Justificacion:
+        type: string
+      SolicitudTrabajoGrado:
+        $ref: '#/definitions/models.SolicitudTrabajoGrado'
+      Usuario:
+        type: integer
+        format: int64
+  models.RevisionTrabajoGrado:
+    title: RevisionTrabajoGrado
+    type: object
+    properties:
+      DocumentoTrabajoGrado:
+        $ref: '#/definitions/models.DocumentoTrabajoGrado'
+      EstadoRevisionTrabajoGrado:
+        $ref: '#/definitions/models.EstadoRevisionTrabajoGrado'
       FechaRecepcion:
         type: string
         format: string
@@ -4403,13 +5733,26 @@ definitions:
       Id:
         type: integer
         format: int64
-      IdDocumentoTg:
-        $ref: '#/definitions/models.DocumentoTg'
-      IdVinculacionDocente:
-        $ref: '#/definitions/models.VinculacionDocente'
       NumeroRevision:
         type: number
         format: double
+      VinculacionTrabajoGrado:
+        $ref: '#/definitions/models.VinculacionTrabajoGrado'
+  models.RolTrabajoGrado:
+    title: RolTrabajoGrado
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
   models.Socializacion:
     title: Socializacion
     type: object
@@ -4420,51 +5763,33 @@ definitions:
       Id:
         type: integer
         format: int64
-      IdTrabajoGrado:
-        $ref: '#/definitions/models.TrabajoGrado'
       Lugar:
-        type: string
-  models.SolicitudMaterias:
-    title: SolicitudMaterias
+        type: integer
+        format: int64
+      TrabajoGrado:
+        $ref: '#/definitions/models.TrabajoGrado'
+  models.SolicitudTrabajoGrado:
+    title: SolicitudTrabajoGrado
     type: object
     properties:
-      Anio:
-        type: number
-        format: double
-      CodigoCarrera:
-        type: number
-        format: double
-      Estado:
-        type: string
       Fecha:
         type: string
         format: string
-      Formalizacion:
-        type: string
       Id:
         type: integer
         format: int64
-      IdTrabajoGrado:
+      ModalidadTipoSolicitud:
+        $ref: '#/definitions/models.ModalidadTipoSolicitud'
+      TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
-      Periodo:
-        type: string
-  models.TipoDocumento:
-    title: TipoDocumento
+  models.TipoDetalle:
+    title: TipoDetalle
     type: object
     properties:
-      Descripcion:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
         type: string
-      Id:
-        type: integer
-        format: int64
-      IdCategoria:
-        $ref: '#/definitions/models.Categoria'
-      Nombre:
-        type: string
-  models.TipoVinculacion:
-    title: TipoVinculacion
-    type: object
-    properties:
       Descripcion:
         type: string
       Id:
@@ -4472,83 +5797,77 @@ definitions:
         format: int64
       Nombre:
         type: string
-  models.TrFormato:
-    title: TrFormato
+  models.TipoPregunta:
+    title: TipoPregunta
     type: object
     properties:
-      Formato:
-        $ref: '#/definitions/models.Formato'
-      TrPreguntas:
-        $ref: '#/definitions/models.TrPregunta'
-  models.TrPregunta:
-    title: TrPregunta
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+  models.TipoSolicitud:
+    title: TipoSolicitud
     type: object
     properties:
-      Pregunta:
-        $ref: '#/definitions/models.PreguntaFormato'
-      Respuestas:
-        $ref: '#/definitions/models.RespuestaFormato'
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
   models.TrSolicitud:
     title: TrSolicitud
     type: object
     properties:
-      MateriasSolicitadas:
-        $ref: '#/definitions/models.AsignaturaInscrita'
-      Solicitud:
-        $ref: '#/definitions/models.SolicitudMaterias'
-  models.TrUpdateFormato:
-    title: TrUpdateFormato
-    type: object
-    properties:
-      Formato:
-        $ref: '#/definitions/models.Formato'
-      Preguntas:
-        $ref: '#/definitions/models.TrUpdatePregunta'
-      TypeUpdate:
-        type: string
-  models.TrUpdatePregunta:
-    title: TrUpdatePregunta
-    type: object
-    properties:
-      Pregunta:
-        $ref: '#/definitions/models.PreguntaFormato'
-      Respuestas:
-        $ref: '#/definitions/models.TrUpdateRespuesta'
-      TypeUpdate:
-        type: string
-  models.TrUpdateRespuesta:
-    title: TrUpdateRespuesta
-    type: object
-    properties:
+      DetallesSolicitud:
+        $ref: '#/definitions/52134.<nil>.DetalleSolicitud'
       Respuesta:
-        $ref: '#/definitions/models.RespuestaFormato'
-      TypeUpdate:
-        type: string
+        $ref: '#/definitions/models.RespuestaSolicitud'
+      Solicitud:
+        $ref: '#/definitions/models.SolicitudTrabajoGrado'
+      UsuariosSolicitud:
+        $ref: '#/definitions/52173.<nil>.UsuarioSolicitud'
   models.TrabajoGrado:
     title: TrabajoGrado
     type: object
     properties:
-      Distincion:
-        type: string
-      Etapa:
-        type: string
+      DistincionTrabajoGrado:
+        $ref: '#/definitions/models.DistincionTrabajoGrado'
+      EstadoTrabajoGrado:
+        $ref: '#/definitions/models.EstadoTrabajoGrado'
       Id:
         type: integer
         format: int64
-      IdModalidad:
+      Modalidad:
         $ref: '#/definitions/models.Modalidad'
       Titulo:
         type: string
-  models.TrabajoGradoTr:
-    title: TrabajoGradoTr
+  models.UsuarioSolicitud:
+    title: UsuarioSolicitud
     type: object
     properties:
-      EstudianteTg:
-        $ref: '#/definitions/models.EstudianteTg'
-      TrabajoGrado:
-        $ref: '#/definitions/models.TrabajoGrado'
-  models.VinculacionDocente:
-    title: VinculacionDocente
+      Id:
+        type: integer
+        format: int64
+      SolicitudTrabajoGrado:
+        $ref: '#/definitions/models.SolicitudTrabajoGrado'
+      Usuario:
+        type: integer
+        format: int64
+  models.VinculacionTrabajoGrado:
+    title: VinculacionTrabajoGrado
     type: object
     properties:
       Activo:
@@ -4562,141 +5881,154 @@ definitions:
       Id:
         type: integer
         format: int64
-      IdTipoVinculacion:
-        $ref: '#/definitions/models.TipoVinculacion'
-      IdTrabajoGrado:
+      Nombre:
+        type: string
+      RolTrabajoGrado:
+        $ref: '#/definitions/models.RolTrabajoGrado'
+      TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
-      IdentificacionDocente:
-        type: number
-        format: double
-  models.VinculacionExterna:
-    title: VinculacionExterna
-    type: object
-    properties:
-      FechaFin:
-        type: string
-        format: string
-      FechaInicio:
-        type: string
-        format: string
-      Id:
+      Usuario:
         type: integer
         format: int64
-      IdEntidad:
-        $ref: '#/definitions/models.Entidad'
-      IdTipoVinculacion:
-        $ref: '#/definitions/models.TipoVinculacion'
-      IdTrabajoGrado:
-        $ref: '#/definitions/models.TrabajoGrado'
 tags:
-- name: trabajo_grado
+- name: estado_solicitud
   description: |
-    oprations for TrabajoGrado
-- name: tipo_documento
+    EstadoSolicitudController operations for EstadoSolicitud
+- name: documento_solicitud
   description: |
-    oprations for TipoDocumento
-- name: modalidad
+    DocumentoSolicitudController operations for DocumentoSolicitud
+- name: respuesta_solicitud
   description: |
-    oprations for Modalidad
-- name: comentario
+    RespuestaSolicitudController operations for RespuestaSolicitud
+- name: usuario_solicitud
   description: |
-    oprations for Comentario
-- name: correccion
+    UsuarioSolicitudController operations for UsuarioSolicitud
+- name: tipo_solicitud
   description: |
-    oprations for Correccion
-- name: revision
+    TipoSolicitudController operations for TipoSolicitud
+- name: tipo_detalle
   description: |
-    oprations for Revision
-- name: area_conocimiento
+    TipoDetalleController operations for TipoDetalle
+- name: detalle
   description: |
-    oprations for AreaConocimiento
-- name: areas_trabajo_grado
+    DetalleController operations for Detalle
+- name: detalle_tipo_solicitud
   description: |
-    oprations for AreasTrabajoGrado
-- name: areas_docente
+    DetalleTipoSolicitudController operations for DetalleTipoSolicitud
+- name: detalle_solicitud
   description: |
-    oprations for AreasDocente
-- name: vinculacion_docente
-  description: |
-    oprations for VinculacionDocente
-- name: respuesta
-  description: |
-    oprations for Respuesta
-- name: socializacion
-  description: |
-    oprations for Socializacion
-- name: respuesta_formato
-  description: |
-    oprations for RespuestaFormato
-- name: formato
-  description: |
-    oprations for Formato
-- name: respuesta_evaluacion
-  description: |
-    oprations for RespuestaEvaluacion
-- name: pregunta
-  description: |
-    oprations for Pregunta
-- name: pregunta_formato
-  description: |
-    oprations for PreguntaFormato
-- name: estudiante_tg
-  description: |
-    oprations for EstudianteTg
-- name: estructura_investigacion_tg
-  description: |
-    oprations for EstructuraInvestigacionTg
-- name: categoria
-  description: |
-    oprations for Categoria
-- name: asignatura_tg
-  description: |
-    oprations for AsignaturaTg
-- name: asignaturas_elegibles
-  description: |
-    oprations for AsignaturasElegibles
-- name: documento
-  description: |
-    oprations for Documento
-- name: asignatura_inscrita
-  description: |
-    oprations for AsignaturaInscrita
-- name: vinculacion_externa
-  description: |
-    oprations for VinculacionExterna
+    DetalleSolicitudController operations for DetalleSolicitud
 - name: documento_entidad
   description: |
-    oprations for DocumentoEntidad
-- name: evaluacion
+    DocumentoEntidadController operations for DocumentoEntidad
+- name: pregunta
   description: |
-    oprations for Evaluacion
-- name: documento_tg
+    PreguntaController operations for Pregunta
+- name: respuesta
   description: |
-    oprations for DocumentoTg
-- name: entidad
+    RespuestaController operations for Respuesta
+- name: respuesta_formato
   description: |
-    oprations for Entidad
-- name: tipo_vinculacion
+    RespuestaFormatoController operations for RespuestaFormato
+- name: respuesta_evaluacion
   description: |
-    oprations for TipoVinculacion
+    RespuestaEvaluacionController operations for RespuestaEvaluacion
+- name: comentario
+  description: |
+    ComentarioController operations for Comentario
+- name: correccion
+  description: |
+    CorreccionController operations for Correccion
+- name: carrera_elegible
+  description: |
+    CarreraElegibleController operations for CarreraElegible
+- name: espacios_academicos_elegibles
+  description: |
+    EspaciosAcademicosElegiblesController operations for EspaciosAcademicosElegibles
+- name: estructura_investigacion_trabajo_grado
+  description: |
+    EstructuraInvestigacionTrabajoGradoController operations for EstructuraInvestigacionTrabajoGrado
+- name: areas_docente
+  description: |
+    AreasDocenteController operations for AreasDocente
+- name: area_conocimiento
+  description: |
+    AreaConocimientoController operations for AreaConocimiento
+- name: areas_trabajo_grado
+  description: |
+    AreasTrabajoGradoController operations for AreasTrabajoGrado
+- name: documento_escrito
+  description: |
+    DocumentoEscritoController operations for DocumentoEscrito
+- name: documento_trabajo_grado
+  description: |
+    DocumentoTrabajoGradoController operations for DocumentoTrabajoGrado
+- name: modalidad
+  description: |
+    ModalidadController operations for Modalidad
+- name: formato
+  description: |
+    FormatoController operations for Formato
+- name: rol_trabajo_grado
+  description: |
+    RolTrabajoGradoController operations for RolTrabajoGrado
+- name: estado_espacio_academico_inscrito
+  description: |
+    EstadoEspacioAcademicoInscritoController operations for EstadoEspacioAcademicoInscrito
+- name: espacio_academico_inscrito
+  description: |
+    EspacioAcademicoInscritoController operations for EspacioAcademicoInscrito
+- name: vinculacion_trabajo_grado
+  description: |
+    VinculacionTrabajoGradoController operations for VinculacionTrabajoGrado
 - name: formato_evaluacion_carrera
   description: |
-    oprations for FormatoEvaluacionCarrera
-- name: estado_documento
+    FormatoEvaluacionCarreraController operations for FormatoEvaluacionCarrera
+- name: socializacion
   description: |
-    oprations for EstadoDocumento
-- name: solicitud_materias
+    SocializacionController operations for Socializacion
+- name: evaluacion_trabajo_grado
   description: |
-    oprations for SolicitudMaterias
+    EvaluacionTrabajoGradoController operations for EvaluacionTrabajoGrado
+- name: estado_trabajo_grado
+  description: |
+    EstadoTrabajoGradoController operations for EstadoTrabajoGrado
+- name: distincion_trabajo_grado
+  description: |
+    DistincionTrabajoGradoController operations for DistincionTrabajoGrado
+- name: trabajo_grado
+  description: |
+    TrabajoGradoController operations for TrabajoGrado
+- name: estado_revision_trabajo_grado
+  description: |
+    EstadoRevisionTrabajoGradoController operations for EstadoRevisionTrabajoGrado
+- name: revision_trabajo_grado
+  description: |
+    RevisionTrabajoGradoController operations for RevisionTrabajoGrado
+- name: tipo_pregunta
+  description: |
+    TipoPreguntaController operations for TipoPregunta
+- name: pregunta_formato
+  description: |
+    PreguntaFormatoController operations for PreguntaFormato
+- name: estado_estudiante_trabajo_grado
+  description: |
+    EstadoEstudianteTrabajoGradoController operations for EstadoEstudianteTrabajoGrado
+- name: estudiante_trabajo_grado
+  description: |
+    EstudianteTrabajoGradoController operations for EstudianteTrabajoGrado
+- name: estado_asignatura_trabajo_grado
+  description: |
+    EstadoAsignaturaTrabajoGradoController operations for EstadoAsignaturaTrabajoGrado
+- name: asignatura_trabajo_grado
+  description: |
+    AsignaturaTrabajoGradoController operations for AsignaturaTrabajoGrado
+- name: modalidad_tipo_solicitud
+  description: |
+    ModalidadTipoSolicitudController operations for ModalidadTipoSolicitud
+- name: solicitud_trabajo_grado
+  description: |
+    SolicitudTrabajoGradoController operations for SolicitudTrabajoGrado
 - name: tr_solicitud
   description: |
     oprations for TrSolicitud
-- name: tr_trabajo_grado
-  description: |
-    oprations for TrTrabajoGrado
-- name: tr_formato
-  description: |
-    oprations for Formato
-- name: carrera_elegible
-  description: |
-    oprations for CarreraElegible

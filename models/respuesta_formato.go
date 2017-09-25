@@ -10,11 +10,11 @@ import (
 )
 
 type RespuestaFormato struct {
-	Id                  int                `orm:"column(id);pk;auto"`
-	IdPreguntaFormato   *PreguntaFormato   `orm:"column(id_pregunta_formato);rel(fk)"`
-	IdRespuesta         *Respuesta         `orm:"column(id_respuesta);rel(fk)"`
-	Orden               float64            `orm:"column(orden);null"`
-	Valoracion          float64            `orm:"column(valoracion);null"`
+	Id              int              `orm:"column(id);pk;auto"`
+	Orden           float64          `orm:"column(orden);null"`
+	Valoracion      float64          `orm:"column(valoracion);null"`
+	Respuesta       *Respuesta       `orm:"column(respuesta);rel(fk)"`
+	PreguntaFormato *PreguntaFormato `orm:"column(pregunta_formato);rel(fk)"`
 }
 
 func (t *RespuestaFormato) TableName() string {
@@ -46,7 +46,7 @@ func GetRespuestaFormatoById(id int) (v *RespuestaFormato, err error) {
 
 // GetAllRespuestaFormato retrieves all RespuestaFormato matches certain condition. Returns empty list if
 // no records exist
-func GetAllRespuestaFormato(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
+func GetAllRespuestaFormato(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
 	qs := o.QueryTable(new(RespuestaFormato))
@@ -54,7 +54,11 @@ func GetAllRespuestaFormato(query map[string]string, fields []string, sortby []s
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -96,11 +100,7 @@ func GetAllRespuestaFormato(query map[string]string, fields []string, sortby []s
 	}
 
 	var l []RespuestaFormato
-	if len(related) > 0 {
-		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
-	} else {
-		qs = qs.OrderBy(sortFields...)
-	}
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

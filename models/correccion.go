@@ -10,11 +10,10 @@ import (
 )
 
 type Correccion struct {
-	Id            int       `orm:"column(id);pk;auto"`
-	IdRevision    *Revision `orm:"column(id_revision);rel(fk)"`
-	Observacion   string    `orm:"column(observacion)"`
-	Justificacion string    `orm:"column(justificacion);null"`
-	Pagina        float64   `orm:"column(pagina);null"`
+	Id                   int                   `orm:"column(id);pk;auto"`
+	Observacion          string                `orm:"column(observacion)"`
+	Pagina               float64               `orm:"column(pagina);null"`
+	RevisionTrabajoGrado *RevisionTrabajoGrado `orm:"column(revision_trabajo_grado);rel(fk)"`
 }
 
 func (t *Correccion) TableName() string {
@@ -46,7 +45,7 @@ func GetCorreccionById(id int) (v *Correccion, err error) {
 
 // GetAllCorreccion retrieves all Correccion matches certain condition. Returns empty list if
 // no records exist
-func GetAllCorreccion(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
+func GetAllCorreccion(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
 	qs := o.QueryTable(new(Correccion))
@@ -54,7 +53,11 @@ func GetAllCorreccion(query map[string]string, fields []string, sortby []string,
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -96,11 +99,7 @@ func GetAllCorreccion(query map[string]string, fields []string, sortby []string,
 	}
 
 	var l []Correccion
-	if len(related) > 0 {
-		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
-	} else {
-		qs = qs.OrderBy(sortFields...)
-	}
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

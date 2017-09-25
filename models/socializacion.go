@@ -11,10 +11,10 @@ import (
 )
 
 type Socializacion struct {
-	Id             int           `orm:"column(id);pk;auto"`
-	Fecha          time.Time     `orm:"column(fecha);type(timestamp without time zone)"`
-	Lugar          string        `orm:"column(lugar)"`
-	IdTrabajoGrado *TrabajoGrado `orm:"column(id_trabajo_grado);rel(fk)"`
+	Id           int           `orm:"column(id);pk;auto"`
+	Fecha        time.Time     `orm:"column(fecha);type(timestamp without time zone)"`
+	Lugar        int           `orm:"column(lugar)"`
+	TrabajoGrado *TrabajoGrado `orm:"column(trabajo_grado);rel(fk)"`
 }
 
 func (t *Socializacion) TableName() string {
@@ -46,15 +46,19 @@ func GetSocializacionById(id int) (v *Socializacion, err error) {
 
 // GetAllSocializacion retrieves all Socializacion matches certain condition. Returns empty list if
 // no records exist
-func GetAllSocializacion(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
+func GetAllSocializacion(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Socializacion)).RelatedSel()
+	qs := o.QueryTable(new(Socializacion))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -96,11 +100,7 @@ func GetAllSocializacion(query map[string]string, fields []string, sortby []stri
 	}
 
 	var l []Socializacion
-	if len(related) > 0 {
-		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
-	} else {
-		qs = qs.OrderBy(sortFields...)
-	}
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

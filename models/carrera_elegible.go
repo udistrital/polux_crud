@@ -11,7 +11,7 @@ import (
 
 type CarreraElegible struct {
 	Id               int     `orm:"column(id);pk;auto"`
-	CodigoCarrera    float64 `orm:"column(codigo_carrera)"`
+	CodigoCarrera    int     `orm:"column(codigo_carrera)"`
 	CuposExcelencia  float64 `orm:"column(cupos_excelencia);null"`
 	CuposAdicionales float64 `orm:"column(cupos_adicionales);null"`
 	Periodo          float64 `orm:"column(periodo)"`
@@ -48,15 +48,19 @@ func GetCarreraElegibleById(id int) (v *CarreraElegible, err error) {
 
 // GetAllCarreraElegible retrieves all CarreraElegible matches certain condition. Returns empty list if
 // no records exist
-func GetAllCarreraElegible(query map[string]string, fields []string, sortby []string, order []string, related []interface{},
+func GetAllCarreraElegible(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(CarreraElegible))
+	qs := o.QueryTable(new(CarreraElegible)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -98,11 +102,7 @@ func GetAllCarreraElegible(query map[string]string, fields []string, sortby []st
 	}
 
 	var l []CarreraElegible
-	if len(related) > 0 {
-		qs = qs.OrderBy(sortFields...).RelatedSel(related...)
-	} else {
-		qs = qs.OrderBy(sortFields...)
-	}
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {
