@@ -9,47 +9,47 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type TipoContacto struct {
-	Id                int    `orm:"column(id);pk;auto"`
-	Nombre            string `orm:"column(nombre)"`
-	Descripcion       string `orm:"column(descripcion);null"`
-	CodigoAbreviación string `orm:"column(codigo_abreviación);null"`
-	Activo            bool   `orm:"column(activo)"`
+type EvaluacionTrabajoGrado struct {
+	Id                       int                       `orm:"column(id);pk;auto"`
+	Nota                     float64                   `orm:"column(nota)"`
+	VinculacionTrabajoGrado  *VinculacionTrabajoGrado  `orm:"column(vinculacion_trabajo_grado);rel(fk)"`
+	FormatoEvaluacionCarrera *FormatoEvaluacionCarrera `orm:"column(formato_evaluacion_carrera);rel(fk)"`
+	Socializacion            *Socializacion            `orm:"column(socializacion);rel(fk)"`
 }
 
-func (t *TipoContacto) TableName() string {
-	return "tipo_contacto"
+func (t *EvaluacionTrabajoGrado) TableName() string {
+	return "evaluacion_trabajo_grado"
 }
 
 func init() {
-	orm.RegisterModel(new(TipoContacto))
+	orm.RegisterModel(new(EvaluacionTrabajoGrado))
 }
 
-// AddTipoContacto insert a new TipoContacto into database and returns
+// AddEvaluacionTrabajoGrado insert a new EvaluacionTrabajoGrado into database and returns
 // last inserted Id on success.
-func AddTipoContacto(m *TipoContacto) (id int64, err error) {
+func AddEvaluacionTrabajoGrado(m *EvaluacionTrabajoGrado) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetTipoContactoById retrieves TipoContacto by Id. Returns error if
+// GetEvaluacionTrabajoGradoById retrieves EvaluacionTrabajoGrado by Id. Returns error if
 // Id doesn't exist
-func GetTipoContactoById(id int) (v *TipoContacto, err error) {
+func GetEvaluacionTrabajoGradoById(id int) (v *EvaluacionTrabajoGrado, err error) {
 	o := orm.NewOrm()
-	v = &TipoContacto{Id: id}
+	v = &EvaluacionTrabajoGrado{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllTipoContacto retrieves all TipoContacto matches certain condition. Returns empty list if
+// GetAllEvaluacionTrabajoGrado retrieves all EvaluacionTrabajoGrado matches certain condition. Returns empty list if
 // no records exist
-func GetAllTipoContacto(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllEvaluacionTrabajoGrado(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(TipoContacto))
+	qs := o.QueryTable(new(EvaluacionTrabajoGrado))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -99,7 +99,7 @@ func GetAllTipoContacto(query map[string]string, fields []string, sortby []strin
 		}
 	}
 
-	var l []TipoContacto
+	var l []EvaluacionTrabajoGrado
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -122,11 +122,11 @@ func GetAllTipoContacto(query map[string]string, fields []string, sortby []strin
 	return nil, err
 }
 
-// UpdateTipoContacto updates TipoContacto by Id and returns error if
+// UpdateEvaluacionTrabajoGrado updates EvaluacionTrabajoGrado by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateTipoContactoById(m *TipoContacto) (err error) {
+func UpdateEvaluacionTrabajoGradoById(m *EvaluacionTrabajoGrado) (err error) {
 	o := orm.NewOrm()
-	v := TipoContacto{Id: m.Id}
+	v := EvaluacionTrabajoGrado{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -137,15 +137,15 @@ func UpdateTipoContactoById(m *TipoContacto) (err error) {
 	return
 }
 
-// DeleteTipoContacto deletes TipoContacto by Id and returns error if
+// DeleteEvaluacionTrabajoGrado deletes EvaluacionTrabajoGrado by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteTipoContacto(id int) (err error) {
+func DeleteEvaluacionTrabajoGrado(id int) (err error) {
 	o := orm.NewOrm()
-	v := TipoContacto{Id: id}
+	v := EvaluacionTrabajoGrado{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&TipoContacto{Id: id}); err == nil {
+		if num, err = o.Delete(&EvaluacionTrabajoGrado{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

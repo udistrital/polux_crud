@@ -10,10 +10,10 @@ import (
 )
 
 type RespuestaEvaluacion struct {
-	Id               int               `orm:"column(id);pk;auto"`
-	Justificacion    string            `orm:"column(justificacion);null"`
-	RespuestaFormato *RespuestaFormato `orm:"column(respuesta_formato);rel(fk)"`
-	Evaluacion       *Evaluacion       `orm:"column(evaluacion);rel(fk)"`
+	Id                     int                     `orm:"column(id);pk;auto"`
+	Justificacion          string                  `orm:"column(justificacion);null"`
+	RespuestaFormato       *RespuestaFormato       `orm:"column(respuesta_formato);rel(fk)"`
+	EvaluacionTrabajoGrado *EvaluacionTrabajoGrado `orm:"column(evaluacion_trabajo_grado);rel(fk)"`
 }
 
 func (t *RespuestaEvaluacion) TableName() string {

@@ -16,12 +16,6 @@ import (
 func init() {
 	ns := beego.NewNamespace("/v1",
 
-		beego.NSNamespace("/tipo_documento",
-			beego.NSInclude(
-				&controllers.TipoDocumentoController{},
-			),
-		),
-
 		beego.NSNamespace("/estado_solicitud",
 			beego.NSInclude(
 				&controllers.EstadoSolicitudController{},
@@ -154,9 +148,9 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/documento",
+		beego.NSNamespace("/documento_escrito",
 			beego.NSInclude(
-				&controllers.DocumentoController{},
+				&controllers.DocumentoEscritoController{},
 			),
 		),
 
@@ -214,9 +208,9 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/evaluacion",
+		beego.NSNamespace("/evaluacion_trabajo_grado",
 			beego.NSInclude(
-				&controllers.EvaluacionController{},
+				&controllers.EvaluacionTrabajoGradoController{},
 			),
 		),
 
@@ -226,9 +220,9 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/distincion",
+		beego.NSNamespace("/distincion_trabajo_grado",
 			beego.NSInclude(
-				&controllers.DistincionController{},
+				&controllers.DistincionTrabajoGradoController{},
 			),
 		),
 
@@ -238,15 +232,15 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/estado_revision",
+		beego.NSNamespace("/estado_revision_trabajo_grado",
 			beego.NSInclude(
-				&controllers.EstadoRevisionController{},
+				&controllers.EstadoRevisionTrabajoGradoController{},
 			),
 		),
 
-		beego.NSNamespace("/revision",
+		beego.NSNamespace("/revision_trabajo_grado",
 			beego.NSInclude(
-				&controllers.RevisionController{},
+				&controllers.RevisionTrabajoGradoController{},
 			),
 		),
 
@@ -274,24 +268,6 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/tipo_contacto",
-			beego.NSInclude(
-				&controllers.TipoContactoController{},
-			),
-		),
-
-		beego.NSNamespace("/contacto_entidad",
-			beego.NSInclude(
-				&controllers.ContactoEntidadController{},
-			),
-		),
-
-		beego.NSNamespace("/tipo_identificacion",
-			beego.NSInclude(
-				&controllers.TipoIdentificacionController{},
-			),
-		),
-
 		beego.NSNamespace("/estado_asignatura_trabajo_grado",
 			beego.NSInclude(
 				&controllers.EstadoAsignaturaTrabajoGradoController{},
@@ -316,11 +292,6 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/entidad",
-			beego.NSInclude(
-				&controllers.EntidadController{},
-			),
-		),
 		beego.NSNamespace("/tr_solicitud",
 			beego.NSInclude(
 				&controllers.TrSolicitudController{},

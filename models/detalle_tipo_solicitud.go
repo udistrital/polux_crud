@@ -15,6 +15,7 @@ type DetalleTipoSolicitud struct {
 	ModalidadTipoSolicitud *ModalidadTipoSolicitud `orm:"column(modalidad_tipo_solicitud);rel(fk)"`
 	Activo                 bool                    `orm:"column(activo)"`
 	Requerido              bool                    `orm:"column(requerido)"`
+	NumeroOrden            int                     `orm:"column(numero_orden)"`
 }
 
 func (t *DetalleTipoSolicitud) TableName() string {

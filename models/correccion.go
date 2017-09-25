@@ -10,11 +10,10 @@ import (
 )
 
 type Correccion struct {
-	Id            int       `orm:"column(id);pk;auto"`
-	Observacion   string    `orm:"column(observacion)"`
-	Justificacion string    `orm:"column(justificacion);null"`
-	Pagina        float64   `orm:"column(pagina);null"`
-	Revision      *Revision `orm:"column(revision);rel(fk)"`
+	Id                   int                   `orm:"column(id);pk;auto"`
+	Observacion          string                `orm:"column(observacion)"`
+	Pagina               float64               `orm:"column(pagina);null"`
+	RevisionTrabajoGrado *RevisionTrabajoGrado `orm:"column(revision_trabajo_grado);rel(fk)"`
 }
 
 func (t *Correccion) TableName() string {

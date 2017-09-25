@@ -10,9 +10,9 @@ import (
 )
 
 type AreasDocente struct {
-	Id                    int               `orm:"column(id);pk;auto"`
-	IdentificacionDocente int               `orm:"column(identificacion_docente)"`
-	AreaConocimiento      *AreaConocimiento `orm:"column(area_conocimiento);rel(fk)"`
+	Id               int               `orm:"column(id);pk;auto"`
+	Docente          int               `orm:"column(docente)"`
+	AreaConocimiento *AreaConocimiento `orm:"column(area_conocimiento);rel(fk)"`
 }
 
 func (t *AreasDocente) TableName() string {

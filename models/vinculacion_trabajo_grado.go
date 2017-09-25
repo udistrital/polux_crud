@@ -12,10 +12,11 @@ import (
 
 type VinculacionTrabajoGrado struct {
 	Id              int              `orm:"column(id);pk;auto"`
-	Usuario         string           `orm:"column(usuario)"`
+	Usuario         int              `orm:"column(usuario)"`
+	Nombre          string           `orm:"column(nombre)"`
 	Activo          bool             `orm:"column(activo)"`
-	FechaInicio     time.Time        `orm:"column(fecha_inicio);type(date)"`
-	FechaFin        time.Time        `orm:"column(fecha_fin);type(date);null"`
+	FechaInicio     time.Time        `orm:"column(fecha_inicio);type(timestamp without time zone)"`
+	FechaFin        time.Time        `orm:"column(fecha_fin);type(timestamp without time zone);null"`
 	RolTrabajoGrado *RolTrabajoGrado `orm:"column(rol_trabajo_grado);rel(fk)"`
 	TrabajoGrado    *TrabajoGrado    `orm:"column(trabajo_grado);rel(fk)"`
 }
@@ -52,7 +53,7 @@ func GetVinculacionTrabajoGradoById(id int) (v *VinculacionTrabajoGrado, err err
 func GetAllVinculacionTrabajoGrado(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(VinculacionTrabajoGrado)).RelatedSel();
+	qs := o.QueryTable(new(VinculacionTrabajoGrado)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute

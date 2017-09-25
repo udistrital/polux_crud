@@ -11,7 +11,7 @@ import (
 
 type UsuarioSolicitud struct {
 	Id                    int                    `orm:"column(id);pk;auto"`
-	Usuario               string                 `orm:"column(usuario)"`
+	Usuario               int                    `orm:"column(usuario)"`
 	SolicitudTrabajoGrado *SolicitudTrabajoGrado `orm:"column(solicitud_trabajo_grado);rel(fk)"`
 }
 

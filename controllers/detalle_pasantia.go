@@ -11,13 +11,13 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// DistincionController operations for Distincion
-type DistincionController struct {
+// DetallePasantiaController operations for DetallePasantia
+type DetallePasantiaController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *DistincionController) URLMapping() {
+func (c *DetallePasantiaController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -27,15 +27,15 @@ func (c *DistincionController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create Distincion
-// @Param	body		body 	models.Distincion	true		"body for Distincion content"
-// @Success 201 {int} models.Distincion
+// @Description create DetallePasantia
+// @Param	body		body 	models.DetallePasantia	true		"body for DetallePasantia content"
+// @Success 201 {int} models.DetallePasantia
 // @Failure 403 body is empty
 // @router / [post]
-func (c *DistincionController) Post() {
-	var v models.Distincion
+func (c *DetallePasantiaController) Post() {
+	var v models.DetallePasantia
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddDistincion(&v); err == nil {
+		if _, err := models.AddDetallePasantia(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -49,15 +49,15 @@ func (c *DistincionController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get Distincion by id
+// @Description get DetallePasantia by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Distincion
+// @Success 200 {object} models.DetallePasantia
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *DistincionController) GetOne() {
+func (c *DetallePasantiaController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetDistincionById(id)
+	v, err := models.GetDetallePasantiaById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -68,17 +68,17 @@ func (c *DistincionController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get Distincion
+// @Description get DetallePasantia
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.Distincion
+// @Success 200 {object} models.DetallePasantia
 // @Failure 403
 // @router / [get]
-func (c *DistincionController) GetAll() {
+func (c *DetallePasantiaController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -120,7 +120,7 @@ func (c *DistincionController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllDistincion(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllDetallePasantia(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -131,18 +131,18 @@ func (c *DistincionController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the Distincion
+// @Description update the DetallePasantia
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.Distincion	true		"body for Distincion content"
-// @Success 200 {object} models.Distincion
+// @Param	body		body 	models.DetallePasantia	true		"body for DetallePasantia content"
+// @Success 200 {object} models.DetallePasantia
 // @Failure 403 :id is not int
 // @router /:id [put]
-func (c *DistincionController) Put() {
+func (c *DetallePasantiaController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.Distincion{Id: id}
+	v := models.DetallePasantia{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateDistincionById(&v); err == nil {
+		if err := models.UpdateDetallePasantiaById(&v); err == nil {
 			c.Data["json"] = "OK"
 		} else {
 			c.Data["json"] = err.Error()
@@ -155,15 +155,15 @@ func (c *DistincionController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the Distincion
+// @Description delete the DetallePasantia
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
 // @router /:id [delete]
-func (c *DistincionController) Delete() {
+func (c *DetallePasantiaController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteDistincion(id); err == nil {
+	if err := models.DeleteDetallePasantia(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()

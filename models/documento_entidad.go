@@ -10,9 +10,9 @@ import (
 )
 
 type DocumentoEntidad struct {
-	Id        int        `orm:"column(id);pk;auto"`
-	Documento *Documento `orm:"column(documento);rel(fk)"`
-	Entidad   *Entidad   `orm:"column(entidad);rel(fk)"`
+	Id               int               `orm:"column(id);pk;auto"`
+	Entidad          int               `orm:"column(entidad)"`
+	DocumentoEscrito *DocumentoEscrito `orm:"column(documento_escrito);rel(fk)"`
 }
 
 func (t *DocumentoEntidad) TableName() string {

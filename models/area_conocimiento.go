@@ -15,6 +15,7 @@ type AreaConocimiento struct {
 	Descripcion       string `orm:"column(descripcion);null"`
 	CodigoAbreviacion string `orm:"column(codigo_abreviacion);null"`
 	Activo            bool   `orm:"column(activo)"`
+	SniesArea         int    `orm:"column(snies_area)"`
 }
 
 func (t *AreaConocimiento) TableName() string {

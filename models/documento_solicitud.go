@@ -11,7 +11,7 @@ import (
 
 type DocumentoSolicitud struct {
 	Id                    int                    `orm:"column(id);pk;auto"`
-	Documento             *Documento             `orm:"column(documento);rel(fk)"`
+	DocumentoEscrito      *DocumentoEscrito      `orm:"column(documento_escrito);rel(fk)"`
 	SolicitudTrabajoGrado *SolicitudTrabajoGrado `orm:"column(solicitud_trabajo_grado);rel(fk)"`
 }
 

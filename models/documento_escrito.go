@@ -9,47 +9,47 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type EstadoRevision struct {
-	Id                int    `orm:"column(id);pk;auto"`
-	Nombre            string `orm:"column(nombre)"`
-	Descripcion       string `orm:"column(descripcion);null"`
-	CodigoAbreviacion string `orm:"column(codigo_abreviacion);null"`
-	Activo            bool   `orm:"column(activo)"`
+type DocumentoEscrito struct {
+	Id                   int    `orm:"column(id);pk;auto"`
+	Titulo               string `orm:"column(titulo)"`
+	Enlace               string `orm:"column(enlace)"`
+	Resumen              string `orm:"column(resumen);null"`
+	TipoDocumentoEscrito int    `orm:"column(tipo_documento_escrito)"`
 }
 
-func (t *EstadoRevision) TableName() string {
-	return "estado_revision"
+func (t *DocumentoEscrito) TableName() string {
+	return "documento_escrito"
 }
 
 func init() {
-	orm.RegisterModel(new(EstadoRevision))
+	orm.RegisterModel(new(DocumentoEscrito))
 }
 
-// AddEstadoRevision insert a new EstadoRevision into database and returns
+// AddDocumentoEscrito insert a new DocumentoEscrito into database and returns
 // last inserted Id on success.
-func AddEstadoRevision(m *EstadoRevision) (id int64, err error) {
+func AddDocumentoEscrito(m *DocumentoEscrito) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetEstadoRevisionById retrieves EstadoRevision by Id. Returns error if
+// GetDocumentoEscritoById retrieves DocumentoEscrito by Id. Returns error if
 // Id doesn't exist
-func GetEstadoRevisionById(id int) (v *EstadoRevision, err error) {
+func GetDocumentoEscritoById(id int) (v *DocumentoEscrito, err error) {
 	o := orm.NewOrm()
-	v = &EstadoRevision{Id: id}
+	v = &DocumentoEscrito{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllEstadoRevision retrieves all EstadoRevision matches certain condition. Returns empty list if
+// GetAllDocumentoEscrito retrieves all DocumentoEscrito matches certain condition. Returns empty list if
 // no records exist
-func GetAllEstadoRevision(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllDocumentoEscrito(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(EstadoRevision))
+	qs := o.QueryTable(new(DocumentoEscrito))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -99,7 +99,7 @@ func GetAllEstadoRevision(query map[string]string, fields []string, sortby []str
 		}
 	}
 
-	var l []EstadoRevision
+	var l []DocumentoEscrito
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -122,11 +122,11 @@ func GetAllEstadoRevision(query map[string]string, fields []string, sortby []str
 	return nil, err
 }
 
-// UpdateEstadoRevision updates EstadoRevision by Id and returns error if
+// UpdateDocumentoEscrito updates DocumentoEscrito by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateEstadoRevisionById(m *EstadoRevision) (err error) {
+func UpdateDocumentoEscritoById(m *DocumentoEscrito) (err error) {
 	o := orm.NewOrm()
-	v := EstadoRevision{Id: m.Id}
+	v := DocumentoEscrito{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -137,15 +137,15 @@ func UpdateEstadoRevisionById(m *EstadoRevision) (err error) {
 	return
 }
 
-// DeleteEstadoRevision deletes EstadoRevision by Id and returns error if
+// DeleteDocumentoEscrito deletes DocumentoEscrito by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteEstadoRevision(id int) (err error) {
+func DeleteDocumentoEscrito(id int) (err error) {
 	o := orm.NewOrm()
-	v := EstadoRevision{Id: id}
+	v := DocumentoEscrito{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&EstadoRevision{Id: id}); err == nil {
+		if num, err = o.Delete(&DocumentoEscrito{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

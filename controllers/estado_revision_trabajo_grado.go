@@ -11,13 +11,13 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// TipoDocumentoController operations for TipoDocumento
-type TipoDocumentoController struct {
+// EstadoRevisionTrabajoGradoController operations for EstadoRevisionTrabajoGrado
+type EstadoRevisionTrabajoGradoController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *TipoDocumentoController) URLMapping() {
+func (c *EstadoRevisionTrabajoGradoController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -27,15 +27,15 @@ func (c *TipoDocumentoController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create TipoDocumento
-// @Param	body		body 	models.TipoDocumento	true		"body for TipoDocumento content"
-// @Success 201 {int} models.TipoDocumento
+// @Description create EstadoRevisionTrabajoGrado
+// @Param	body		body 	models.EstadoRevisionTrabajoGrado	true		"body for EstadoRevisionTrabajoGrado content"
+// @Success 201 {int} models.EstadoRevisionTrabajoGrado
 // @Failure 403 body is empty
 // @router / [post]
-func (c *TipoDocumentoController) Post() {
-	var v models.TipoDocumento
+func (c *EstadoRevisionTrabajoGradoController) Post() {
+	var v models.EstadoRevisionTrabajoGrado
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddTipoDocumento(&v); err == nil {
+		if _, err := models.AddEstadoRevisionTrabajoGrado(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -49,15 +49,15 @@ func (c *TipoDocumentoController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get TipoDocumento by id
+// @Description get EstadoRevisionTrabajoGrado by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.TipoDocumento
+// @Success 200 {object} models.EstadoRevisionTrabajoGrado
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *TipoDocumentoController) GetOne() {
+func (c *EstadoRevisionTrabajoGradoController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetTipoDocumentoById(id)
+	v, err := models.GetEstadoRevisionTrabajoGradoById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -68,17 +68,17 @@ func (c *TipoDocumentoController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get TipoDocumento
+// @Description get EstadoRevisionTrabajoGrado
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.TipoDocumento
+// @Success 200 {object} models.EstadoRevisionTrabajoGrado
 // @Failure 403
 // @router / [get]
-func (c *TipoDocumentoController) GetAll() {
+func (c *EstadoRevisionTrabajoGradoController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -120,7 +120,7 @@ func (c *TipoDocumentoController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllTipoDocumento(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllEstadoRevisionTrabajoGrado(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -131,18 +131,18 @@ func (c *TipoDocumentoController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the TipoDocumento
+// @Description update the EstadoRevisionTrabajoGrado
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.TipoDocumento	true		"body for TipoDocumento content"
-// @Success 200 {object} models.TipoDocumento
+// @Param	body		body 	models.EstadoRevisionTrabajoGrado	true		"body for EstadoRevisionTrabajoGrado content"
+// @Success 200 {object} models.EstadoRevisionTrabajoGrado
 // @Failure 403 :id is not int
 // @router /:id [put]
-func (c *TipoDocumentoController) Put() {
+func (c *EstadoRevisionTrabajoGradoController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.TipoDocumento{Id: id}
+	v := models.EstadoRevisionTrabajoGrado{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateTipoDocumentoById(&v); err == nil {
+		if err := models.UpdateEstadoRevisionTrabajoGradoById(&v); err == nil {
 			c.Data["json"] = "OK"
 		} else {
 			c.Data["json"] = err.Error()
@@ -155,15 +155,15 @@ func (c *TipoDocumentoController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the TipoDocumento
+// @Description delete the EstadoRevisionTrabajoGrado
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
 // @router /:id [delete]
-func (c *TipoDocumentoController) Delete() {
+func (c *EstadoRevisionTrabajoGradoController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteTipoDocumento(id); err == nil {
+	if err := models.DeleteEstadoRevisionTrabajoGrado(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()

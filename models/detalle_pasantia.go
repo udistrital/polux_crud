@@ -5,54 +5,52 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
-type Revision struct {
-	Id                      int                      `orm:"column(id);pk;auto"`
-	NumeroRevision          float64                  `orm:"column(numero_revision)"`
-	FechaRecepcion          time.Time                `orm:"column(fecha_recepcion);type(timestamp without time zone)"`
-	FechaRevision           time.Time                `orm:"column(fecha_revision);type(timestamp without time zone);null"`
-	EstadoRevision          *EstadoRevision          `orm:"column(estado_revision);rel(fk)"`
-	DocumentoTrabajoGrado   *DocumentoTrabajoGrado   `orm:"column(documento_trabajo_grado);rel(fk)"`
-	VinculacionTrabajoGrado *VinculacionTrabajoGrado `orm:"column(vinculacion_trabajo_grado);rel(fk)"`
+type DetallePasantia struct {
+	Id             int           `orm:"column(id);pk;auto"`
+	Empresa        int           `orm:"column(empresa)"`
+	Horas          int           `orm:"column(horas);null"`
+	ObjetoContrato string        `orm:"column(objeto_contrato);null"`
+	Observaciones  string        `orm:"column(observaciones);null"`
+	TrabajoGrado   *TrabajoGrado `orm:"column(trabajo_grado);rel(fk)"`
 }
 
-func (t *Revision) TableName() string {
-	return "revision"
+func (t *DetallePasantia) TableName() string {
+	return "detalle_pasantia"
 }
 
 func init() {
-	orm.RegisterModel(new(Revision))
+	orm.RegisterModel(new(DetallePasantia))
 }
 
-// AddRevision insert a new Revision into database and returns
+// AddDetallePasantia insert a new DetallePasantia into database and returns
 // last inserted Id on success.
-func AddRevision(m *Revision) (id int64, err error) {
+func AddDetallePasantia(m *DetallePasantia) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetRevisionById retrieves Revision by Id. Returns error if
+// GetDetallePasantiaById retrieves DetallePasantia by Id. Returns error if
 // Id doesn't exist
-func GetRevisionById(id int) (v *Revision, err error) {
+func GetDetallePasantiaById(id int) (v *DetallePasantia, err error) {
 	o := orm.NewOrm()
-	v = &Revision{Id: id}
+	v = &DetallePasantia{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllRevision retrieves all Revision matches certain condition. Returns empty list if
+// GetAllDetallePasantia retrieves all DetallePasantia matches certain condition. Returns empty list if
 // no records exist
-func GetAllRevision(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllDetallePasantia(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Revision))
+	qs := o.QueryTable(new(DetallePasantia))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -102,7 +100,7 @@ func GetAllRevision(query map[string]string, fields []string, sortby []string, o
 		}
 	}
 
-	var l []Revision
+	var l []DetallePasantia
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -125,11 +123,11 @@ func GetAllRevision(query map[string]string, fields []string, sortby []string, o
 	return nil, err
 }
 
-// UpdateRevision updates Revision by Id and returns error if
+// UpdateDetallePasantia updates DetallePasantia by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateRevisionById(m *Revision) (err error) {
+func UpdateDetallePasantiaById(m *DetallePasantia) (err error) {
 	o := orm.NewOrm()
-	v := Revision{Id: m.Id}
+	v := DetallePasantia{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -140,15 +138,15 @@ func UpdateRevisionById(m *Revision) (err error) {
 	return
 }
 
-// DeleteRevision deletes Revision by Id and returns error if
+// DeleteDetallePasantia deletes DetallePasantia by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteRevision(id int) (err error) {
+func DeleteDetallePasantia(id int) (err error) {
 	o := orm.NewOrm()
-	v := Revision{Id: id}
+	v := DetallePasantia{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Revision{Id: id}); err == nil {
+		if num, err = o.Delete(&DetallePasantia{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

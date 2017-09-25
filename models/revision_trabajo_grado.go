@@ -5,51 +5,54 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
-type TipoDocumento struct {
-	Id                int    `orm:"column(id);pk;auto"`
-	Nombre            string `orm:"column(nombre)"`
-	Descripcion       string `orm:"column(descripcion);null"`
-	CodigoAbreviacion string `orm:"column(codigo_abreviacion);null"`
-	Activo            bool   `orm:"column(activo)"`
+type RevisionTrabajoGrado struct {
+	Id                         int                         `orm:"column(id);pk;auto"`
+	NumeroRevision             float64                     `orm:"column(numero_revision)"`
+	FechaRecepcion             time.Time                   `orm:"column(fecha_recepcion);type(timestamp without time zone)"`
+	FechaRevision              time.Time                   `orm:"column(fecha_revision);type(timestamp without time zone);null"`
+	EstadoRevisionTrabajoGrado *EstadoRevisionTrabajoGrado `orm:"column(estado_revision_trabajo_grado);rel(fk)"`
+	DocumentoTrabajoGrado      *DocumentoTrabajoGrado      `orm:"column(documento_trabajo_grado);rel(fk)"`
+	VinculacionTrabajoGrado    *VinculacionTrabajoGrado    `orm:"column(vinculacion_trabajo_grado);rel(fk)"`
 }
 
-func (t *TipoDocumento) TableName() string {
-	return "tipo_documento"
+func (t *RevisionTrabajoGrado) TableName() string {
+	return "revision_trabajo_grado"
 }
 
 func init() {
-	orm.RegisterModel(new(TipoDocumento))
+	orm.RegisterModel(new(RevisionTrabajoGrado))
 }
 
-// AddTipoDocumento insert a new TipoDocumento into database and returns
+// AddRevisionTrabajoGrado insert a new RevisionTrabajoGrado into database and returns
 // last inserted Id on success.
-func AddTipoDocumento(m *TipoDocumento) (id int64, err error) {
+func AddRevisionTrabajoGrado(m *RevisionTrabajoGrado) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetTipoDocumentoById retrieves TipoDocumento by Id. Returns error if
+// GetRevisionTrabajoGradoById retrieves RevisionTrabajoGrado by Id. Returns error if
 // Id doesn't exist
-func GetTipoDocumentoById(id int) (v *TipoDocumento, err error) {
+func GetRevisionTrabajoGradoById(id int) (v *RevisionTrabajoGrado, err error) {
 	o := orm.NewOrm()
-	v = &TipoDocumento{Id: id}
+	v = &RevisionTrabajoGrado{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllTipoDocumento retrieves all TipoDocumento matches certain condition. Returns empty list if
+// GetAllRevisionTrabajoGrado retrieves all RevisionTrabajoGrado matches certain condition. Returns empty list if
 // no records exist
-func GetAllTipoDocumento(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllRevisionTrabajoGrado(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(TipoDocumento))
+	qs := o.QueryTable(new(RevisionTrabajoGrado))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -99,7 +102,7 @@ func GetAllTipoDocumento(query map[string]string, fields []string, sortby []stri
 		}
 	}
 
-	var l []TipoDocumento
+	var l []RevisionTrabajoGrado
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -122,11 +125,11 @@ func GetAllTipoDocumento(query map[string]string, fields []string, sortby []stri
 	return nil, err
 }
 
-// UpdateTipoDocumento updates TipoDocumento by Id and returns error if
+// UpdateRevisionTrabajoGrado updates RevisionTrabajoGrado by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateTipoDocumentoById(m *TipoDocumento) (err error) {
+func UpdateRevisionTrabajoGradoById(m *RevisionTrabajoGrado) (err error) {
 	o := orm.NewOrm()
-	v := TipoDocumento{Id: m.Id}
+	v := RevisionTrabajoGrado{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -137,15 +140,15 @@ func UpdateTipoDocumentoById(m *TipoDocumento) (err error) {
 	return
 }
 
-// DeleteTipoDocumento deletes TipoDocumento by Id and returns error if
+// DeleteRevisionTrabajoGrado deletes RevisionTrabajoGrado by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteTipoDocumento(id int) (err error) {
+func DeleteRevisionTrabajoGrado(id int) (err error) {
 	o := orm.NewOrm()
-	v := TipoDocumento{Id: id}
+	v := RevisionTrabajoGrado{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&TipoDocumento{Id: id}); err == nil {
+		if num, err = o.Delete(&RevisionTrabajoGrado{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

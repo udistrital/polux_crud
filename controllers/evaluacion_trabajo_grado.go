@@ -11,13 +11,13 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// ContactoEntidadController operations for ContactoEntidad
-type ContactoEntidadController struct {
+// EvaluacionTrabajoGradoController operations for EvaluacionTrabajoGrado
+type EvaluacionTrabajoGradoController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *ContactoEntidadController) URLMapping() {
+func (c *EvaluacionTrabajoGradoController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -27,15 +27,15 @@ func (c *ContactoEntidadController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create ContactoEntidad
-// @Param	body		body 	models.ContactoEntidad	true		"body for ContactoEntidad content"
-// @Success 201 {int} models.ContactoEntidad
+// @Description create EvaluacionTrabajoGrado
+// @Param	body		body 	models.EvaluacionTrabajoGrado	true		"body for EvaluacionTrabajoGrado content"
+// @Success 201 {int} models.EvaluacionTrabajoGrado
 // @Failure 403 body is empty
 // @router / [post]
-func (c *ContactoEntidadController) Post() {
-	var v models.ContactoEntidad
+func (c *EvaluacionTrabajoGradoController) Post() {
+	var v models.EvaluacionTrabajoGrado
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddContactoEntidad(&v); err == nil {
+		if _, err := models.AddEvaluacionTrabajoGrado(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -49,15 +49,15 @@ func (c *ContactoEntidadController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get ContactoEntidad by id
+// @Description get EvaluacionTrabajoGrado by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.ContactoEntidad
+// @Success 200 {object} models.EvaluacionTrabajoGrado
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *ContactoEntidadController) GetOne() {
+func (c *EvaluacionTrabajoGradoController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetContactoEntidadById(id)
+	v, err := models.GetEvaluacionTrabajoGradoById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -68,17 +68,17 @@ func (c *ContactoEntidadController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get ContactoEntidad
+// @Description get EvaluacionTrabajoGrado
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.ContactoEntidad
+// @Success 200 {object} models.EvaluacionTrabajoGrado
 // @Failure 403
 // @router / [get]
-func (c *ContactoEntidadController) GetAll() {
+func (c *EvaluacionTrabajoGradoController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -120,7 +120,7 @@ func (c *ContactoEntidadController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllContactoEntidad(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllEvaluacionTrabajoGrado(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -131,18 +131,18 @@ func (c *ContactoEntidadController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the ContactoEntidad
+// @Description update the EvaluacionTrabajoGrado
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.ContactoEntidad	true		"body for ContactoEntidad content"
-// @Success 200 {object} models.ContactoEntidad
+// @Param	body		body 	models.EvaluacionTrabajoGrado	true		"body for EvaluacionTrabajoGrado content"
+// @Success 200 {object} models.EvaluacionTrabajoGrado
 // @Failure 403 :id is not int
 // @router /:id [put]
-func (c *ContactoEntidadController) Put() {
+func (c *EvaluacionTrabajoGradoController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.ContactoEntidad{Id: id}
+	v := models.EvaluacionTrabajoGrado{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateContactoEntidadById(&v); err == nil {
+		if err := models.UpdateEvaluacionTrabajoGradoById(&v); err == nil {
 			c.Data["json"] = "OK"
 		} else {
 			c.Data["json"] = err.Error()
@@ -155,15 +155,15 @@ func (c *ContactoEntidadController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the ContactoEntidad
+// @Description delete the EvaluacionTrabajoGrado
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
 // @router /:id [delete]
-func (c *ContactoEntidadController) Delete() {
+func (c *EvaluacionTrabajoGradoController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteContactoEntidad(id); err == nil {
+	if err := models.DeleteEvaluacionTrabajoGrado(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()

@@ -10,11 +10,11 @@ import (
 )
 
 type TrabajoGrado struct {
-	Id                 int                 `orm:"column(id);pk;auto"`
-	Titulo             string              `orm:"column(titulo)"`
-	Modalidad          *Modalidad          `orm:"column(modalidad);rel(fk)"`
-	EstadoTrabajoGrado *EstadoTrabajoGrado `orm:"column(estado_trabajo_grado);rel(fk)"`
-	Distincion         *Distincion         `orm:"column(distincion);rel(fk);null"`
+	Id                     int                     `orm:"column(id);pk;auto"`
+	Titulo                 string                  `orm:"column(titulo)"`
+	Modalidad              *Modalidad              `orm:"column(modalidad);rel(fk)"`
+	EstadoTrabajoGrado     *EstadoTrabajoGrado     `orm:"column(estado_trabajo_grado);rel(fk)"`
+	DistincionTrabajoGrado *DistincionTrabajoGrado `orm:"column(distincion_trabajo_grado);rel(fk)"`
 }
 
 func (t *TrabajoGrado) TableName() string {

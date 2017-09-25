@@ -9,47 +9,47 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type Documento struct {
-	Id            int            `orm:"column(id);pk;auto"`
-	Titulo        string         `orm:"column(titulo)"`
-	Enlace        string         `orm:"column(enlace)"`
-	Resumen       string         `orm:"column(resumen);null"`
-	TipoDocumento *TipoDocumento `orm:"column(tipo_documento);rel(fk)"`
+type EstadoRevisionTrabajoGrado struct {
+	Id                int    `orm:"column(id);pk;auto"`
+	Nombre            string `orm:"column(nombre)"`
+	Descripcion       string `orm:"column(descripcion);null"`
+	CodigoAbreviacion string `orm:"column(codigo_abreviacion);null"`
+	Activo            bool   `orm:"column(activo)"`
 }
 
-func (t *Documento) TableName() string {
-	return "documento"
+func (t *EstadoRevisionTrabajoGrado) TableName() string {
+	return "estado_revision_trabajo_grado"
 }
 
 func init() {
-	orm.RegisterModel(new(Documento))
+	orm.RegisterModel(new(EstadoRevisionTrabajoGrado))
 }
 
-// AddDocumento insert a new Documento into database and returns
+// AddEstadoRevisionTrabajoGrado insert a new EstadoRevisionTrabajoGrado into database and returns
 // last inserted Id on success.
-func AddDocumento(m *Documento) (id int64, err error) {
+func AddEstadoRevisionTrabajoGrado(m *EstadoRevisionTrabajoGrado) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetDocumentoById retrieves Documento by Id. Returns error if
+// GetEstadoRevisionTrabajoGradoById retrieves EstadoRevisionTrabajoGrado by Id. Returns error if
 // Id doesn't exist
-func GetDocumentoById(id int) (v *Documento, err error) {
+func GetEstadoRevisionTrabajoGradoById(id int) (v *EstadoRevisionTrabajoGrado, err error) {
 	o := orm.NewOrm()
-	v = &Documento{Id: id}
+	v = &EstadoRevisionTrabajoGrado{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllDocumento retrieves all Documento matches certain condition. Returns empty list if
+// GetAllEstadoRevisionTrabajoGrado retrieves all EstadoRevisionTrabajoGrado matches certain condition. Returns empty list if
 // no records exist
-func GetAllDocumento(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllEstadoRevisionTrabajoGrado(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Documento)).RelatedSel();
+	qs := o.QueryTable(new(EstadoRevisionTrabajoGrado))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -99,7 +99,7 @@ func GetAllDocumento(query map[string]string, fields []string, sortby []string, 
 		}
 	}
 
-	var l []Documento
+	var l []EstadoRevisionTrabajoGrado
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -122,11 +122,11 @@ func GetAllDocumento(query map[string]string, fields []string, sortby []string, 
 	return nil, err
 }
 
-// UpdateDocumento updates Documento by Id and returns error if
+// UpdateEstadoRevisionTrabajoGrado updates EstadoRevisionTrabajoGrado by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateDocumentoById(m *Documento) (err error) {
+func UpdateEstadoRevisionTrabajoGradoById(m *EstadoRevisionTrabajoGrado) (err error) {
 	o := orm.NewOrm()
-	v := Documento{Id: m.Id}
+	v := EstadoRevisionTrabajoGrado{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -137,15 +137,15 @@ func UpdateDocumentoById(m *Documento) (err error) {
 	return
 }
 
-// DeleteDocumento deletes Documento by Id and returns error if
+// DeleteEstadoRevisionTrabajoGrado deletes EstadoRevisionTrabajoGrado by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteDocumento(id int) (err error) {
+func DeleteEstadoRevisionTrabajoGrado(id int) (err error) {
 	o := orm.NewOrm()
-	v := Documento{Id: id}
+	v := EstadoRevisionTrabajoGrado{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Documento{Id: id}); err == nil {
+		if num, err = o.Delete(&EstadoRevisionTrabajoGrado{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

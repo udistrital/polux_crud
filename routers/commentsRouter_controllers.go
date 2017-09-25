@@ -247,46 +247,6 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:ContactoEntidadController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:ContactoEntidadController"],
-		beego.ControllerComments{
-			Method: "Post",
-			Router: `/`,
-			AllowHTTPMethods: []string{"post"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:ContactoEntidadController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:ContactoEntidadController"],
-		beego.ControllerComments{
-			Method: "GetAll",
-			Router: `/`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:ContactoEntidadController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:ContactoEntidadController"],
-		beego.ControllerComments{
-			Method: "GetOne",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:ContactoEntidadController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:ContactoEntidadController"],
-		beego.ControllerComments{
-			Method: "Put",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"put"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:ContactoEntidadController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:ContactoEntidadController"],
-		beego.ControllerComments{
-			Method: "Delete",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"delete"},
-			MethodParams: param.Make(),
-			Params: nil})
-
 	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:CorreccionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:CorreccionController"],
 		beego.ControllerComments{
 			Method: "Post",
@@ -360,6 +320,46 @@ func init() {
 			Params: nil})
 
 	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DetalleController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DetalleController"],
+		beego.ControllerComments{
+			Method: "Delete",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"delete"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DetallePasantiaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DetallePasantiaController"],
+		beego.ControllerComments{
+			Method: "Post",
+			Router: `/`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DetallePasantiaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DetallePasantiaController"],
+		beego.ControllerComments{
+			Method: "GetAll",
+			Router: `/`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DetallePasantiaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DetallePasantiaController"],
+		beego.ControllerComments{
+			Method: "GetOne",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DetallePasantiaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DetallePasantiaController"],
+		beego.ControllerComments{
+			Method: "Put",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"put"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DetallePasantiaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DetallePasantiaController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,
@@ -447,7 +447,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "Post",
 			Router: `/`,
@@ -455,7 +455,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "GetAll",
 			Router: `/`,
@@ -463,7 +463,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "GetOne",
 			Router: `/:id`,
@@ -471,7 +471,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "Put",
 			Router: `/:id`,
@@ -479,47 +479,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionController"],
-		beego.ControllerComments{
-			Method: "Delete",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"delete"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoController"],
-		beego.ControllerComments{
-			Method: "Post",
-			Router: `/`,
-			AllowHTTPMethods: []string{"post"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoController"],
-		beego.ControllerComments{
-			Method: "GetAll",
-			Router: `/`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoController"],
-		beego.ControllerComments{
-			Method: "GetOne",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoController"],
-		beego.ControllerComments{
-			Method: "Put",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"put"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DistincionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,
@@ -560,6 +520,46 @@ func init() {
 			Params: nil})
 
 	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoEntidadController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoEntidadController"],
+		beego.ControllerComments{
+			Method: "Delete",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"delete"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoEscritoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoEscritoController"],
+		beego.ControllerComments{
+			Method: "Post",
+			Router: `/`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoEscritoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoEscritoController"],
+		beego.ControllerComments{
+			Method: "GetAll",
+			Router: `/`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoEscritoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoEscritoController"],
+		beego.ControllerComments{
+			Method: "GetOne",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoEscritoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoEscritoController"],
+		beego.ControllerComments{
+			Method: "Put",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"put"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoEscritoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoEscritoController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,
@@ -640,46 +640,6 @@ func init() {
 			Params: nil})
 
 	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:DocumentoTrabajoGradoController"],
-		beego.ControllerComments{
-			Method: "Delete",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"delete"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EntidadController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EntidadController"],
-		beego.ControllerComments{
-			Method: "Post",
-			Router: `/`,
-			AllowHTTPMethods: []string{"post"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EntidadController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EntidadController"],
-		beego.ControllerComments{
-			Method: "GetAll",
-			Router: `/`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EntidadController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EntidadController"],
-		beego.ControllerComments{
-			Method: "GetOne",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EntidadController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EntidadController"],
-		beego.ControllerComments{
-			Method: "Put",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"put"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EntidadController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EntidadController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,
@@ -887,7 +847,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "Post",
 			Router: `/`,
@@ -895,7 +855,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "GetAll",
 			Router: `/`,
@@ -903,7 +863,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "GetOne",
 			Router: `/:id`,
@@ -911,7 +871,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "Put",
 			Router: `/:id`,
@@ -919,7 +879,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EstadoRevisionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,
@@ -1087,7 +1047,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "Post",
 			Router: `/`,
@@ -1095,7 +1055,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "GetAll",
 			Router: `/`,
@@ -1103,7 +1063,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "GetOne",
 			Router: `/:id`,
@@ -1111,7 +1071,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "Put",
 			Router: `/:id`,
@@ -1119,7 +1079,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:EvaluacionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,
@@ -1527,7 +1487,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "Post",
 			Router: `/`,
@@ -1535,7 +1495,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "GetAll",
 			Router: `/`,
@@ -1543,7 +1503,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "GetOne",
 			Router: `/:id`,
@@ -1551,7 +1511,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "Put",
 			Router: `/:id`,
@@ -1559,7 +1519,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionController"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,
@@ -1687,46 +1647,6 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoContactoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoContactoController"],
-		beego.ControllerComments{
-			Method: "Post",
-			Router: `/`,
-			AllowHTTPMethods: []string{"post"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoContactoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoContactoController"],
-		beego.ControllerComments{
-			Method: "GetAll",
-			Router: `/`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoContactoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoContactoController"],
-		beego.ControllerComments{
-			Method: "GetOne",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoContactoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoContactoController"],
-		beego.ControllerComments{
-			Method: "Put",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"put"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoContactoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoContactoController"],
-		beego.ControllerComments{
-			Method: "Delete",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"delete"},
-			MethodParams: param.Make(),
-			Params: nil})
-
 	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoDetalleController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoDetalleController"],
 		beego.ControllerComments{
 			Method: "Post",
@@ -1760,86 +1680,6 @@ func init() {
 			Params: nil})
 
 	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoDetalleController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoDetalleController"],
-		beego.ControllerComments{
-			Method: "Delete",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"delete"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoDocumentoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoDocumentoController"],
-		beego.ControllerComments{
-			Method: "Post",
-			Router: `/`,
-			AllowHTTPMethods: []string{"post"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoDocumentoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoDocumentoController"],
-		beego.ControllerComments{
-			Method: "GetAll",
-			Router: `/`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoDocumentoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoDocumentoController"],
-		beego.ControllerComments{
-			Method: "GetOne",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoDocumentoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoDocumentoController"],
-		beego.ControllerComments{
-			Method: "Put",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"put"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoDocumentoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoDocumentoController"],
-		beego.ControllerComments{
-			Method: "Delete",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"delete"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoIdentificacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoIdentificacionController"],
-		beego.ControllerComments{
-			Method: "Post",
-			Router: `/`,
-			AllowHTTPMethods: []string{"post"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoIdentificacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoIdentificacionController"],
-		beego.ControllerComments{
-			Method: "GetAll",
-			Router: `/`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoIdentificacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoIdentificacionController"],
-		beego.ControllerComments{
-			Method: "GetOne",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoIdentificacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoIdentificacionController"],
-		beego.ControllerComments{
-			Method: "Put",
-			Router: `/:id`,
-			AllowHTTPMethods: []string{"put"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoIdentificacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TipoIdentificacionController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,

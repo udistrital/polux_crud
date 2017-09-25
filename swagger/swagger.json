@@ -1023,174 +1023,6 @@
                 }
             }
         },
-        "/contacto_entidad/": {
-            "get": {
-                "tags": [
-                    "contacto_entidad"
-                ],
-                "description": "get ContactoEntidad",
-                "operationId": "ContactoEntidadController.Get All",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "query",
-                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "fields",
-                        "description": "Fields returned. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "sortby",
-                        "description": "Sorted-by fields. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "order",
-                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "limit",
-                        "description": "Limit the size of result set. Must be an integer",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "offset",
-                        "description": "Start position of result set. Must be an integer",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.ContactoEntidad"
-                        }
-                    },
-                    "403": {}
-                }
-            },
-            "post": {
-                "tags": [
-                    "contacto_entidad"
-                ],
-                "description": "create ContactoEntidad",
-                "operationId": "ContactoEntidadController.Post",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for ContactoEntidad content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.ContactoEntidad"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "{int} models.ContactoEntidad"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/contacto_entidad/{id}": {
-            "get": {
-                "tags": [
-                    "contacto_entidad"
-                ],
-                "description": "get ContactoEntidad by id",
-                "operationId": "ContactoEntidadController.Get One",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The key for staticblock",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.ContactoEntidad"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is empty"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "contacto_entidad"
-                ],
-                "description": "update the ContactoEntidad",
-                "operationId": "ContactoEntidadController.Put",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to update",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for ContactoEntidad content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.ContactoEntidad"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.ContactoEntidad"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is not int"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "contacto_entidad"
-                ],
-                "description": "delete the ContactoEntidad",
-                "operationId": "ContactoEntidadController.Delete",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to delete",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{string} delete success!"
-                    },
-                    "403": {
-                        "description": "id is empty"
-                    }
-                }
-            }
-        },
         "/correccion/": {
             "get": {
                 "tags": [
@@ -1863,13 +1695,13 @@
                 }
             }
         },
-        "/distincion/": {
+        "/distincion_trabajo_grado/": {
             "get": {
                 "tags": [
-                    "distincion"
+                    "distincion_trabajo_grado"
                 ],
-                "description": "get Distincion",
-                "operationId": "DistincionController.Get All",
+                "description": "get DistincionTrabajoGrado",
+                "operationId": "DistincionTrabajoGradoController.Get All",
                 "parameters": [
                     {
                         "in": "query",
@@ -1911,7 +1743,7 @@
                 "responses": {
                     "200": {
                         "schema": {
-                            "$ref": "#/definitions/models.Distincion"
+                            "$ref": "#/definitions/models.DistincionTrabajoGrado"
                         }
                     },
                     "403": {}
@@ -1919,24 +1751,24 @@
             },
             "post": {
                 "tags": [
-                    "distincion"
+                    "distincion_trabajo_grado"
                 ],
-                "description": "create Distincion",
-                "operationId": "DistincionController.Post",
+                "description": "create DistincionTrabajoGrado",
+                "operationId": "DistincionTrabajoGradoController.Post",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "body for Distincion content",
+                        "description": "body for DistincionTrabajoGrado content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Distincion"
+                            "$ref": "#/definitions/models.DistincionTrabajoGrado"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "{int} models.Distincion"
+                        "description": "{int} models.DistincionTrabajoGrado"
                     },
                     "403": {
                         "description": "body is empty"
@@ -1944,13 +1776,13 @@
                 }
             }
         },
-        "/distincion/{id}": {
+        "/distincion_trabajo_grado/{id}": {
             "get": {
                 "tags": [
-                    "distincion"
+                    "distincion_trabajo_grado"
                 ],
-                "description": "get Distincion by id",
-                "operationId": "DistincionController.Get One",
+                "description": "get DistincionTrabajoGrado by id",
+                "operationId": "DistincionTrabajoGradoController.Get One",
                 "parameters": [
                     {
                         "in": "path",
@@ -1963,7 +1795,7 @@
                 "responses": {
                     "200": {
                         "schema": {
-                            "$ref": "#/definitions/models.Distincion"
+                            "$ref": "#/definitions/models.DistincionTrabajoGrado"
                         }
                     },
                     "403": {
@@ -1973,10 +1805,10 @@
             },
             "put": {
                 "tags": [
-                    "distincion"
+                    "distincion_trabajo_grado"
                 ],
-                "description": "update the Distincion",
-                "operationId": "DistincionController.Put",
+                "description": "update the DistincionTrabajoGrado",
+                "operationId": "DistincionTrabajoGradoController.Put",
                 "parameters": [
                     {
                         "in": "path",
@@ -1988,17 +1820,17 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "body for Distincion content",
+                        "description": "body for DistincionTrabajoGrado content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Distincion"
+                            "$ref": "#/definitions/models.DistincionTrabajoGrado"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
                         "schema": {
-                            "$ref": "#/definitions/models.Distincion"
+                            "$ref": "#/definitions/models.DistincionTrabajoGrado"
                         }
                     },
                     "403": {
@@ -2008,178 +1840,10 @@
             },
             "delete": {
                 "tags": [
-                    "distincion"
+                    "distincion_trabajo_grado"
                 ],
-                "description": "delete the Distincion",
-                "operationId": "DistincionController.Delete",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to delete",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{string} delete success!"
-                    },
-                    "403": {
-                        "description": "id is empty"
-                    }
-                }
-            }
-        },
-        "/documento/": {
-            "get": {
-                "tags": [
-                    "documento"
-                ],
-                "description": "get Documento",
-                "operationId": "DocumentoController.Get All",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "query",
-                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "fields",
-                        "description": "Fields returned. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "sortby",
-                        "description": "Sorted-by fields. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "order",
-                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "limit",
-                        "description": "Limit the size of result set. Must be an integer",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "offset",
-                        "description": "Start position of result set. Must be an integer",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.Documento"
-                        }
-                    },
-                    "403": {}
-                }
-            },
-            "post": {
-                "tags": [
-                    "documento"
-                ],
-                "description": "create Documento",
-                "operationId": "DocumentoController.Post",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for Documento content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.Documento"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "{int} models.Documento"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/documento/{id}": {
-            "get": {
-                "tags": [
-                    "documento"
-                ],
-                "description": "get Documento by id",
-                "operationId": "DocumentoController.Get One",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The key for staticblock",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.Documento"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is empty"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "documento"
-                ],
-                "description": "update the Documento",
-                "operationId": "DocumentoController.Put",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to update",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for Documento content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.Documento"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.Documento"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is not int"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "documento"
-                ],
-                "description": "delete the Documento",
-                "operationId": "DocumentoController.Delete",
+                "description": "delete the DistincionTrabajoGrado",
+                "operationId": "DistincionTrabajoGradoController.Delete",
                 "parameters": [
                     {
                         "in": "path",
@@ -2348,6 +2012,174 @@
                 ],
                 "description": "delete the DocumentoEntidad",
                 "operationId": "DocumentoEntidadController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/documento_escrito/": {
+            "get": {
+                "tags": [
+                    "documento_escrito"
+                ],
+                "description": "get DocumentoEscrito",
+                "operationId": "DocumentoEscritoController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentoEscrito"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "documento_escrito"
+                ],
+                "description": "create DocumentoEscrito",
+                "operationId": "DocumentoEscritoController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DocumentoEscrito content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentoEscrito"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.DocumentoEscrito"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/documento_escrito/{id}": {
+            "get": {
+                "tags": [
+                    "documento_escrito"
+                ],
+                "description": "get DocumentoEscrito by id",
+                "operationId": "DocumentoEscritoController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentoEscrito"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "documento_escrito"
+                ],
+                "description": "update the DocumentoEscrito",
+                "operationId": "DocumentoEscritoController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DocumentoEscrito content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentoEscrito"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentoEscrito"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "documento_escrito"
+                ],
+                "description": "delete the DocumentoEscrito",
+                "operationId": "DocumentoEscritoController.Delete",
                 "parameters": [
                     {
                         "in": "path",
@@ -2684,174 +2516,6 @@
                 ],
                 "description": "delete the DocumentoTrabajoGrado",
                 "operationId": "DocumentoTrabajoGradoController.Delete",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to delete",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{string} delete success!"
-                    },
-                    "403": {
-                        "description": "id is empty"
-                    }
-                }
-            }
-        },
-        "/entidad/": {
-            "get": {
-                "tags": [
-                    "entidad"
-                ],
-                "description": "get Entidad",
-                "operationId": "EntidadController.Get All",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "query",
-                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "fields",
-                        "description": "Fields returned. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "sortby",
-                        "description": "Sorted-by fields. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "order",
-                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "limit",
-                        "description": "Limit the size of result set. Must be an integer",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "offset",
-                        "description": "Start position of result set. Must be an integer",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.Entidad"
-                        }
-                    },
-                    "403": {}
-                }
-            },
-            "post": {
-                "tags": [
-                    "entidad"
-                ],
-                "description": "create Entidad",
-                "operationId": "EntidadController.Post",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for Entidad content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.Entidad"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "{int} models.Entidad"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/entidad/{id}": {
-            "get": {
-                "tags": [
-                    "entidad"
-                ],
-                "description": "get Entidad by id",
-                "operationId": "EntidadController.Get One",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The key for staticblock",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.Entidad"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is empty"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "entidad"
-                ],
-                "description": "update the Entidad",
-                "operationId": "EntidadController.Put",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to update",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for Entidad content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.Entidad"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.Entidad"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is not int"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "entidad"
-                ],
-                "description": "delete the Entidad",
-                "operationId": "EntidadController.Delete",
                 "parameters": [
                     {
                         "in": "path",
@@ -3711,13 +3375,13 @@
                 }
             }
         },
-        "/estado_revision/": {
+        "/estado_revision_trabajo_grado/": {
             "get": {
                 "tags": [
-                    "estado_revision"
+                    "estado_revision_trabajo_grado"
                 ],
-                "description": "get EstadoRevision",
-                "operationId": "EstadoRevisionController.Get All",
+                "description": "get EstadoRevisionTrabajoGrado",
+                "operationId": "EstadoRevisionTrabajoGradoController.Get All",
                 "parameters": [
                     {
                         "in": "query",
@@ -3759,7 +3423,7 @@
                 "responses": {
                     "200": {
                         "schema": {
-                            "$ref": "#/definitions/models.EstadoRevision"
+                            "$ref": "#/definitions/models.EstadoRevisionTrabajoGrado"
                         }
                     },
                     "403": {}
@@ -3767,24 +3431,24 @@
             },
             "post": {
                 "tags": [
-                    "estado_revision"
+                    "estado_revision_trabajo_grado"
                 ],
-                "description": "create EstadoRevision",
-                "operationId": "EstadoRevisionController.Post",
+                "description": "create EstadoRevisionTrabajoGrado",
+                "operationId": "EstadoRevisionTrabajoGradoController.Post",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "body for EstadoRevision content",
+                        "description": "body for EstadoRevisionTrabajoGrado content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.EstadoRevision"
+                            "$ref": "#/definitions/models.EstadoRevisionTrabajoGrado"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "{int} models.EstadoRevision"
+                        "description": "{int} models.EstadoRevisionTrabajoGrado"
                     },
                     "403": {
                         "description": "body is empty"
@@ -3792,13 +3456,13 @@
                 }
             }
         },
-        "/estado_revision/{id}": {
+        "/estado_revision_trabajo_grado/{id}": {
             "get": {
                 "tags": [
-                    "estado_revision"
+                    "estado_revision_trabajo_grado"
                 ],
-                "description": "get EstadoRevision by id",
-                "operationId": "EstadoRevisionController.Get One",
+                "description": "get EstadoRevisionTrabajoGrado by id",
+                "operationId": "EstadoRevisionTrabajoGradoController.Get One",
                 "parameters": [
                     {
                         "in": "path",
@@ -3811,7 +3475,7 @@
                 "responses": {
                     "200": {
                         "schema": {
-                            "$ref": "#/definitions/models.EstadoRevision"
+                            "$ref": "#/definitions/models.EstadoRevisionTrabajoGrado"
                         }
                     },
                     "403": {
@@ -3821,10 +3485,10 @@
             },
             "put": {
                 "tags": [
-                    "estado_revision"
+                    "estado_revision_trabajo_grado"
                 ],
-                "description": "update the EstadoRevision",
-                "operationId": "EstadoRevisionController.Put",
+                "description": "update the EstadoRevisionTrabajoGrado",
+                "operationId": "EstadoRevisionTrabajoGradoController.Put",
                 "parameters": [
                     {
                         "in": "path",
@@ -3836,17 +3500,17 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "body for EstadoRevision content",
+                        "description": "body for EstadoRevisionTrabajoGrado content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.EstadoRevision"
+                            "$ref": "#/definitions/models.EstadoRevisionTrabajoGrado"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
                         "schema": {
-                            "$ref": "#/definitions/models.EstadoRevision"
+                            "$ref": "#/definitions/models.EstadoRevisionTrabajoGrado"
                         }
                     },
                     "403": {
@@ -3856,10 +3520,10 @@
             },
             "delete": {
                 "tags": [
-                    "estado_revision"
+                    "estado_revision_trabajo_grado"
                 ],
-                "description": "delete the EstadoRevision",
-                "operationId": "EstadoRevisionController.Delete",
+                "description": "delete the EstadoRevisionTrabajoGrado",
+                "operationId": "EstadoRevisionTrabajoGradoController.Delete",
                 "parameters": [
                     {
                         "in": "path",
@@ -4551,13 +4215,13 @@
                 }
             }
         },
-        "/evaluacion/": {
+        "/evaluacion_trabajo_grado/": {
             "get": {
                 "tags": [
-                    "evaluacion"
+                    "evaluacion_trabajo_grado"
                 ],
-                "description": "get Evaluacion",
-                "operationId": "EvaluacionController.Get All",
+                "description": "get EvaluacionTrabajoGrado",
+                "operationId": "EvaluacionTrabajoGradoController.Get All",
                 "parameters": [
                     {
                         "in": "query",
@@ -4599,7 +4263,7 @@
                 "responses": {
                     "200": {
                         "schema": {
-                            "$ref": "#/definitions/models.Evaluacion"
+                            "$ref": "#/definitions/models.EvaluacionTrabajoGrado"
                         }
                     },
                     "403": {}
@@ -4607,24 +4271,24 @@
             },
             "post": {
                 "tags": [
-                    "evaluacion"
+                    "evaluacion_trabajo_grado"
                 ],
-                "description": "create Evaluacion",
-                "operationId": "EvaluacionController.Post",
+                "description": "create EvaluacionTrabajoGrado",
+                "operationId": "EvaluacionTrabajoGradoController.Post",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "body for Evaluacion content",
+                        "description": "body for EvaluacionTrabajoGrado content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Evaluacion"
+                            "$ref": "#/definitions/models.EvaluacionTrabajoGrado"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "{int} models.Evaluacion"
+                        "description": "{int} models.EvaluacionTrabajoGrado"
                     },
                     "403": {
                         "description": "body is empty"
@@ -4632,13 +4296,13 @@
                 }
             }
         },
-        "/evaluacion/{id}": {
+        "/evaluacion_trabajo_grado/{id}": {
             "get": {
                 "tags": [
-                    "evaluacion"
+                    "evaluacion_trabajo_grado"
                 ],
-                "description": "get Evaluacion by id",
-                "operationId": "EvaluacionController.Get One",
+                "description": "get EvaluacionTrabajoGrado by id",
+                "operationId": "EvaluacionTrabajoGradoController.Get One",
                 "parameters": [
                     {
                         "in": "path",
@@ -4651,7 +4315,7 @@
                 "responses": {
                     "200": {
                         "schema": {
-                            "$ref": "#/definitions/models.Evaluacion"
+                            "$ref": "#/definitions/models.EvaluacionTrabajoGrado"
                         }
                     },
                     "403": {
@@ -4661,10 +4325,10 @@
             },
             "put": {
                 "tags": [
-                    "evaluacion"
+                    "evaluacion_trabajo_grado"
                 ],
-                "description": "update the Evaluacion",
-                "operationId": "EvaluacionController.Put",
+                "description": "update the EvaluacionTrabajoGrado",
+                "operationId": "EvaluacionTrabajoGradoController.Put",
                 "parameters": [
                     {
                         "in": "path",
@@ -4676,17 +4340,17 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "body for Evaluacion content",
+                        "description": "body for EvaluacionTrabajoGrado content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Evaluacion"
+                            "$ref": "#/definitions/models.EvaluacionTrabajoGrado"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
                         "schema": {
-                            "$ref": "#/definitions/models.Evaluacion"
+                            "$ref": "#/definitions/models.EvaluacionTrabajoGrado"
                         }
                     },
                     "403": {
@@ -4696,10 +4360,10 @@
             },
             "delete": {
                 "tags": [
-                    "evaluacion"
+                    "evaluacion_trabajo_grado"
                 ],
-                "description": "delete the Evaluacion",
-                "operationId": "EvaluacionController.Delete",
+                "description": "delete the EvaluacionTrabajoGrado",
+                "operationId": "EvaluacionTrabajoGradoController.Delete",
                 "parameters": [
                     {
                         "in": "path",
@@ -6399,13 +6063,13 @@
                 }
             }
         },
-        "/revision/": {
+        "/revision_trabajo_grado/": {
             "get": {
                 "tags": [
-                    "revision"
+                    "revision_trabajo_grado"
                 ],
-                "description": "get Revision",
-                "operationId": "RevisionController.Get All",
+                "description": "get RevisionTrabajoGrado",
+                "operationId": "RevisionTrabajoGradoController.Get All",
                 "parameters": [
                     {
                         "in": "query",
@@ -6447,7 +6111,7 @@
                 "responses": {
                     "200": {
                         "schema": {
-                            "$ref": "#/definitions/models.Revision"
+                            "$ref": "#/definitions/models.RevisionTrabajoGrado"
                         }
                     },
                     "403": {}
@@ -6455,24 +6119,24 @@
             },
             "post": {
                 "tags": [
-                    "revision"
+                    "revision_trabajo_grado"
                 ],
-                "description": "create Revision",
-                "operationId": "RevisionController.Post",
+                "description": "create RevisionTrabajoGrado",
+                "operationId": "RevisionTrabajoGradoController.Post",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "body for Revision content",
+                        "description": "body for RevisionTrabajoGrado content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Revision"
+                            "$ref": "#/definitions/models.RevisionTrabajoGrado"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "{int} models.Revision"
+                        "description": "{int} models.RevisionTrabajoGrado"
                     },
                     "403": {
                         "description": "body is empty"
@@ -6480,13 +6144,13 @@
                 }
             }
         },
-        "/revision/{id}": {
+        "/revision_trabajo_grado/{id}": {
             "get": {
                 "tags": [
-                    "revision"
+                    "revision_trabajo_grado"
                 ],
-                "description": "get Revision by id",
-                "operationId": "RevisionController.Get One",
+                "description": "get RevisionTrabajoGrado by id",
+                "operationId": "RevisionTrabajoGradoController.Get One",
                 "parameters": [
                     {
                         "in": "path",
@@ -6499,7 +6163,7 @@
                 "responses": {
                     "200": {
                         "schema": {
-                            "$ref": "#/definitions/models.Revision"
+                            "$ref": "#/definitions/models.RevisionTrabajoGrado"
                         }
                     },
                     "403": {
@@ -6509,10 +6173,10 @@
             },
             "put": {
                 "tags": [
-                    "revision"
+                    "revision_trabajo_grado"
                 ],
-                "description": "update the Revision",
-                "operationId": "RevisionController.Put",
+                "description": "update the RevisionTrabajoGrado",
+                "operationId": "RevisionTrabajoGradoController.Put",
                 "parameters": [
                     {
                         "in": "path",
@@ -6524,17 +6188,17 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "body for Revision content",
+                        "description": "body for RevisionTrabajoGrado content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Revision"
+                            "$ref": "#/definitions/models.RevisionTrabajoGrado"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
                         "schema": {
-                            "$ref": "#/definitions/models.Revision"
+                            "$ref": "#/definitions/models.RevisionTrabajoGrado"
                         }
                     },
                     "403": {
@@ -6544,10 +6208,10 @@
             },
             "delete": {
                 "tags": [
-                    "revision"
+                    "revision_trabajo_grado"
                 ],
-                "description": "delete the Revision",
-                "operationId": "RevisionController.Delete",
+                "description": "delete the RevisionTrabajoGrado",
+                "operationId": "RevisionTrabajoGradoController.Delete",
                 "parameters": [
                     {
                         "in": "path",
@@ -7071,174 +6735,6 @@
                 }
             }
         },
-        "/tipo_contacto/": {
-            "get": {
-                "tags": [
-                    "tipo_contacto"
-                ],
-                "description": "get TipoContacto",
-                "operationId": "TipoContactoController.Get All",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "query",
-                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "fields",
-                        "description": "Fields returned. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "sortby",
-                        "description": "Sorted-by fields. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "order",
-                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "limit",
-                        "description": "Limit the size of result set. Must be an integer",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "offset",
-                        "description": "Start position of result set. Must be an integer",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.TipoContacto"
-                        }
-                    },
-                    "403": {}
-                }
-            },
-            "post": {
-                "tags": [
-                    "tipo_contacto"
-                ],
-                "description": "create TipoContacto",
-                "operationId": "TipoContactoController.Post",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for TipoContacto content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.TipoContacto"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "{int} models.TipoContacto"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/tipo_contacto/{id}": {
-            "get": {
-                "tags": [
-                    "tipo_contacto"
-                ],
-                "description": "get TipoContacto by id",
-                "operationId": "TipoContactoController.Get One",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The key for staticblock",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.TipoContacto"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is empty"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "tipo_contacto"
-                ],
-                "description": "update the TipoContacto",
-                "operationId": "TipoContactoController.Put",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to update",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for TipoContacto content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.TipoContacto"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.TipoContacto"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is not int"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "tipo_contacto"
-                ],
-                "description": "delete the TipoContacto",
-                "operationId": "TipoContactoController.Delete",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to delete",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{string} delete success!"
-                    },
-                    "403": {
-                        "description": "id is empty"
-                    }
-                }
-            }
-        },
         "/tipo_detalle/": {
             "get": {
                 "tags": [
@@ -7388,342 +6884,6 @@
                 ],
                 "description": "delete the TipoDetalle",
                 "operationId": "TipoDetalleController.Delete",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to delete",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{string} delete success!"
-                    },
-                    "403": {
-                        "description": "id is empty"
-                    }
-                }
-            }
-        },
-        "/tipo_documento/": {
-            "get": {
-                "tags": [
-                    "tipo_documento"
-                ],
-                "description": "get TipoDocumento",
-                "operationId": "TipoDocumentoController.Get All",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "query",
-                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "fields",
-                        "description": "Fields returned. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "sortby",
-                        "description": "Sorted-by fields. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "order",
-                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "limit",
-                        "description": "Limit the size of result set. Must be an integer",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "offset",
-                        "description": "Start position of result set. Must be an integer",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.TipoDocumento"
-                        }
-                    },
-                    "403": {}
-                }
-            },
-            "post": {
-                "tags": [
-                    "tipo_documento"
-                ],
-                "description": "create TipoDocumento",
-                "operationId": "TipoDocumentoController.Post",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for TipoDocumento content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.TipoDocumento"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "{int} models.TipoDocumento"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/tipo_documento/{id}": {
-            "get": {
-                "tags": [
-                    "tipo_documento"
-                ],
-                "description": "get TipoDocumento by id",
-                "operationId": "TipoDocumentoController.Get One",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The key for staticblock",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.TipoDocumento"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is empty"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "tipo_documento"
-                ],
-                "description": "update the TipoDocumento",
-                "operationId": "TipoDocumentoController.Put",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to update",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for TipoDocumento content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.TipoDocumento"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.TipoDocumento"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is not int"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "tipo_documento"
-                ],
-                "description": "delete the TipoDocumento",
-                "operationId": "TipoDocumentoController.Delete",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to delete",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{string} delete success!"
-                    },
-                    "403": {
-                        "description": "id is empty"
-                    }
-                }
-            }
-        },
-        "/tipo_identificacion/": {
-            "get": {
-                "tags": [
-                    "tipo_identificacion"
-                ],
-                "description": "get TipoIdentificacion",
-                "operationId": "TipoIdentificacionController.Get All",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "query",
-                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "fields",
-                        "description": "Fields returned. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "sortby",
-                        "description": "Sorted-by fields. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "order",
-                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "limit",
-                        "description": "Limit the size of result set. Must be an integer",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "offset",
-                        "description": "Start position of result set. Must be an integer",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.TipoIdentificacion"
-                        }
-                    },
-                    "403": {}
-                }
-            },
-            "post": {
-                "tags": [
-                    "tipo_identificacion"
-                ],
-                "description": "create TipoIdentificacion",
-                "operationId": "TipoIdentificacionController.Post",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for TipoIdentificacion content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.TipoIdentificacion"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "{int} models.TipoIdentificacion"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/tipo_identificacion/{id}": {
-            "get": {
-                "tags": [
-                    "tipo_identificacion"
-                ],
-                "description": "get TipoIdentificacion by id",
-                "operationId": "TipoIdentificacionController.Get One",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The key for staticblock",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.TipoIdentificacion"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is empty"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "tipo_identificacion"
-                ],
-                "description": "update the TipoIdentificacion",
-                "operationId": "TipoIdentificacionController.Put",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to update",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for TipoIdentificacion content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.TipoIdentificacion"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/models.TipoIdentificacion"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is not int"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "tipo_identificacion"
-                ],
-                "description": "delete the TipoIdentificacion",
-                "operationId": "TipoIdentificacionController.Delete",
                 "parameters": [
                     {
                         "in": "path",
@@ -8632,6 +7792,10 @@
                 },
                 "Nombre": {
                     "type": "string"
+                },
+                "SniesArea": {
+                    "type": "integer",
+                    "format": "int64"
                 }
             }
         },
@@ -8642,11 +7806,11 @@
                 "AreaConocimiento": {
                     "$ref": "#/definitions/models.AreaConocimiento"
                 },
-                "Id": {
+                "Docente": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "IdentificacionDocente": {
+                "Id": {
                     "type": "integer",
                     "format": "int64"
                 }
@@ -8757,25 +7921,6 @@
                 }
             }
         },
-        "models.ContactoEntidad": {
-            "title": "ContactoEntidad",
-            "type": "object",
-            "properties": {
-                "DetalleContacto": {
-                    "type": "string"
-                },
-                "Entidad": {
-                    "$ref": "#/definitions/models.Entidad"
-                },
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "TipoContacto": {
-                    "$ref": "#/definitions/models.TipoContacto"
-                }
-            }
-        },
         "models.Correccion": {
             "title": "Correccion",
             "type": "object",
@@ -8784,9 +7929,6 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "Justificacion": {
-                    "type": "string"
-                },
                 "Observacion": {
                     "type": "string"
                 },
@@ -8794,8 +7936,8 @@
                     "type": "number",
                     "format": "double"
                 },
-                "Revision": {
-                    "$ref": "#/definitions/models.Revision"
+                "RevisionTrabajoGrado": {
+                    "$ref": "#/definitions/models.RevisionTrabajoGrado"
                 }
             }
         },
@@ -8824,6 +7966,33 @@
                 },
                 "TipoDetalle": {
                     "$ref": "#/definitions/models.TipoDetalle"
+                }
+            }
+        },
+        "models.DetallePasantia": {
+            "title": "DetallePasantia",
+            "type": "object",
+            "properties": {
+                "Empresa": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Horas": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ObjetoContrato": {
+                    "type": "string"
+                },
+                "Observaciones": {
+                    "type": "string"
+                },
+                "TrabajoGrado": {
+                    "$ref": "#/definitions/models.TrabajoGrado"
                 }
             }
         },
@@ -8863,21 +8032,24 @@
                 "ModalidadTipoSolicitud": {
                     "$ref": "#/definitions/models.ModalidadTipoSolicitud"
                 },
+                "NumeroOrden": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "Requerido": {
                     "type": "boolean"
                 }
             }
         },
-        "models.Distincion": {
-            "title": "Distincion",
+        "models.DistincionTrabajoGrado": {
+            "title": "DistincionTrabajoGrado",
             "type": "object",
             "properties": {
                 "Activo": {
                     "type": "boolean"
                 },
                 "CodigoAbreviacion": {
-                    "type": "integer",
-                    "format": "int32"
+                    "type": "string"
                 },
                 "Descripcion": {
                     "type": "string"
@@ -8891,8 +8063,25 @@
                 }
             }
         },
-        "models.Documento": {
-            "title": "Documento",
+        "models.DocumentoEntidad": {
+            "title": "DocumentoEntidad",
+            "type": "object",
+            "properties": {
+                "DocumentoEscrito": {
+                    "$ref": "#/definitions/models.DocumentoEscrito"
+                },
+                "Entidad": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.DocumentoEscrito": {
+            "title": "DocumentoEscrito",
             "type": "object",
             "properties": {
                 "Enlace": {
@@ -8905,27 +8094,12 @@
                 "Resumen": {
                     "type": "string"
                 },
-                "TipoDocumento": {
-                    "$ref": "#/definitions/models.TipoDocumento"
+                "TipoDocumentoEscrito": {
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "Titulo": {
                     "type": "string"
-                }
-            }
-        },
-        "models.DocumentoEntidad": {
-            "title": "DocumentoEntidad",
-            "type": "object",
-            "properties": {
-                "Documento": {
-                    "$ref": "#/definitions/models.Documento"
-                },
-                "Entidad": {
-                    "$ref": "#/definitions/models.Entidad"
-                },
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
                 }
             }
         },
@@ -8933,8 +8107,8 @@
             "title": "DocumentoSolicitud",
             "type": "object",
             "properties": {
-                "Documento": {
-                    "$ref": "#/definitions/models.Documento"
+                "DocumentoEscrito": {
+                    "$ref": "#/definitions/models.DocumentoEscrito"
                 },
                 "Id": {
                     "type": "integer",
@@ -8949,8 +8123,8 @@
             "title": "DocumentoTrabajoGrado",
             "type": "object",
             "properties": {
-                "Documento": {
-                    "$ref": "#/definitions/models.Documento"
+                "DocumentoEscrito": {
+                    "$ref": "#/definitions/models.DocumentoEscrito"
                 },
                 "Id": {
                     "type": "integer",
@@ -8958,29 +8132,6 @@
                 },
                 "TrabajoGrado": {
                     "$ref": "#/definitions/models.TrabajoGrado"
-                }
-            }
-        },
-        "models.Entidad": {
-            "title": "Entidad",
-            "type": "object",
-            "properties": {
-                "Activo": {
-                    "type": "boolean"
-                },
-                "EntidadRelacionada": {
-                    "$ref": "#/definitions/models.Entidad"
-                },
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "Identificacion": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "TipoIdentificacion": {
-                    "$ref": "#/definitions/models.TipoIdentificacion"
                 }
             }
         },
@@ -9093,8 +8244,8 @@
                 }
             }
         },
-        "models.EstadoRevision": {
-            "title": "EstadoRevision",
+        "models.EstadoRevisionTrabajoGrado": {
+            "title": "EstadoRevisionTrabajoGrado",
             "type": "object",
             "properties": {
                 "Activo": {
@@ -9180,11 +8331,12 @@
             "title": "EstudianteTrabajoGrado",
             "type": "object",
             "properties": {
-                "CodigoEstudiante": {
-                    "type": "string"
-                },
                 "EstadoEstudianteTrabajoGrado": {
                     "$ref": "#/definitions/models.EstadoEstudianteTrabajoGrado"
+                },
+                "Estudiante": {
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "Id": {
                     "type": "integer",
@@ -9195,8 +8347,8 @@
                 }
             }
         },
-        "models.Evaluacion": {
-            "title": "Evaluacion",
+        "models.EvaluacionTrabajoGrado": {
+            "title": "EvaluacionTrabajoGrado",
             "type": "object",
             "properties": {
                 "FormatoEvaluacionCarrera": {
@@ -9385,8 +8537,8 @@
             "title": "RespuestaEvaluacion",
             "type": "object",
             "properties": {
-                "Evaluacion": {
-                    "$ref": "#/definitions/models.Evaluacion"
+                "EvaluacionTrabajoGrado": {
+                    "$ref": "#/definitions/models.EvaluacionTrabajoGrado"
                 },
                 "Id": {
                     "type": "integer",
@@ -9455,15 +8607,15 @@
                 }
             }
         },
-        "models.Revision": {
-            "title": "Revision",
+        "models.RevisionTrabajoGrado": {
+            "title": "RevisionTrabajoGrado",
             "type": "object",
             "properties": {
                 "DocumentoTrabajoGrado": {
                     "$ref": "#/definitions/models.DocumentoTrabajoGrado"
                 },
-                "EstadoRevision": {
-                    "$ref": "#/definitions/models.EstadoRevision"
+                "EstadoRevisionTrabajoGrado": {
+                    "$ref": "#/definitions/models.EstadoRevisionTrabajoGrado"
                 },
                 "FechaRecepcion": {
                     "type": "string",
@@ -9521,7 +8673,8 @@
                     "format": "int64"
                 },
                 "Lugar": {
-                    "type": "string"
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "TrabajoGrado": {
                     "$ref": "#/definitions/models.TrabajoGrado"
@@ -9548,74 +8701,8 @@
                 }
             }
         },
-        "models.TipoContacto": {
-            "title": "TipoContacto",
-            "type": "object",
-            "properties": {
-                "Activo": {
-                    "type": "boolean"
-                },
-                "CodigoAbreviación": {
-                    "type": "string"
-                },
-                "Descripcion": {
-                    "type": "string"
-                },
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "Nombre": {
-                    "type": "string"
-                }
-            }
-        },
         "models.TipoDetalle": {
             "title": "TipoDetalle",
-            "type": "object",
-            "properties": {
-                "Activo": {
-                    "type": "boolean"
-                },
-                "CodigoAbreviación": {
-                    "type": "string"
-                },
-                "Descripcion": {
-                    "type": "string"
-                },
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "Nombre": {
-                    "type": "string"
-                }
-            }
-        },
-        "models.TipoDocumento": {
-            "title": "TipoDocumento",
-            "type": "object",
-            "properties": {
-                "Activo": {
-                    "type": "boolean"
-                },
-                "CodigoAbreviacion": {
-                    "type": "string"
-                },
-                "Descripcion": {
-                    "type": "string"
-                },
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "Nombre": {
-                    "type": "string"
-                }
-            }
-        },
-        "models.TipoIdentificacion": {
-            "title": "TipoIdentificacion",
             "type": "object",
             "properties": {
                 "Activo": {
@@ -9687,6 +8774,9 @@
                 "DetallesSolicitud": {
                     "$ref": "#/definitions/models.DetalleSolicitud"
                 },
+                "Respuesta": {
+                    "$ref": "#/definitions/models.RespuestaSolicitud"
+                },
                 "Solicitud": {
                     "$ref": "#/definitions/models.SolicitudTrabajoGrado"
                 },
@@ -9699,8 +8789,8 @@
             "title": "TrabajoGrado",
             "type": "object",
             "properties": {
-                "Distincion": {
-                    "$ref": "#/definitions/models.Distincion"
+                "DistincionTrabajoGrado": {
+                    "$ref": "#/definitions/models.DistincionTrabajoGrado"
                 },
                 "EstadoTrabajoGrado": {
                     "$ref": "#/definitions/models.EstadoTrabajoGrado"
@@ -9729,7 +8819,8 @@
                     "$ref": "#/definitions/models.SolicitudTrabajoGrado"
                 },
                 "Usuario": {
-                    "type": "string"
+                    "type": "integer",
+                    "format": "int64"
                 }
             }
         },
@@ -9752,6 +8843,9 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "Nombre": {
+                    "type": "string"
+                },
                 "RolTrabajoGrado": {
                     "$ref": "#/definitions/models.RolTrabajoGrado"
                 },
@@ -9759,16 +8853,13 @@
                     "$ref": "#/definitions/models.TrabajoGrado"
                 },
                 "Usuario": {
-                    "type": "string"
+                    "type": "integer",
+                    "format": "int64"
                 }
             }
         }
     },
     "tags": [
-        {
-            "name": "tipo_documento",
-            "description": "TipoDocumentoController operations for TipoDocumento\n"
-        },
         {
             "name": "estado_solicitud",
             "description": "EstadoSolicitudController operations for EstadoSolicitud\n"
@@ -9858,8 +8949,8 @@
             "description": "AreasTrabajoGradoController operations for AreasTrabajoGrado\n"
         },
         {
-            "name": "documento",
-            "description": "DocumentoController operations for Documento\n"
+            "name": "documento_escrito",
+            "description": "DocumentoEscritoController operations for DocumentoEscrito\n"
         },
         {
             "name": "documento_trabajo_grado",
@@ -9898,28 +8989,28 @@
             "description": "SocializacionController operations for Socializacion\n"
         },
         {
-            "name": "evaluacion",
-            "description": "EvaluacionController operations for Evaluacion\n"
+            "name": "evaluacion_trabajo_grado",
+            "description": "EvaluacionTrabajoGradoController operations for EvaluacionTrabajoGrado\n"
         },
         {
             "name": "estado_trabajo_grado",
             "description": "EstadoTrabajoGradoController operations for EstadoTrabajoGrado\n"
         },
         {
-            "name": "distincion",
-            "description": "DistincionController operations for Distincion\n"
+            "name": "distincion_trabajo_grado",
+            "description": "DistincionTrabajoGradoController operations for DistincionTrabajoGrado\n"
         },
         {
             "name": "trabajo_grado",
             "description": "TrabajoGradoController operations for TrabajoGrado\n"
         },
         {
-            "name": "estado_revision",
-            "description": "EstadoRevisionController operations for EstadoRevision\n"
+            "name": "estado_revision_trabajo_grado",
+            "description": "EstadoRevisionTrabajoGradoController operations for EstadoRevisionTrabajoGrado\n"
         },
         {
-            "name": "revision",
-            "description": "RevisionController operations for Revision\n"
+            "name": "revision_trabajo_grado",
+            "description": "RevisionTrabajoGradoController operations for RevisionTrabajoGrado\n"
         },
         {
             "name": "tipo_pregunta",
@@ -9938,18 +9029,6 @@
             "description": "EstudianteTrabajoGradoController operations for EstudianteTrabajoGrado\n"
         },
         {
-            "name": "tipo_contacto",
-            "description": "TipoContactoController operations for TipoContacto\n"
-        },
-        {
-            "name": "contacto_entidad",
-            "description": "ContactoEntidadController operations for ContactoEntidad\n"
-        },
-        {
-            "name": "tipo_identificacion",
-            "description": "TipoIdentificacionController operations for TipoIdentificacion\n"
-        },
-        {
             "name": "estado_asignatura_trabajo_grado",
             "description": "EstadoAsignaturaTrabajoGradoController operations for EstadoAsignaturaTrabajoGrado\n"
         },
@@ -9964,10 +9043,6 @@
         {
             "name": "solicitud_trabajo_grado",
             "description": "SolicitudTrabajoGradoController operations for SolicitudTrabajoGrado\n"
-        },
-        {
-            "name": "entidad",
-            "description": "EntidadController operations for Entidad\n"
         },
         {
             "name": "tr_solicitud",

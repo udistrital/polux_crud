@@ -9,46 +9,47 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type ContactoEntidad struct {
-	Id              int           `orm:"column(id);pk;auto"`
-	DetalleContacto string        `orm:"column(detalle_contacto)"`
-	TipoContacto    *TipoContacto `orm:"column(tipo_contacto);rel(fk)"`
-	Entidad         *Entidad      `orm:"column(entidad);rel(fk)"`
+type DistincionTrabajoGrado struct {
+	Id                int    `orm:"column(id);pk;auto"`
+	Nombre            string `orm:"column(nombre)"`
+	Descripcion       string `orm:"column(descripcion);null"`
+	CodigoAbreviacion string `orm:"column(codigo_abreviacion);null"`
+	Activo            bool   `orm:"column(activo)"`
 }
 
-func (t *ContactoEntidad) TableName() string {
-	return "contacto_entidad"
+func (t *DistincionTrabajoGrado) TableName() string {
+	return "distincion_trabajo_grado"
 }
 
 func init() {
-	orm.RegisterModel(new(ContactoEntidad))
+	orm.RegisterModel(new(DistincionTrabajoGrado))
 }
 
-// AddContactoEntidad insert a new ContactoEntidad into database and returns
+// AddDistincionTrabajoGrado insert a new DistincionTrabajoGrado into database and returns
 // last inserted Id on success.
-func AddContactoEntidad(m *ContactoEntidad) (id int64, err error) {
+func AddDistincionTrabajoGrado(m *DistincionTrabajoGrado) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetContactoEntidadById retrieves ContactoEntidad by Id. Returns error if
+// GetDistincionTrabajoGradoById retrieves DistincionTrabajoGrado by Id. Returns error if
 // Id doesn't exist
-func GetContactoEntidadById(id int) (v *ContactoEntidad, err error) {
+func GetDistincionTrabajoGradoById(id int) (v *DistincionTrabajoGrado, err error) {
 	o := orm.NewOrm()
-	v = &ContactoEntidad{Id: id}
+	v = &DistincionTrabajoGrado{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllContactoEntidad retrieves all ContactoEntidad matches certain condition. Returns empty list if
+// GetAllDistincionTrabajoGrado retrieves all DistincionTrabajoGrado matches certain condition. Returns empty list if
 // no records exist
-func GetAllContactoEntidad(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllDistincionTrabajoGrado(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(ContactoEntidad))
+	qs := o.QueryTable(new(DistincionTrabajoGrado))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -98,7 +99,7 @@ func GetAllContactoEntidad(query map[string]string, fields []string, sortby []st
 		}
 	}
 
-	var l []ContactoEntidad
+	var l []DistincionTrabajoGrado
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -121,11 +122,11 @@ func GetAllContactoEntidad(query map[string]string, fields []string, sortby []st
 	return nil, err
 }
 
-// UpdateContactoEntidad updates ContactoEntidad by Id and returns error if
+// UpdateDistincionTrabajoGrado updates DistincionTrabajoGrado by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateContactoEntidadById(m *ContactoEntidad) (err error) {
+func UpdateDistincionTrabajoGradoById(m *DistincionTrabajoGrado) (err error) {
 	o := orm.NewOrm()
-	v := ContactoEntidad{Id: m.Id}
+	v := DistincionTrabajoGrado{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -136,15 +137,15 @@ func UpdateContactoEntidadById(m *ContactoEntidad) (err error) {
 	return
 }
 
-// DeleteContactoEntidad deletes ContactoEntidad by Id and returns error if
+// DeleteDistincionTrabajoGrado deletes DistincionTrabajoGrado by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteContactoEntidad(id int) (err error) {
+func DeleteDistincionTrabajoGrado(id int) (err error) {
 	o := orm.NewOrm()
-	v := ContactoEntidad{Id: id}
+	v := DistincionTrabajoGrado{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&ContactoEntidad{Id: id}); err == nil {
+		if num, err = o.Delete(&DistincionTrabajoGrado{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
