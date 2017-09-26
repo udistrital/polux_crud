@@ -8335,8 +8335,7 @@
                     "$ref": "#/definitions/models.EstadoEstudianteTrabajoGrado"
                 },
                 "Estudiante": {
-                    "type": "integer",
-                    "format": "int64"
+                    "type": "string"
                 },
                 "Id": {
                     "type": "integer",
@@ -8819,8 +8818,7 @@
                     "$ref": "#/definitions/models.SolicitudTrabajoGrado"
                 },
                 "Usuario": {
-                    "type": "integer",
-                    "format": "int64"
+                    "type": "string"
                 }
             }
         },

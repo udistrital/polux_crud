@@ -9,7 +9,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-basePath: /v1
+basePath: /polux_api_crud/v1
 paths:
   /area_conocimiento/:
     get:
@@ -5528,8 +5528,7 @@ definitions:
       EstadoEstudianteTrabajoGrado:
         $ref: '#/definitions/models.EstadoEstudianteTrabajoGrado'
       Estudiante:
-        type: integer
-        format: int64
+        type: string
       Id:
         type: integer
         format: int64
@@ -5832,13 +5831,13 @@ definitions:
     type: object
     properties:
       DetallesSolicitud:
-        $ref: '#/definitions/52134.<nil>.DetalleSolicitud'
+        $ref: '#/definitions/models.DetalleSolicitud'
       Respuesta:
         $ref: '#/definitions/models.RespuestaSolicitud'
       Solicitud:
         $ref: '#/definitions/models.SolicitudTrabajoGrado'
       UsuariosSolicitud:
-        $ref: '#/definitions/52173.<nil>.UsuarioSolicitud'
+        $ref: '#/definitions/models.UsuarioSolicitud'
   models.TrabajoGrado:
     title: TrabajoGrado
     type: object
@@ -5864,8 +5863,7 @@ definitions:
       SolicitudTrabajoGrado:
         $ref: '#/definitions/models.SolicitudTrabajoGrado'
       Usuario:
-        type: integer
-        format: int64
+        type: string
   models.VinculacionTrabajoGrado:
     title: VinculacionTrabajoGrado
     type: object

@@ -11,7 +11,7 @@ import (
 
 type EstudianteTrabajoGrado struct {
 	Id                           int                           `orm:"column(id);pk;auto"`
-	Estudiante                   int                           `orm:"column(estudiante)"`
+	Estudiante                   string                        `orm:"column(estudiante)"`
 	TrabajoGrado                 *TrabajoGrado                 `orm:"column(trabajo_grado);rel(fk)"`
 	EstadoEstudianteTrabajoGrado *EstadoEstudianteTrabajoGrado `orm:"column(estado_estudiante_trabajo_grado);rel(fk)"`
 }
