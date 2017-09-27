@@ -14,7 +14,7 @@ type TrabajoGrado struct {
 	Titulo                 string                  `orm:"column(titulo)"`
 	Modalidad              *Modalidad              `orm:"column(modalidad);rel(fk)"`
 	EstadoTrabajoGrado     *EstadoTrabajoGrado     `orm:"column(estado_trabajo_grado);rel(fk)"`
-	DistincionTrabajoGrado *DistincionTrabajoGrado `orm:"column(distincion_trabajo_grado);rel(fk)"`
+	DistincionTrabajoGrado *DistincionTrabajoGrado `orm:"column(distincion_trabajo_grado);rel(fk);null"`
 }
 
 func (t *TrabajoGrado) TableName() string {
