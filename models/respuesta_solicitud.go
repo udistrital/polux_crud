@@ -60,7 +60,7 @@ func GetAllRespuestaSolicitud(query map[string]string, fields []string, sortby [
 		if strings.Contains(k, "isnull") {
 			qs = qs.Filter(k, (v == "true" || v == "1"))
 		} else if strings.Contains(k, "in") {
-			qs = qs.Filter("EstadoSolicitud__Id__in", 6, 7, 8)
+			qs = qs.Filter("EstadoSolicitud__Id__in", 5, 6, 7, 8, 9, 10)
 		} else {
 			qs = qs.Filter(k, v)
 		}
