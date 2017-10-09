@@ -60,11 +60,13 @@ func GetAllRespuestaSolicitud(query map[string]string, fields []string, sortby [
 		if strings.Contains(k, "isnull") {
 			qs = qs.Filter(k, (v == "true" || v == "1"))
 		} else if strings.Contains(k, "in") {
-			qs = qs.Filter("EstadoSolicitud__Id__in", 5, 6, 7, 8, 9, 10)
+			arr := strings.Split(v, "|")
+			qs = qs.Filter(k, arr)
 		} else {
 			qs = qs.Filter(k, v)
 		}
 	}
+
 	// order by:
 	var sortFields []string
 	if len(sortby) != 0 {
