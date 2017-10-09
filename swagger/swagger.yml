@@ -9,7 +9,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-basePath: /polux_api_crud/v1
+basePath: /v1
 paths:
   /area_conocimiento/:
     get:
@@ -5831,13 +5831,13 @@ definitions:
     type: object
     properties:
       DetallesSolicitud:
-        $ref: '#/definitions/193245.<nil>.DetalleSolicitud'
+        $ref: '#/definitions/models.DetalleSolicitud'
       Respuesta:
         $ref: '#/definitions/models.RespuestaSolicitud'
       Solicitud:
         $ref: '#/definitions/models.SolicitudTrabajoGrado'
       UsuariosSolicitud:
-        $ref: '#/definitions/193284.<nil>.UsuarioSolicitud'
+        $ref: '#/definitions/models.UsuarioSolicitud'
   models.TrabajoGrado:
     title: TrabajoGrado
     type: object
