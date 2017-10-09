@@ -1487,14 +1487,6 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RespuestaSolicitudController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RespuestaSolicitudController"],
-		beego.ControllerComments{
-			Method: "GetAllSolicitudes",
-			Router: `/Solicitudes`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
 	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:RevisionTrabajoGradoController"],
 		beego.ControllerComments{
 			Method: "Post",
