@@ -1,1 +1,1 @@
-Repositorio GIT del API del proyecto Pólux
+Repositorio del API Crud de Pólux
