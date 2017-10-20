@@ -297,6 +297,12 @@ func init() {
 				&controllers.TrSolicitudController{},
 			),
 		),
+
+		beego.NSNamespace("/tr_trabajo_grado",
+			beego.NSInclude(
+				&controllers.TrTrabajoGradoController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }
