@@ -13,7 +13,7 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "basePath": "/polux_api_crud/v1",
+    "basePath": "/v1",
     "paths": {
         "/area_conocimiento/": {
             "get": {
@@ -7267,6 +7267,34 @@
                 }
             }
         },
+        "/tr_trabajo_grado/": {
+            "post": {
+                "tags": [
+                    "tr_trabajo_grado"
+                ],
+                "description": "create the TrTrabajoGrado",
+                "operationId": "TrTrabajoGradoController.PostTrTrabajoGrado",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrTrabajoGrado content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrTrabajoGrado"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TrTrabajoGrado"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
         "/trabajo_grado/": {
             "get": {
                 "tags": [
@@ -8784,6 +8812,30 @@
                 }
             }
         },
+        "models.TrTrabajoGrado": {
+            "title": "TrTrabajoGrado",
+            "type": "object",
+            "properties": {
+                "AreasTrabajoGrado": {
+                    "$ref": "#/definitions/models.AreasTrabajoGrado"
+                },
+                "DocumentoEscrito": {
+                    "$ref": "#/definitions/models.DocumentoEscrito"
+                },
+                "DocumentoTrabajoGrado": {
+                    "$ref": "#/definitions/models.DocumentoTrabajoGrado"
+                },
+                "EstudianteTrabajoGrado": {
+                    "$ref": "#/definitions/models.EstudianteTrabajoGrado"
+                },
+                "TrabajoGrado": {
+                    "$ref": "#/definitions/models.TrabajoGrado"
+                },
+                "VinculacionTrabajoGrado": {
+                    "$ref": "#/definitions/models.VinculacionTrabajoGrado"
+                }
+            }
+        },
         "models.TrabajoGrado": {
             "title": "TrabajoGrado",
             "type": "object",
@@ -9045,6 +9097,10 @@
         {
             "name": "tr_solicitud",
             "description": "oprations for TrSolicitud\n"
+        },
+        {
+            "name": "tr_trabajo_grado",
+            "description": "oprations for TrTrabajoGrado\n"
         }
     ]
 }

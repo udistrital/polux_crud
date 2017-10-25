@@ -9,7 +9,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-basePath: /polux_api_crud/v1
+basePath: /v1
 paths:
   /area_conocimiento/:
     get:
@@ -4802,6 +4802,24 @@ paths:
           description: '{int} models.TrSolicitud'
         "403":
           description: body is empty
+  /tr_trabajo_grado/:
+    post:
+      tags:
+      - tr_trabajo_grado
+      description: create the TrTrabajoGrado
+      operationId: TrTrabajoGradoController.PostTrTrabajoGrado
+      parameters:
+      - in: body
+        name: body
+        description: body for TrTrabajoGrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TrTrabajoGrado'
+      responses:
+        "201":
+          description: '{int} models.TrTrabajoGrado'
+        "403":
+          description: body is empty
   /trabajo_grado/:
     get:
       tags:
@@ -5838,6 +5856,22 @@ definitions:
         $ref: '#/definitions/models.SolicitudTrabajoGrado'
       UsuariosSolicitud:
         $ref: '#/definitions/models.UsuarioSolicitud'
+  models.TrTrabajoGrado:
+    title: TrTrabajoGrado
+    type: object
+    properties:
+      AreasTrabajoGrado:
+        $ref: '#/definitions/models.AreasTrabajoGrado'
+      DocumentoEscrito:
+        $ref: '#/definitions/models.DocumentoEscrito'
+      DocumentoTrabajoGrado:
+        $ref: '#/definitions/models.DocumentoTrabajoGrado'
+      EstudianteTrabajoGrado:
+        $ref: '#/definitions/models.EstudianteTrabajoGrado'
+      TrabajoGrado:
+        $ref: '#/definitions/models.TrabajoGrado'
+      VinculacionTrabajoGrado:
+        $ref: '#/definitions/models.VinculacionTrabajoGrado'
   models.TrabajoGrado:
     title: TrabajoGrado
     type: object
@@ -6030,3 +6064,6 @@ tags:
 - name: tr_solicitud
   description: |
     oprations for TrSolicitud
+- name: tr_trabajo_grado
+  description: |
+    oprations for TrTrabajoGrado
