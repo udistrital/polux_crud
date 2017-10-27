@@ -13,7 +13,6 @@ import (
 type VinculacionTrabajoGrado struct {
 	Id              int              `orm:"column(id);pk;auto"`
 	Usuario         int              `orm:"column(usuario)"`
-	Nombre          string           `orm:"column(nombre)"`
 	Activo          bool             `orm:"column(activo)"`
 	FechaInicio     time.Time        `orm:"column(fecha_inicio);type(timestamp without time zone)"`
 	FechaFin        time.Time        `orm:"column(fecha_fin);type(timestamp without time zone);null"`
