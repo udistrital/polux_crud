@@ -13,6 +13,7 @@ type AreasTrabajoGrado struct {
 	Id               int               `orm:"column(id);pk;auto"`
 	AreaConocimiento *AreaConocimiento `orm:"column(area_conocimiento);rel(fk)"`
 	TrabajoGrado     *TrabajoGrado     `orm:"column(trabajo_grado);rel(fk)"`
+	Activo           bool              `orm:"column(activo)"`
 }
 
 func (t *AreasTrabajoGrado) TableName() string {
