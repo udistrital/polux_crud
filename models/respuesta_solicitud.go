@@ -56,6 +56,7 @@ func GetAllRespuestaSolicitud(query map[string]string, fields []string, sortby [
 	qs := o.QueryTable(new(RespuestaSolicitud)).RelatedSel(4)
 	// query k=v
 	for k, v := range query {
+		fmt.Println(k)
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
 		if strings.Contains(k, "isnull") {

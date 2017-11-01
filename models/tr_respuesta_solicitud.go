@@ -7,8 +7,9 @@ import (
 )
 
 type TrRespuestaSolicitud struct {
-	RespuestaSolicitud *RespuestaSolicitud
-	DocumentoEscrito   *DocumentoEscrito
+	RespuestaAnterior  *RespuestaSolicitud
+	RespuestaNueva     *RespuestaSolicitud
+	DocumentoSolicitud *DocumentoSolicitud
 }
 
 //funcion para la transaccion de solicitudes
@@ -16,21 +17,32 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 	o := orm.NewOrm()
 	o.Begin()
 	alerta = append(alerta, "Success")
-	if id, err := o.Insert(m.RespuestaSolicitud); err == nil {
-		fmt.Println(id)
 
-		if id_documento, err := o.Insert(m.DocumentoEscrito); err == nil {
-			fmt.Println(id_documento)
-			/*
-				m.DocumentoTrabajoGrado.TrabajoGrado.Id = int(id)
-				m.DocumentoTrabajoGrado.DocumentoEscrito.Id = int(id_documento)
+	var num int64
+	//update del estado de la ultima solicitud
+	if num, err = o.Update(m.RespuestaAnterior); err == nil {
+		fmt.Println("Number of records updated in database:", num)
+		fmt.Println(m.RespuestaNueva)
+		//insert de la nueva rta
+		if id_rta, err := o.Insert(m.RespuestaNueva); err == nil {
+			fmt.Println(id_rta)
 
-				if id_documento, err := o.Insert(m.DocumentoTrabajoGrado); err == nil {
-					fmt.Println(id_documento)
-				}*/
+			//insert documento asociado a la nueva rta
+			m.DocumentoSolicitud.SolicitudTrabajoGrado.Id = int(id_rta)
+			if id_documento, err := o.Insert(m.DocumentoSolicitud); err == nil {
+				fmt.Println(id_documento)
+
+				err = o.Commit()
+			} else {
+				fmt.Println(err)
+				err = o.Rollback()
+			}
+
+		} else {
+			fmt.Println(err)
+			err = o.Rollback()
 		}
 
-		//err = o.Commit()
 	} else {
 		fmt.Println(err)
 		err = o.Rollback()
