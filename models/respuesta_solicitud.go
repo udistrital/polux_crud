@@ -18,6 +18,7 @@ type RespuestaSolicitud struct {
 	Usuario               int                    `orm:"column(usuario);null"`
 	EstadoSolicitud       *EstadoSolicitud       `orm:"column(estado_solicitud);rel(fk)"`
 	SolicitudTrabajoGrado *SolicitudTrabajoGrado `orm:"column(solicitud_trabajo_grado);rel(fk)"`
+	Activo                bool                   `orm:"column(activo)"`
 }
 
 func (t *RespuestaSolicitud) TableName() string {

@@ -7239,6 +7239,34 @@
                 }
             }
         },
+        "/tr_respuesta_solicitud/": {
+            "post": {
+                "tags": [
+                    "tr_respuesta_solicitud"
+                ],
+                "description": "create the TrRespuestaSolicitud",
+                "operationId": "TrRespuestaSolicitudController.PostTrRespuestaSolicitud",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrRespuestaSolicitud content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrRespuestaSolicitud"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TrRespuestaSolicitud"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
         "/tr_solicitud/": {
             "post": {
                 "tags": [
@@ -7831,6 +7859,9 @@
             "title": "AreasDocente",
             "type": "object",
             "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
                 "AreaConocimiento": {
                     "$ref": "#/definitions/models.AreaConocimiento"
                 },
@@ -7848,6 +7879,9 @@
             "title": "AreasTrabajoGrado",
             "type": "object",
             "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
                 "AreaConocimiento": {
                     "$ref": "#/definitions/models.AreaConocimiento"
                 },
@@ -8607,6 +8641,9 @@
             "title": "RespuestaSolicitud",
             "type": "object",
             "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
                 "EnteResponsable": {
                     "type": "integer",
                     "format": "int64"
@@ -8794,6 +8831,18 @@
                 }
             }
         },
+        "models.TrRespuestaSolicitud": {
+            "title": "TrRespuestaSolicitud",
+            "type": "object",
+            "properties": {
+                "DocumentoEscrito": {
+                    "$ref": "#/definitions/models.DocumentoEscrito"
+                },
+                "RespuestaSolicitud": {
+                    "$ref": "#/definitions/models.RespuestaSolicitud"
+                }
+            }
+        },
         "models.TrSolicitud": {
             "title": "TrSolicitud",
             "type": "object",
@@ -8892,9 +8941,6 @@
                 "Id": {
                     "type": "integer",
                     "format": "int64"
-                },
-                "Nombre": {
-                    "type": "string"
                 },
                 "RolTrabajoGrado": {
                     "$ref": "#/definitions/models.RolTrabajoGrado"
@@ -9100,6 +9146,10 @@
         },
         {
             "name": "tr_trabajo_grado",
+            "description": "oprations for TrTrabajoGrado\n"
+        },
+        {
+            "name": "tr_respuesta_solicitud",
             "description": "oprations for TrTrabajoGrado\n"
         }
     ]

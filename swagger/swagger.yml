@@ -4784,6 +4784,24 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
+  /tr_respuesta_solicitud/:
+    post:
+      tags:
+      - tr_respuesta_solicitud
+      description: create the TrRespuestaSolicitud
+      operationId: TrRespuestaSolicitudController.PostTrRespuestaSolicitud
+      parameters:
+      - in: body
+        name: body
+        description: body for TrRespuestaSolicitud content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TrRespuestaSolicitud'
+      responses:
+        "201":
+          description: '{int} models.TrRespuestaSolicitud'
+        "403":
+          description: body is empty
   /tr_solicitud/:
     post:
       tags:
@@ -5176,6 +5194,8 @@ definitions:
     title: AreasDocente
     type: object
     properties:
+      Activo:
+        type: boolean
       AreaConocimiento:
         $ref: '#/definitions/models.AreaConocimiento'
       Docente:
@@ -5188,6 +5208,8 @@ definitions:
     title: AreasTrabajoGrado
     type: object
     properties:
+      Activo:
+        type: boolean
       AreaConocimiento:
         $ref: '#/definitions/models.AreaConocimiento'
       Id:
@@ -5715,6 +5737,8 @@ definitions:
     title: RespuestaSolicitud
     type: object
     properties:
+      Activo:
+        type: boolean
       EnteResponsable:
         type: integer
         format: int64
@@ -5844,6 +5868,14 @@ definitions:
         format: int64
       Nombre:
         type: string
+  models.TrRespuestaSolicitud:
+    title: TrRespuestaSolicitud
+    type: object
+    properties:
+      DocumentoEscrito:
+        $ref: '#/definitions/models.DocumentoEscrito'
+      RespuestaSolicitud:
+        $ref: '#/definitions/models.RespuestaSolicitud'
   models.TrSolicitud:
     title: TrSolicitud
     type: object
@@ -5913,8 +5945,6 @@ definitions:
       Id:
         type: integer
         format: int64
-      Nombre:
-        type: string
       RolTrabajoGrado:
         $ref: '#/definitions/models.RolTrabajoGrado'
       TrabajoGrado:
@@ -6065,5 +6095,8 @@ tags:
   description: |
     oprations for TrSolicitud
 - name: tr_trabajo_grado
+  description: |
+    oprations for TrTrabajoGrado
+- name: tr_respuesta_solicitud
   description: |
     oprations for TrTrabajoGrado
