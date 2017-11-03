@@ -7,11 +7,12 @@ import (
 )
 
 type TrRespuestaSolicitud struct {
-	RespuestaAnterior  *RespuestaSolicitud
-	RespuestaNueva     *RespuestaSolicitud
-	DocumentoSolicitud *DocumentoSolicitud
-	TipoSolicitud      *TipoSolicitud
-	Vinculaciones      *[]VinculacionTrabajoGrado
+	RespuestaAnterior      *RespuestaSolicitud
+	RespuestaNueva         *RespuestaSolicitud
+	DocumentoSolicitud     *DocumentoSolicitud
+	TipoSolicitud          *TipoSolicitud
+	Vinculaciones          *[]VinculacionTrabajoGrado //Cambio de director o evaluador
+	EstudianteTrabajoGrado *EstudianteTrabajoGrado    //Cancelación trabajo grado
 }
 
 //funcion para la transaccion de solicitudes
@@ -30,7 +31,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 			fmt.Println(id_rta)
 
 			//insert documento asociado a la nueva rta
-			m.DocumentoSolicitud.SolicitudTrabajoGrado.Id = int(id_rta)
+			//m.DocumentoSolicitud.SolicitudTrabajoGrado.Id = int(id_rta)
 			if id_documento, err := o.Insert(m.DocumentoSolicitud); err == nil {
 				fmt.Println(id_documento)
 
@@ -57,6 +58,12 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 							}
 						}
 
+					}
+				}
+
+				if m.TipoSolicitud.Id == 3 { //solicitud de cancelación de la modalidad
+					if num, err = o.Update(m.EstudianteTrabajoGrado); err == nil {
+						fmt.Println("Number of records updated in database:", num)
 					}
 				}
 
