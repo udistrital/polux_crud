@@ -64,6 +64,21 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 				if m.TipoSolicitud.Id == 3 { //solicitud de cancelación de la modalidad
 					if num, err = o.Update(m.EstudianteTrabajoGrado); err == nil {
 						fmt.Println("Number of records updated in database:", num)
+						//consultar # estudiantes del trabajo de grado
+						cnt, _ := o.QueryTable("estudiante_trabajo_grado").Filter("trabajo_grado", m.EstudianteTrabajoGrado.TrabajoGrado.Id).Count()
+						fmt.Println("Count:", cnt)
+						//estado(cancelado) = 2
+						cnt2, _ := o.QueryTable("estudiante_trabajo_grado").Filter("trabajo_grado", m.EstudianteTrabajoGrado.TrabajoGrado.Id).Filter("estado_estudiante_trabajo_grado", 2).Count()
+						fmt.Println("Count:", cnt2)
+
+						if cnt == cnt2 {
+							//se cancela el trabajo de grado
+							tg := m.EstudianteTrabajoGrado.TrabajoGrado
+							tg.EstadoTrabajoGrado.Id = 2
+							if num, err = o.Update(tg); err == nil {
+								fmt.Println("Number of records updated in database:", num)
+							}
+						}
 					}
 				}
 
