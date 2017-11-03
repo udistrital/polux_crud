@@ -37,7 +37,8 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 				//seguir la transacción según el caso: de acuerdo al tipo de solicitud
 				fmt.Println(m.TipoSolicitud.Nombre)
 				fmt.Println(m.TipoSolicitud.Id)
-				if m.TipoSolicitud.Id == 4 { //solicitud de cambio de director interno
+
+				if (m.TipoSolicitud.Id == 4) || (m.TipoSolicitud.Id == 10) { //solicitud de cambio de director interno, o evaluador
 					for _, v := range *m.Vinculaciones {
 						fmt.Println(v)
 						if v.Activo == true {
