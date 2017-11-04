@@ -13,6 +13,8 @@ type TrRespuestaSolicitud struct {
 	TipoSolicitud          *TipoSolicitud
 	Vinculaciones          *[]VinculacionTrabajoGrado //Cambio de director o evaluador
 	EstudianteTrabajoGrado *EstudianteTrabajoGrado    //Cancelación trabajo grado
+	TrTrabajoGrado         *TrTrabajoGrado            //Solictudes iniciales
+	ModalidadTipoSolicitud *ModalidadTipoSolicitud    //Para saber el tipo de solicitud inicial
 }
 
 //funcion para la transaccion de solicitudes
@@ -79,6 +81,62 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 								fmt.Println("Number of records updated in database:", num)
 							}
 						}
+					}
+				}
+
+				//solicitudes iniciales
+				if m.TipoSolicitud.Id == 2 {
+					//Monografia, Proyecto de emprendimento, Creación e Interpretación, Producción académica
+					if m.ModalidadTipoSolicitud.Id == 20 || m.TipoSolicitud.Id == 46 || m.TipoSolicitud.Id == 38 || m.TipoSolicitud.Id == 55 {
+
+						if id, err := o.Insert(m.TrTrabajoGrado.TrabajoGrado); err == nil {
+							fmt.Println(id)
+
+							for _, v := range *m.TrTrabajoGrado.EstudianteTrabajoGrado {
+								v.TrabajoGrado.Id = int(id)
+								if _, err = o.Insert(&v); err != nil {
+									fmt.Println(err)
+									err = o.Rollback()
+									alerta[0] = "Error"
+									alerta = append(alerta, "ERROR_SOLICITUDES_1")
+								}
+							}
+
+							for _, v := range *m.TrTrabajoGrado.AreasTrabajoGrado {
+								v.TrabajoGrado.Id = int(id)
+								if _, err = o.Insert(&v); err != nil {
+									fmt.Println(err)
+									err = o.Rollback()
+									alerta[0] = "Error"
+									alerta = append(alerta, "ERROR_SOLICITUDES_2")
+								}
+							}
+
+							for _, v := range *m.TrTrabajoGrado.VinculacionTrabajoGrado {
+								v.TrabajoGrado.Id = int(id)
+								if _, err = o.Insert(&v); err != nil {
+									fmt.Println(err)
+									err = o.Rollback()
+									alerta[0] = "Error"
+									alerta = append(alerta, "ERROR_SOLICITUDES_3")
+								}
+							}
+
+							if id_documento, err := o.Insert(m.TrTrabajoGrado.DocumentoEscrito); err == nil {
+								fmt.Println(id_documento)
+								m.TrTrabajoGrado.DocumentoTrabajoGrado.TrabajoGrado.Id = int(id)
+								m.TrTrabajoGrado.DocumentoTrabajoGrado.DocumentoEscrito.Id = int(id_documento)
+
+								if id_documento, err := o.Insert(m.TrTrabajoGrado.DocumentoTrabajoGrado); err == nil {
+									fmt.Println(id_documento)
+								}
+							}
+
+						} else {
+							fmt.Println(err)
+							err = o.Rollback()
+						}
+
 					}
 				}
 
