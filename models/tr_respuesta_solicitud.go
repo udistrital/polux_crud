@@ -24,77 +24,63 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 	alerta = append(alerta, "Success")
 
 	var num int64
-	//update del estado de la ultima solicitud
-	if num, err = o.Update(m.RespuestaAnterior); err == nil {
-		fmt.Println("Number of records updated in database:", num)
-		fmt.Println(m.RespuestaNueva)
-		//insert de la nueva rta
-		if id_rta, err := o.Insert(m.RespuestaNueva); err == nil {
-			fmt.Println(id_rta)
 
-			//insert documento asociado a la nueva rta
-			//m.DocumentoSolicitud.SolicitudTrabajoGrado.Id = int(id_rta)
-			if id_documento, err := o.Insert(m.DocumentoSolicitud); err == nil {
-				fmt.Println(id_documento)
-
-				//seguir la transacción según el caso: de acuerdo al tipo de solicitud
-				fmt.Println(m.TipoSolicitud.Nombre)
-				fmt.Println(m.TipoSolicitud.Id)
-
-				if (m.TipoSolicitud.Id == 4) || (m.TipoSolicitud.Id == 10) { //solicitud de cambio de director interno, o evaluador
-					for _, v := range *m.Vinculaciones {
-						fmt.Println(v)
-						if v.Activo == true {
-							if _, err = o.Insert(&v); err != nil {
-								fmt.Println(err)
-								err = o.Rollback()
-								alerta[0] = "Error"
-								alerta = append(alerta, "ERROR_SOLICITUDES_1")
-							}
-						} else {
-							if _, err = o.Update(&v); err != nil {
-								fmt.Println(err)
-								err = o.Rollback()
-								alerta[0] = "Error"
-								alerta = append(alerta, "ERROR_SOLICITUDES_1")
-							}
-						}
-
-					}
+	//solicitud rechazada
+	if m.RespuestaNueva.EstadoSolicitud.Id == 5 {
+		//update del estado de la ultima solicitud
+		if num, err = o.Update(m.RespuestaAnterior); err == nil {
+			fmt.Println("Number of records updated in database:", num)
+			fmt.Println(m.RespuestaNueva)
+			//insert de la nueva rta
+			if id_rta, err := o.Insert(m.RespuestaNueva); err == nil {
+				fmt.Println(id_rta)
+				//insert documento asociado a la nueva rta
+				//m.DocumentoSolicitud.SolicitudTrabajoGrado.Id = int(id_rta)
+				if id_documento, err := o.Insert(m.DocumentoSolicitud); err == nil {
+					fmt.Println(id_documento)
+					err = o.Commit()
+				} else {
+					fmt.Println(err)
+					err = o.Rollback()
 				}
+			} else {
+				fmt.Println(err)
+				err = o.Rollback()
+			}
+		} else {
+			fmt.Println(err)
+			err = o.Rollback()
+		}
+	} else {
+		//update del estado de la ultima solicitud
+		if num, err = o.Update(m.RespuestaAnterior); err == nil {
+			fmt.Println("Number of records updated in database:", num)
+			fmt.Println(m.RespuestaNueva)
+			//insert de la nueva rta
+			if id_rta, err := o.Insert(m.RespuestaNueva); err == nil {
+				fmt.Println(id_rta)
 
-				if m.TipoSolicitud.Id == 3 { //solicitud de cancelación de la modalidad
-					if num, err = o.Update(m.EstudianteTrabajoGrado); err == nil {
-						fmt.Println("Number of records updated in database:", num)
-						//consultar # estudiantes del trabajo de grado
-						cnt, _ := o.QueryTable("estudiante_trabajo_grado").Filter("trabajo_grado", m.EstudianteTrabajoGrado.TrabajoGrado.Id).Count()
-						fmt.Println("Count:", cnt)
-						//estado(cancelado) = 2
-						cnt2, _ := o.QueryTable("estudiante_trabajo_grado").Filter("trabajo_grado", m.EstudianteTrabajoGrado.TrabajoGrado.Id).Filter("estado_estudiante_trabajo_grado", 2).Count()
-						fmt.Println("Count:", cnt2)
+				//insert documento asociado a la nueva rta
+				//m.DocumentoSolicitud.SolicitudTrabajoGrado.Id = int(id_rta)
+				if id_documento, err := o.Insert(m.DocumentoSolicitud); err == nil {
+					fmt.Println(id_documento)
 
-						if cnt == cnt2 {
-							//se cancela el trabajo de grado
-							tg := m.EstudianteTrabajoGrado.TrabajoGrado
-							tg.EstadoTrabajoGrado.Id = 2
-							if num, err = o.Update(tg); err == nil {
-								fmt.Println("Number of records updated in database:", num)
-							}
-						}
-					}
-				}
+					//seguir la transacción según el caso: de acuerdo al tipo de solicitud
+					fmt.Println(m.TipoSolicitud.Nombre)
+					fmt.Println(m.TipoSolicitud.Id)
 
-				//solicitudes iniciales
-				if m.TipoSolicitud.Id == 2 {
-					//Monografia, Proyecto de emprendimento, Creación e Interpretación, Producción académica
-					if m.ModalidadTipoSolicitud.Id == 20 || m.TipoSolicitud.Id == 46 || m.TipoSolicitud.Id == 38 || m.TipoSolicitud.Id == 55 {
-
-						if id, err := o.Insert(m.TrTrabajoGrado.TrabajoGrado); err == nil {
-							fmt.Println(id)
-
-							for _, v := range *m.TrTrabajoGrado.EstudianteTrabajoGrado {
-								v.TrabajoGrado.Id = int(id)
+					if (m.TipoSolicitud.Id == 4) || (m.TipoSolicitud.Id == 10) { //solicitud de cambio de director interno, o evaluador
+						for _, v := range *m.Vinculaciones {
+							fmt.Println(v)
+							if v.Activo == true {
 								if _, err = o.Insert(&v); err != nil {
+									fmt.Println(err)
+									err = o.Rollback()
+									alerta[0] = "Error"
+									alerta = append(alerta, "ERROR_SOLICITUDES_1")
+								}
+							} else {
+								if _, err = o.Update(&v); err != nil {
 									fmt.Println(err)
 									err = o.Rollback()
 									alerta[0] = "Error"
@@ -102,45 +88,114 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 								}
 							}
 
-							for _, v := range *m.TrTrabajoGrado.AreasTrabajoGrado {
-								v.TrabajoGrado.Id = int(id)
-								if _, err = o.Insert(&v); err != nil {
-									fmt.Println(err)
-									err = o.Rollback()
-									alerta[0] = "Error"
-									alerta = append(alerta, "ERROR_SOLICITUDES_2")
-								}
-							}
-
-							for _, v := range *m.TrTrabajoGrado.VinculacionTrabajoGrado {
-								v.TrabajoGrado.Id = int(id)
-								if _, err = o.Insert(&v); err != nil {
-									fmt.Println(err)
-									err = o.Rollback()
-									alerta[0] = "Error"
-									alerta = append(alerta, "ERROR_SOLICITUDES_3")
-								}
-							}
-
-							if id_documento, err := o.Insert(m.TrTrabajoGrado.DocumentoEscrito); err == nil {
-								fmt.Println(id_documento)
-								m.TrTrabajoGrado.DocumentoTrabajoGrado.TrabajoGrado.Id = int(id)
-								m.TrTrabajoGrado.DocumentoTrabajoGrado.DocumentoEscrito.Id = int(id_documento)
-
-								if id_documento, err := o.Insert(m.TrTrabajoGrado.DocumentoTrabajoGrado); err == nil {
-									fmt.Println(id_documento)
-								}
-							}
-
-						} else {
-							fmt.Println(err)
-							err = o.Rollback()
 						}
-
 					}
+
+					if m.TipoSolicitud.Id == 3 { //solicitud de cancelación de la modalidad
+						if num, err = o.Update(m.EstudianteTrabajoGrado); err == nil {
+							fmt.Println("Number of records updated in database:", num)
+							//consultar # estudiantes del trabajo de grado
+							cnt, _ := o.QueryTable("estudiante_trabajo_grado").Filter("trabajo_grado", m.EstudianteTrabajoGrado.TrabajoGrado.Id).Count()
+							fmt.Println("Count:", cnt)
+							//estado(cancelado) = 2
+							cnt2, _ := o.QueryTable("estudiante_trabajo_grado").Filter("trabajo_grado", m.EstudianteTrabajoGrado.TrabajoGrado.Id).Filter("estado_estudiante_trabajo_grado", 2).Count()
+							fmt.Println("Count:", cnt2)
+
+							if cnt == cnt2 {
+								//se cancela el trabajo de grado
+								tg := m.EstudianteTrabajoGrado.TrabajoGrado
+								tg.EstadoTrabajoGrado.Id = 2
+								if num, err = o.Update(tg); err == nil {
+									fmt.Println("Number of records updated in database:", num)
+								}
+							}
+						}
+					}
+
+					//solicitudes iniciales
+					if m.TipoSolicitud.Id == 2 {
+						//Monografia, Proyecto de emprendimento, Creación e Interpretación, Producción académica
+						if m.ModalidadTipoSolicitud.Id == 20 || m.TipoSolicitud.Id == 46 || m.TipoSolicitud.Id == 38 || m.TipoSolicitud.Id == 55 {
+
+							if id, err := o.Insert(m.TrTrabajoGrado.TrabajoGrado); err == nil {
+								fmt.Println(id)
+
+								for _, v := range *m.TrTrabajoGrado.EstudianteTrabajoGrado {
+									v.TrabajoGrado.Id = int(id)
+									if _, err = o.Insert(&v); err != nil {
+										fmt.Println(err)
+										err = o.Rollback()
+										alerta[0] = "Error"
+										alerta = append(alerta, "ERROR_SOLICITUDES_1")
+									}
+								}
+
+								for _, v := range *m.TrTrabajoGrado.AreasTrabajoGrado {
+									v.TrabajoGrado.Id = int(id)
+									if _, err = o.Insert(&v); err != nil {
+										fmt.Println(err)
+										err = o.Rollback()
+										alerta[0] = "Error"
+										alerta = append(alerta, "ERROR_SOLICITUDES_2")
+									}
+								}
+
+								for _, v := range *m.TrTrabajoGrado.VinculacionTrabajoGrado {
+									v.TrabajoGrado.Id = int(id)
+									if _, err = o.Insert(&v); err != nil {
+										fmt.Println(err)
+										err = o.Rollback()
+										alerta[0] = "Error"
+										alerta = append(alerta, "ERROR_SOLICITUDES_3")
+									}
+								}
+
+								if id_documento, err := o.Insert(m.TrTrabajoGrado.DocumentoEscrito); err == nil {
+									fmt.Println(id_documento)
+									m.TrTrabajoGrado.DocumentoTrabajoGrado.TrabajoGrado.Id = int(id)
+									m.TrTrabajoGrado.DocumentoTrabajoGrado.DocumentoEscrito.Id = int(id_documento)
+
+									if id_documento, err := o.Insert(m.TrTrabajoGrado.DocumentoTrabajoGrado); err == nil {
+										fmt.Println(id_documento)
+									}
+								}
+								err = o.Commit()
+							} else {
+								fmt.Println(err)
+								err = o.Rollback()
+							}
+
+						} else { //espacios académicos de posgrado o profundización
+							if id, err := o.Insert(m.TrTrabajoGrado.TrabajoGrado); err == nil {
+								fmt.Println(id)
+
+								fmt.Println(m.TrTrabajoGrado.EstudianteTrabajoGrado)
+								for _, v := range *m.TrTrabajoGrado.EstudianteTrabajoGrado {
+									fmt.Println(v)
+									v.TrabajoGrado.Id = int(id)
+									if _, err = o.Insert(&v); err != nil {
+										fmt.Println(err)
+										err = o.Rollback()
+										alerta[0] = "Error"
+										alerta = append(alerta, "ERROR_SOLICITUDES_1")
+									} else {
+										err = o.Commit()
+									}
+								}
+
+							} else {
+								fmt.Println(err)
+								err = o.Rollback()
+							}
+
+						}
+					}
+
+				} else {
+					fmt.Println(err)
+					err = o.Rollback()
 				}
 
-				err = o.Commit()
 			} else {
 				fmt.Println(err)
 				err = o.Rollback()
@@ -150,10 +205,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 			fmt.Println(err)
 			err = o.Rollback()
 		}
-
-	} else {
-		fmt.Println(err)
-		err = o.Rollback()
 	}
+
 	return
 }
