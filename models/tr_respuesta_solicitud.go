@@ -41,13 +41,19 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 					err = o.Commit()
 				} else {
 					fmt.Println(err)
+					alerta[0] = "Error"
+					alerta = append(alerta, "ERROR_RTA_SOLICITUD_3")
 					err = o.Rollback()
 				}
 			} else {
 				fmt.Println(err)
+				alerta[0] = "Error"
+				alerta = append(alerta, "ERROR_RTA_SOLICITUD_2")
 				err = o.Rollback()
 			}
 		} else {
+			alerta[0] = "Error"
+			alerta = append(alerta, "ERROR_RTA_SOLICITUD_1")
 			fmt.Println(err)
 			err = o.Rollback()
 		}
@@ -77,14 +83,14 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 									fmt.Println(err)
 									err = o.Rollback()
 									alerta[0] = "Error"
-									alerta = append(alerta, "ERROR_SOLICITUDES_1")
+									alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
 								}
 							} else {
 								if _, err = o.Update(&v); err != nil {
 									fmt.Println(err)
 									err = o.Rollback()
 									alerta[0] = "Error"
-									alerta = append(alerta, "ERROR_SOLICITUDES_1")
+									alerta = append(alerta, "ERROR_RTA_SOLICITUD_6")
 								}
 							}
 
@@ -107,8 +113,18 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 								tg.EstadoTrabajoGrado.Id = 2
 								if num, err = o.Update(tg); err == nil {
 									fmt.Println("Number of records updated in database:", num)
+								} else {
+									fmt.Println(err)
+									err = o.Rollback()
+									alerta[0] = "Error"
+									alerta = append(alerta, "ERROR_RTA_SOLICITUD_8")
 								}
 							}
+						} else {
+							fmt.Println(err)
+							err = o.Rollback()
+							alerta[0] = "Error"
+							alerta = append(alerta, "ERROR_RTA_SOLICITUD_7")
 						}
 					}
 
@@ -126,7 +142,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 										fmt.Println(err)
 										err = o.Rollback()
 										alerta[0] = "Error"
-										alerta = append(alerta, "ERROR_SOLICITUDES_1")
+										alerta = append(alerta, "ERROR_RTA_SOLICITUD_9")
 									}
 								}
 
@@ -136,7 +152,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 										fmt.Println(err)
 										err = o.Rollback()
 										alerta[0] = "Error"
-										alerta = append(alerta, "ERROR_SOLICITUDES_2")
+										alerta = append(alerta, "ERROR_RTA_SOLICITUD_10")
 									}
 								}
 
@@ -146,7 +162,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 										fmt.Println(err)
 										err = o.Rollback()
 										alerta[0] = "Error"
-										alerta = append(alerta, "ERROR_SOLICITUDES_3")
+										alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
 									}
 								}
 
@@ -157,12 +173,24 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 
 									if id_documento, err := o.Insert(m.TrTrabajoGrado.DocumentoTrabajoGrado); err == nil {
 										fmt.Println(id_documento)
+										err = o.Commit()
+									} else {
+										fmt.Println(err)
+										err = o.Rollback()
+										alerta[0] = "Error"
+										alerta = append(alerta, "ERROR_RTA_SOLICITUD_12")
 									}
+								} else {
+									fmt.Println(err)
+									err = o.Rollback()
+									alerta[0] = "Error"
+									alerta = append(alerta, "ERROR_RTA_SOLICITUD_11")
 								}
-								err = o.Commit()
 							} else {
 								fmt.Println(err)
 								err = o.Rollback()
+								alerta[0] = "Error"
+								alerta = append(alerta, "ERROR_RTA_SOLICITUD_4")
 							}
 
 						} else { //espacios académicos de posgrado o profundización
@@ -177,7 +205,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 										fmt.Println(err)
 										err = o.Rollback()
 										alerta[0] = "Error"
-										alerta = append(alerta, "ERROR_SOLICITUDES_1")
+										alerta = append(alerta, "ERROR_RTA_SOLICITUD_9")
 									} else {
 										err = o.Commit()
 									}
@@ -186,6 +214,8 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 							} else {
 								fmt.Println(err)
 								err = o.Rollback()
+								alerta[0] = "Error"
+								alerta = append(alerta, "ERROR_RTA_SOLICITUD_4")
 							}
 
 						}
@@ -194,16 +224,22 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 				} else {
 					fmt.Println(err)
 					err = o.Rollback()
+					alerta[0] = "Error"
+					alerta = append(alerta, "ERROR_RTA_SOLICITUD_3")
 				}
 
 			} else {
 				fmt.Println(err)
 				err = o.Rollback()
+				alerta[0] = "Error"
+				alerta = append(alerta, "ERROR_RTA_SOLICITUD_2")
 			}
 
 		} else {
 			fmt.Println(err)
 			err = o.Rollback()
+			alerta[0] = "Error"
+			alerta = append(alerta, "ERROR_RTA_SOLICITUD_1")
 		}
 	}
 
