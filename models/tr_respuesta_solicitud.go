@@ -15,6 +15,7 @@ type TrRespuestaSolicitud struct {
 	EstudianteTrabajoGrado *EstudianteTrabajoGrado    //Cancelación trabajo grado
 	TrTrabajoGrado         *TrTrabajoGrado            //Solictudes iniciales
 	ModalidadTipoSolicitud *ModalidadTipoSolicitud    //Para saber el tipo de solicitud inicial
+	TrabajoGrado           *TrabajoGrado              //Cambio Titulo
 }
 
 //funcion para la transaccion de solicitudes
@@ -94,6 +95,18 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 								}
 							}
 
+						}
+					}
+
+					if m.TipoSolicitud.Id == 8 { //Solicitud de cambio tÍtulo trabajo de grado
+
+						if _, err = o.Update(m.TrabajoGrado); err != nil {
+							fmt.Println(err)
+							err = o.Rollback()
+							alerta[0] = "Error"
+							alerta = append(alerta, "ERROR_RTA_SOLICITUD_13")
+						} else {
+							err = o.Commit()
 						}
 					}
 
