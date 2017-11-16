@@ -27,6 +27,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 	var num int64
 
 	//solicitud rechazada
+	fmt.Println(m.RespuestaNueva.EstadoSolicitud.Id)
 	if m.RespuestaNueva.EstadoSolicitud.Id == 5 {
 		//update del estado de la ultima solicitud
 		if num, err = o.Update(m.RespuestaAnterior); err == nil {
@@ -59,7 +60,9 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 			err = o.Rollback()
 		}
 	} else {
+		fmt.Println(m.TipoSolicitud.Id)
 		//update del estado de la ultima solicitud
+		fmt.Println(m.RespuestaAnterior)
 		if num, err = o.Update(m.RespuestaAnterior); err == nil {
 			fmt.Println("Number of records updated in database:", num)
 			fmt.Println(m.RespuestaNueva)
