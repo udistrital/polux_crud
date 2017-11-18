@@ -23,12 +23,12 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 	o := orm.NewOrm()
 	o.Begin()
 	alerta = append(alerta, "Success")
-
 	var num int64
 
 	//solicitud rechazada
 	fmt.Println(m.RespuestaNueva.EstadoSolicitud.Id)
 	if m.RespuestaNueva.EstadoSolicitud.Id == 5 {
+
 		//update del estado de la ultima solicitud
 		if num, err = o.Update(m.RespuestaAnterior); err == nil {
 			fmt.Println("Number of records updated in database:", num)
@@ -99,6 +99,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 							}
 
 						}
+						err = o.Commit()
 					}
 
 					if m.TipoSolicitud.Id == 8 { //Solicitud de cambio tÍtulo trabajo de grado
@@ -111,6 +112,10 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 						} else {
 							err = o.Commit()
 						}
+					}
+
+					if m.TipoSolicitud.Id == 6 || m.TipoSolicitud.Id == 7 { //Solicitud de socialización o prórroga
+						err = o.Commit()
 					}
 
 					if m.TipoSolicitud.Id == 3 { //solicitud de cancelación de la modalidad
@@ -129,12 +134,15 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 								tg.EstadoTrabajoGrado.Id = 2
 								if num, err = o.Update(tg); err == nil {
 									fmt.Println("Number of records updated in database:", num)
+									err = o.Commit()
 								} else {
 									fmt.Println(err)
 									err = o.Rollback()
 									alerta[0] = "Error"
 									alerta = append(alerta, "ERROR_RTA_SOLICITUD_8")
 								}
+							} else {
+								err = o.Commit()
 							}
 						} else {
 							fmt.Println(err)
