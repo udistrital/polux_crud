@@ -155,7 +155,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 					//solicitudes iniciales
 					if m.TipoSolicitud.Id == 2 {
 						//Monografia, Proyecto de emprendimento, Creación e Interpretación, Producción académica
-						if m.ModalidadTipoSolicitud.Id == 20 || m.TipoSolicitud.Id == 46 || m.TipoSolicitud.Id == 38 || m.TipoSolicitud.Id == 55 {
+						if m.ModalidadTipoSolicitud.Id == 20 || m.ModalidadTipoSolicitud.Id == 46 || m.ModalidadTipoSolicitud.Id == 38 || m.ModalidadTipoSolicitud.Id == 55 {
 
 							if id, err := o.Insert(m.TrTrabajoGrado.TrabajoGrado); err == nil {
 								fmt.Println(id)
