@@ -11,7 +11,7 @@ type TrRespuestaSolicitud struct {
 	RespuestaNueva         *RespuestaSolicitud
 	DocumentoSolicitud     *DocumentoSolicitud
 	TipoSolicitud          *TipoSolicitud
-	Vinculaciones          *[]VinculacionTrabajoGrado //Cambio de director o evaluador
+	Vinculaciones          *[]VinculacionTrabajoGrado //Cambio de director o evaluador..//Cancelación TG
 	EstudianteTrabajoGrado *EstudianteTrabajoGrado    //Cancelación trabajo grado
 	TrTrabajoGrado         *TrTrabajoGrado            //Solictudes iniciales
 	ModalidadTipoSolicitud *ModalidadTipoSolicitud    //Para saber el tipo de solicitud inicial
@@ -129,6 +129,17 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 							fmt.Println("Count:", cnt2)
 
 							if cnt == cnt2 {
+								//se inactivan las vinculaciones
+								for _, v := range *m.Vinculaciones {
+									v.Activo = false
+									if _, err = o.Update(&v); err != nil {
+										fmt.Println(err)
+										err = o.Rollback()
+										alerta[0] = "Error"
+										alerta = append(alerta, "ERROR_RTA_SOLICITUD_14")
+									}
+								}
+
 								//se cancela el trabajo de grado
 								tg := m.EstudianteTrabajoGrado.TrabajoGrado
 								tg.EstadoTrabajoGrado.Id = 2
