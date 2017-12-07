@@ -228,31 +228,8 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 								alerta = append(alerta, "ERROR_RTA_SOLICITUD_4")
 							}
 
-						} else { //espacios académicos de posgrado o profundización
-							if id, err := o.Insert(m.TrTrabajoGrado.TrabajoGrado); err == nil {
-								fmt.Println(id)
-
-								fmt.Println(m.TrTrabajoGrado.EstudianteTrabajoGrado)
-								for _, v := range *m.TrTrabajoGrado.EstudianteTrabajoGrado {
-									fmt.Println(v)
-									v.TrabajoGrado.Id = int(id)
-									if _, err = o.Insert(&v); err != nil {
-										fmt.Println(err)
-										err = o.Rollback()
-										alerta[0] = "Error"
-										alerta = append(alerta, "ERROR_RTA_SOLICITUD_9")
-									} else {
-										err = o.Commit()
-									}
-								}
-
-							} else {
-								fmt.Println(err)
-								err = o.Rollback()
-								alerta[0] = "Error"
-								alerta = append(alerta, "ERROR_RTA_SOLICITUD_4")
-							}
-
+						} else if m.ModalidadTipoSolicitud.Id == 13 || m.ModalidadTipoSolicitud.Id == 16 { //espacios académicos de posgrado o profundización
+							err = o.Commit()
 						}
 					}
 
