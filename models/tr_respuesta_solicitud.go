@@ -60,11 +60,8 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 			err = o.Rollback()
 		}
 	} else {
-		fmt.Println(m.RespuestaAnterior)
-		fmt.Println(o.Update(m.RespuestaAnterior))
 
 		if n, er := o.Update(m.RespuestaAnterior); er == nil {
-			fmt.Println("aquí")
 			fmt.Println("Number of records updated in database:", n)
 			fmt.Println(m.RespuestaNueva)
 			//insert de la nueva rta
@@ -249,7 +246,6 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 			}
 
 		} else {
-			fmt.Println("aquí")
 			fmt.Println(err)
 			err = o.Rollback()
 			alerta[0] = "Error"
