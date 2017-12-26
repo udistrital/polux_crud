@@ -47,7 +47,7 @@ func GetDocumentoSolicitudById(id int) (v *DocumentoSolicitud, err error) {
 func GetAllDocumentoSolicitud(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(DocumentoSolicitud))
+	qs := o.QueryTable(new(DocumentoSolicitud)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
