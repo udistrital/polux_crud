@@ -88,7 +88,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 									alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
 								}
 							} else {
-								if _, err = o.Update(&v); err != nil {
+								if _, err = o.Update(&v, "Activo", "FechaFin"); err != nil {
 									fmt.Println(err)
 									err = o.Rollback()
 									alerta[0] = "Error"
@@ -130,7 +130,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 								//se inactivan las vinculaciones
 								for _, v := range *m.Vinculaciones {
 									v.Activo = false
-									if _, err = o.Update(&v, "Activo", "FechaFin"); err != nil { //activo, fecha_fin
+									if _, err = o.Update(&v, "Activo", "FechaFin"); err != nil {
 										fmt.Println(err)
 										err = o.Rollback()
 										alerta[0] = "Error"
