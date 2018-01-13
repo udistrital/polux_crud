@@ -16,6 +16,7 @@ type TrRespuestaSolicitud struct {
 	TrTrabajoGrado         *TrTrabajoGrado            //Solictudes iniciales
 	ModalidadTipoSolicitud *ModalidadTipoSolicitud    //Para saber el tipo de solicitud inicial
 	TrabajoGrado           *TrabajoGrado              //Cambio Titulo
+	SolicitudTrabajoGrado  *SolicitudTrabajoGrado     //solicitud inicial
 }
 
 //funcion para la transaccion de solicitudes
@@ -169,55 +170,66 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 							if id, err := o.Insert(m.TrTrabajoGrado.TrabajoGrado); err == nil {
 								fmt.Println(id)
 
-								for _, v := range *m.TrTrabajoGrado.EstudianteTrabajoGrado {
-									v.TrabajoGrado.Id = int(id)
-									if _, err = o.Insert(&v); err != nil {
-										fmt.Println(err)
-										err = o.Rollback()
-										alerta[0] = "Error"
-										alerta = append(alerta, "ERROR_RTA_SOLICITUD_9")
+								//la solicitud inicial queda relacionada al trabajo de grado
+								m.SolicitudTrabajoGrado.TrabajoGrado.Id = int(id)
+								if id_sols, err := o.Update(m.SolicitudTrabajoGrado, "TrabajoGrado"); err == nil {
+									fmt.Println(id_sols)
+
+									for _, v := range *m.TrTrabajoGrado.EstudianteTrabajoGrado {
+										v.TrabajoGrado.Id = int(id)
+										if _, err = o.Insert(&v); err != nil {
+											fmt.Println(err)
+											err = o.Rollback()
+											alerta[0] = "Error"
+											alerta = append(alerta, "ERROR_RTA_SOLICITUD_9")
+										}
 									}
-								}
 
-								for _, v := range *m.TrTrabajoGrado.AreasTrabajoGrado {
-									v.TrabajoGrado.Id = int(id)
-									if _, err = o.Insert(&v); err != nil {
-										fmt.Println(err)
-										err = o.Rollback()
-										alerta[0] = "Error"
-										alerta = append(alerta, "ERROR_RTA_SOLICITUD_10")
+									for _, v := range *m.TrTrabajoGrado.AreasTrabajoGrado {
+										v.TrabajoGrado.Id = int(id)
+										if _, err = o.Insert(&v); err != nil {
+											fmt.Println(err)
+											err = o.Rollback()
+											alerta[0] = "Error"
+											alerta = append(alerta, "ERROR_RTA_SOLICITUD_10")
+										}
 									}
-								}
 
-								for _, v := range *m.TrTrabajoGrado.VinculacionTrabajoGrado {
-									v.TrabajoGrado.Id = int(id)
-									if _, err = o.Insert(&v); err != nil {
-										fmt.Println(err)
-										err = o.Rollback()
-										alerta[0] = "Error"
-										alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
+									for _, v := range *m.TrTrabajoGrado.VinculacionTrabajoGrado {
+										v.TrabajoGrado.Id = int(id)
+										if _, err = o.Insert(&v); err != nil {
+											fmt.Println(err)
+											err = o.Rollback()
+											alerta[0] = "Error"
+											alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
+										}
 									}
-								}
 
-								if id_documento, err := o.Insert(m.TrTrabajoGrado.DocumentoEscrito); err == nil {
-									fmt.Println(id_documento)
-									m.TrTrabajoGrado.DocumentoTrabajoGrado.TrabajoGrado.Id = int(id)
-									m.TrTrabajoGrado.DocumentoTrabajoGrado.DocumentoEscrito.Id = int(id_documento)
-
-									if id_documento, err := o.Insert(m.TrTrabajoGrado.DocumentoTrabajoGrado); err == nil {
+									if id_documento, err := o.Insert(m.TrTrabajoGrado.DocumentoEscrito); err == nil {
 										fmt.Println(id_documento)
-										err = o.Commit()
+										m.TrTrabajoGrado.DocumentoTrabajoGrado.TrabajoGrado.Id = int(id)
+										m.TrTrabajoGrado.DocumentoTrabajoGrado.DocumentoEscrito.Id = int(id_documento)
+
+										if id_documento, err := o.Insert(m.TrTrabajoGrado.DocumentoTrabajoGrado); err == nil {
+											fmt.Println(id_documento)
+											err = o.Commit()
+										} else {
+											fmt.Println(err)
+											err = o.Rollback()
+											alerta[0] = "Error"
+											alerta = append(alerta, "ERROR_RTA_SOLICITUD_12")
+										}
 									} else {
 										fmt.Println(err)
 										err = o.Rollback()
 										alerta[0] = "Error"
-										alerta = append(alerta, "ERROR_RTA_SOLICITUD_12")
+										alerta = append(alerta, "ERROR_RTA_SOLICITUD_11")
 									}
 								} else {
 									fmt.Println(err)
 									err = o.Rollback()
 									alerta[0] = "Error"
-									alerta = append(alerta, "ERROR_RTA_SOLICITUD_11")
+									alerta = append(alerta, "ERROR_RTA_SOLICITUD_333")
 								}
 							} else {
 								fmt.Println(err)
