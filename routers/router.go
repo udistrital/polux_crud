@@ -11,9 +11,13 @@ import (
 	"github.com/udistrital/Polux_API_Crud/controllers"
 
 	"github.com/astaxie/beego"
-)
+	/*Incluyendo líbreria de auditoría
+	"github.com/udistrital/auditoria"*/)
 
 func init() {
+	//Iniciando middleware
+	//auditoria.InitMiddleware()
+
 	ns := beego.NewNamespace("/v1",
 
 		beego.NSNamespace("/estado_solicitud",

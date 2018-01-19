@@ -8835,11 +8835,35 @@
             "title": "TrRespuestaSolicitud",
             "type": "object",
             "properties": {
-                "DocumentoEscrito": {
-                    "$ref": "#/definitions/models.DocumentoEscrito"
+                "DocumentoSolicitud": {
+                    "$ref": "#/definitions/models.DocumentoSolicitud"
                 },
-                "RespuestaSolicitud": {
+                "EstudianteTrabajoGrado": {
+                    "$ref": "#/definitions/models.EstudianteTrabajoGrado"
+                },
+                "ModalidadTipoSolicitud": {
+                    "$ref": "#/definitions/models.ModalidadTipoSolicitud"
+                },
+                "RespuestaAnterior": {
                     "$ref": "#/definitions/models.RespuestaSolicitud"
+                },
+                "RespuestaNueva": {
+                    "$ref": "#/definitions/models.RespuestaSolicitud"
+                },
+                "SolicitudTrabajoGrado": {
+                    "$ref": "#/definitions/models.SolicitudTrabajoGrado"
+                },
+                "TipoSolicitud": {
+                    "$ref": "#/definitions/models.TipoSolicitud"
+                },
+                "TrTrabajoGrado": {
+                    "$ref": "#/definitions/models.TrTrabajoGrado"
+                },
+                "TrabajoGrado": {
+                    "$ref": "#/definitions/models.TrabajoGrado"
+                },
+                "Vinculaciones": {
+                    "$ref": "#/definitions/models.VinculacionTrabajoGrado"
                 }
             }
         },
