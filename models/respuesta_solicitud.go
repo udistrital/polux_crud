@@ -51,9 +51,11 @@ func GetRespuestaSolicitudById(id int) (v *RespuestaSolicitud, err error) {
 // GetAllRespuestaSolicitud retrieves all RespuestaSolicitud matches certain condition. Returns empty list if
 // no records exist
 func GetAllRespuestaSolicitud(query map[string]string, fields []string, sortby []string, order []string,
-	offset int64, limit int64) (ml []interface{}, err error) {
-	o := orm.NewOrm()
+	offset int64, limit int64, exclude map[string]string) (ml []interface{}, err error) {
+	o := orm.NewOrm()	// query: k:v,k:v
 	qs := o.QueryTable(new(RespuestaSolicitud)).RelatedSel(4)
+
+
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -65,6 +67,20 @@ func GetAllRespuestaSolicitud(query map[string]string, fields []string, sortby [
 			qs = qs.Filter(k, arr)
 		} else {
 			qs = qs.Filter(k, v)
+		}
+	}
+
+	// exclude k=v
+	for k, v := range exclude {
+		// rewrite dot-notation to Object__Attribute
+		k = strings.Replace(k, ".", "__", -1)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Exclude(k, (v == "true" || v == "1"))
+		} else if strings.Contains(k, "in") {
+			arr := strings.Split(v, "|")
+			qs = qs.Exclude(k, arr)
+		} else {
+			qs = qs.Exclude(k, v)
 		}
 	}
 
