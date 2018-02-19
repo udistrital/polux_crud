@@ -313,6 +313,13 @@ func init() {
 				&controllers.TrRespuestaSolicitudController{},
 			),
 		),
+
+		beego.NSNamespace("/tr_registrar_pago",
+			beego.NSInclude(
+				&controllers.TrRegistrarPago{},
+			),
+		),
+
 	)
 	beego.AddNamespace(ns)
 }
