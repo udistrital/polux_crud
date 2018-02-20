@@ -9,6 +9,8 @@ import (
 type TrRegistrarPago struct {
 	RespuestaAnterior      *RespuestaSolicitud
 	RespuestaNueva         *RespuestaSolicitud
+	TrabajoGrado           *TrabajoGrado
+	EstudianteTrabajoGrado *EstudianteTrabajoGrado
 }
 
 //funcion para la transaccion de solicitudes
@@ -22,9 +24,28 @@ func AddTransaccionRegistrarPago(m *TrRegistrarPago) (alerta []string, err error
 		fmt.Println("Number of records updated in database:", num)
 
 		// Insert nueva respuesta
-		if id, err := o.Insert(m.RespuestaNueva); err == nil {
-			fmt.Println(id)
-			err = o.Commit()
+		if idRespuestaNueva, err := o.Insert(m.RespuestaNueva); err == nil {
+			fmt.Println(idRespuestaNueva)
+			// Insert trabajo grado
+			if idTrabajoGrado, err := o.Insert(m.TrabajoGrado); err == nil {
+				fmt.Println(idTrabajoGrado)
+				// Insert estudiante trabajo grado
+				m.EstudianteTrabajoGrado.TrabajoGrado.Id = int(idTrabajoGrado)
+				if idEstudianteTrabajoGrado, err := o.Insert(m.EstudianteTrabajoGrado); err == nil {
+					fmt.Println(idEstudianteTrabajoGrado)
+					err = o.Commit()
+				} else {
+					fmt.Println(err)
+					alerta[0] = "Error"
+					alerta = append(alerta, "ERROR_RTA_SOLICITUD_2")
+					err = o.Rollback()
+				}
+			} else {
+				fmt.Println(err)
+				alerta[0] = "Error"
+				alerta = append(alerta, "ERROR_RTA_SOLICITUD_2")
+				err = o.Rollback()
+			}
 		} else {
 			fmt.Println(err)
 			alerta[0] = "Error"
