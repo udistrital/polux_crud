@@ -11,6 +11,7 @@ type TrRegistrarPago struct {
 	RespuestaNueva         *RespuestaSolicitud
 	TrabajoGrado           *TrabajoGrado
 	EstudianteTrabajoGrado *EstudianteTrabajoGrado
+	EspaciosAcademicos		 *[]EspacioAcademicoInscrito
 }
 
 //funcion para la transaccion de solicitudes
@@ -33,6 +34,16 @@ func AddTransaccionRegistrarPago(m *TrRegistrarPago) (alerta []string, err error
 				m.EstudianteTrabajoGrado.TrabajoGrado.Id = int(idTrabajoGrado)
 				if idEstudianteTrabajoGrado, err := o.Insert(m.EstudianteTrabajoGrado); err == nil {
 					fmt.Println(idEstudianteTrabajoGrado)
+					// Insert espacios academicos inscritos
+					for _, v := range *m.EspaciosAcademicos {
+						v.TrabajoGrado.Id = int(idTrabajoGrado)
+						if _, err = o.Insert(&v); err != nil {
+							fmt.Println(err)
+							err = o.Rollback()
+							alerta[0] = "Error"
+							alerta = append(alerta, "ERROR_SOLICITUDES_1")
+						}
+					}
 					err = o.Commit()
 				} else {
 					fmt.Println(err)
