@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/astaxie/beego"
 	_ "github.com/udistrital/Polux_API_Crud/routers"
-
+	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/plugins/cors"
 	_ "github.com/lib/pq"
@@ -15,6 +15,10 @@ func init() {
 }
 
 func main() {
+	logPath := "{\"filename\":\""
+	logPath += beego.AppConfig.String("logPath")
+	logPath += "\"}" 
+	logs.SetLogger(logs.AdapterFile, logPath)
 	orm.Debug = true
 	if beego.BConfig.RunMode == "dev" {
 		beego.BConfig.WebConfig.DirectoryIndex = true
