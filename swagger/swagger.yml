@@ -5378,6 +5378,8 @@ definitions:
     type: object
   .DetalleSolicitud:
     type: object
+  .EspacioAcademicoInscrito:
+    type: object
   .EstudianteTrabajoGrado:
     type: object
   .UsuarioSolicitud:
@@ -6084,10 +6086,16 @@ definitions:
     title: TrRegistrarPago
     type: object
     properties:
+      EspaciosAcademicos:
+        $ref: '#/definitions/124234.<nil>.EspacioAcademicoInscrito'
+      EstudianteTrabajoGrado:
+        $ref: '#/definitions/models.EstudianteTrabajoGrado'
       RespuestaAnterior:
         $ref: '#/definitions/models.RespuestaSolicitud'
       RespuestaNueva:
         $ref: '#/definitions/models.RespuestaSolicitud'
+      TrabajoGrado:
+        $ref: '#/definitions/models.TrabajoGrado'
   models.TrRespuestaSolicitud:
     title: TrRespuestaSolicitud
     type: object
@@ -6117,29 +6125,29 @@ definitions:
     type: object
     properties:
       DetallesSolicitud:
-        $ref: '#/definitions/151119.<nil>.DetalleSolicitud'
+        $ref: '#/definitions/152261.<nil>.DetalleSolicitud'
       Respuesta:
         $ref: '#/definitions/models.RespuestaSolicitud'
       Solicitud:
         $ref: '#/definitions/models.SolicitudTrabajoGrado'
       UsuariosSolicitud:
-        $ref: '#/definitions/151158.<nil>.UsuarioSolicitud'
+        $ref: '#/definitions/152300.<nil>.UsuarioSolicitud'
   models.TrTrabajoGrado:
     title: TrTrabajoGrado
     type: object
     properties:
       AreasTrabajoGrado:
-        $ref: '#/definitions/214088.<nil>.AreasTrabajoGrado'
+        $ref: '#/definitions/215230.<nil>.AreasTrabajoGrado'
       DocumentoEscrito:
         $ref: '#/definitions/models.DocumentoEscrito'
       DocumentoTrabajoGrado:
         $ref: '#/definitions/models.DocumentoTrabajoGrado'
       EstudianteTrabajoGrado:
-        $ref: '#/definitions/213946.<nil>.EstudianteTrabajoGrado'
+        $ref: '#/definitions/215088.<nil>.EstudianteTrabajoGrado'
       TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
       VinculacionTrabajoGrado:
-        $ref: '#/definitions/214134.<nil>.VinculacionTrabajoGrado'
+        $ref: '#/definitions/215276.<nil>.VinculacionTrabajoGrado'
   models.TrabajoGrado:
     title: TrabajoGrado
     type: object
