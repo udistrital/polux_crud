@@ -83,6 +83,7 @@ func (c *RespuestaSolicitudController) GetAll() {
 	var sortby []string
 	var order []string
 	var query = make(map[string]string)
+	var exclude = make(map[string]string)
 	var limit int64 = 10
 	var offset int64
 
@@ -119,8 +120,21 @@ func (c *RespuestaSolicitudController) GetAll() {
 			query[k] = v
 		}
 	}
+	//exclude: k:v,k:v
+	if v := c.GetString("exclude"); v != "" {
+		for _, cond := range strings.Split(v, ",") {
+			kv := strings.SplitN(cond, ":", 2)
+			if len(kv) != 2 {
+				c.Data["json"] = errors.New("Error: invalid query key/value pair")
+				c.ServeJSON()
+				return
+			}
+			k, v := kv[0], kv[1]
+			exclude[k] = v
+		}
+	}
 
-	l, err := models.GetAllRespuestaSolicitud(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllRespuestaSolicitud(query, fields, sortby, order, offset, limit, exclude)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {

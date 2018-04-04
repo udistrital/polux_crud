@@ -15,6 +15,7 @@ type SolicitudTrabajoGrado struct {
 	Fecha                  time.Time               `orm:"column(fecha);type(timestamp without time zone)"`
 	ModalidadTipoSolicitud *ModalidadTipoSolicitud `orm:"column(modalidad_tipo_solicitud);rel(fk)"`
 	TrabajoGrado           *TrabajoGrado           `orm:"column(trabajo_grado);rel(fk);null"`
+	PeriodoAcademico       int                     `orm:"column(periodo_academico);null"`   
 }
 
 func (t *SolicitudTrabajoGrado) TableName() string {

@@ -50,6 +50,8 @@ func AddTransaccionSolicitud(m *TrSolicitud) (alerta []string, err error) {
 		}
 		err = o.Commit()
 	} else {
+		alerta[0] = "Error"
+		alerta = append(alerta, "ERROR_CARGAR_SOLICITUDES")
 		fmt.Println(err)
 		err = o.Rollback()
 	}
