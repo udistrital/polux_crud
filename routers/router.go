@@ -320,6 +320,12 @@ func init() {
 			),
 		),
 
+		beego.NSNamespace("/tr_formalizar_solicitud",
+			beego.NSInclude(
+				&controllers.TrFormalizarSolicitud{},
+			),
+		),
+
 	)
 	beego.AddNamespace(ns)
 }

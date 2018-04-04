@@ -19,7 +19,7 @@ func (c *TrRegistrarPago) URLMapping() {
 
 // @Title PostTrRegistrarPago
 // @Description create the TrRegistrarPago
-// @Param	body		body 	models.TrRegistrarPago	true	"body for TrRegistrarPago content"
+// @Param	body		body 	models.TrRegistrarPago	true		"body for TrRegistrarPago content"
 // @Success 201 {int} models.TrRegistrarPago
 // @Failure 403 body is empty
 // @router / [post]

@@ -1767,6 +1767,14 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrFormalizarSolicitud"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrFormalizarSolicitud"],
+		beego.ControllerComments{
+			Method: "Post",
+			Router: `/`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
 	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrRegistrarPago"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrRegistrarPago"],
 		beego.ControllerComments{
 			Method: "Post",
