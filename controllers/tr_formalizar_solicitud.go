@@ -17,6 +17,7 @@ func (c *TrFormalizarSolicitud) URLMapping() {
 	c.Mapping("Post", c.Post)
 }
 
+// Post ...
 // @Title PostTrFormalizarSolicitud
 // @Description create the TrFormalizarSolicitud
 // @Param	body		body 	models.TrFormalizarSolicitud	true		"body for TrFormalizarSolicitud content"

@@ -9156,7 +9156,7 @@
             "type": "object",
             "properties": {
                 "EspaciosAcademicos": {
-                    "$ref": "#/definitions/125132.\u003cnil\u003e.EspacioAcademicoInscrito"
+                    "$ref": "#/definitions/125038.\u003cnil\u003e.EspacioAcademicoInscrito"
                 },
                 "EstudianteTrabajoGrado": {
                     "$ref": "#/definitions/models.EstudianteTrabajoGrado"
@@ -9204,7 +9204,7 @@
                     "$ref": "#/definitions/models.TrabajoGrado"
                 },
                 "Vinculaciones": {
-                    "$ref": "#/definitions/64272.\u003cnil\u003e.VinculacionTrabajoGrado"
+                    "$ref": "#/definitions/64178.\u003cnil\u003e.VinculacionTrabajoGrado"
                 }
             }
         },
@@ -9213,7 +9213,7 @@
             "type": "object",
             "properties": {
                 "DetallesSolicitud": {
-                    "$ref": "#/definitions/153159.\u003cnil\u003e.DetalleSolicitud"
+                    "$ref": "#/definitions/153065.\u003cnil\u003e.DetalleSolicitud"
                 },
                 "Respuesta": {
                     "$ref": "#/definitions/models.RespuestaSolicitud"
@@ -9222,7 +9222,7 @@
                     "$ref": "#/definitions/models.SolicitudTrabajoGrado"
                 },
                 "UsuariosSolicitud": {
-                    "$ref": "#/definitions/153198.\u003cnil\u003e.UsuarioSolicitud"
+                    "$ref": "#/definitions/153104.\u003cnil\u003e.UsuarioSolicitud"
                 }
             }
         },
@@ -9231,7 +9231,7 @@
             "type": "object",
             "properties": {
                 "AreasTrabajoGrado": {
-                    "$ref": "#/definitions/216612.\u003cnil\u003e.AreasTrabajoGrado"
+                    "$ref": "#/definitions/216518.\u003cnil\u003e.AreasTrabajoGrado"
                 },
                 "DocumentoEscrito": {
                     "$ref": "#/definitions/models.DocumentoEscrito"
@@ -9240,13 +9240,13 @@
                     "$ref": "#/definitions/models.DocumentoTrabajoGrado"
                 },
                 "EstudianteTrabajoGrado": {
-                    "$ref": "#/definitions/216470.\u003cnil\u003e.EstudianteTrabajoGrado"
+                    "$ref": "#/definitions/216376.\u003cnil\u003e.EstudianteTrabajoGrado"
                 },
                 "TrabajoGrado": {
                     "$ref": "#/definitions/models.TrabajoGrado"
                 },
                 "VinculacionTrabajoGrado": {
-                    "$ref": "#/definitions/216658.\u003cnil\u003e.VinculacionTrabajoGrado"
+                    "$ref": "#/definitions/216564.\u003cnil\u003e.VinculacionTrabajoGrado"
                 }
             }
         },
