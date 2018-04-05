@@ -25,5 +25,6 @@ func AddTransaccionFormalizarSolicitud(m *TrFormalizarSolicitud) (alerta []strin
 			alerta = append(alerta, "ERROR_RTA_SOLICITUD_1")
 		}
 	}
+	err = o.Commit()
 	return
 }

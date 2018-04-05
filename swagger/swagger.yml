@@ -6116,7 +6116,7 @@ definitions:
     type: object
     properties:
       EspaciosAcademicos:
-        $ref: '#/definitions/125038.<nil>.EspacioAcademicoInscrito'
+        $ref: '#/definitions/125056.<nil>.EspacioAcademicoInscrito'
       EstudianteTrabajoGrado:
         $ref: '#/definitions/models.EstudianteTrabajoGrado'
       RespuestaAnterior:
@@ -6148,35 +6148,35 @@ definitions:
       TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
       Vinculaciones:
-        $ref: '#/definitions/64178.<nil>.VinculacionTrabajoGrado'
+        $ref: '#/definitions/64196.<nil>.VinculacionTrabajoGrado'
   models.TrSolicitud:
     title: TrSolicitud
     type: object
     properties:
       DetallesSolicitud:
-        $ref: '#/definitions/153065.<nil>.DetalleSolicitud'
+        $ref: '#/definitions/153083.<nil>.DetalleSolicitud'
       Respuesta:
         $ref: '#/definitions/models.RespuestaSolicitud'
       Solicitud:
         $ref: '#/definitions/models.SolicitudTrabajoGrado'
       UsuariosSolicitud:
-        $ref: '#/definitions/153104.<nil>.UsuarioSolicitud'
+        $ref: '#/definitions/153122.<nil>.UsuarioSolicitud'
   models.TrTrabajoGrado:
     title: TrTrabajoGrado
     type: object
     properties:
       AreasTrabajoGrado:
-        $ref: '#/definitions/216518.<nil>.AreasTrabajoGrado'
+        $ref: '#/definitions/216536.<nil>.AreasTrabajoGrado'
       DocumentoEscrito:
         $ref: '#/definitions/models.DocumentoEscrito'
       DocumentoTrabajoGrado:
         $ref: '#/definitions/models.DocumentoTrabajoGrado'
       EstudianteTrabajoGrado:
-        $ref: '#/definitions/216376.<nil>.EstudianteTrabajoGrado'
+        $ref: '#/definitions/216394.<nil>.EstudianteTrabajoGrado'
       TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
       VinculacionTrabajoGrado:
-        $ref: '#/definitions/216564.<nil>.VinculacionTrabajoGrado'
+        $ref: '#/definitions/216582.<nil>.VinculacionTrabajoGrado'
   models.TrabajoGrado:
     title: TrabajoGrado
     type: object
@@ -6381,4 +6381,4 @@ tags:
     oprations for TrRegistrarPago
 - name: tr_formalizar_solicitud
   description: |
-    oprations for TrFormalizarSolicitud
+    operations for TrFormalizarSolicitud
