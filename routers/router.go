@@ -326,6 +326,11 @@ func init() {
 			),
 		),
 
+		beego.NSNamespace("/tr_registrar_respuestas_solicitudes",
+			beego.NSInclude(
+				&controllers.TrRegistrarRespuestasSolicitudesController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }
