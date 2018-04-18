@@ -7482,27 +7482,27 @@
                 }
             }
         },
-        "/tr_registrar_pago/": {
+        "/tr_registrar_materias_posgrado/": {
             "post": {
                 "tags": [
-                    "tr_registrar_pago"
+                    "tr_registrar_materias_posgrado"
                 ],
-                "description": "create the TrRegistrarPago",
-                "operationId": "TrRegistrarPago.PostTrRegistrarPago",
+                "description": "create the TrRegistrarMateriasPosgrado",
+                "operationId": "TrRegistrarMateriasPosgrado.PostTrRegistrarMateriasPosgrado",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "body for TrRegistrarPago content",
+                        "description": "body for TrRegistrarMateriasPosgrado content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.TrRegistrarPago"
+                            "$ref": "#/definitions/models.TrRegistrarMateriasPosgrado"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "{int} models.TrRegistrarPago"
+                        "description": "{int} models.TrRegistrarMateriasPosgrado"
                     },
                     "403": {
                         "description": "body is empty"
@@ -9151,8 +9151,8 @@
                 }
             }
         },
-        "models.TrRegistrarPago": {
-            "title": "TrRegistrarPago",
+        "models.TrRegistrarMateriasPosgrado": {
+            "title": "TrRegistrarMateriasPosgrado",
             "type": "object",
             "properties": {
                 "EspaciosAcademicos": {
@@ -9522,8 +9522,8 @@
             "description": "oprations for TrTrabajoGrado\n"
         },
         {
-            "name": "tr_registrar_pago",
-            "description": "oprations for TrRegistrarPago\n"
+            "name": "tr_registrar_materias_posgrado",
+            "description": "oprations for TrRegistrarMateriasPosgrado\n"
         },
         {
             "name": "tr_formalizar_solicitud",

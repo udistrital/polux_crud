@@ -4974,22 +4974,22 @@ paths:
           description: '{int} models.TrFormalizarSolicitud'
         "403":
           description: body is empty
-  /tr_registrar_pago/:
+  /tr_registrar_materias_posgrado/:
     post:
       tags:
-      - tr_registrar_pago
-      description: create the TrRegistrarPago
-      operationId: TrRegistrarPago.PostTrRegistrarPago
+      - tr_registrar_materias_posgrado
+      description: create the TrRegistrarMateriasPosgrado
+      operationId: TrRegistrarMateriasPosgrado.PostTrRegistrarMateriasPosgrado
       parameters:
       - in: body
         name: body
-        description: body for TrRegistrarPago content
+        description: body for TrRegistrarMateriasPosgrado content
         required: true
         schema:
-          $ref: '#/definitions/models.TrRegistrarPago'
+          $ref: '#/definitions/models.TrRegistrarMateriasPosgrado'
       responses:
         "201":
-          description: '{int} models.TrRegistrarPago'
+          description: '{int} models.TrRegistrarMateriasPosgrado'
         "403":
           description: body is empty
   /tr_respuesta_solicitud/:
@@ -6111,8 +6111,8 @@ definitions:
     properties:
       SolicitudesActualizadas:
         $ref: '#/definitions/49388.<nil>.RespuestaSolicitud'
-  models.TrRegistrarPago:
-    title: TrRegistrarPago
+  models.TrRegistrarMateriasPosgrado:
+    title: TrRegistrarMateriasPosgrado
     type: object
     properties:
       EspaciosAcademicos:
@@ -6376,9 +6376,9 @@ tags:
 - name: tr_respuesta_solicitud
   description: |
     oprations for TrTrabajoGrado
-- name: tr_registrar_pago
+- name: tr_registrar_materias_posgrado
   description: |
-    oprations for TrRegistrarPago
+    oprations for TrRegistrarMateriasPosgrado
 - name: tr_formalizar_solicitud
   description: |
     operations for TrFormalizarSolicitud
