@@ -314,9 +314,9 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/tr_seleccion_admitidos",
+		beego.NSNamespace("/tr_registrar_respuestas_solicitudes",
 			beego.NSInclude(
-				&controllers.TrSeleccionAdmitidosController{},
+				&controllers.TrRegistrarRespuestasSolicitudesController{},
 			),
 		),
 	)

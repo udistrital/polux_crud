@@ -6,13 +6,13 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type TrSeleccionAdmitidos struct {
+type TrRegistrarRespuestasSolicitudes struct {
 	RespuestasNuevas         *[]RespuestaSolicitud
 	RespuestasAntiguas       *[]RespuestaSolicitud
 }
 
 //funcion para la transaccion de solicitudes
-func TransaccionSeleccionAdmitidos(m *TrSeleccionAdmitidos) (alerta []string, err error) {
+func TransaccionRegistrarRespuestasSolicitudes(m *TrRegistrarRespuestasSolicitudes) (alerta []string, err error) {
 	o := orm.NewOrm()
 	o.Begin()
 	alerta = append(alerta, "Success")
