@@ -314,9 +314,9 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/tr_registrar_pago",
+		beego.NSNamespace("/tr_registrar_materias_posgrado",
 			beego.NSInclude(
-				&controllers.TrRegistrarPago{},
+				&controllers.TrRegistrarMateriasPosgrado{},
 			),
 		),
 
