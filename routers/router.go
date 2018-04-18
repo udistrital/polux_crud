@@ -320,12 +320,6 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/tr_formalizar_solicitud",
-			beego.NSInclude(
-				&controllers.TrFormalizarSolicitud{},
-			),
-		),
-
 		beego.NSNamespace("/tr_registrar_respuestas_solicitudes",
 			beego.NSInclude(
 				&controllers.TrRegistrarRespuestasSolicitudesController{},
