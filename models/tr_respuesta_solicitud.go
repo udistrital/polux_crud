@@ -18,6 +18,7 @@ type TrRespuestaSolicitud struct {
 	ModalidadTipoSolicitud *ModalidadTipoSolicitud    //Para saber el tipo de solicitud inicial
 	TrabajoGrado           *TrabajoGrado              //Cambio Titulo
 	SolicitudTrabajoGrado  *SolicitudTrabajoGrado     //solicitud inicial
+	EspaciosAcademicos     *[]EspacioAcademicoInscrito //Solicitud de cambio de asignaturas
 }
 
 //funcion para la transaccion de solicitudes
@@ -212,6 +213,56 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 		}
 	}
 
+	//Solicitud de cambio de materias
+	if m.EspaciosAcademicos != nil {
+		var espacioActual EspacioAcademicoInscrito
+		var espacioNuevo EspacioAcademicoInscrito
+		for _, v := range *m.EspaciosAcademicos {
+			fmt.Println(v);
+			if v.EstadoEspacioAcademicoInscrito.Id == 1 {
+				espacioNuevo = v
+			} else if v.EstadoEspacioAcademicoInscrito.Id == 2 {
+				//espacio que se cancela 
+				if err = o.QueryTable(new(EspacioAcademicoInscrito)).RelatedSel().Filter("TrabajoGrado",v.TrabajoGrado).Filter("EspaciosAcademicosElegibles__CodigoAsignatura",v.EspaciosAcademicosElegibles.CodigoAsignatura).One(&espacioActual); err == nil {
+					espacioActual.EstadoEspacioAcademicoInscrito = v.EstadoEspacioAcademicoInscrito
+					if num, err = o.Update(&espacioActual,"EstadoEspacioAcademicoInscrito"); err == nil {
+						fmt.Println("Number of records updated in database:", num)
+						//finaliza update
+					} else {
+						fmt.Println("error aca");
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_8")
+					}
+				} else {
+					fmt.Println(err)
+					err = o.Rollback()
+					alerta[0] = "Error"
+					alerta = append(alerta, "ERROR_RTA_SOLICITUD_13")
+				}
+			}
+		}
+		// Buscar id de asignatura del espacio nuevo
+		var espacioElegibleNuevo EspaciosAcademicosElegibles
+		if err = o.QueryTable(new(EspaciosAcademicosElegibles)).RelatedSel().Filter("CarreraElegible",espacioActual.EspaciosAcademicosElegibles.CarreraElegible).Filter("CodigoAsignatura",espacioNuevo.EspaciosAcademicosElegibles.CodigoAsignatura).One(&espacioElegibleNuevo); err == nil {
+			espacioNuevo.EspaciosAcademicosElegibles = &espacioElegibleNuevo
+			//Se inserta el nuevo espacio
+			if idEspacioNuevo, err := o.Insert(&espacioNuevo); err == nil {
+				fmt.Println(idEspacioNuevo)
+			}else{
+				fmt.Println(err)
+				err = o.Rollback()
+				alerta[0] = "Error"
+				alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
+			}
+		} else {
+			fmt.Println(err)
+			err = o.Rollback()
+			alerta[0] = "Error"
+			alerta = append(alerta, "ERROR_RTA_SOLICITUD_13")
+		}
+	}
 	err = o.Commit()
 
 	return
