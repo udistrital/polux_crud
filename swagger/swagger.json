@@ -62,11 +62,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.AreaConocimiento"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -114,6 +117,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.AreaConocimiento"
                         }
@@ -149,6 +153,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.AreaConocimiento"
                         }
@@ -230,11 +235,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.AreasDocente"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -282,6 +290,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.AreasDocente"
                         }
@@ -317,6 +326,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.AreasDocente"
                         }
@@ -398,11 +408,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.AreasTrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -450,6 +463,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.AreasTrabajoGrado"
                         }
@@ -485,6 +499,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.AreasTrabajoGrado"
                         }
@@ -566,11 +581,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.AsignaturaTrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -618,6 +636,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.AsignaturaTrabajoGrado"
                         }
@@ -653,6 +672,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.AsignaturaTrabajoGrado"
                         }
@@ -734,11 +754,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.CarreraElegible"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -786,6 +809,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.CarreraElegible"
                         }
@@ -821,6 +845,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.CarreraElegible"
                         }
@@ -902,11 +927,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Comentario"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -954,6 +982,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Comentario"
                         }
@@ -989,6 +1018,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Comentario"
                         }
@@ -1070,11 +1100,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Correccion"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -1122,6 +1155,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Correccion"
                         }
@@ -1157,6 +1191,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Correccion"
                         }
@@ -1238,11 +1273,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Detalle"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -1290,6 +1328,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Detalle"
                         }
@@ -1325,6 +1364,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Detalle"
                         }
@@ -1406,11 +1446,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DetalleSolicitud"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -1458,6 +1501,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DetalleSolicitud"
                         }
@@ -1493,6 +1537,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DetalleSolicitud"
                         }
@@ -1574,11 +1619,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DetalleTipoSolicitud"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -1626,6 +1674,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DetalleTipoSolicitud"
                         }
@@ -1661,6 +1710,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DetalleTipoSolicitud"
                         }
@@ -1742,11 +1792,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DistincionTrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -1794,6 +1847,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DistincionTrabajoGrado"
                         }
@@ -1829,6 +1883,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DistincionTrabajoGrado"
                         }
@@ -1910,11 +1965,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DocumentoEntidad"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -1962,6 +2020,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DocumentoEntidad"
                         }
@@ -1997,6 +2056,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DocumentoEntidad"
                         }
@@ -2078,11 +2138,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DocumentoEscrito"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -2130,6 +2193,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DocumentoEscrito"
                         }
@@ -2165,6 +2229,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DocumentoEscrito"
                         }
@@ -2246,11 +2311,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DocumentoSolicitud"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -2298,6 +2366,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DocumentoSolicitud"
                         }
@@ -2333,6 +2402,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DocumentoSolicitud"
                         }
@@ -2414,11 +2484,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DocumentoTrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -2466,6 +2539,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DocumentoTrabajoGrado"
                         }
@@ -2501,6 +2575,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.DocumentoTrabajoGrado"
                         }
@@ -2582,11 +2657,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EspacioAcademicoInscrito"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -2634,6 +2712,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EspacioAcademicoInscrito"
                         }
@@ -2669,6 +2748,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EspacioAcademicoInscrito"
                         }
@@ -2750,11 +2830,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EspaciosAcademicosElegibles"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -2802,6 +2885,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EspaciosAcademicosElegibles"
                         }
@@ -2837,6 +2921,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EspaciosAcademicosElegibles"
                         }
@@ -2918,11 +3003,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoAsignaturaTrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -2970,6 +3058,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoAsignaturaTrabajoGrado"
                         }
@@ -3005,6 +3094,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoAsignaturaTrabajoGrado"
                         }
@@ -3086,11 +3176,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoEspacioAcademicoInscrito"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -3138,6 +3231,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoEspacioAcademicoInscrito"
                         }
@@ -3173,6 +3267,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoEspacioAcademicoInscrito"
                         }
@@ -3254,11 +3349,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoEstudianteTrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -3306,6 +3404,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoEstudianteTrabajoGrado"
                         }
@@ -3341,6 +3440,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoEstudianteTrabajoGrado"
                         }
@@ -3422,11 +3522,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoRevisionTrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -3474,6 +3577,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoRevisionTrabajoGrado"
                         }
@@ -3509,6 +3613,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoRevisionTrabajoGrado"
                         }
@@ -3590,11 +3695,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoSolicitud"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -3642,6 +3750,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoSolicitud"
                         }
@@ -3677,6 +3786,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoSolicitud"
                         }
@@ -3758,11 +3868,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoTrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -3810,6 +3923,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoTrabajoGrado"
                         }
@@ -3845,6 +3959,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstadoTrabajoGrado"
                         }
@@ -3926,11 +4041,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstructuraInvestigacionTrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -3978,6 +4096,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstructuraInvestigacionTrabajoGrado"
                         }
@@ -4013,6 +4132,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstructuraInvestigacionTrabajoGrado"
                         }
@@ -4094,11 +4214,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstudianteTrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -4146,6 +4269,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstudianteTrabajoGrado"
                         }
@@ -4181,6 +4305,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EstudianteTrabajoGrado"
                         }
@@ -4262,11 +4387,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EvaluacionTrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -4314,6 +4442,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EvaluacionTrabajoGrado"
                         }
@@ -4349,6 +4478,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.EvaluacionTrabajoGrado"
                         }
@@ -4430,11 +4560,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Formato"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -4482,6 +4615,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Formato"
                         }
@@ -4517,6 +4651,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Formato"
                         }
@@ -4598,11 +4733,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.FormatoEvaluacionCarrera"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -4650,6 +4788,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.FormatoEvaluacionCarrera"
                         }
@@ -4685,6 +4824,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.FormatoEvaluacionCarrera"
                         }
@@ -4766,11 +4906,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Modalidad"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -4818,6 +4961,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Modalidad"
                         }
@@ -4853,6 +4997,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Modalidad"
                         }
@@ -4934,11 +5079,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.ModalidadTipoSolicitud"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -4986,6 +5134,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.ModalidadTipoSolicitud"
                         }
@@ -5021,6 +5170,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.ModalidadTipoSolicitud"
                         }
@@ -5102,11 +5252,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Pregunta"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -5154,6 +5307,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Pregunta"
                         }
@@ -5189,6 +5343,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Pregunta"
                         }
@@ -5270,11 +5425,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.PreguntaFormato"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -5322,6 +5480,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.PreguntaFormato"
                         }
@@ -5357,6 +5516,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.PreguntaFormato"
                         }
@@ -5438,11 +5598,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Respuesta"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -5490,6 +5653,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Respuesta"
                         }
@@ -5525,6 +5689,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Respuesta"
                         }
@@ -5606,11 +5771,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.RespuestaEvaluacion"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -5658,6 +5826,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.RespuestaEvaluacion"
                         }
@@ -5693,6 +5862,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.RespuestaEvaluacion"
                         }
@@ -5774,11 +5944,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.RespuestaFormato"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -5826,6 +5999,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.RespuestaFormato"
                         }
@@ -5861,6 +6035,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.RespuestaFormato"
                         }
@@ -5942,11 +6117,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.RespuestaSolicitud"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -5994,6 +6172,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.RespuestaSolicitud"
                         }
@@ -6029,6 +6208,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.RespuestaSolicitud"
                         }
@@ -6110,11 +6290,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.RevisionTrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -6162,6 +6345,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.RevisionTrabajoGrado"
                         }
@@ -6197,6 +6381,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.RevisionTrabajoGrado"
                         }
@@ -6278,11 +6463,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.RolTrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -6330,6 +6518,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.RolTrabajoGrado"
                         }
@@ -6365,6 +6554,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.RolTrabajoGrado"
                         }
@@ -6446,11 +6636,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Socializacion"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -6498,6 +6691,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Socializacion"
                         }
@@ -6533,6 +6727,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.Socializacion"
                         }
@@ -6614,11 +6809,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.SolicitudTrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -6666,6 +6864,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.SolicitudTrabajoGrado"
                         }
@@ -6701,6 +6900,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.SolicitudTrabajoGrado"
                         }
@@ -6782,11 +6982,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.TipoDetalle"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -6834,6 +7037,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.TipoDetalle"
                         }
@@ -6869,6 +7073,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.TipoDetalle"
                         }
@@ -6950,11 +7155,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.TipoPregunta"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -7002,6 +7210,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.TipoPregunta"
                         }
@@ -7037,6 +7246,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.TipoPregunta"
                         }
@@ -7118,11 +7328,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.TipoSolicitud"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -7170,6 +7383,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.TipoSolicitud"
                         }
@@ -7205,6 +7419,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.TipoSolicitud"
                         }
@@ -7235,6 +7450,62 @@
                     },
                     "403": {
                         "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tr_formalizar_solicitud/": {
+            "post": {
+                "tags": [
+                    "tr_formalizar_solicitud"
+                ],
+                "description": "create the TrFormalizarSolicitud",
+                "operationId": "TrFormalizarSolicitud.PostTrFormalizarSolicitud",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrFormalizarSolicitud content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrFormalizarSolicitud"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TrFormalizarSolicitud"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tr_registrar_materias_posgrado/": {
+            "post": {
+                "tags": [
+                    "tr_registrar_materias_posgrado"
+                ],
+                "description": "create the TrRegistrarMateriasPosgrado",
+                "operationId": "TrRegistrarMateriasPosgrado.PostTrRegistrarMateriasPosgrado",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrRegistrarMateriasPosgrado content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrRegistrarMateriasPosgrado"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TrRegistrarMateriasPosgrado"
+                    },
+                    "403": {
+                        "description": "body is empty"
                     }
                 }
             }
@@ -7370,11 +7641,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.TrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -7422,6 +7696,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.TrabajoGrado"
                         }
@@ -7457,6 +7732,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.TrabajoGrado"
                         }
@@ -7538,11 +7814,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.UsuarioSolicitud"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -7590,6 +7869,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.UsuarioSolicitud"
                         }
@@ -7625,6 +7905,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.UsuarioSolicitud"
                         }
@@ -7706,11 +7987,14 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.VinculacionTrabajoGrado"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
@@ -7758,6 +8042,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.VinculacionTrabajoGrado"
                         }
@@ -7793,6 +8078,7 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "",
                         "schema": {
                             "$ref": "#/definitions/models.VinculacionTrabajoGrado"
                         }
@@ -7829,6 +8115,27 @@
         }
     },
     "definitions": {
+        ".AreasTrabajoGrado": {
+            "type": "object"
+        },
+        ".DetalleSolicitud": {
+            "type": "object"
+        },
+        ".EspacioAcademicoInscrito": {
+            "type": "object"
+        },
+        ".EstudianteTrabajoGrado": {
+            "type": "object"
+        },
+        ".RespuestaSolicitud": {
+            "type": "object"
+        },
+        ".UsuarioSolicitud": {
+            "type": "object"
+        },
+        ".VinculacionTrabajoGrado": {
+            "type": "object"
+        },
         "models.AreaConocimiento": {
             "title": "AreaConocimiento",
             "type": "object",
@@ -8760,6 +9067,10 @@
                 "ModalidadTipoSolicitud": {
                     "$ref": "#/definitions/models.ModalidadTipoSolicitud"
                 },
+                "PeriodoAcademico": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "TrabajoGrado": {
                     "$ref": "#/definitions/models.TrabajoGrado"
                 }
@@ -8828,6 +9139,36 @@
                 },
                 "Nombre": {
                     "type": "string"
+                }
+            }
+        },
+        "models.TrFormalizarSolicitud": {
+            "title": "TrFormalizarSolicitud",
+            "type": "object",
+            "properties": {
+                "SolicitudesActualizadas": {
+                    "$ref": "#/definitions/models.RespuestaSolicitud"
+                }
+            }
+        },
+        "models.TrRegistrarMateriasPosgrado": {
+            "title": "TrRegistrarMateriasPosgrado",
+            "type": "object",
+            "properties": {
+                "EspaciosAcademicos": {
+                    "$ref": "#/definitions/models.EspacioAcademicoInscrito"
+                },
+                "EstudianteTrabajoGrado": {
+                    "$ref": "#/definitions/models.EstudianteTrabajoGrado"
+                },
+                "RespuestaAnterior": {
+                    "$ref": "#/definitions/models.RespuestaSolicitud"
+                },
+                "RespuestaNueva": {
+                    "$ref": "#/definitions/models.RespuestaSolicitud"
+                },
+                "TrabajoGrado": {
+                    "$ref": "#/definitions/models.TrabajoGrado"
                 }
             }
         },
@@ -8925,6 +9266,10 @@
                 },
                 "Modalidad": {
                     "$ref": "#/definitions/models.Modalidad"
+                },
+                "PeriodoAcademico": {
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "Titulo": {
                     "type": "string"
@@ -9175,6 +9520,14 @@
         {
             "name": "tr_respuesta_solicitud",
             "description": "oprations for TrTrabajoGrado\n"
+        },
+        {
+            "name": "tr_registrar_materias_posgrado",
+            "description": "operations for TrRegistrarMateriasPosgrado\n"
+        },
+        {
+            "name": "tr_formalizar_solicitud",
+            "description": "operations for TrFormalizarSolicitud\n"
         }
     ]
 }

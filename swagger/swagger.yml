@@ -9,7 +9,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-basePath: /polux_api_crud/v1
+basePath: /v1
 paths:
   /area_conocimiento/:
     get:
@@ -45,9 +45,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.AreaConocimiento'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - area_conocimiento
@@ -79,6 +81,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.AreaConocimiento'
         "403":
@@ -102,6 +105,7 @@ paths:
           $ref: '#/definitions/models.AreaConocimiento'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.AreaConocimiento'
         "403":
@@ -156,9 +160,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.AreasDocente'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - areas_docente
@@ -190,6 +196,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.AreasDocente'
         "403":
@@ -213,6 +220,7 @@ paths:
           $ref: '#/definitions/models.AreasDocente'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.AreasDocente'
         "403":
@@ -267,9 +275,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.AreasTrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - areas_trabajo_grado
@@ -301,6 +311,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.AreasTrabajoGrado'
         "403":
@@ -324,6 +335,7 @@ paths:
           $ref: '#/definitions/models.AreasTrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.AreasTrabajoGrado'
         "403":
@@ -378,9 +390,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.AsignaturaTrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - asignatura_trabajo_grado
@@ -412,6 +426,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.AsignaturaTrabajoGrado'
         "403":
@@ -435,6 +450,7 @@ paths:
           $ref: '#/definitions/models.AsignaturaTrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.AsignaturaTrabajoGrado'
         "403":
@@ -489,9 +505,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.CarreraElegible'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - carrera_elegible
@@ -523,6 +541,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.CarreraElegible'
         "403":
@@ -546,6 +565,7 @@ paths:
           $ref: '#/definitions/models.CarreraElegible'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.CarreraElegible'
         "403":
@@ -600,9 +620,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Comentario'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - comentario
@@ -634,6 +656,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Comentario'
         "403":
@@ -657,6 +680,7 @@ paths:
           $ref: '#/definitions/models.Comentario'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Comentario'
         "403":
@@ -711,9 +735,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Correccion'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - correccion
@@ -745,6 +771,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Correccion'
         "403":
@@ -768,6 +795,7 @@ paths:
           $ref: '#/definitions/models.Correccion'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Correccion'
         "403":
@@ -822,9 +850,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Detalle'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - detalle
@@ -856,6 +886,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Detalle'
         "403":
@@ -879,6 +910,7 @@ paths:
           $ref: '#/definitions/models.Detalle'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Detalle'
         "403":
@@ -933,9 +965,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DetalleSolicitud'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - detalle_solicitud
@@ -967,6 +1001,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DetalleSolicitud'
         "403":
@@ -990,6 +1025,7 @@ paths:
           $ref: '#/definitions/models.DetalleSolicitud'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DetalleSolicitud'
         "403":
@@ -1044,9 +1080,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DetalleTipoSolicitud'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - detalle_tipo_solicitud
@@ -1078,6 +1116,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DetalleTipoSolicitud'
         "403":
@@ -1101,6 +1140,7 @@ paths:
           $ref: '#/definitions/models.DetalleTipoSolicitud'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DetalleTipoSolicitud'
         "403":
@@ -1155,9 +1195,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DistincionTrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - distincion_trabajo_grado
@@ -1189,6 +1231,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DistincionTrabajoGrado'
         "403":
@@ -1212,6 +1255,7 @@ paths:
           $ref: '#/definitions/models.DistincionTrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DistincionTrabajoGrado'
         "403":
@@ -1266,9 +1310,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DocumentoEntidad'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - documento_entidad
@@ -1300,6 +1346,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DocumentoEntidad'
         "403":
@@ -1323,6 +1370,7 @@ paths:
           $ref: '#/definitions/models.DocumentoEntidad'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DocumentoEntidad'
         "403":
@@ -1377,9 +1425,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DocumentoEscrito'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - documento_escrito
@@ -1411,6 +1461,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DocumentoEscrito'
         "403":
@@ -1434,6 +1485,7 @@ paths:
           $ref: '#/definitions/models.DocumentoEscrito'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DocumentoEscrito'
         "403":
@@ -1488,9 +1540,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DocumentoSolicitud'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - documento_solicitud
@@ -1522,6 +1576,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DocumentoSolicitud'
         "403":
@@ -1545,6 +1600,7 @@ paths:
           $ref: '#/definitions/models.DocumentoSolicitud'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DocumentoSolicitud'
         "403":
@@ -1599,9 +1655,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DocumentoTrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - documento_trabajo_grado
@@ -1633,6 +1691,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DocumentoTrabajoGrado'
         "403":
@@ -1656,6 +1715,7 @@ paths:
           $ref: '#/definitions/models.DocumentoTrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.DocumentoTrabajoGrado'
         "403":
@@ -1710,9 +1770,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EspacioAcademicoInscrito'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - espacio_academico_inscrito
@@ -1744,6 +1806,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EspacioAcademicoInscrito'
         "403":
@@ -1767,6 +1830,7 @@ paths:
           $ref: '#/definitions/models.EspacioAcademicoInscrito'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EspacioAcademicoInscrito'
         "403":
@@ -1821,9 +1885,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EspaciosAcademicosElegibles'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - espacios_academicos_elegibles
@@ -1855,6 +1921,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EspaciosAcademicosElegibles'
         "403":
@@ -1878,6 +1945,7 @@ paths:
           $ref: '#/definitions/models.EspaciosAcademicosElegibles'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EspaciosAcademicosElegibles'
         "403":
@@ -1932,9 +2000,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoAsignaturaTrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - estado_asignatura_trabajo_grado
@@ -1966,6 +2036,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoAsignaturaTrabajoGrado'
         "403":
@@ -1989,6 +2060,7 @@ paths:
           $ref: '#/definitions/models.EstadoAsignaturaTrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoAsignaturaTrabajoGrado'
         "403":
@@ -2043,9 +2115,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoEspacioAcademicoInscrito'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - estado_espacio_academico_inscrito
@@ -2077,6 +2151,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoEspacioAcademicoInscrito'
         "403":
@@ -2100,6 +2175,7 @@ paths:
           $ref: '#/definitions/models.EstadoEspacioAcademicoInscrito'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoEspacioAcademicoInscrito'
         "403":
@@ -2154,9 +2230,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoEstudianteTrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - estado_estudiante_trabajo_grado
@@ -2188,6 +2266,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoEstudianteTrabajoGrado'
         "403":
@@ -2211,6 +2290,7 @@ paths:
           $ref: '#/definitions/models.EstadoEstudianteTrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoEstudianteTrabajoGrado'
         "403":
@@ -2265,9 +2345,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoRevisionTrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - estado_revision_trabajo_grado
@@ -2299,6 +2381,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoRevisionTrabajoGrado'
         "403":
@@ -2322,6 +2405,7 @@ paths:
           $ref: '#/definitions/models.EstadoRevisionTrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoRevisionTrabajoGrado'
         "403":
@@ -2376,9 +2460,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoSolicitud'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - estado_solicitud
@@ -2410,6 +2496,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoSolicitud'
         "403":
@@ -2433,6 +2520,7 @@ paths:
           $ref: '#/definitions/models.EstadoSolicitud'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoSolicitud'
         "403":
@@ -2487,9 +2575,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoTrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - estado_trabajo_grado
@@ -2521,6 +2611,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoTrabajoGrado'
         "403":
@@ -2544,6 +2635,7 @@ paths:
           $ref: '#/definitions/models.EstadoTrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstadoTrabajoGrado'
         "403":
@@ -2598,9 +2690,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstructuraInvestigacionTrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - estructura_investigacion_trabajo_grado
@@ -2632,6 +2726,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstructuraInvestigacionTrabajoGrado'
         "403":
@@ -2655,6 +2750,7 @@ paths:
           $ref: '#/definitions/models.EstructuraInvestigacionTrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstructuraInvestigacionTrabajoGrado'
         "403":
@@ -2709,9 +2805,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstudianteTrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - estudiante_trabajo_grado
@@ -2743,6 +2841,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstudianteTrabajoGrado'
         "403":
@@ -2766,6 +2865,7 @@ paths:
           $ref: '#/definitions/models.EstudianteTrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EstudianteTrabajoGrado'
         "403":
@@ -2820,9 +2920,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EvaluacionTrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - evaluacion_trabajo_grado
@@ -2854,6 +2956,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EvaluacionTrabajoGrado'
         "403":
@@ -2877,6 +2980,7 @@ paths:
           $ref: '#/definitions/models.EvaluacionTrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.EvaluacionTrabajoGrado'
         "403":
@@ -2931,9 +3035,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Formato'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - formato
@@ -2965,6 +3071,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Formato'
         "403":
@@ -2988,6 +3095,7 @@ paths:
           $ref: '#/definitions/models.Formato'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Formato'
         "403":
@@ -3042,9 +3150,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.FormatoEvaluacionCarrera'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - formato_evaluacion_carrera
@@ -3076,6 +3186,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.FormatoEvaluacionCarrera'
         "403":
@@ -3099,6 +3210,7 @@ paths:
           $ref: '#/definitions/models.FormatoEvaluacionCarrera'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.FormatoEvaluacionCarrera'
         "403":
@@ -3153,9 +3265,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Modalidad'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - modalidad
@@ -3187,6 +3301,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Modalidad'
         "403":
@@ -3210,6 +3325,7 @@ paths:
           $ref: '#/definitions/models.Modalidad'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Modalidad'
         "403":
@@ -3264,9 +3380,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.ModalidadTipoSolicitud'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - modalidad_tipo_solicitud
@@ -3298,6 +3416,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.ModalidadTipoSolicitud'
         "403":
@@ -3321,6 +3440,7 @@ paths:
           $ref: '#/definitions/models.ModalidadTipoSolicitud'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.ModalidadTipoSolicitud'
         "403":
@@ -3375,9 +3495,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Pregunta'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - pregunta
@@ -3409,6 +3531,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Pregunta'
         "403":
@@ -3432,6 +3555,7 @@ paths:
           $ref: '#/definitions/models.Pregunta'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Pregunta'
         "403":
@@ -3486,9 +3610,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.PreguntaFormato'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - pregunta_formato
@@ -3520,6 +3646,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.PreguntaFormato'
         "403":
@@ -3543,6 +3670,7 @@ paths:
           $ref: '#/definitions/models.PreguntaFormato'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.PreguntaFormato'
         "403":
@@ -3597,9 +3725,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Respuesta'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - respuesta
@@ -3631,6 +3761,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Respuesta'
         "403":
@@ -3654,6 +3785,7 @@ paths:
           $ref: '#/definitions/models.Respuesta'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Respuesta'
         "403":
@@ -3708,9 +3840,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.RespuestaEvaluacion'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - respuesta_evaluacion
@@ -3742,6 +3876,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.RespuestaEvaluacion'
         "403":
@@ -3765,6 +3900,7 @@ paths:
           $ref: '#/definitions/models.RespuestaEvaluacion'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.RespuestaEvaluacion'
         "403":
@@ -3819,9 +3955,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.RespuestaFormato'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - respuesta_formato
@@ -3853,6 +3991,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.RespuestaFormato'
         "403":
@@ -3876,6 +4015,7 @@ paths:
           $ref: '#/definitions/models.RespuestaFormato'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.RespuestaFormato'
         "403":
@@ -3930,9 +4070,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.RespuestaSolicitud'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - respuesta_solicitud
@@ -3964,6 +4106,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.RespuestaSolicitud'
         "403":
@@ -3987,6 +4130,7 @@ paths:
           $ref: '#/definitions/models.RespuestaSolicitud'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.RespuestaSolicitud'
         "403":
@@ -4041,9 +4185,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.RevisionTrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - revision_trabajo_grado
@@ -4075,6 +4221,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.RevisionTrabajoGrado'
         "403":
@@ -4098,6 +4245,7 @@ paths:
           $ref: '#/definitions/models.RevisionTrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.RevisionTrabajoGrado'
         "403":
@@ -4152,9 +4300,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.RolTrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - rol_trabajo_grado
@@ -4186,6 +4336,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.RolTrabajoGrado'
         "403":
@@ -4209,6 +4360,7 @@ paths:
           $ref: '#/definitions/models.RolTrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.RolTrabajoGrado'
         "403":
@@ -4263,9 +4415,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Socializacion'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - socializacion
@@ -4297,6 +4451,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Socializacion'
         "403":
@@ -4320,6 +4475,7 @@ paths:
           $ref: '#/definitions/models.Socializacion'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.Socializacion'
         "403":
@@ -4374,9 +4530,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.SolicitudTrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - solicitud_trabajo_grado
@@ -4408,6 +4566,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.SolicitudTrabajoGrado'
         "403":
@@ -4431,6 +4590,7 @@ paths:
           $ref: '#/definitions/models.SolicitudTrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.SolicitudTrabajoGrado'
         "403":
@@ -4485,9 +4645,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.TipoDetalle'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - tipo_detalle
@@ -4519,6 +4681,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.TipoDetalle'
         "403":
@@ -4542,6 +4705,7 @@ paths:
           $ref: '#/definitions/models.TipoDetalle'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.TipoDetalle'
         "403":
@@ -4596,9 +4760,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.TipoPregunta'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - tipo_pregunta
@@ -4630,6 +4796,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.TipoPregunta'
         "403":
@@ -4653,6 +4820,7 @@ paths:
           $ref: '#/definitions/models.TipoPregunta'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.TipoPregunta'
         "403":
@@ -4707,9 +4875,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.TipoSolicitud'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - tipo_solicitud
@@ -4741,6 +4911,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.TipoSolicitud'
         "403":
@@ -4764,6 +4935,7 @@ paths:
           $ref: '#/definitions/models.TipoSolicitud'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.TipoSolicitud'
         "403":
@@ -4784,6 +4956,42 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
+  /tr_formalizar_solicitud/:
+    post:
+      tags:
+      - tr_formalizar_solicitud
+      description: create the TrFormalizarSolicitud
+      operationId: TrFormalizarSolicitud.PostTrFormalizarSolicitud
+      parameters:
+      - in: body
+        name: body
+        description: body for TrFormalizarSolicitud content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TrFormalizarSolicitud'
+      responses:
+        "201":
+          description: '{int} models.TrFormalizarSolicitud'
+        "403":
+          description: body is empty
+  /tr_registrar_materias_posgrado/:
+    post:
+      tags:
+      - tr_registrar_materias_posgrado
+      description: create the TrRegistrarMateriasPosgrado
+      operationId: TrRegistrarMateriasPosgrado.PostTrRegistrarMateriasPosgrado
+      parameters:
+      - in: body
+        name: body
+        description: body for TrRegistrarMateriasPosgrado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TrRegistrarMateriasPosgrado'
+      responses:
+        "201":
+          description: '{int} models.TrRegistrarMateriasPosgrado'
+        "403":
+          description: body is empty
   /tr_respuesta_solicitud/:
     post:
       tags:
@@ -4872,9 +5080,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.TrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - trabajo_grado
@@ -4906,6 +5116,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.TrabajoGrado'
         "403":
@@ -4929,6 +5140,7 @@ paths:
           $ref: '#/definitions/models.TrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.TrabajoGrado'
         "403":
@@ -4983,9 +5195,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.UsuarioSolicitud'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - usuario_solicitud
@@ -5017,6 +5231,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.UsuarioSolicitud'
         "403":
@@ -5040,6 +5255,7 @@ paths:
           $ref: '#/definitions/models.UsuarioSolicitud'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.UsuarioSolicitud'
         "403":
@@ -5094,9 +5310,11 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.VinculacionTrabajoGrado'
-        "403": {}
+        "403":
+          description: ""
     post:
       tags:
       - vinculacion_trabajo_grado
@@ -5128,6 +5346,7 @@ paths:
         type: string
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.VinculacionTrabajoGrado'
         "403":
@@ -5151,6 +5370,7 @@ paths:
           $ref: '#/definitions/models.VinculacionTrabajoGrado'
       responses:
         "200":
+          description: ""
           schema:
             $ref: '#/definitions/models.VinculacionTrabajoGrado'
         "403":
@@ -5172,6 +5392,20 @@ paths:
         "403":
           description: id is empty
 definitions:
+  .AreasTrabajoGrado:
+    type: object
+  .DetalleSolicitud:
+    type: object
+  .EspacioAcademicoInscrito:
+    type: object
+  .EstudianteTrabajoGrado:
+    type: object
+  .RespuestaSolicitud:
+    type: object
+  .UsuarioSolicitud:
+    type: object
+  .VinculacionTrabajoGrado:
+    type: object
   models.AreaConocimiento:
     title: AreaConocimiento
     type: object
@@ -5821,6 +6055,9 @@ definitions:
         format: int64
       ModalidadTipoSolicitud:
         $ref: '#/definitions/models.ModalidadTipoSolicitud'
+      PeriodoAcademico:
+        type: integer
+        format: int64
       TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
   models.TipoDetalle:
@@ -5868,6 +6105,26 @@ definitions:
         format: int64
       Nombre:
         type: string
+  models.TrFormalizarSolicitud:
+    title: TrFormalizarSolicitud
+    type: object
+    properties:
+      SolicitudesActualizadas:
+        $ref: '#/definitions/models.RespuestaSolicitud'
+  models.TrRegistrarMateriasPosgrado:
+    title: TrRegistrarMateriasPosgrado
+    type: object
+    properties:
+      EspaciosAcademicos:
+        $ref: '#/definitions/models.EspacioAcademicoInscrito'
+      EstudianteTrabajoGrado:
+        $ref: '#/definitions/models.EstudianteTrabajoGrado'
+      RespuestaAnterior:
+        $ref: '#/definitions/models.RespuestaSolicitud'
+      RespuestaNueva:
+        $ref: '#/definitions/models.RespuestaSolicitud'
+      TrabajoGrado:
+        $ref: '#/definitions/models.TrabajoGrado'
   models.TrRespuestaSolicitud:
     title: TrRespuestaSolicitud
     type: object
@@ -5933,6 +6190,9 @@ definitions:
         format: int64
       Modalidad:
         $ref: '#/definitions/models.Modalidad'
+      PeriodoAcademico:
+        type: integer
+        format: int64
       Titulo:
         type: string
   models.UsuarioSolicitud:
@@ -6116,3 +6376,9 @@ tags:
 - name: tr_respuesta_solicitud
   description: |
     oprations for TrTrabajoGrado
+- name: tr_registrar_materias_posgrado
+  description: |
+    operations for TrRegistrarMateriasPosgrado
+- name: tr_formalizar_solicitud
+  description: |
+    operations for TrFormalizarSolicitud

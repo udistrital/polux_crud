@@ -314,6 +314,12 @@ func init() {
 			),
 		),
 
+		beego.NSNamespace("/tr_registrar_materias_posgrado",
+			beego.NSInclude(
+				&controllers.TrRegistrarMateriasPosgrado{},
+			),
+		),
+
 		beego.NSNamespace("/tr_registrar_respuestas_solicitudes",
 			beego.NSInclude(
 				&controllers.TrRegistrarRespuestasSolicitudesController{},
