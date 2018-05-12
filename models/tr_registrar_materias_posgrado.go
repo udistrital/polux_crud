@@ -20,7 +20,7 @@ func AddTransaccionRegistrarMateriasPosgrado(m *TrRegistrarMateriasPosgrado) (al
 	o := orm.NewOrm()
 	o.Begin()
 	alerta = append(alerta, "Success")
-	fmt.Println("Here");
+	
 	// Update de la respuesta previa
 	if num, err := o.Update(m.RespuestaPrevia, "Activo"); err == nil {
 		fmt.Println("Number of requests updated in database:", num)
