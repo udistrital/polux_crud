@@ -8,7 +8,7 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// oprations for TrSolicitud
+// operations for TrSolicitud
 type TrSolicitudController struct {
 	beego.Controller
 }
