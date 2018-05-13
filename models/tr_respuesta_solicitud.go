@@ -21,7 +21,7 @@ type TrRespuestaSolicitud struct {
 	EspaciosAcademicos     *[]EspacioAcademicoInscrito //Solicitud de cambio de asignaturas
 }
 
-//funcion para la transaccion de solicitudes
+// AddTransaccionRespuestaSolicitud funcion para dar respuesta a las solicitudes
 func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string, err error) {
 	o := orm.NewOrm()
 	o.Begin()
