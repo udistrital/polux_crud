@@ -13,6 +13,7 @@ type TrTrabajoGrado struct {
 	DocumentoTrabajoGrado   *DocumentoTrabajoGrado
 	AreasTrabajoGrado       *[]AreasTrabajoGrado
 	VinculacionTrabajoGrado *[]VinculacionTrabajoGrado
+	AsignaturasTrabajoGrado *[]AsignaturaTrabajoGrado
 }
 
 // AddTransaccionTrabajoGrado funcion para crear un trabajo de grado desde una solicitud

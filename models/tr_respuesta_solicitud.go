@@ -64,6 +64,16 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 			m.SolicitudTrabajoGrado.TrabajoGrado.Id = int(id_TrabajoGrado)
 			if id_sols, err := o.Update(m.SolicitudTrabajoGrado, "TrabajoGrado"); err == nil {
 				fmt.Println(id_sols)
+				// Se agregan asignaturas de trabajo de grado
+				for _, v := range *m.TrTrabajoGrado.AsignaturasTrabajoGrado {
+					v.TrabajoGrado.Id = int(id_TrabajoGrado)
+					if _, err = o.Insert(&v); err != nil {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_14")
+					}
+				}
 				// Se agregan estudiantes
 				for _, v := range *m.TrTrabajoGrado.EstudianteTrabajoGrado {
 					v.TrabajoGrado.Id = int(id_TrabajoGrado)
@@ -229,7 +239,6 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 						fmt.Println("Number of records updated in database:", num)
 						//finaliza update
 					} else {
-						fmt.Println("error aca");
 						fmt.Println(err)
 						err = o.Rollback()
 						alerta[0] = "Error"
