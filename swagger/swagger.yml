@@ -4956,24 +4956,6 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /tr_formalizar_solicitud/:
-    post:
-      tags:
-      - tr_formalizar_solicitud
-      description: create the TrFormalizarSolicitud
-      operationId: TrFormalizarSolicitud.PostTrFormalizarSolicitud
-      parameters:
-      - in: body
-        name: body
-        description: body for TrFormalizarSolicitud content
-        required: true
-        schema:
-          $ref: '#/definitions/models.TrFormalizarSolicitud'
-      responses:
-        "201":
-          description: '{int} models.TrFormalizarSolicitud'
-        "403":
-          description: body is empty
   /tr_registrar_materias_posgrado/:
     post:
       tags:
@@ -4990,6 +4972,42 @@ paths:
       responses:
         "201":
           description: '{int} models.TrRegistrarMateriasPosgrado'
+        "403":
+          description: body is empty
+  /tr_registrar_nota/:
+    post:
+      tags:
+      - tr_registrar_nota
+      description: create the TrRegistrarNota
+      operationId: TrRegistrarNota.PostTrRegistrarNota
+      parameters:
+      - in: body
+        name: body
+        description: body for TrRegistrarNota content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TrRegistrarNota'
+      responses:
+        "201":
+          description: '{int} models.TrRegistrarNota'
+        "403":
+          description: body is empty
+  /tr_registrar_respuestas_solicitudes/:
+    post:
+      tags:
+      - tr_registrar_respuestas_solicitudes
+      description: create the TrSeleccionAdmitidos
+      operationId: TrRegistrarRespuestasSolicitudesController.PostTrSeleccionAdmitidos
+      parameters:
+      - in: body
+        name: body
+        description: body for TrSeleccionAdmitidos content
+        required: true
+        schema:
+          $ref: '#/definitions/.TrSeleccionAdmitidos'
+      responses:
+        "201":
+          description: '{int} models.TrSeleccionAdmitidos'
         "403":
           description: body is empty
   /tr_respuesta_solicitud/:
@@ -5400,7 +5418,7 @@ definitions:
     type: object
   .EstudianteTrabajoGrado:
     type: object
-  .RespuestaSolicitud:
+  .TrSeleccionAdmitidos:
     type: object
   .UsuarioSolicitud:
     type: object
@@ -6056,8 +6074,7 @@ definitions:
       ModalidadTipoSolicitud:
         $ref: '#/definitions/models.ModalidadTipoSolicitud'
       PeriodoAcademico:
-        type: integer
-        format: int64
+        type: string
       TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
   models.TipoDetalle:
@@ -6105,32 +6122,34 @@ definitions:
         format: int64
       Nombre:
         type: string
-  models.TrFormalizarSolicitud:
-    title: TrFormalizarSolicitud
-    type: object
-    properties:
-      SolicitudesActualizadas:
-        $ref: '#/definitions/models.RespuestaSolicitud'
   models.TrRegistrarMateriasPosgrado:
     title: TrRegistrarMateriasPosgrado
     type: object
     properties:
       EspaciosAcademicos:
-        $ref: '#/definitions/models.EspacioAcademicoInscrito'
+        $ref: '#/definitions/222439.<nil>.EspacioAcademicoInscrito'
       EstudianteTrabajoGrado:
         $ref: '#/definitions/models.EstudianteTrabajoGrado'
-      RespuestaAnterior:
+      RespuestaActualizada:
         $ref: '#/definitions/models.RespuestaSolicitud'
-      RespuestaNueva:
+      RespuestaPrevia:
         $ref: '#/definitions/models.RespuestaSolicitud'
       TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
+  models.TrRegistrarNota:
+    title: TrRegistrarNota
+    type: object
+    properties:
+      EspaciosAcademicosCalificados:
+        $ref: '#/definitions/42093.<nil>.EspacioAcademicoInscrito'
   models.TrRespuestaSolicitud:
     title: TrRespuestaSolicitud
     type: object
     properties:
       DocumentoSolicitud:
         $ref: '#/definitions/models.DocumentoSolicitud'
+      EspaciosAcademicos:
+        $ref: '#/definitions/169166.<nil>.EspacioAcademicoInscrito'
       EstudianteTrabajoGrado:
         $ref: '#/definitions/models.EstudianteTrabajoGrado'
       ModalidadTipoSolicitud:
@@ -6148,35 +6167,37 @@ definitions:
       TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
       Vinculaciones:
-        $ref: '#/definitions/models.VinculacionTrabajoGrado'
+        $ref: '#/definitions/168572.<nil>.VinculacionTrabajoGrado'
+      VinculacionesCancelacion:
+        $ref: '#/definitions/168757.<nil>.VinculacionTrabajoGrado'
   models.TrSolicitud:
     title: TrSolicitud
     type: object
     properties:
       DetallesSolicitud:
-        $ref: '#/definitions/models.DetalleSolicitud'
+        $ref: '#/definitions/136655.<nil>.DetalleSolicitud'
       Respuesta:
         $ref: '#/definitions/models.RespuestaSolicitud'
       Solicitud:
         $ref: '#/definitions/models.SolicitudTrabajoGrado'
       UsuariosSolicitud:
-        $ref: '#/definitions/models.UsuarioSolicitud'
+        $ref: '#/definitions/136694.<nil>.UsuarioSolicitud'
   models.TrTrabajoGrado:
     title: TrTrabajoGrado
     type: object
     properties:
       AreasTrabajoGrado:
-        $ref: '#/definitions/models.AreasTrabajoGrado'
+        $ref: '#/definitions/17692.<nil>.AreasTrabajoGrado'
       DocumentoEscrito:
         $ref: '#/definitions/models.DocumentoEscrito'
       DocumentoTrabajoGrado:
         $ref: '#/definitions/models.DocumentoTrabajoGrado'
       EstudianteTrabajoGrado:
-        $ref: '#/definitions/models.EstudianteTrabajoGrado'
+        $ref: '#/definitions/17550.<nil>.EstudianteTrabajoGrado'
       TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
       VinculacionTrabajoGrado:
-        $ref: '#/definitions/models.VinculacionTrabajoGrado'
+        $ref: '#/definitions/17738.<nil>.VinculacionTrabajoGrado'
   models.TrabajoGrado:
     title: TrabajoGrado
     type: object
@@ -6191,8 +6212,7 @@ definitions:
       Modalidad:
         $ref: '#/definitions/models.Modalidad'
       PeriodoAcademico:
-        type: integer
-        format: int64
+        type: string
       Titulo:
         type: string
   models.UsuarioSolicitud:
@@ -6369,16 +6389,19 @@ tags:
     SolicitudTrabajoGradoController operations for SolicitudTrabajoGrado
 - name: tr_solicitud
   description: |
-    oprations for TrSolicitud
+    operations for TrSolicitud
 - name: tr_trabajo_grado
   description: |
-    oprations for TrTrabajoGrado
+    operations for TrTrabajoGrado
 - name: tr_respuesta_solicitud
   description: |
-    oprations for TrTrabajoGrado
+    operations for TrTrabajoGrado
 - name: tr_registrar_materias_posgrado
   description: |
     operations for TrRegistrarMateriasPosgrado
-- name: tr_formalizar_solicitud
+- name: tr_registrar_respuestas_solicitudes
   description: |
-    operations for TrFormalizarSolicitud
+    operations for TrSeleccionAdmitidos
+- name: tr_registrar_nota
+  description: |
+    operations for TrRegistrarNota
