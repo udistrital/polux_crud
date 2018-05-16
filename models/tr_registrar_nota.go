@@ -12,7 +12,7 @@ type TrRegistrarNota struct {
 	TrabajoDeGradoTerminado						*TrabajoGrado
 }
 
-// Función para la transaccion de notas obtenidas en espacios académicos de posgrado
+// AddTransaccionRegistrarNota Función para la transaccion de notas obtenidas en espacios académicos de posgrado
 func AddTransaccionRegistrarNota(m *TrRegistrarNota) (alerta []string, err error) {
 	o := orm.NewOrm()
 	o.Begin()
@@ -24,7 +24,7 @@ func AddTransaccionRegistrarNota(m *TrRegistrarNota) (alerta []string, err error
 		fmt.Println("Number of degree assigments updated in database:", num)
 		// Update de los espacios académicos inscritos
 		for _, espacioAcademicoCalificado := range *m.EspaciosAcademicosCalificados {
-			if num, err := o.Update(&espacioAcademicoCalificado, "Nota"); err == nil {
+			if num, err := o.Update(&espacioAcademicoCalificado); err == nil {
 				fmt.Println("Number of academic spaces updated in database:", num)
 				fmt.Println(&espacioAcademicoCalificado)
 			} else {

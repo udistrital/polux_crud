@@ -13,7 +13,7 @@ type TrSolicitud struct {
 	UsuariosSolicitud *[]UsuarioSolicitud
 }
 
-//funcion para la transaccion de solicitudes
+// AddTransaccionSolicitud funcion para registrar solicitudes (detalles y usuarios)
 func AddTransaccionSolicitud(m *TrSolicitud) (alerta []string, err error) {
 	o := orm.NewOrm()
 	o.Begin()

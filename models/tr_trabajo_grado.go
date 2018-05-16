@@ -13,9 +13,10 @@ type TrTrabajoGrado struct {
 	DocumentoTrabajoGrado   *DocumentoTrabajoGrado
 	AreasTrabajoGrado       *[]AreasTrabajoGrado
 	VinculacionTrabajoGrado *[]VinculacionTrabajoGrado
+	AsignaturasTrabajoGrado *[]AsignaturaTrabajoGrado
 }
 
-//funcion para la transaccion de solicitudes
+// AddTransaccionTrabajoGrado funcion para crear un trabajo de grado desde una solicitud
 func AddTransaccionTrabajoGrado(m *TrTrabajoGrado) (alerta []string, err error) {
 	o := orm.NewOrm()
 	o.Begin()

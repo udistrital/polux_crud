@@ -21,7 +21,7 @@ type TrRespuestaSolicitud struct {
 	EspaciosAcademicos     *[]EspacioAcademicoInscrito //Solicitud de cambio de asignaturas
 }
 
-//funcion para la transaccion de solicitudes
+// AddTransaccionRespuestaSolicitud funcion para dar respuesta a las solicitudes
 func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string, err error) {
 	o := orm.NewOrm()
 	o.Begin()
@@ -64,6 +64,16 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 			m.SolicitudTrabajoGrado.TrabajoGrado.Id = int(id_TrabajoGrado)
 			if id_sols, err := o.Update(m.SolicitudTrabajoGrado, "TrabajoGrado"); err == nil {
 				fmt.Println(id_sols)
+				// Se agregan asignaturas de trabajo de grado
+				for _, v := range *m.TrTrabajoGrado.AsignaturasTrabajoGrado {
+					v.TrabajoGrado.Id = int(id_TrabajoGrado)
+					if _, err = o.Insert(&v); err != nil {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_14")
+					}
+				}
 				// Se agregan estudiantes
 				for _, v := range *m.TrTrabajoGrado.EstudianteTrabajoGrado {
 					v.TrabajoGrado.Id = int(id_TrabajoGrado)
@@ -211,6 +221,50 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 			alerta[0] = "Error"
 			alerta = append(alerta, "ERROR_RTA_SOLICITUD_7")
 		}
+
+		// actualziar Asignaturas trabajo de grado a cancelado
+		var asignaturasTrabajoGrado []AsignaturaTrabajoGrado
+		//se busca asingaturas trabajo grado
+		if _, err := o.QueryTable(new(AsignaturaTrabajoGrado)).RelatedSel().Filter("trabajo_grado",m.EstudianteTrabajoGrado.TrabajoGrado.Id).All(&asignaturasTrabajoGrado); err == nil{
+			fmt.Println("asignaturasTrabajoGrado",asignaturasTrabajoGrado);
+			for _, v := range asignaturasTrabajoGrado {
+				//Id de la asignatura 3 o cancelado
+				v.EstadoAsignaturaTrabajoGrado.Id = 3
+				if _, err = o.Update(&v, "EstadoAsignaturaTrabajoGrado"); err != nil {
+					fmt.Println(err)
+					err = o.Rollback()
+					alerta[0] = "Error"
+					alerta = append(alerta, "ERROR_RTA_SOLICITUD_8")
+				}
+			}
+		} else {
+			fmt.Println(err)
+			err = o.Rollback()
+			alerta[0] = "Error"
+			alerta = append(alerta, "ERROR_RTA_SOLICITUD_7")
+		}
+
+		//Actualizar espacios_academicos_inscritos
+		var espaciosAcademicosInscritos []EspacioAcademicoInscrito
+		//se buscan espacios academicos inscritos activos
+		if _, err := o.QueryTable(new(EspacioAcademicoInscrito)).RelatedSel().Filter("trabajo_grado",m.EstudianteTrabajoGrado.TrabajoGrado.Id).Filter("estado_espacio_academico_inscrito",1).All(&espaciosAcademicosInscritos); err == nil{
+			fmt.Println("espaciosAcademicosInscritos",espaciosAcademicosInscritos);
+			for _, v := range espaciosAcademicosInscritos {
+				//Id del espacio 2  cancelado
+				v.EstadoEspacioAcademicoInscrito.Id = 2
+				if _, err = o.Update(&v, "EstadoEspacioAcademicoInscrito"); err != nil {
+					fmt.Println(err)
+					err = o.Rollback()
+					alerta[0] = "Error"
+					alerta = append(alerta, "ERROR_RTA_SOLICITUD_8")
+				}
+			}
+		} else {
+			fmt.Println(err)
+			err = o.Rollback()
+			alerta[0] = "Error"
+			alerta = append(alerta, "ERROR_RTA_SOLICITUD_7")
+		}
 	}
 
 	//Solicitud de cambio de materias
@@ -229,7 +283,6 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 						fmt.Println("Number of records updated in database:", num)
 						//finaliza update
 					} else {
-						fmt.Println("error aca");
 						fmt.Println(err)
 						err = o.Rollback()
 						alerta[0] = "Error"
