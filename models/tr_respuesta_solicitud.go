@@ -19,6 +19,7 @@ type TrRespuestaSolicitud struct {
 	TrabajoGrado           *TrabajoGrado              //Cambio Titulo
 	SolicitudTrabajoGrado  *SolicitudTrabajoGrado     //solicitud inicial
 	EspaciosAcademicos     *[]EspacioAcademicoInscrito //Solicitud de cambio de asignaturas
+	DetallesPasantia       *DetallePasantia  //SOlicitud inicial de pasantia
 }
 
 // AddTransaccionRespuestaSolicitud funcion para dar respuesta a las solicitudes
@@ -124,11 +125,21 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 					alerta[0] = "Error"
 					alerta = append(alerta, "ERROR_RTA_SOLICITUD_11")
 				}
+				// Si la solicitud es de pasantia se agrega el detalel de la pasantia
+				if m.DetallesPasantia != nil {
+					m.DetallesPasantia.TrabajoGrado.Id = int(id_TrabajoGrado)
+					if _, err = o.Insert(m.DetallesPasantia); err != nil {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_15")
+					}
+				}
 			} else {
 				fmt.Println(err)
 				err = o.Rollback()
 				alerta[0] = "Error"
-				alerta = append(alerta, "ERROR_RTA_SOLICITUD_333")
+				alerta = append(alerta, "ERROR_RTA_SOLICITUD_3")
 			}
 		} else {
 			fmt.Println(err)
