@@ -2,7 +2,7 @@ package models
 
 import (
 	"fmt"
-
+	"strings"
 	"github.com/astaxie/beego/orm"
 )
 
@@ -160,7 +160,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 					err = o.Rollback()
 					alerta[0] = "Error"
 					alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
-				}
+				} 
 			} else {
 				if _, err = o.Update(&v, "Activo", "FechaFin"); err != nil {
 					fmt.Println(err)
@@ -169,7 +169,29 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 					alerta = append(alerta, "ERROR_RTA_SOLICITUD_6")
 				}
 			}
-
+			// Si  el cambio es de director externo, se recibe la data del detalle de la pasantia y 
+			// se actualiza
+			if m.DetallesPasantia != nil {
+				//Se busca el detalle de la pasantia asociado al tg
+				var detallePasantia DetallePasantia
+				if err = o.QueryTable(new(DetallePasantia)).RelatedSel().Filter("TrabajoGrado",m.DetallesPasantia.TrabajoGrado.Id).One(&detallePasantia); err == nil {
+					detallePasantia.Observaciones = strings.Split(detallePasantia.Observaciones," y dirigida por ")[0];
+					detallePasantia.Observaciones += m.DetallesPasantia.Observaciones
+					if num, err = o.Update(&detallePasantia,"Observaciones"); err == nil {
+						fmt.Println("Number of records updated in database:", num)
+					} else {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_16")
+					}
+				} else {
+					fmt.Println(err)
+					err = o.Rollback()
+					alerta[0] = "Error"
+					alerta = append(alerta, "ERROR_RTA_SOLICITUD_16")
+				}
+			}
 		}
 	}
 
