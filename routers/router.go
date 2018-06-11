@@ -62,6 +62,12 @@ func init() {
 			),
 		),
 
+		beego.NSNamespace("/detalle_pasantia",
+			beego.NSInclude(
+				&controllers.DetallePasantiaController{},
+			),
+		),
+
 		beego.NSNamespace("/detalle_tipo_solicitud",
 			beego.NSInclude(
 				&controllers.DetalleTipoSolicitudController{},
