@@ -33,8 +33,8 @@ func (c *TrRegistrarRespuestasSolicitudesController) Post() {
 			c.Data["json"] = alerta
 		}
 	} else {
-			beego.Error(err)
-			c.Abort("400")
+		beego.Error(err)
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }

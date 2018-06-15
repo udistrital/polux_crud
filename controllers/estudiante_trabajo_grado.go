@@ -43,8 +43,8 @@ func (c *EstudianteTrabajoGradoController) Post() {
 			c.Abort("400")
 		}
 	} else {
-			beego.Error(err)
-			c.Abort("400")
+		beego.Error(err)
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }
@@ -156,8 +156,8 @@ func (c *EstudianteTrabajoGradoController) Put() {
 			c.Abort("400")
 		}
 	} else {
-			beego.Error(err)
-			c.Abort("400")
+		beego.Error(err)
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }
