@@ -7,11 +7,12 @@ import (
 )
 
 type TrRegistrarMateriasPosgrado struct {
-	RespuestaPrevia        *RespuestaSolicitud
-	RespuestaActualizada   *RespuestaSolicitud
-	TrabajoGrado           *TrabajoGrado
-	EstudianteTrabajoGrado *EstudianteTrabajoGrado
-	EspaciosAcademicos		 *[]EspacioAcademicoInscrito
+	RespuestaPrevia        				*RespuestaSolicitud
+	RespuestaActualizada   				*RespuestaSolicitud
+	TrabajoGrado           				*TrabajoGrado
+	EstudianteTrabajoGrado 				*EstudianteTrabajoGrado
+	EspaciosAcademicos		 				*[]EspacioAcademicoInscrito
+	AsignaturasDeTrabajoDeGrado 	*[]AsignaturaTrabajoGrado
 }
 
 // Función para la transaccion de solicitudes de materias de posgrado
@@ -20,26 +21,41 @@ func AddTransaccionRegistrarMateriasPosgrado(m *TrRegistrarMateriasPosgrado) (al
 	o.Begin()
 	alerta = append(alerta, "Success")
 	
+	// Update de la respuesta previa
 	if num, err := o.Update(m.RespuestaPrevia, "Activo"); err == nil {
-		fmt.Println("Number of records updated in database:", num)
-		// Insert nueva respuesta
+		fmt.Println("Number of requests updated in database:", num)
+		// Insert de la nueva respuesta
 		if idRespuestaNueva, err := o.Insert(m.RespuestaActualizada); err == nil {
-			fmt.Println(idRespuestaNueva)
-			// Insert trabajo grado
+			fmt.Println("Answered request inserted:", idRespuestaNueva)
+			// Insert del trabajo grado
 			if idTrabajoGrado, err := o.Insert(m.TrabajoGrado); err == nil {
-				fmt.Println(idTrabajoGrado)
-				// Insert estudiante trabajo grado
+				fmt.Println("Degree assignment inserted", idTrabajoGrado)
+				// Insert del estudiante trabajo grado
 				m.EstudianteTrabajoGrado.TrabajoGrado.Id = int(idTrabajoGrado)
 				if idEstudianteTrabajoGrado, err := o.Insert(m.EstudianteTrabajoGrado); err == nil {
-					fmt.Println(idEstudianteTrabajoGrado)
-					// Insert espacios academicos inscritos
-					for _, v := range *m.EspaciosAcademicos {
-						v.TrabajoGrado.Id = int(idTrabajoGrado)
-						if _, err = o.Insert(&v); err != nil {
+					fmt.Println("Degree assignment student inserted:", idEstudianteTrabajoGrado)
+					// Insert de espacios academicos inscritos
+					for _, espacioAcademico := range *m.EspaciosAcademicos {
+						espacioAcademico.TrabajoGrado.Id = int(idTrabajoGrado)
+						if idEspacioAcademicoInscrito, err := o.Insert(&espacioAcademico); err == nil {
+							fmt.Println("Academic space inserted:", idEspacioAcademicoInscrito)
+						} else {
 							fmt.Println(err)
-							err = o.Rollback()
 							alerta[0] = "Error"
 							alerta = append(alerta, "ERROR_SOLICITUDES_1")
+							err = o.Rollback()
+						}
+					}
+					// Insert de asignaturas trabajo grado
+					for _, asignaturaTrabajoGrado := range *m.AsignaturasDeTrabajoDeGrado {
+						asignaturaTrabajoGrado.TrabajoGrado.Id = int(idTrabajoGrado)
+						if idAsignaturaTrabajoGrado, err := o.Insert(&asignaturaTrabajoGrado); err == nil {
+							fmt.Println("Degree assignment subject inserted:", idAsignaturaTrabajoGrado)
+						} else {
+							fmt.Println(err)
+							alerta[0] = "Error"
+							alerta = append(alerta, "ERROR_SOLICITUDES_1")
+							err = o.Rollback()
 						}
 					}
 					err = o.Commit()
