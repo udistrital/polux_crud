@@ -30,7 +30,7 @@ func (c *RespuestaSolicitudController) URLMapping() {
 // @Description create RespuestaSolicitud
 // @Param	body		body 	models.RespuestaSolicitud	true		"body for RespuestaSolicitud content"
 // @Success 201 {int} models.RespuestaSolicitud
-// @Failure 403 body is empty
+// @Failure 400 the request contains incorrect syntax
 // @router / [post]
 func (c *RespuestaSolicitudController) Post() {
 	var v models.RespuestaSolicitud
@@ -39,10 +39,12 @@ func (c *RespuestaSolicitudController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 	}
 	c.ServeJSON()
 }
@@ -52,14 +54,15 @@ func (c *RespuestaSolicitudController) Post() {
 // @Description get RespuestaSolicitud by id
 // @Param	id		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.RespuestaSolicitud
-// @Failure 403 :id is empty
+// @Failure 404 not found resource
 // @router /:id [get]
 func (c *RespuestaSolicitudController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetRespuestaSolicitudById(id)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("404")
 	} else {
 		c.Data["json"] = v
 	}
@@ -76,7 +79,7 @@ func (c *RespuestaSolicitudController) GetOne() {
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
 // @Success 200 {object} models.RespuestaSolicitud
-// @Failure 403
+// @Failure 404 not found resource
 // @router / [get]
 func (c *RespuestaSolicitudController) GetAll() {
 	var fields []string
@@ -149,7 +152,7 @@ func (c *RespuestaSolicitudController) GetAll() {
 // @Param	id		path 	string	true		"The id you want to update"
 // @Param	body		body 	models.RespuestaSolicitud	true		"body for RespuestaSolicitud content"
 // @Success 200 {object} models.RespuestaSolicitud
-// @Failure 403 :id is not int
+// @Failure 400 the request contains incorrect syntax
 // @router /:id [put]
 func (c *RespuestaSolicitudController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
@@ -157,12 +160,14 @@ func (c *RespuestaSolicitudController) Put() {
 	v := models.RespuestaSolicitud{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateRespuestaSolicitudById(&v); err == nil {
-			c.Data["json"] = "OK"
+			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 	}
 	c.ServeJSON()
 }
@@ -172,15 +177,16 @@ func (c *RespuestaSolicitudController) Put() {
 // @Description delete the RespuestaSolicitud
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
-// @Failure 403 id is empty
+// @Failure 404 not found resource
 // @router /:id [delete]
 func (c *RespuestaSolicitudController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	if err := models.DeleteRespuestaSolicitud(id); err == nil {
-		c.Data["json"] = "OK"
+		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("404")
 	}
 	c.ServeJSON()
 }

@@ -30,7 +30,7 @@ func (c *FormatoEvaluacionCarreraController) URLMapping() {
 // @Description create FormatoEvaluacionCarrera
 // @Param	body		body 	models.FormatoEvaluacionCarrera	true		"body for FormatoEvaluacionCarrera content"
 // @Success 201 {int} models.FormatoEvaluacionCarrera
-// @Failure 403 body is empty
+// @Failure 400 the request contains incorrect syntax
 // @router / [post]
 func (c *FormatoEvaluacionCarreraController) Post() {
 	var v models.FormatoEvaluacionCarrera
@@ -39,10 +39,12 @@ func (c *FormatoEvaluacionCarreraController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 	}
 	c.ServeJSON()
 }
@@ -52,14 +54,15 @@ func (c *FormatoEvaluacionCarreraController) Post() {
 // @Description get FormatoEvaluacionCarrera by id
 // @Param	id		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.FormatoEvaluacionCarrera
-// @Failure 403 :id is empty
+// @Failure 404 not found resource
 // @router /:id [get]
 func (c *FormatoEvaluacionCarreraController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetFormatoEvaluacionCarreraById(id)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("404")
 	} else {
 		c.Data["json"] = v
 	}
@@ -76,7 +79,7 @@ func (c *FormatoEvaluacionCarreraController) GetOne() {
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
 // @Success 200 {object} models.FormatoEvaluacionCarrera
-// @Failure 403
+// @Failure 404 not found resource
 // @router / [get]
 func (c *FormatoEvaluacionCarreraController) GetAll() {
 	var fields []string
@@ -122,8 +125,12 @@ func (c *FormatoEvaluacionCarreraController) GetAll() {
 
 	l, err := models.GetAllFormatoEvaluacionCarrera(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("404")
 	} else {
+		if l == nil {
+			l = append(l, map[string]interface{}{})
+		}
 		c.Data["json"] = l
 	}
 	c.ServeJSON()
@@ -135,7 +142,7 @@ func (c *FormatoEvaluacionCarreraController) GetAll() {
 // @Param	id		path 	string	true		"The id you want to update"
 // @Param	body		body 	models.FormatoEvaluacionCarrera	true		"body for FormatoEvaluacionCarrera content"
 // @Success 200 {object} models.FormatoEvaluacionCarrera
-// @Failure 403 :id is not int
+// @Failure 400 the request contains incorrect syntax
 // @router /:id [put]
 func (c *FormatoEvaluacionCarreraController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
@@ -143,12 +150,14 @@ func (c *FormatoEvaluacionCarreraController) Put() {
 	v := models.FormatoEvaluacionCarrera{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateFormatoEvaluacionCarreraById(&v); err == nil {
-			c.Data["json"] = "OK"
+			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 	}
 	c.ServeJSON()
 }
@@ -158,15 +167,16 @@ func (c *FormatoEvaluacionCarreraController) Put() {
 // @Description delete the FormatoEvaluacionCarrera
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
-// @Failure 403 id is empty
+// @Failure 404 not found resource
 // @router /:id [delete]
 func (c *FormatoEvaluacionCarreraController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	if err := models.DeleteFormatoEvaluacionCarrera(id); err == nil {
-		c.Data["json"] = "OK"
+		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("404")
 	}
 	c.ServeJSON()
 }

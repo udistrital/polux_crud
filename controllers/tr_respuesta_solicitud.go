@@ -21,7 +21,7 @@ func (c *TrRespuestaSolicitudController) URLMapping() {
 // @Description create the TrRespuestaSolicitud
 // @Param	body		body 	models.TrRespuestaSolicitud	true	"body for TrRespuestaSolicitud content"
 // @Success 201 {int} models.TrRespuestaSolicitud
-// @Failure 403 body is empty
+// @Failure 400 the request contains incorrect syntax
 // @router / [post]
 func (c *TrRespuestaSolicitudController) Post() {
 	var v models.TrRespuestaSolicitud
@@ -30,10 +30,12 @@ func (c *TrRespuestaSolicitudController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = alerta
 		} else {
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 	}
 	c.ServeJSON()
 }

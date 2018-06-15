@@ -21,7 +21,7 @@ func (c *TrRegistrarActaSeguimientoController) URLMapping() {
 // @Description create the TrRegistrarActaSeguimiento para registrar actas de seguimiento en la modalidad de pasantia
 // @Param	body		body 	models.TrRegistrarActaSeguimiento	true	"body for TrRegistrarActaSeguimiento content"
 // @Success 201 {int} models.TrRegistrarActaSeguimiento
-// @Failure 403 body is empty
+// @Failure 400 the request contains incorrect syntax
 // @router / [post]
 func (c *TrRegistrarActaSeguimientoController) Post() {
 	var v models.TrRegistrarActaSeguimiento
@@ -30,10 +30,12 @@ func (c *TrRegistrarActaSeguimientoController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = alerta
 		} else {
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 	}
 	c.ServeJSON()
 }
