@@ -2,7 +2,7 @@ package models
 
 import (
 	"fmt"
-
+	"strings"
 	"github.com/astaxie/beego/orm"
 )
 
@@ -19,6 +19,7 @@ type TrRespuestaSolicitud struct {
 	TrabajoGrado           *TrabajoGrado              //Cambio Titulo
 	SolicitudTrabajoGrado  *SolicitudTrabajoGrado     //solicitud inicial
 	EspaciosAcademicos     *[]EspacioAcademicoInscrito //Solicitud de cambio de asignaturas
+	DetallesPasantia       *DetallePasantia  //SOlicitud inicial de pasantia
 }
 
 // AddTransaccionRespuestaSolicitud funcion para dar respuesta a las solicitudes
@@ -124,11 +125,21 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 					alerta[0] = "Error"
 					alerta = append(alerta, "ERROR_RTA_SOLICITUD_11")
 				}
+				// Si la solicitud es de pasantia se agrega el detalel de la pasantia
+				if m.DetallesPasantia != nil {
+					m.DetallesPasantia.TrabajoGrado.Id = int(id_TrabajoGrado)
+					if _, err = o.Insert(m.DetallesPasantia); err != nil {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_15")
+					}
+				}
 			} else {
 				fmt.Println(err)
 				err = o.Rollback()
 				alerta[0] = "Error"
-				alerta = append(alerta, "ERROR_RTA_SOLICITUD_333")
+				alerta = append(alerta, "ERROR_RTA_SOLICITUD_3")
 			}
 		} else {
 			fmt.Println(err)
@@ -149,7 +160,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 					err = o.Rollback()
 					alerta[0] = "Error"
 					alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
-				}
+				} 
 			} else {
 				if _, err = o.Update(&v, "Activo", "FechaFin"); err != nil {
 					fmt.Println(err)
@@ -158,7 +169,29 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 					alerta = append(alerta, "ERROR_RTA_SOLICITUD_6")
 				}
 			}
-
+			// Si  el cambio es de director externo, se recibe la data del detalle de la pasantia y 
+			// se actualiza
+			if m.DetallesPasantia != nil {
+				//Se busca el detalle de la pasantia asociado al tg
+				var detallePasantia DetallePasantia
+				if err = o.QueryTable(new(DetallePasantia)).RelatedSel().Filter("TrabajoGrado",m.DetallesPasantia.TrabajoGrado.Id).One(&detallePasantia); err == nil {
+					detallePasantia.Observaciones = strings.Split(detallePasantia.Observaciones," y dirigida por ")[0];
+					detallePasantia.Observaciones += m.DetallesPasantia.Observaciones
+					if num, err = o.Update(&detallePasantia,"Observaciones"); err == nil {
+						fmt.Println("Number of records updated in database:", num)
+					} else {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_16")
+					}
+				} else {
+					fmt.Println(err)
+					err = o.Rollback()
+					alerta[0] = "Error"
+					alerta = append(alerta, "ERROR_RTA_SOLICITUD_16")
+				}
+			}
 		}
 	}
 
