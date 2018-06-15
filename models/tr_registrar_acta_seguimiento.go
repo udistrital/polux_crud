@@ -13,7 +13,7 @@ type TrRegistrarActaSeguimiento struct {
 // AddTransaccionRespuestaSolicitud funcion para dar respuesta a las solicitudes
 func RegistrarActaSeguimiento(m *TrRegistrarActaSeguimiento) (alerta []string, err error) {
 	o := orm.NewOrm()
-	o.Begin()
+	err = o.Begin()
 	alerta = append(alerta, "Success")
 	//Se inserta el documento escrito
 	fmt.Println(m.Acta)

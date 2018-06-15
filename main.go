@@ -19,7 +19,11 @@ func main() {
 	logPath := "{\"filename\":\""
 	logPath += beego.AppConfig.String("logPath")
 	logPath += "\"}"
-	logs.SetLogger(logs.AdapterFile, logPath)
+	if err:= logs.SetLogger(logs.AdapterFile, logPath); err != nil{
+		if err:= logs.SetLogger("console", ""); err != nil {
+			logs.Warn("logPath not set")
+		}
+	} 
 	orm.Debug = true
 	if beego.BConfig.RunMode == "dev" {
 		beego.BConfig.WebConfig.DirectoryIndex = true

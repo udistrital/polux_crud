@@ -14,7 +14,7 @@ type TrRegistrarRespuestasSolicitudes struct {
 // TransaccionRegistrarRespuestasSolicitudes Función para la transacción de registrar las respuestas de las solicitudes
 func TransaccionRegistrarRespuestasSolicitudes(m *TrRegistrarRespuestasSolicitudes) (alerta []string, err error) {
 	o := orm.NewOrm()
-	o.Begin()
+	err = o.Begin()
 	alerta = append(alerta, "Success")
 
 	// Update de las respuestas antiguas

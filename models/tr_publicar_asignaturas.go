@@ -14,7 +14,7 @@ type TrPublicarAsignaturas struct {
 // AddTransaccionPublicarAsignaturas funcion para registrar las materias de posgrado
 func AddTransaccionPublicarAsignaturas(m *TrPublicarAsignaturas) (alerta []string, err error) {
 	o := orm.NewOrm()
-	o.Begin()
+	err = o.Begin()
 	alerta = append(alerta, "Success")
 	// Buscar si la carrera elegible ta esta registrada
 	var carreraElegible CarreraElegible

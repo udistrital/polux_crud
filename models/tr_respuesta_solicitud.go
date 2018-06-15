@@ -25,7 +25,7 @@ type TrRespuestaSolicitud struct {
 // AddTransaccionRespuestaSolicitud funcion para dar respuesta a las solicitudes
 func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string, err error) {
 	o := orm.NewOrm()
-	o.Begin()
+	err = o.Begin()
 	alerta = append(alerta, "Success")
 	var num int64
 
