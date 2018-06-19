@@ -164,12 +164,35 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 		for _, v := range *m.Vinculaciones {
 			//Si esta activo es nuevo y se inserta sino se actualiza la fecha de fin y el activo
 			if v.Activo == true {
-				if _, err = o.Insert(&v); err != nil {
+				// Se busca si el docente ya estuvo vinculado y se actualiza
+				var vinculado VinculacionTrabajoGrado
+				if err = o.QueryTable(new(VinculacionTrabajoGrado)).RelatedSel().Filter("TrabajoGrado",v.TrabajoGrado).Filter("Usuario",v.Usuario).Filter("RolTrabajoGrado",v.RolTrabajoGrado).One(&vinculado); err == nil {
+					//SI si se encuentra 
+					vinculado.Activo = v.Activo
+					vinculado.FechaFin = v.FechaFin
+					vinculado.FechaInicio = v.FechaInicio
+					fmt.Println("Se actualiza vinculado", vinculado)
+					if _, err = o.Update(&vinculado); err != nil {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
+					} 
+				} else if (err == orm.ErrNoRows) {
+					// Si no se encuentra 
+					fmt.Println("Se inserta vinculado", v)
+					if _, err = o.Insert(&v); err != nil {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
+					} 
+				} else {
 					fmt.Println(err)
 					err = o.Rollback()
 					alerta[0] = "Error"
 					alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
-				} 
+				}
 			} else {
 				if _, err = o.Update(&v, "Activo", "FechaFin"); err != nil {
 					fmt.Println(err)
@@ -392,7 +415,30 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 		for _, v := range *m.TrRevision.Vinculaciones {
 			//Si esta activo es nuevo y se inserta sino se actualiza la fecha de fin y el activo
 			if v.Activo == true {
-				if _, err = o.Insert(&v); err != nil {
+				// Se busca si el docente ya estuvo vinculado y se actualiza
+				var vinculado VinculacionTrabajoGrado
+				if err = o.QueryTable(new(VinculacionTrabajoGrado)).RelatedSel().Filter("TrabajoGrado",v.TrabajoGrado).Filter("Usuario",v.Usuario).Filter("RolTrabajoGrado",v.RolTrabajoGrado).One(&vinculado); err == nil {
+					//SI si se encuentra 
+					vinculado.Activo = v.Activo
+					vinculado.FechaFin = v.FechaFin
+					vinculado.FechaInicio = v.FechaInicio
+					fmt.Println("Se actualiza vinculado", vinculado)
+					if _, err = o.Update(&vinculado); err != nil {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
+					} 
+				} else if (err == orm.ErrNoRows) {
+					// Si no se encuentra 
+					fmt.Println("Se inserta vinculado", v)
+					if _, err = o.Insert(&v); err != nil {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
+					} 
+				} else {
 					fmt.Println(err)
 					err = o.Rollback()
 					alerta[0] = "Error"
@@ -410,6 +456,6 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 
 	}
 	err = o.Commit()
-
+	//err = o.Rollback()
 	return
 }
