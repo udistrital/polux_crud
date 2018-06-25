@@ -20,7 +20,7 @@ func AddTransaccionRevisarAnteproyecto(m *TrRevisarAnteproyecto) (alerta []strin
 	
 	// Update del trabajo de grado
 	if num, err := o.Update(m.TrabajoGrado, "EstadoTrabajoGrado"); err == nil {
-		fmt.Println("Number of requests updated in TrabajoGrado:", num)
+		fmt.Println("Number of degree work records updated:", num)
 		// Insert de la revisión del anteproyecto
 		if idRevisionTrabajoGrado, err := o.Insert(m.RevisionTrabajoGrado); err == nil {
 			fmt.Println("Degree work review inserted:", idRevisionTrabajoGrado)
@@ -45,7 +45,7 @@ func AddTransaccionRevisarAnteproyecto(m *TrRevisarAnteproyecto) (alerta []strin
 		fmt.Println(err)
 		alerta[0] = "Error"
 		alerta = append(alerta, "ERROR_RTA_SOLICITUD_1")
-		err = o.Rollback();
+		err = o.Rollback()
 	}
 	return
 }

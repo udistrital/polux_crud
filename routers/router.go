@@ -337,6 +337,12 @@ func init() {
 				&controllers.TrRevisarAnteproyecto{},
 			),
 		),
+
+		beego.NSNamespace("/tr_actualizar_documento_tg",
+			beego.NSInclude(
+				&controllers.TrActualizarDocumentoTg{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }
