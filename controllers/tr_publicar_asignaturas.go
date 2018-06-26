@@ -21,7 +21,7 @@ func (c *TrPublicarAsignaturasController) URLMapping() {
 // @Description create the TrPublicarAsignaturas
 // @Param	body		body 	models.TrPublicarAsignaturas	true	"body for TrPublicarAsignaturas content"
 // @Success 201 {int} models.TrPublicarAsignaturas
-// @Failure 403 body is empty
+// @Failure 400 the request contains incorrect syntax
 // @router / [post]
 func (c *TrPublicarAsignaturasController) Post() {
 	var v models.TrPublicarAsignaturas
@@ -30,10 +30,12 @@ func (c *TrPublicarAsignaturasController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = alerta
 		} else {
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }

@@ -30,7 +30,7 @@ func (c *TipoPreguntaController) URLMapping() {
 // @Description create TipoPregunta
 // @Param	body		body 	models.TipoPregunta	true		"body for TipoPregunta content"
 // @Success 201 {int} models.TipoPregunta
-// @Failure 403 body is empty
+// @Failure 400 the request contains incorrect syntax
 // @router / [post]
 func (c *TipoPreguntaController) Post() {
 	var v models.TipoPregunta
@@ -39,10 +39,12 @@ func (c *TipoPreguntaController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }
@@ -52,14 +54,15 @@ func (c *TipoPreguntaController) Post() {
 // @Description get TipoPregunta by id
 // @Param	id		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.TipoPregunta
-// @Failure 403 :id is empty
+// @Failure 404 not found resource
 // @router /:id [get]
 func (c *TipoPreguntaController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetTipoPreguntaById(id)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("404")
 	} else {
 		c.Data["json"] = v
 	}
@@ -76,7 +79,7 @@ func (c *TipoPreguntaController) GetOne() {
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
 // @Success 200 {object} models.TipoPregunta
-// @Failure 403
+// @Failure 404 not found resource
 // @router / [get]
 func (c *TipoPreguntaController) GetAll() {
 	var fields []string
@@ -122,8 +125,12 @@ func (c *TipoPreguntaController) GetAll() {
 
 	l, err := models.GetAllTipoPregunta(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("404")
 	} else {
+		/*if l == nil {
+			l = append(l, map[string]interface{}{})
+		}*/
 		c.Data["json"] = l
 	}
 	c.ServeJSON()
@@ -135,7 +142,7 @@ func (c *TipoPreguntaController) GetAll() {
 // @Param	id		path 	string	true		"The id you want to update"
 // @Param	body		body 	models.TipoPregunta	true		"body for TipoPregunta content"
 // @Success 200 {object} models.TipoPregunta
-// @Failure 403 :id is not int
+// @Failure 400 the request contains incorrect syntax
 // @router /:id [put]
 func (c *TipoPreguntaController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
@@ -143,12 +150,14 @@ func (c *TipoPreguntaController) Put() {
 	v := models.TipoPregunta{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateTipoPreguntaById(&v); err == nil {
-			c.Data["json"] = "OK"
+			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }
@@ -158,15 +167,16 @@ func (c *TipoPreguntaController) Put() {
 // @Description delete the TipoPregunta
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
-// @Failure 403 id is empty
+// @Failure 404 not found resource
 // @router /:id [delete]
 func (c *TipoPreguntaController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	if err := models.DeleteTipoPregunta(id); err == nil {
-		c.Data["json"] = "OK"
+		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("404")
 	}
 	c.ServeJSON()
 }

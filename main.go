@@ -2,11 +2,12 @@ package main
 
 import (
 	"github.com/astaxie/beego"
-	_ "github.com/udistrital/Polux_API_Crud/routers"
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/plugins/cors"
 	_ "github.com/lib/pq"
+	_ "github.com/udistrital/Polux_API_Crud/routers"
+	"github.com/udistrital/utils_oas/customerror"
 )
 
 func init() {
@@ -17,8 +18,12 @@ func init() {
 func main() {
 	logPath := "{\"filename\":\""
 	logPath += beego.AppConfig.String("logPath")
-	logPath += "\"}" 
-	logs.SetLogger(logs.AdapterFile, logPath)
+	logPath += "\"}"
+	if err:= logs.SetLogger(logs.AdapterFile, logPath); err != nil{
+		if err:= logs.SetLogger("console", ""); err != nil {
+			logs.Warn("logPath not set")
+		}
+	} 
 	orm.Debug = true
 	if beego.BConfig.RunMode == "dev" {
 		beego.BConfig.WebConfig.DirectoryIndex = true
@@ -32,5 +37,6 @@ func main() {
 		ExposeHeaders:    []string{"Content-Length", "Access-Control-Allow-Origin"},
 		AllowCredentials: true,
 	}))
+	beego.ErrorController(&customerror.CustomErrorController{})
 	beego.Run()
 }

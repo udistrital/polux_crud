@@ -19,7 +19,7 @@ type TrTrabajoGrado struct {
 // AddTransaccionTrabajoGrado funcion para crear un trabajo de grado desde una solicitud
 func AddTransaccionTrabajoGrado(m *TrTrabajoGrado) (alerta []string, err error) {
 	o := orm.NewOrm()
-	o.Begin()
+	err = o.Begin()
 	alerta = append(alerta, "Success")
 	if id, err := o.Insert(m.TrabajoGrado); err == nil {
 		fmt.Println(id)
