@@ -18,7 +18,7 @@ type TrRegistrarMateriasPosgrado struct {
 // Función para la transaccion de solicitudes de materias de posgrado
 func AddTransaccionRegistrarMateriasPosgrado(m *TrRegistrarMateriasPosgrado) (alerta []string, err error) {
 	o := orm.NewOrm()
-	o.Begin()
+	err = o.Begin()
 	alerta = append(alerta, "Success")
 	
 	// Update de la respuesta previa

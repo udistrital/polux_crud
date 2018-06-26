@@ -21,7 +21,7 @@ func (c *TrRegistrarNota) URLMapping() {
 // @Description create the TrRegistrarNota
 // @Param	body		body 	models.TrRegistrarNota	true		"body for TrRegistrarNota content"
 // @Success 201 {int} models.TrRegistrarNota
-// @Failure 403 body is empty
+// @Failure 400 the request contains incorrect syntax
 // @router / [post]
 func (c *TrRegistrarNota) Post() {
 	var v models.TrRegistrarNota
@@ -30,10 +30,12 @@ func (c *TrRegistrarNota) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = response
 		} else {
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }

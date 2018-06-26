@@ -2,9 +2,16 @@ package models
 
 import (
 	"fmt"
-
+	"strings"
 	"github.com/astaxie/beego/orm"
 )
+
+type TrRevision struct {
+	TrabajoGrado    	   *TrabajoGrado
+	Vinculaciones          *[]VinculacionTrabajoGrado //Cambio de director o evaluador
+	DocumentoEscrito	   *DocumentoEscrito
+	DocumentoTrabajoGrado  *DocumentoTrabajoGrado 	  
+}
 
 type TrRespuestaSolicitud struct {
 	RespuestaAnterior      *RespuestaSolicitud
@@ -19,12 +26,15 @@ type TrRespuestaSolicitud struct {
 	TrabajoGrado           *TrabajoGrado              //Cambio Titulo
 	SolicitudTrabajoGrado  *SolicitudTrabajoGrado     //solicitud inicial
 	EspaciosAcademicos     *[]EspacioAcademicoInscrito //Solicitud de cambio de asignaturas
+	DetallesPasantia       *DetallePasantia  //SOlicitud inicial de pasantia
+	TrRevision			   *TrRevision	 //Solicitud de revisión
+
 }
 
 // AddTransaccionRespuestaSolicitud funcion para dar respuesta a las solicitudes
 func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string, err error) {
 	o := orm.NewOrm()
-	o.Begin()
+	err = o.Begin()
 	alerta = append(alerta, "Success")
 	var num int64
 
@@ -124,11 +134,21 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 					alerta[0] = "Error"
 					alerta = append(alerta, "ERROR_RTA_SOLICITUD_11")
 				}
+				// Si la solicitud es de pasantia se agrega el detalel de la pasantia
+				if m.DetallesPasantia != nil {
+					m.DetallesPasantia.TrabajoGrado.Id = int(id_TrabajoGrado)
+					if _, err = o.Insert(m.DetallesPasantia); err != nil {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_15")
+					}
+				}
 			} else {
 				fmt.Println(err)
 				err = o.Rollback()
 				alerta[0] = "Error"
-				alerta = append(alerta, "ERROR_RTA_SOLICITUD_333")
+				alerta = append(alerta, "ERROR_RTA_SOLICITUD_3")
 			}
 		} else {
 			fmt.Println(err)
@@ -144,7 +164,30 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 		for _, v := range *m.Vinculaciones {
 			//Si esta activo es nuevo y se inserta sino se actualiza la fecha de fin y el activo
 			if v.Activo == true {
-				if _, err = o.Insert(&v); err != nil {
+				// Se busca si el docente ya estuvo vinculado y se actualiza
+				var vinculado VinculacionTrabajoGrado
+				if err = o.QueryTable(new(VinculacionTrabajoGrado)).RelatedSel().Filter("TrabajoGrado",v.TrabajoGrado).Filter("Usuario",v.Usuario).Filter("RolTrabajoGrado",v.RolTrabajoGrado).One(&vinculado); err == nil {
+					//SI si se encuentra 
+					vinculado.Activo = v.Activo
+					vinculado.FechaFin = v.FechaFin
+					vinculado.FechaInicio = v.FechaInicio
+					fmt.Println("Se actualiza vinculado", vinculado)
+					if _, err = o.Update(&vinculado); err != nil {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
+					} 
+				} else if (err == orm.ErrNoRows) {
+					// Si no se encuentra 
+					fmt.Println("Se inserta vinculado", v)
+					if _, err = o.Insert(&v); err != nil {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
+					} 
+				} else {
 					fmt.Println(err)
 					err = o.Rollback()
 					alerta[0] = "Error"
@@ -158,7 +201,29 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 					alerta = append(alerta, "ERROR_RTA_SOLICITUD_6")
 				}
 			}
-
+			// Si  el cambio es de director externo, se recibe la data del detalle de la pasantia y 
+			// se actualiza
+			if m.DetallesPasantia != nil {
+				//Se busca el detalle de la pasantia asociado al tg
+				var detallePasantia DetallePasantia
+				if err = o.QueryTable(new(DetallePasantia)).RelatedSel().Filter("TrabajoGrado",m.DetallesPasantia.TrabajoGrado.Id).One(&detallePasantia); err == nil {
+					detallePasantia.Observaciones = strings.Split(detallePasantia.Observaciones," y dirigida por ")[0];
+					detallePasantia.Observaciones += m.DetallesPasantia.Observaciones
+					if num, err = o.Update(&detallePasantia,"Observaciones"); err == nil {
+						fmt.Println("Number of records updated in database:", num)
+					} else {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_16")
+					}
+				} else {
+					fmt.Println(err)
+					err = o.Rollback()
+					alerta[0] = "Error"
+					alerta = append(alerta, "ERROR_RTA_SOLICITUD_16")
+				}
+			}
 		}
 	}
 
@@ -316,7 +381,81 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 			alerta = append(alerta, "ERROR_RTA_SOLICITUD_13")
 		}
 	}
-	err = o.Commit()
 
+	// Solicitud de revisión del trabajo de grado
+	if m.TrRevision != nil {
+		// Se actualiza el trabajo de grado
+		if num, err = o.Update(m.TrRevision.TrabajoGrado, "EstadoTrabajoGrado"); err == nil {
+			fmt.Println("Number of rows updated with trabajo de grado", num)
+		} else {
+			alerta[0] = "Error"
+			alerta = append(alerta, "ERROR_RTA_SOLICITUD_17")
+			fmt.Println(err)
+			err = o.Rollback()
+		}
+		//Se inserta el documento final de la revisión y se relaciona con el trabajo grado
+		if id_documento, err := o.Insert(m.TrRevision.DocumentoEscrito); err == nil {
+			fmt.Println("Id documento final",id_documento)
+			m.TrRevision.DocumentoTrabajoGrado.DocumentoEscrito.Id = int(id_documento)
+			if id_documento_trabajo_grado, err := o.Insert(m.TrRevision.DocumentoTrabajoGrado); err == nil {
+				fmt.Println("Id documento final con tg",id_documento_trabajo_grado)
+			} else {
+				fmt.Println(err)
+				alerta[0] = "Error"
+				alerta = append(alerta, "ERROR_RTA_SOLICITUD_18")
+				err = o.Rollback()
+			}
+		} else {
+			fmt.Println(err)
+			alerta[0] = "Error"
+			alerta = append(alerta, "ERROR_RTA_SOLICITUD_18")
+			err = o.Rollback()
+		}
+		//Se actualizan las vinculaciones
+		for _, v := range *m.TrRevision.Vinculaciones {
+			//Si esta activo es nuevo y se inserta sino se actualiza la fecha de fin y el activo
+			if v.Activo == true {
+				// Se busca si el docente ya estuvo vinculado y se actualiza
+				var vinculado VinculacionTrabajoGrado
+				if err = o.QueryTable(new(VinculacionTrabajoGrado)).RelatedSel().Filter("TrabajoGrado",v.TrabajoGrado).Filter("Usuario",v.Usuario).Filter("RolTrabajoGrado",v.RolTrabajoGrado).One(&vinculado); err == nil {
+					//SI si se encuentra 
+					vinculado.Activo = v.Activo
+					vinculado.FechaFin = v.FechaFin
+					vinculado.FechaInicio = v.FechaInicio
+					fmt.Println("Se actualiza vinculado", vinculado)
+					if _, err = o.Update(&vinculado); err != nil {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
+					} 
+				} else if (err == orm.ErrNoRows) {
+					// Si no se encuentra 
+					fmt.Println("Se inserta vinculado", v)
+					if _, err = o.Insert(&v); err != nil {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
+					} 
+				} else {
+					fmt.Println(err)
+					err = o.Rollback()
+					alerta[0] = "Error"
+					alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
+				} 
+			} else {
+				if _, err = o.Update(&v, "Activo", "FechaFin"); err != nil {
+					fmt.Println(err)
+					err = o.Rollback()
+					alerta[0] = "Error"
+					alerta = append(alerta, "ERROR_RTA_SOLICITUD_6")
+				}
+			}
+		}
+
+	}
+	err = o.Commit()
+	//err = o.Rollback()
 	return
 }

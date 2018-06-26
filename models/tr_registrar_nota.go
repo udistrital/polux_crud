@@ -15,7 +15,7 @@ type TrRegistrarNota struct {
 // AddTransaccionRegistrarNota Función para la transaccion de notas obtenidas en espacios académicos de posgrado
 func AddTransaccionRegistrarNota(m *TrRegistrarNota) (alerta []string, err error) {
 	o := orm.NewOrm()
-	o.Begin()
+	err = o.Begin()
 	alerta = append(alerta, "Success")
 
 	// Update del trabajo de grado

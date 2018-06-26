@@ -21,7 +21,7 @@ func (c *TrRegistrarRespuestasSolicitudesController) URLMapping() {
 // @Description create the TrSeleccionAdmitidos
 // @Param	body		body 	models.TrSeleccionAdmitidos	true	"body for TrSeleccionAdmitidos content"
 // @Success 201 {int} models.TrSeleccionAdmitidos
-// @Failure 403 body is empty
+// @Failure 400 the request contains incorrect syntax
 // @router / [post]
 func (c *TrRegistrarRespuestasSolicitudesController) Post() {
 	var v models.TrRegistrarRespuestasSolicitudes
@@ -33,7 +33,8 @@ func (c *TrRegistrarRespuestasSolicitudesController) Post() {
 			c.Data["json"] = alerta
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }

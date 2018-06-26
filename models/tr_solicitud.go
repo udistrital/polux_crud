@@ -16,7 +16,7 @@ type TrSolicitud struct {
 // AddTransaccionSolicitud funcion para registrar solicitudes (detalles y usuarios)
 func AddTransaccionSolicitud(m *TrSolicitud) (alerta []string, err error) {
 	o := orm.NewOrm()
-	o.Begin()
+	err = o.Begin()
 	alerta = append(alerta, "Success")
 	if id, err := o.Insert(m.Solicitud); err == nil {
 		fmt.Println(id)

@@ -9,24 +9,24 @@ import (
 )
 
 // operations for TrTrabajoGrado
-type TrTrabajoGradoController struct {
+type TrPublicarAsignaturasController struct {
 	beego.Controller
 }
 
-func (c *TrTrabajoGradoController) URLMapping() {
+func (c *TrPublicarAsignaturasController) URLMapping() {
 	c.Mapping("Post", c.Post)
 }
 
-// @Title PostTrTrabajoGrado
-// @Description create the TrTrabajoGrado
-// @Param	body		body 	models.TrTrabajoGrado	true	"body for TrTrabajoGrado content"
-// @Success 201 {int} models.TrTrabajoGrado
+// @Title PostTrPublicarAsignaturas
+// @Description create the TrPublicarAsignaturas
+// @Param	body		body 	models.TrPublicarAsignaturas	true	"body for TrPublicarAsignaturas content"
+// @Success 201 {int} models.TrPublicarAsignaturas
 // @Failure 400 the request contains incorrect syntax
 // @router / [post]
-func (c *TrTrabajoGradoController) Post() {
-	var v models.TrTrabajoGrado
+func (c *TrPublicarAsignaturasController) Post() {
+	var v models.TrPublicarAsignaturas
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if alerta, err := models.AddTransaccionTrabajoGrado(&v); err == nil {
+		if alerta, err := models.AddTransaccionPublicarAsignaturas(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = alerta
 		} else {
