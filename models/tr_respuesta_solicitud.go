@@ -397,13 +397,22 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 		if id_documento, err := o.Insert(m.TrRevision.DocumentoEscrito); err == nil {
 			fmt.Println("Id documento final",id_documento)
 			m.TrRevision.DocumentoTrabajoGrado.DocumentoEscrito.Id = int(id_documento)
-			if id_documento_trabajo_grado, err := o.Insert(m.TrRevision.DocumentoTrabajoGrado); err == nil {
-				fmt.Println("Id documento final con tg",id_documento_trabajo_grado)
+			var documentoTrabajoGrado DocumentoTrabajoGrado
+			if err = o.QueryTable(new(DocumentoTrabajoGrado)).RelatedSel().Filter("documento_escrito__tipo_documento_escrito",4).Filter("trabajo_grado",m.TrRevision.TrabajoGrado.Id).One(&documentoTrabajoGrado); err == nil {
+				m.TrRevision.DocumentoTrabajoGrado.Id = documentoTrabajoGrado.Id 
+				if num, err = o.Update(m.TrRevision.DocumentoTrabajoGrado, "DocumentoEscrito"); err == nil {
+					fmt.Println("Number of rows updated with documento trabajo de grado", num)
+				} else {
+					alerta[0] = "Error"
+					alerta = append(alerta, "ERROR_RTA_SOLICITUD_18")
+					fmt.Println(err)
+					err = o.Rollback()
+				}
 			} else {
 				fmt.Println(err)
+				err = o.Rollback()
 				alerta[0] = "Error"
 				alerta = append(alerta, "ERROR_RTA_SOLICITUD_18")
-				err = o.Rollback()
 			}
 		} else {
 			fmt.Println(err)
