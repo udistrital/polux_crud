@@ -201,30 +201,48 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 					alerta = append(alerta, "ERROR_RTA_SOLICITUD_6")
 				}
 			}
-			// Si  el cambio es de director externo, se recibe la data del detalle de la pasantia y 
-			// se actualiza
-			if m.DetallesPasantia != nil {
-				//Se busca el detalle de la pasantia asociado al tg
-				var detallePasantia DetallePasantia
-				if err = o.QueryTable(new(DetallePasantia)).RelatedSel().Filter("TrabajoGrado",m.DetallesPasantia.TrabajoGrado.Id).One(&detallePasantia); err == nil {
-					detallePasantia.Observaciones = strings.Split(detallePasantia.Observaciones," y dirigida por ")[0];
-					detallePasantia.Observaciones += m.DetallesPasantia.Observaciones
-					if num, err = o.Update(&detallePasantia,"Observaciones"); err == nil {
-						fmt.Println("Number of records updated in database:", num)
-					} else {
-						fmt.Println(err)
-						err = o.Rollback()
-						alerta[0] = "Error"
-						alerta = append(alerta, "ERROR_RTA_SOLICITUD_16")
-					}
+		}
+
+		// Si  el cambio es de director externo, se recibe la data del detalle de la pasantia y 
+		// se actualiza
+		if m.DetallesPasantia != nil {
+			//Se busca el detalle de la pasantia asociado al tg
+			var detallePasantia DetallePasantia
+			if err = o.QueryTable(new(DetallePasantia)).RelatedSel().Filter("TrabajoGrado",m.DetallesPasantia.TrabajoGrado.Id).One(&detallePasantia); err == nil {
+				detallePasantia.Observaciones = strings.Split(detallePasantia.Observaciones," y dirigida por ")[0];
+				detallePasantia.Observaciones += m.DetallesPasantia.Observaciones
+				if num, err = o.Update(&detallePasantia,"Observaciones"); err == nil {
+					fmt.Println("Number of records updated in database:", num)
 				} else {
 					fmt.Println(err)
 					err = o.Rollback()
 					alerta[0] = "Error"
 					alerta = append(alerta, "ERROR_RTA_SOLICITUD_16")
 				}
+			} else {
+				fmt.Println(err)
+				err = o.Rollback()
+				alerta[0] = "Error"
+				alerta = append(alerta, "ERROR_RTA_SOLICITUD_16")
 			}
 		}
+
+		//Si el estado del trabajo de grado es  no viable 7 para primer evaluador se cambia el estado del trabajo de grado a 
+		// En evaluación por segundo revisor 9
+		trabajo := (*m.Vinculaciones)[0].TrabajoGrado;
+		if (trabajo.EstadoTrabajoGrado.Id == 7) {
+			trabajo.EstadoTrabajoGrado.Id = 9
+			// Se actualiza el trabajo de grado
+			if num, err = o.Update(trabajo, "EstadoTrabajoGrado"); err == nil {
+				fmt.Println("Number of rows updated with trabajo de grado", num)
+			} else {
+				alerta[0] = "Error"
+				alerta = append(alerta, "ERROR_RTA_SOLICITUD_17")
+				fmt.Println(err)
+				err = o.Rollback()
+			}
+		}
+
 	}
 
 	//Solicitud de cambio de nombre del trabajo de grado
