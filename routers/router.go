@@ -368,6 +368,12 @@ func init() {
 			),
 		),
 
+		beego.NSNamespace("/tr_registrar_revision_tg",
+			beego.NSInclude(
+				&controllers.TrRegistrarRevisionTgController{},
+			),
+		),
+
 	)
 	beego.AddNamespace(ns)
 }
