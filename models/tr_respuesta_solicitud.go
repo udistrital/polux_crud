@@ -229,6 +229,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 
 		//Si el estado del trabajo de grado es  no viable 7 para primer evaluador se cambia el estado del trabajo de grado a 
 		// En evaluación por segundo revisor 9
+		/*
 		trabajo := (*m.Vinculaciones)[0].TrabajoGrado;
 		if (trabajo.EstadoTrabajoGrado.Id == 7) {
 			trabajo.EstadoTrabajoGrado.Id = 9
@@ -242,6 +243,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 				err = o.Rollback()
 			}
 		}
+		*/
 
 	}
 
