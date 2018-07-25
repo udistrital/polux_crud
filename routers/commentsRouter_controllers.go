@@ -1831,7 +1831,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrRevisarAnteproyecto"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrRevisarAnteproyecto"],
+	beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrRevisarTg"] = append(beego.GlobalControllerRouter["github.com/udistrital/Polux_API_Crud/controllers:TrRevisarTg"],
 		beego.ControllerComments{
 			Method: "Post",
 			Router: `/`,

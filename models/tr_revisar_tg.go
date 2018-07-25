@@ -6,14 +6,14 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type TrRevisarAnteproyecto struct {
+type TrRevisarTg struct {
 	TrabajoGrado           				*TrabajoGrado
 	RevisionTrabajoGrado					*RevisionTrabajoGrado
-	Correccion										*Correccion
+	Comentarios									  *[]Comentario
 }
 
-// Función para la transaccion de revisiones de anteproyectos
-func AddTransaccionRevisarAnteproyecto(m *TrRevisarAnteproyecto) (alerta []string, err error) {
+// Función para la transaccion de revisiones de trabajos de grado
+func AddTransaccionRevisarTg(m *TrRevisarTg) (alerta []string, err error) {
 	o := orm.NewOrm()
 	o.Begin()
 	alerta = append(alerta, "Success")
@@ -21,29 +21,40 @@ func AddTransaccionRevisarAnteproyecto(m *TrRevisarAnteproyecto) (alerta []strin
 	// Update del trabajo de grado
 	if num, err := o.Update(m.TrabajoGrado, "EstadoTrabajoGrado"); err == nil {
 		fmt.Println("Number of degree work records updated:", num)
-		// Insert de la revisión del anteproyecto
+		// Insert de la revisión del trabajo de grado
 		if idRevisionTrabajoGrado, err := o.Insert(m.RevisionTrabajoGrado); err == nil {
 			fmt.Println("Degree work review inserted:", idRevisionTrabajoGrado)
-			// Insert de la corrección
-			m.Correccion.RevisionTrabajoGrado.Id = int(idRevisionTrabajoGrado)
-			if idCorreccion, err := o.Insert(m.Correccion); err == nil {
-				fmt.Println("Correction inserted", idCorreccion)
-			} else {
-				fmt.Println(err)
-				alerta[0] = "Error"
-				alerta = append(alerta, "ERROR_RTA_SOLICITUD_2")
-				err = o.Rollback()
+			// Insert de las correcciones y comentarios
+			for _, v := range *m.Comentarios {
+				v.Correccion.RevisionTrabajoGrado.Id = int(idRevisionTrabajoGrado)
+				if idCorreccion, err := o.Insert(v.Correccion); err == nil {
+					v.Correccion.Id = int(idCorreccion)
+					fmt.Println("Correction inserted", idCorreccion)
+					if idComentario, err := o.Insert(&v); err == nil {
+						fmt.Println("Comentario inserted", idComentario)
+					} else {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR.INSERTANDO_REVISIONES")
+				}
+				} else {
+					fmt.Println(err)
+					err = o.Rollback()
+					alerta[0] = "Error"
+					alerta = append(alerta, "ERROR.INSERTANDO_REVISIONES")
+				}
 			}
 		} else {
 			fmt.Println(err)
 			alerta[0] = "Error"
-			alerta = append(alerta, "ERROR_RTA_SOLICITUD_2")
+			alerta = append(alerta, "ERROR.INSERTANDO_REVISIONES")
 			err = o.Rollback()
 		}
 	} else {
 		fmt.Println(err)
 		alerta[0] = "Error"
-		alerta = append(alerta, "ERROR_RTA_SOLICITUD_1")
+		alerta = append(alerta, "ERROR_RTA_SOLICITUD_13")
 		err = o.Rollback()
 	}
 
