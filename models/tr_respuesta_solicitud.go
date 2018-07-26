@@ -418,7 +418,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 			fmt.Println("Id documento final",id_documento)
 			m.TrRevision.DocumentoTrabajoGrado.DocumentoEscrito.Id = int(id_documento)
 			//Se inserta el nuevo documento escrito
-			if num, err = o.Update(m.TrRevision.DocumentoTrabajoGrado, "DocumentoEscrito"); err == nil {
+			if num, err = o.Insert(m.TrRevision.DocumentoTrabajoGrado); err == nil {
 				fmt.Println("Number of rows updated with documento trabajo de grado", num)
 			} else {
 				alerta[0] = "Error"
