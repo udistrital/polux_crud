@@ -38,7 +38,7 @@ func AddTransaccionActualizarDocumentoTg(m *TrActualizarDocumentoTg) (alerta []s
 			alerta = append(alerta, "ERROR_RTA_SOLICITUD_1")
 			err = o.Rollback()
 		}
-	} else if (m.TrabajoGrado.EstadoTrabajoGrado.Id == 13) {
+	} else if (m.TrabajoGrado.EstadoTrabajoGrado.Id == 13 || m.TrabajoGrado.EstadoTrabajoGrado.Id == 22) {
 		fmt.Println("Degree work state (13):", m.TrabajoGrado.EstadoTrabajoGrado.Id)
 		// Insert del documento escrito
 		m.DocumentoEscrito.Id = 0
