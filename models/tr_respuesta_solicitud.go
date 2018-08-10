@@ -229,6 +229,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 
 		//Si el estado del trabajo de grado es  no viable 7 para primer evaluador se cambia el estado del trabajo de grado a 
 		// En evaluación por segundo revisor 9
+		/*
 		trabajo := (*m.Vinculaciones)[0].TrabajoGrado;
 		if (trabajo.EstadoTrabajoGrado.Id == 7) {
 			trabajo.EstadoTrabajoGrado.Id = 9
@@ -242,6 +243,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 				err = o.Rollback()
 			}
 		}
+		*/
 
 	}
 
@@ -415,7 +417,16 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 		if id_documento, err := o.Insert(m.TrRevision.DocumentoEscrito); err == nil {
 			fmt.Println("Id documento final",id_documento)
 			m.TrRevision.DocumentoTrabajoGrado.DocumentoEscrito.Id = int(id_documento)
-			var documentoTrabajoGrado DocumentoTrabajoGrado
+			//Se inserta el nuevo documento escrito
+			if num, err = o.Insert(m.TrRevision.DocumentoTrabajoGrado); err == nil {
+				fmt.Println("Number of rows updated with documento trabajo de grado", num)
+			} else {
+				alerta[0] = "Error"
+				alerta = append(alerta, "ERROR_RTA_SOLICITUD_18")
+				fmt.Println(err)
+				err = o.Rollback()
+			}
+			/*var documentoTrabajoGrado DocumentoTrabajoGrado
 			if err = o.QueryTable(new(DocumentoTrabajoGrado)).RelatedSel().Filter("documento_escrito__tipo_documento_escrito",4).Filter("trabajo_grado",m.TrRevision.TrabajoGrado.Id).One(&documentoTrabajoGrado); err == nil {
 				m.TrRevision.DocumentoTrabajoGrado.Id = documentoTrabajoGrado.Id 
 				if num, err = o.Update(m.TrRevision.DocumentoTrabajoGrado, "DocumentoEscrito"); err == nil {
@@ -431,7 +442,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 				err = o.Rollback()
 				alerta[0] = "Error"
 				alerta = append(alerta, "ERROR_RTA_SOLICITUD_18")
-			}
+			}*/
 		} else {
 			fmt.Println(err)
 			alerta[0] = "Error"

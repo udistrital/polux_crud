@@ -338,9 +338,9 @@ func init() {
 			),
 		),
                            
-		beego.NSNamespace("/tr_revisar_anteproyecto",
+		beego.NSNamespace("/tr_revisar_tg",
 			beego.NSInclude(
-				&controllers.TrRevisarAnteproyecto{},
+				&controllers.TrRevisarTg{},
 			),
 		),
 
