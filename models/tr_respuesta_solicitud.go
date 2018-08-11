@@ -161,6 +161,8 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 	//Solicitud de cambio de docente evaluador o docente director
 	if m.Vinculaciones != nil {
 		fmt.Println(m.Vinculaciones);
+		var idVinculadoAntiguo int
+		var idVinculadoNuevo int64
 		for _, v := range *m.Vinculaciones {
 			//Si esta activo es nuevo y se inserta sino se actualiza la fecha de fin y el activo
 			if v.Activo == true {
@@ -168,6 +170,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 				var vinculado VinculacionTrabajoGrado
 				if err = o.QueryTable(new(VinculacionTrabajoGrado)).RelatedSel().Filter("TrabajoGrado",v.TrabajoGrado).Filter("Usuario",v.Usuario).Filter("RolTrabajoGrado",v.RolTrabajoGrado).One(&vinculado); err == nil {
 					//SI si se encuentra 
+					idVinculadoNuevo = int64(vinculado.Id)
 					vinculado.Activo = v.Activo
 					vinculado.FechaFin = v.FechaFin
 					vinculado.FechaInicio = v.FechaInicio
@@ -181,7 +184,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 				} else if (err == orm.ErrNoRows) {
 					// Si no se encuentra 
 					fmt.Println("Se inserta vinculado", v)
-					if _, err = o.Insert(&v); err != nil {
+					if idVinculadoNuevo, err = o.Insert(&v); err != nil {
 						fmt.Println(err)
 						err = o.Rollback()
 						alerta[0] = "Error"
@@ -194,6 +197,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 					alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
 				}
 			} else {
+				idVinculadoAntiguo = v.Id;
 				if _, err = o.Update(&v, "Activo", "FechaFin"); err != nil {
 					fmt.Println(err)
 					err = o.Rollback()
@@ -201,6 +205,27 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 					alerta = append(alerta, "ERROR_RTA_SOLICITUD_6")
 				}
 			}
+		}
+
+		//Se busca si el vinculado antiguo tiene una revision pendiente
+		var revisionTrabajoGrado RevisionTrabajoGrado
+		if err = o.QueryTable(new(RevisionTrabajoGrado)).RelatedSel().Filter("VinculacionTrabajoGrado",idVinculadoAntiguo).Filter("estado_revision_trabajo_grado",1).One(&revisionTrabajoGrado); err == nil {
+			//Se actualiza el id de la vinculación
+			revisionTrabajoGrado.VinculacionTrabajoGrado.Id = int(idVinculadoNuevo)
+			if _, err = o.Update(&revisionTrabajoGrado, "VinculacionTrabajoGrado"); err != nil {
+				fmt.Println(err)
+				err = o.Rollback()
+				alerta[0] = "Error"
+				alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
+			}
+		} else if (err == orm.ErrNoRows) {
+			// Si no se encuentra 
+			fmt.Println("El vinculado no tiene revisiones pendientes")
+		} else {
+			fmt.Println(err)
+			err = o.Rollback()
+			alerta[0] = "Error"
+			alerta = append(alerta, "ERROR_RTA_SOLICITUD_2")
 		}
 
 		// Si  el cambio es de director externo, se recibe la data del detalle de la pasantia y 
