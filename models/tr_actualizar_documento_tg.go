@@ -15,7 +15,7 @@ type TrActualizarDocumentoTg struct {
 // Función para la transaccion de revisiones de anteproyectos
 func AddTransaccionActualizarDocumentoTg(m *TrActualizarDocumentoTg) (alerta []string, err error) {
 	o := orm.NewOrm()
-	o.Begin()
+	err = o.Begin()
 	alerta = append(alerta, "Success")
 	
 	if (m.TrabajoGrado.EstadoTrabajoGrado.Id == 4 || m.TrabajoGrado.EstadoTrabajoGrado.Id == 15) {
