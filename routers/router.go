@@ -8,7 +8,7 @@
 package routers
 
 import (
-	"github.com/udistrital/Polux_API_Crud/controllers"
+	"github.com/udistrital/polux_crud/controllers"
 
 	"github.com/astaxie/beego"
 	/*Incluyendo líbreria de auditoría

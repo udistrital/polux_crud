@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/udistrital/Polux_API_Crud/models"
+	"github.com/udistrital/polux_crud/models"
 
 	"github.com/astaxie/beego"
 )
