@@ -8,6 +8,7 @@ import (
 	_ "github.com/lib/pq"
 	_ "github.com/udistrital/polux_crud/routers"
 	"github.com/udistrital/utils_oas/customerror"
+	"github.com/udistrital/utils_oas/apiStatusLib"
 )
 
 func init() {
@@ -38,5 +39,7 @@ func main() {
 		AllowCredentials: true,
 	}))
 	beego.ErrorController(&customerror.CustomErrorController{})
+
+	apistatus.Init()
 	beego.Run()
 }
