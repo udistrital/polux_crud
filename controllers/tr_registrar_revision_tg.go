@@ -30,10 +30,12 @@ func (c *TrRegistrarRevisionTgController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = response
 		} else {
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }

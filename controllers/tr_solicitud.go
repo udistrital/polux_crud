@@ -26,9 +26,9 @@ func (c *TrSolicitudController) URLMapping() {
 func (c *TrSolicitudController) Post() {
 	var v models.TrSolicitud
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if alerta, err := models.AddTransaccionSolicitud(&v); err == nil {
+		if response, err := models.AddTransaccionSolicitud(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = alerta
+			c.Data["json"] = response
 		} else {
 			beego.Error(err)
 			c.Abort("400")

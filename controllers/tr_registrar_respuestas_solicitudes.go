@@ -26,11 +26,12 @@ func (c *TrRegistrarRespuestasSolicitudesController) URLMapping() {
 func (c *TrRegistrarRespuestasSolicitudesController) Post() {
 	var v models.TrRegistrarRespuestasSolicitudes
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if alerta, err := models.TransaccionRegistrarRespuestasSolicitudes(&v); err == nil {
+		if response, err := models.TransaccionRegistrarRespuestasSolicitudes(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = alerta
+			c.Data["json"] = response
 		} else {
-			c.Data["json"] = alerta
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
 		beego.Error(err)

@@ -128,9 +128,9 @@ func (c *CorreccionController) GetAll() {
 		beego.Error(err)
 		c.Abort("404")
 	} else {
-		/*if l == nil {
+		if l == nil {
 			l = append(l, map[string]interface{}{})
-		}*/
+		}
 		c.Data["json"] = l
 	}
 	c.ServeJSON()

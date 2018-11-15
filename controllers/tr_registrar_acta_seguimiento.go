@@ -26,9 +26,9 @@ func (c *TrRegistrarActaSeguimientoController) URLMapping() {
 func (c *TrRegistrarActaSeguimientoController) Post() {
 	var v models.TrRegistrarActaSeguimiento
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if alerta, err := models.RegistrarActaSeguimiento(&v); err == nil {
+		if response, err := models.RegistrarActaSeguimiento(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = alerta
+			c.Data["json"] = response
 		} else {
 			beego.Error(err)
 			c.Abort("400")
