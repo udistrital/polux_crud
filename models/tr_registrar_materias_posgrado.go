@@ -58,6 +58,17 @@ func AddTransaccionRegistrarMateriasPosgrado(m *TrRegistrarMateriasPosgrado) (al
 							err = o.Rollback()
 						}
 					}
+					// Actualización de la solicitud de trabajo de grado
+					// la solicitud inicial queda relacionada al trabajo de grado
+					m.RespuestaPrevia.SolicitudTrabajoGrado.TrabajoGrado.Id = int(idTrabajoGrado)
+					if _, err := o.Update(m.RespuestaPrevia.SolicitudTrabajoGrado, "TrabajoGrado"); err == nil {
+						fmt.Println("Solicitud de trabajo de grado actualizada")
+					} else {
+						fmt.Println(err)
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_SOLICITUDES_3")
+						err = o.Rollback()
+					}
 					err = o.Commit()
 				} else {
 					fmt.Println(err)
