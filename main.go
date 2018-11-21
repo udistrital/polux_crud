@@ -12,16 +12,23 @@ import (
 )
 
 func init() {
-	_ = orm.RegisterDriver("postgres", orm.DRPostgres)
-	_ = orm.RegisterDataBase("default", "postgres", "postgres://"+beego.AppConfig.String("PGuser")+":"+beego.AppConfig.String("PGpass")+"@"+beego.AppConfig.String("PGurls")+"/"+beego.AppConfig.String("PGdb")+"?sslmode=disable&search_path="+beego.AppConfig.String("PGschemas")+"")
+	if errorDriver := orm.RegisterDriver("postgres", orm.DRPostgres); errorDriver == nil {
+		if errorDB := orm.RegisterDataBase("default", "postgres", "postgres://"+beego.AppConfig.String("PGuser")+":"+beego.AppConfig.String("PGpass")+"@"+beego.AppConfig.String("PGurls")+"/"+beego.AppConfig.String("PGdb")+"?sslmode=disable&search_path="+beego.AppConfig.String("PGschemas")+""); errorDB == nil {
+			beego.Info("Success")
+		} else {
+			beego.Info(errorDB)
+		}
+	} else {
+		beego.Info(errorDriver)
+	}
 }
 
 func main() {
 	logPath := "{\"filename\":\""
 	logPath += beego.AppConfig.String("logPath")
 	logPath += "\"}"
-	if err:= logs.SetLogger(logs.AdapterFile, logPath); err != nil{
-		if err:= logs.SetLogger("console", ""); err != nil {
+	if err := logs.SetLogger(logs.AdapterFile, logPath); err != nil{
+		if err := logs.SetLogger("console", ""); err != nil {
 			logs.Warn("logPath not set")
 		}
 	} 
