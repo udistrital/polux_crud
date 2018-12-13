@@ -17,6 +17,7 @@ type CarreraElegible struct {
 	Periodo          float64 `orm:"column(periodo)"`
 	Anio             float64 `orm:"column(anio)"`
 	CodigoPensum     float64 `orm:"column(codigo_pensum)"`
+	Nivel            string  `orm:"column(nivel)"`
 }
 
 func (t *CarreraElegible) TableName() string {
