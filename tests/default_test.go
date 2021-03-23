@@ -13,7 +13,7 @@ import (
 	"github.com/astaxie/beego/orm"
 	_ "github.com/lib/pq"
 	. "github.com/smartystreets/goconvey/convey"
-	_ "github.com/udistrital/Polux_API_Crud/routers"
+	_ "github.com/udistrital/polux_crud/routers"
 )
 
 func init() {

@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/udistrital/Polux_API_Crud/models"
+	"github.com/udistrital/polux_crud/models"
 
 	"github.com/astaxie/beego"
 )
@@ -139,8 +139,12 @@ func (c *RespuestaSolicitudController) GetAll() {
 
 	l, err := models.GetAllRespuestaSolicitud(query, fields, sortby, order, offset, limit, exclude)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("404")
 	} else {
+		if l == nil {
+			l = append(l, map[string]interface{}{})
+		}
 		c.Data["json"] = l
 	}
 	c.ServeJSON()

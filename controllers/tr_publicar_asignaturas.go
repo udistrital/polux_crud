@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 
-	"github.com/udistrital/Polux_API_Crud/models"
+	"github.com/udistrital/polux_crud/models"
 
 	"github.com/astaxie/beego"
 )
@@ -26,9 +26,9 @@ func (c *TrPublicarAsignaturasController) URLMapping() {
 func (c *TrPublicarAsignaturasController) Post() {
 	var v models.TrPublicarAsignaturas
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if alerta, err := models.AddTransaccionPublicarAsignaturas(&v); err == nil {
+		if response, err := models.AddTransaccionPublicarAsignaturas(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = alerta
+			c.Data["json"] = response
 		} else {
 			beego.Error(err)
 			c.Abort("400")

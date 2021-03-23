@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 
-	"github.com/udistrital/Polux_API_Crud/models"
+	"github.com/udistrital/polux_crud/models"
 
 	"github.com/astaxie/beego"
 )
@@ -30,10 +30,12 @@ func (c *TrActualizarDocumentoTg) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = response
 		} else {
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }

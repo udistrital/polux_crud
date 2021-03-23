@@ -14,7 +14,7 @@ type TrRegistrarRevisionTg struct {
 // Función para la transaccion de revisiones de anteproyectos
 func AddTransaccionRegistrarRevisionTg(m *TrRegistrarRevisionTg) (alerta []string, err error) {
 	o := orm.NewOrm()
-	o.Begin()
+	err = o.Begin()
 	alerta = append(alerta, "Success")
 	
 	// Update de la revisión del trabajo de grado

@@ -318,56 +318,54 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 						alerta[0] = "Error"
 						alerta = append(alerta, "ERROR_RTA_SOLICITUD_8")
 					}
+					// actualziar Asignaturas trabajo de grado a cancelado
+					var asignaturasTrabajoGrado []AsignaturaTrabajoGrado
+					//se busca asingaturas trabajo grado
+					if _, err := o.QueryTable(new(AsignaturaTrabajoGrado)).RelatedSel().Filter("trabajo_grado",m.EstudianteTrabajoGrado.TrabajoGrado.Id).All(&asignaturasTrabajoGrado); err == nil{
+						fmt.Println("asignaturasTrabajoGrado",asignaturasTrabajoGrado);
+						for _, v := range asignaturasTrabajoGrado {
+							//Id de la asignatura 3 o cancelado
+							v.EstadoAsignaturaTrabajoGrado.Id = 3
+							if _, err = o.Update(&v, "EstadoAsignaturaTrabajoGrado"); err != nil {
+								fmt.Println(err)
+								err = o.Rollback()
+								alerta[0] = "Error"
+								alerta = append(alerta, "ERROR_RTA_SOLICITUD_8")
+							}
+						}
+					} else {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_7")
+					}
+					//Actualizar espacios_academicos_inscritos
+					var espaciosAcademicosInscritos []EspacioAcademicoInscrito
+					//se buscan espacios academicos inscritos activos
+					if _, err := o.QueryTable(new(EspacioAcademicoInscrito)).RelatedSel().Filter("trabajo_grado",m.EstudianteTrabajoGrado.TrabajoGrado.Id).Filter("estado_espacio_academico_inscrito",1).All(&espaciosAcademicosInscritos); err == nil{
+						fmt.Println("espaciosAcademicosInscritos",espaciosAcademicosInscritos);
+						for _, v := range espaciosAcademicosInscritos {
+							//Id del espacio 2  cancelado
+							v.EstadoEspacioAcademicoInscrito.Id = 2
+							if _, err = o.Update(&v, "EstadoEspacioAcademicoInscrito"); err != nil {
+								fmt.Println(err)
+								err = o.Rollback()
+								alerta[0] = "Error"
+								alerta = append(alerta, "ERROR_RTA_SOLICITUD_8")
+							}
+						}
+					} else {
+						fmt.Println(err)
+						err = o.Rollback()
+						alerta[0] = "Error"
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_7")
+					}
 				} 
 			} else {
 				fmt.Println(err)
 				err = o.Rollback()
 				alerta[0] = "Error"
 				alerta = append(alerta, "ERROR_RTA_SOLICITUD_7")
-			}
-		} else {
-			fmt.Println(err)
-			err = o.Rollback()
-			alerta[0] = "Error"
-			alerta = append(alerta, "ERROR_RTA_SOLICITUD_7")
-		}
-
-		// actualziar Asignaturas trabajo de grado a cancelado
-		var asignaturasTrabajoGrado []AsignaturaTrabajoGrado
-		//se busca asingaturas trabajo grado
-		if _, err := o.QueryTable(new(AsignaturaTrabajoGrado)).RelatedSel().Filter("trabajo_grado",m.EstudianteTrabajoGrado.TrabajoGrado.Id).All(&asignaturasTrabajoGrado); err == nil{
-			fmt.Println("asignaturasTrabajoGrado",asignaturasTrabajoGrado);
-			for _, v := range asignaturasTrabajoGrado {
-				//Id de la asignatura 3 o cancelado
-				v.EstadoAsignaturaTrabajoGrado.Id = 3
-				if _, err = o.Update(&v, "EstadoAsignaturaTrabajoGrado"); err != nil {
-					fmt.Println(err)
-					err = o.Rollback()
-					alerta[0] = "Error"
-					alerta = append(alerta, "ERROR_RTA_SOLICITUD_8")
-				}
-			}
-		} else {
-			fmt.Println(err)
-			err = o.Rollback()
-			alerta[0] = "Error"
-			alerta = append(alerta, "ERROR_RTA_SOLICITUD_7")
-		}
-
-		//Actualizar espacios_academicos_inscritos
-		var espaciosAcademicosInscritos []EspacioAcademicoInscrito
-		//se buscan espacios academicos inscritos activos
-		if _, err := o.QueryTable(new(EspacioAcademicoInscrito)).RelatedSel().Filter("trabajo_grado",m.EstudianteTrabajoGrado.TrabajoGrado.Id).Filter("estado_espacio_academico_inscrito",1).All(&espaciosAcademicosInscritos); err == nil{
-			fmt.Println("espaciosAcademicosInscritos",espaciosAcademicosInscritos);
-			for _, v := range espaciosAcademicosInscritos {
-				//Id del espacio 2  cancelado
-				v.EstadoEspacioAcademicoInscrito.Id = 2
-				if _, err = o.Update(&v, "EstadoEspacioAcademicoInscrito"); err != nil {
-					fmt.Println(err)
-					err = o.Rollback()
-					alerta[0] = "Error"
-					alerta = append(alerta, "ERROR_RTA_SOLICITUD_8")
-				}
 			}
 		} else {
 			fmt.Println(err)

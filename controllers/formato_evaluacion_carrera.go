@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/udistrital/Polux_API_Crud/models"
+	"github.com/udistrital/polux_crud/models"
 
 	"github.com/astaxie/beego"
 )
@@ -128,9 +128,9 @@ func (c *FormatoEvaluacionCarreraController) GetAll() {
 		beego.Error(err)
 		c.Abort("404")
 	} else {
-		/*if l == nil {
+		if l == nil {
 			l = append(l, map[string]interface{}{})
-		}*/
+		}
 		c.Data["json"] = l
 	}
 	c.ServeJSON()

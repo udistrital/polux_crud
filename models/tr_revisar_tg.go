@@ -15,7 +15,7 @@ type TrRevisarTg struct {
 // Función para la transaccion de revisiones de trabajos de grado
 func AddTransaccionRevisarTg(m *TrRevisarTg) (alerta []string, err error) {
 	o := orm.NewOrm()
-	o.Begin()
+	err = o.Begin()
 	alerta = append(alerta, "Success")
 	
 	// Update del trabajo de grado
