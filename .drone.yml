@@ -78,7 +78,6 @@ steps:
     branch:
     - develop
     - release/*
-    - master
     event:
     - push
 
@@ -177,12 +176,12 @@ steps:
        release/*)
          AMBIENTE=test
          CLUSTER=test
-         MYCONTAINER=${AWS_CONTAINER}/${DRONE_REPO##udistrital/}:release
+         MYCONTAINER=$${AWS_CONTAINER}/${DRONE_REPO##udistrital/}:release
          ;;
        master)
          AMBIENTE=prod
          CLUSTER=oas
-         MYCONTAINER=${AWS_CONTAINER}/${DRONE_REPO##udistrital/}:latest
+         MYCONTAINER=$${AWS_CONTAINER}/${DRONE_REPO##udistrital/}:latest
          ;;
     esac
   - AWS_REGION=us-east-1
