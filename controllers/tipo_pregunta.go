@@ -86,8 +86,7 @@ func (c *TipoPreguntaController) GetAll() {
 	var sortby []string
 	var order []string
 	var query = make(map[string]string)
-	var limit int64 = 100
-	var offset int64
+	var limit int64 = 10
 
 	// fields: col1,col2,entity.col3
 	if v := c.GetString("fields"); v != "" {
