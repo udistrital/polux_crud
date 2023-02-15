@@ -48,8 +48,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.AreaConocimiento'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - area_conocimiento
@@ -65,8 +65,8 @@ paths:
       responses:
         "201":
           description: '{int} models.AreaConocimiento'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /area_conocimiento/{id}:
     get:
       tags:
@@ -84,8 +84,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.AreaConocimiento'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - area_conocimiento
@@ -108,8 +108,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.AreaConocimiento'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - area_conocimiento
@@ -124,8 +124,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /areas_docente/:
     get:
       tags:
@@ -163,8 +163,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.AreasDocente'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - areas_docente
@@ -180,8 +180,8 @@ paths:
       responses:
         "201":
           description: '{int} models.AreasDocente'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /areas_docente/{id}:
     get:
       tags:
@@ -199,8 +199,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.AreasDocente'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - areas_docente
@@ -223,8 +223,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.AreasDocente'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - areas_docente
@@ -239,8 +239,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /areas_trabajo_grado/:
     get:
       tags:
@@ -278,8 +278,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.AreasTrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - areas_trabajo_grado
@@ -295,8 +295,8 @@ paths:
       responses:
         "201":
           description: '{int} models.AreasTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /areas_trabajo_grado/{id}:
     get:
       tags:
@@ -314,8 +314,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.AreasTrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - areas_trabajo_grado
@@ -338,8 +338,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.AreasTrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - areas_trabajo_grado
@@ -354,8 +354,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /asignatura_trabajo_grado/:
     get:
       tags:
@@ -393,8 +393,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.AsignaturaTrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - asignatura_trabajo_grado
@@ -410,8 +410,8 @@ paths:
       responses:
         "201":
           description: '{int} models.AsignaturaTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /asignatura_trabajo_grado/{id}:
     get:
       tags:
@@ -429,8 +429,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.AsignaturaTrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - asignatura_trabajo_grado
@@ -453,8 +453,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.AsignaturaTrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - asignatura_trabajo_grado
@@ -469,8 +469,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /carrera_elegible/:
     get:
       tags:
@@ -508,8 +508,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.CarreraElegible'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - carrera_elegible
@@ -525,8 +525,8 @@ paths:
       responses:
         "201":
           description: '{int} models.CarreraElegible'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /carrera_elegible/{id}:
     get:
       tags:
@@ -544,8 +544,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.CarreraElegible'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - carrera_elegible
@@ -568,8 +568,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.CarreraElegible'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - carrera_elegible
@@ -584,8 +584,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /comentario/:
     get:
       tags:
@@ -623,8 +623,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Comentario'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - comentario
@@ -640,8 +640,8 @@ paths:
       responses:
         "201":
           description: '{int} models.Comentario'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /comentario/{id}:
     get:
       tags:
@@ -659,8 +659,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Comentario'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - comentario
@@ -683,8 +683,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Comentario'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - comentario
@@ -699,8 +699,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /correccion/:
     get:
       tags:
@@ -738,8 +738,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Correccion'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - correccion
@@ -755,8 +755,8 @@ paths:
       responses:
         "201":
           description: '{int} models.Correccion'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /correccion/{id}:
     get:
       tags:
@@ -774,8 +774,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Correccion'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - correccion
@@ -798,8 +798,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Correccion'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - correccion
@@ -814,8 +814,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /detalle/:
     get:
       tags:
@@ -853,8 +853,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Detalle'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - detalle
@@ -870,8 +870,8 @@ paths:
       responses:
         "201":
           description: '{int} models.Detalle'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /detalle/{id}:
     get:
       tags:
@@ -889,8 +889,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Detalle'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - detalle
@@ -913,8 +913,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Detalle'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - detalle
@@ -929,8 +929,123 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
+  /detalle_pasantia/:
+    get:
+      tags:
+      - detalle_pasantia
+      description: get DetallePasantia
+      operationId: DetallePasantiaController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.DetallePasantia'
+        "404":
+          description: not found resource
+    post:
+      tags:
+      - detalle_pasantia
+      description: create DetallePasantia
+      operationId: DetallePasantiaController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for DetallePasantia content
+        required: true
+        schema:
+          $ref: '#/definitions/models.DetallePasantia'
+      responses:
+        "201":
+          description: '{int} models.DetallePasantia'
+        "400":
+          description: the request contains incorrect syntax
+  /detalle_pasantia/{id}:
+    get:
+      tags:
+      - detalle_pasantia
+      description: get DetallePasantia by id
+      operationId: DetallePasantiaController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.DetallePasantia'
+        "404":
+          description: not found resource
+    put:
+      tags:
+      - detalle_pasantia
+      description: update the DetallePasantia
+      operationId: DetallePasantiaController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for DetallePasantia content
+        required: true
+        schema:
+          $ref: '#/definitions/models.DetallePasantia'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.DetallePasantia'
+        "400":
+          description: the request contains incorrect syntax
+    delete:
+      tags:
+      - detalle_pasantia
+      description: delete the DetallePasantia
+      operationId: DetallePasantiaController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "404":
+          description: not found resource
   /detalle_solicitud/:
     get:
       tags:
@@ -968,8 +1083,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DetalleSolicitud'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - detalle_solicitud
@@ -985,8 +1100,8 @@ paths:
       responses:
         "201":
           description: '{int} models.DetalleSolicitud'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /detalle_solicitud/{id}:
     get:
       tags:
@@ -1004,8 +1119,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DetalleSolicitud'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - detalle_solicitud
@@ -1028,8 +1143,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DetalleSolicitud'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - detalle_solicitud
@@ -1044,8 +1159,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /detalle_tipo_solicitud/:
     get:
       tags:
@@ -1083,8 +1198,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DetalleTipoSolicitud'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - detalle_tipo_solicitud
@@ -1100,8 +1215,8 @@ paths:
       responses:
         "201":
           description: '{int} models.DetalleTipoSolicitud'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /detalle_tipo_solicitud/{id}:
     get:
       tags:
@@ -1119,8 +1234,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DetalleTipoSolicitud'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - detalle_tipo_solicitud
@@ -1143,8 +1258,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DetalleTipoSolicitud'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - detalle_tipo_solicitud
@@ -1159,8 +1274,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /distincion_trabajo_grado/:
     get:
       tags:
@@ -1198,8 +1313,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DistincionTrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - distincion_trabajo_grado
@@ -1215,8 +1330,8 @@ paths:
       responses:
         "201":
           description: '{int} models.DistincionTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /distincion_trabajo_grado/{id}:
     get:
       tags:
@@ -1234,8 +1349,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DistincionTrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - distincion_trabajo_grado
@@ -1258,8 +1373,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DistincionTrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - distincion_trabajo_grado
@@ -1274,8 +1389,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /documento_entidad/:
     get:
       tags:
@@ -1313,8 +1428,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DocumentoEntidad'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - documento_entidad
@@ -1330,8 +1445,8 @@ paths:
       responses:
         "201":
           description: '{int} models.DocumentoEntidad'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /documento_entidad/{id}:
     get:
       tags:
@@ -1349,8 +1464,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DocumentoEntidad'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - documento_entidad
@@ -1373,8 +1488,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DocumentoEntidad'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - documento_entidad
@@ -1389,8 +1504,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /documento_escrito/:
     get:
       tags:
@@ -1428,8 +1543,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DocumentoEscrito'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - documento_escrito
@@ -1445,8 +1560,8 @@ paths:
       responses:
         "201":
           description: '{int} models.DocumentoEscrito'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /documento_escrito/{id}:
     get:
       tags:
@@ -1464,8 +1579,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DocumentoEscrito'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - documento_escrito
@@ -1488,8 +1603,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DocumentoEscrito'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - documento_escrito
@@ -1504,8 +1619,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /documento_solicitud/:
     get:
       tags:
@@ -1543,8 +1658,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DocumentoSolicitud'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - documento_solicitud
@@ -1560,8 +1675,8 @@ paths:
       responses:
         "201":
           description: '{int} models.DocumentoSolicitud'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /documento_solicitud/{id}:
     get:
       tags:
@@ -1579,8 +1694,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DocumentoSolicitud'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - documento_solicitud
@@ -1603,8 +1718,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DocumentoSolicitud'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - documento_solicitud
@@ -1619,8 +1734,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /documento_trabajo_grado/:
     get:
       tags:
@@ -1658,8 +1773,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DocumentoTrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - documento_trabajo_grado
@@ -1675,8 +1790,8 @@ paths:
       responses:
         "201":
           description: '{int} models.DocumentoTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /documento_trabajo_grado/{id}:
     get:
       tags:
@@ -1694,8 +1809,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DocumentoTrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - documento_trabajo_grado
@@ -1718,8 +1833,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DocumentoTrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - documento_trabajo_grado
@@ -1734,8 +1849,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /espacio_academico_inscrito/:
     get:
       tags:
@@ -1773,8 +1888,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EspacioAcademicoInscrito'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - espacio_academico_inscrito
@@ -1790,8 +1905,8 @@ paths:
       responses:
         "201":
           description: '{int} models.EspacioAcademicoInscrito'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /espacio_academico_inscrito/{id}:
     get:
       tags:
@@ -1809,8 +1924,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EspacioAcademicoInscrito'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - espacio_academico_inscrito
@@ -1833,8 +1948,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EspacioAcademicoInscrito'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - espacio_academico_inscrito
@@ -1849,8 +1964,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /espacios_academicos_elegibles/:
     get:
       tags:
@@ -1888,8 +2003,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EspaciosAcademicosElegibles'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - espacios_academicos_elegibles
@@ -1905,8 +2020,8 @@ paths:
       responses:
         "201":
           description: '{int} models.EspaciosAcademicosElegibles'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /espacios_academicos_elegibles/{id}:
     get:
       tags:
@@ -1924,8 +2039,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EspaciosAcademicosElegibles'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - espacios_academicos_elegibles
@@ -1948,8 +2063,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EspaciosAcademicosElegibles'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - espacios_academicos_elegibles
@@ -1964,8 +2079,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /estado_asignatura_trabajo_grado/:
     get:
       tags:
@@ -2003,8 +2118,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoAsignaturaTrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - estado_asignatura_trabajo_grado
@@ -2020,8 +2135,8 @@ paths:
       responses:
         "201":
           description: '{int} models.EstadoAsignaturaTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /estado_asignatura_trabajo_grado/{id}:
     get:
       tags:
@@ -2039,8 +2154,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoAsignaturaTrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - estado_asignatura_trabajo_grado
@@ -2063,8 +2178,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoAsignaturaTrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - estado_asignatura_trabajo_grado
@@ -2079,8 +2194,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /estado_espacio_academico_inscrito/:
     get:
       tags:
@@ -2118,8 +2233,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoEspacioAcademicoInscrito'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - estado_espacio_academico_inscrito
@@ -2135,8 +2250,8 @@ paths:
       responses:
         "201":
           description: '{int} models.EstadoEspacioAcademicoInscrito'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /estado_espacio_academico_inscrito/{id}:
     get:
       tags:
@@ -2154,8 +2269,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoEspacioAcademicoInscrito'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - estado_espacio_academico_inscrito
@@ -2178,8 +2293,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoEspacioAcademicoInscrito'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - estado_espacio_academico_inscrito
@@ -2194,8 +2309,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /estado_estudiante_trabajo_grado/:
     get:
       tags:
@@ -2233,8 +2348,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoEstudianteTrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - estado_estudiante_trabajo_grado
@@ -2250,8 +2365,8 @@ paths:
       responses:
         "201":
           description: '{int} models.EstadoEstudianteTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /estado_estudiante_trabajo_grado/{id}:
     get:
       tags:
@@ -2269,8 +2384,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoEstudianteTrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - estado_estudiante_trabajo_grado
@@ -2293,8 +2408,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoEstudianteTrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - estado_estudiante_trabajo_grado
@@ -2309,8 +2424,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /estado_revision_trabajo_grado/:
     get:
       tags:
@@ -2348,8 +2463,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoRevisionTrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - estado_revision_trabajo_grado
@@ -2365,8 +2480,8 @@ paths:
       responses:
         "201":
           description: '{int} models.EstadoRevisionTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /estado_revision_trabajo_grado/{id}:
     get:
       tags:
@@ -2384,8 +2499,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoRevisionTrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - estado_revision_trabajo_grado
@@ -2408,8 +2523,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoRevisionTrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - estado_revision_trabajo_grado
@@ -2424,8 +2539,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /estado_solicitud/:
     get:
       tags:
@@ -2463,8 +2578,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoSolicitud'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - estado_solicitud
@@ -2480,8 +2595,8 @@ paths:
       responses:
         "201":
           description: '{int} models.EstadoSolicitud'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /estado_solicitud/{id}:
     get:
       tags:
@@ -2499,8 +2614,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoSolicitud'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - estado_solicitud
@@ -2523,8 +2638,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoSolicitud'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - estado_solicitud
@@ -2539,8 +2654,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /estado_trabajo_grado/:
     get:
       tags:
@@ -2578,8 +2693,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoTrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - estado_trabajo_grado
@@ -2595,8 +2710,8 @@ paths:
       responses:
         "201":
           description: '{int} models.EstadoTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /estado_trabajo_grado/{id}:
     get:
       tags:
@@ -2614,8 +2729,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoTrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - estado_trabajo_grado
@@ -2638,8 +2753,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoTrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - estado_trabajo_grado
@@ -2654,8 +2769,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /estructura_investigacion_trabajo_grado/:
     get:
       tags:
@@ -2693,8 +2808,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstructuraInvestigacionTrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - estructura_investigacion_trabajo_grado
@@ -2710,8 +2825,8 @@ paths:
       responses:
         "201":
           description: '{int} models.EstructuraInvestigacionTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /estructura_investigacion_trabajo_grado/{id}:
     get:
       tags:
@@ -2729,8 +2844,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstructuraInvestigacionTrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - estructura_investigacion_trabajo_grado
@@ -2753,8 +2868,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstructuraInvestigacionTrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - estructura_investigacion_trabajo_grado
@@ -2769,8 +2884,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /estudiante_trabajo_grado/:
     get:
       tags:
@@ -2808,8 +2923,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstudianteTrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - estudiante_trabajo_grado
@@ -2825,8 +2940,8 @@ paths:
       responses:
         "201":
           description: '{int} models.EstudianteTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /estudiante_trabajo_grado/{id}:
     get:
       tags:
@@ -2844,8 +2959,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstudianteTrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - estudiante_trabajo_grado
@@ -2868,8 +2983,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstudianteTrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - estudiante_trabajo_grado
@@ -2884,8 +2999,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /evaluacion_trabajo_grado/:
     get:
       tags:
@@ -2923,8 +3038,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EvaluacionTrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - evaluacion_trabajo_grado
@@ -2940,8 +3055,8 @@ paths:
       responses:
         "201":
           description: '{int} models.EvaluacionTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /evaluacion_trabajo_grado/{id}:
     get:
       tags:
@@ -2959,8 +3074,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EvaluacionTrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - evaluacion_trabajo_grado
@@ -2983,8 +3098,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EvaluacionTrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - evaluacion_trabajo_grado
@@ -2999,8 +3114,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /formato/:
     get:
       tags:
@@ -3038,8 +3153,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Formato'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - formato
@@ -3055,8 +3170,8 @@ paths:
       responses:
         "201":
           description: '{int} models.Formato'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /formato/{id}:
     get:
       tags:
@@ -3074,8 +3189,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Formato'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - formato
@@ -3098,8 +3213,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Formato'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - formato
@@ -3114,8 +3229,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /formato_evaluacion_carrera/:
     get:
       tags:
@@ -3153,8 +3268,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.FormatoEvaluacionCarrera'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - formato_evaluacion_carrera
@@ -3170,8 +3285,8 @@ paths:
       responses:
         "201":
           description: '{int} models.FormatoEvaluacionCarrera'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /formato_evaluacion_carrera/{id}:
     get:
       tags:
@@ -3189,8 +3304,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.FormatoEvaluacionCarrera'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - formato_evaluacion_carrera
@@ -3213,8 +3328,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.FormatoEvaluacionCarrera'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - formato_evaluacion_carrera
@@ -3229,8 +3344,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /modalidad/:
     get:
       tags:
@@ -3268,8 +3383,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Modalidad'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - modalidad
@@ -3285,8 +3400,8 @@ paths:
       responses:
         "201":
           description: '{int} models.Modalidad'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /modalidad/{id}:
     get:
       tags:
@@ -3304,8 +3419,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Modalidad'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - modalidad
@@ -3328,8 +3443,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Modalidad'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - modalidad
@@ -3344,8 +3459,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /modalidad_tipo_solicitud/:
     get:
       tags:
@@ -3383,8 +3498,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.ModalidadTipoSolicitud'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - modalidad_tipo_solicitud
@@ -3400,8 +3515,8 @@ paths:
       responses:
         "201":
           description: '{int} models.ModalidadTipoSolicitud'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /modalidad_tipo_solicitud/{id}:
     get:
       tags:
@@ -3419,8 +3534,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.ModalidadTipoSolicitud'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - modalidad_tipo_solicitud
@@ -3443,8 +3558,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.ModalidadTipoSolicitud'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - modalidad_tipo_solicitud
@@ -3459,8 +3574,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /pregunta/:
     get:
       tags:
@@ -3498,8 +3613,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Pregunta'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - pregunta
@@ -3515,8 +3630,8 @@ paths:
       responses:
         "201":
           description: '{int} models.Pregunta'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /pregunta/{id}:
     get:
       tags:
@@ -3534,8 +3649,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Pregunta'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - pregunta
@@ -3558,8 +3673,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Pregunta'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - pregunta
@@ -3574,8 +3689,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /pregunta_formato/:
     get:
       tags:
@@ -3613,8 +3728,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.PreguntaFormato'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - pregunta_formato
@@ -3630,8 +3745,8 @@ paths:
       responses:
         "201":
           description: '{int} models.PreguntaFormato'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /pregunta_formato/{id}:
     get:
       tags:
@@ -3649,8 +3764,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.PreguntaFormato'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - pregunta_formato
@@ -3673,8 +3788,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.PreguntaFormato'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - pregunta_formato
@@ -3689,8 +3804,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /respuesta/:
     get:
       tags:
@@ -3728,8 +3843,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Respuesta'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - respuesta
@@ -3745,8 +3860,8 @@ paths:
       responses:
         "201":
           description: '{int} models.Respuesta'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /respuesta/{id}:
     get:
       tags:
@@ -3764,8 +3879,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Respuesta'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - respuesta
@@ -3788,8 +3903,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Respuesta'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - respuesta
@@ -3804,8 +3919,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /respuesta_evaluacion/:
     get:
       tags:
@@ -3843,8 +3958,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RespuestaEvaluacion'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - respuesta_evaluacion
@@ -3860,8 +3975,8 @@ paths:
       responses:
         "201":
           description: '{int} models.RespuestaEvaluacion'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /respuesta_evaluacion/{id}:
     get:
       tags:
@@ -3879,8 +3994,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RespuestaEvaluacion'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - respuesta_evaluacion
@@ -3903,8 +4018,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RespuestaEvaluacion'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - respuesta_evaluacion
@@ -3919,8 +4034,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /respuesta_formato/:
     get:
       tags:
@@ -3958,8 +4073,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RespuestaFormato'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - respuesta_formato
@@ -3975,8 +4090,8 @@ paths:
       responses:
         "201":
           description: '{int} models.RespuestaFormato'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /respuesta_formato/{id}:
     get:
       tags:
@@ -3994,8 +4109,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RespuestaFormato'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - respuesta_formato
@@ -4018,8 +4133,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RespuestaFormato'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - respuesta_formato
@@ -4034,8 +4149,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /respuesta_solicitud/:
     get:
       tags:
@@ -4073,8 +4188,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RespuestaSolicitud'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - respuesta_solicitud
@@ -4090,8 +4205,8 @@ paths:
       responses:
         "201":
           description: '{int} models.RespuestaSolicitud'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /respuesta_solicitud/{id}:
     get:
       tags:
@@ -4109,8 +4224,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RespuestaSolicitud'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - respuesta_solicitud
@@ -4133,8 +4248,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RespuestaSolicitud'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - respuesta_solicitud
@@ -4149,8 +4264,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /revision_trabajo_grado/:
     get:
       tags:
@@ -4188,8 +4303,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RevisionTrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - revision_trabajo_grado
@@ -4205,8 +4320,8 @@ paths:
       responses:
         "201":
           description: '{int} models.RevisionTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /revision_trabajo_grado/{id}:
     get:
       tags:
@@ -4224,8 +4339,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RevisionTrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - revision_trabajo_grado
@@ -4248,8 +4363,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RevisionTrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - revision_trabajo_grado
@@ -4264,8 +4379,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /rol_trabajo_grado/:
     get:
       tags:
@@ -4303,8 +4418,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RolTrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - rol_trabajo_grado
@@ -4320,8 +4435,8 @@ paths:
       responses:
         "201":
           description: '{int} models.RolTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /rol_trabajo_grado/{id}:
     get:
       tags:
@@ -4339,8 +4454,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RolTrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - rol_trabajo_grado
@@ -4363,8 +4478,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RolTrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - rol_trabajo_grado
@@ -4379,8 +4494,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /socializacion/:
     get:
       tags:
@@ -4418,8 +4533,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Socializacion'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - socializacion
@@ -4435,8 +4550,8 @@ paths:
       responses:
         "201":
           description: '{int} models.Socializacion'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /socializacion/{id}:
     get:
       tags:
@@ -4454,8 +4569,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Socializacion'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - socializacion
@@ -4478,8 +4593,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Socializacion'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - socializacion
@@ -4494,8 +4609,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /solicitud_trabajo_grado/:
     get:
       tags:
@@ -4533,8 +4648,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.SolicitudTrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - solicitud_trabajo_grado
@@ -4550,8 +4665,8 @@ paths:
       responses:
         "201":
           description: '{int} models.SolicitudTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /solicitud_trabajo_grado/{id}:
     get:
       tags:
@@ -4569,8 +4684,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.SolicitudTrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - solicitud_trabajo_grado
@@ -4593,8 +4708,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.SolicitudTrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - solicitud_trabajo_grado
@@ -4609,8 +4724,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /tipo_detalle/:
     get:
       tags:
@@ -4648,8 +4763,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoDetalle'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - tipo_detalle
@@ -4665,8 +4780,8 @@ paths:
       responses:
         "201":
           description: '{int} models.TipoDetalle'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /tipo_detalle/{id}:
     get:
       tags:
@@ -4684,8 +4799,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoDetalle'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - tipo_detalle
@@ -4708,8 +4823,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoDetalle'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - tipo_detalle
@@ -4724,8 +4839,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /tipo_pregunta/:
     get:
       tags:
@@ -4763,8 +4878,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoPregunta'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - tipo_pregunta
@@ -4780,8 +4895,8 @@ paths:
       responses:
         "201":
           description: '{int} models.TipoPregunta'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /tipo_pregunta/{id}:
     get:
       tags:
@@ -4799,8 +4914,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoPregunta'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - tipo_pregunta
@@ -4823,8 +4938,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoPregunta'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - tipo_pregunta
@@ -4839,8 +4954,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /tipo_solicitud/:
     get:
       tags:
@@ -4878,8 +4993,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoSolicitud'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - tipo_solicitud
@@ -4895,8 +5010,8 @@ paths:
       responses:
         "201":
           description: '{int} models.TipoSolicitud'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /tipo_solicitud/{id}:
     get:
       tags:
@@ -4914,8 +5029,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoSolicitud'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - tipo_solicitud
@@ -4938,8 +5053,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoSolicitud'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - tipo_solicitud
@@ -4954,8 +5069,63 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
+        "404":
+          description: not found resource
+  /tr_actualizar_documento_tg/:
+    post:
+      tags:
+      - tr_actualizar_documento_tg
+      description: create the TrActualizarDocumentoTg
+      operationId: TrActualizarDocumentoTg.PostTrActualizarDocumentoTg
+      parameters:
+      - in: body
+        name: body
+        description: body for TrActualizarDocumentoTg content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TrActualizarDocumentoTg'
+      responses:
+        "201":
+          description: '{int} models.TrActualizarDocumentoTg'
         "403":
-          description: id is empty
+          description: body is empty
+  /tr_publicar_asignaturas/:
+    post:
+      tags:
+      - tr_publicar_asignaturas
+      description: create the TrPublicarAsignaturas
+      operationId: TrPublicarAsignaturasController.PostTrPublicarAsignaturas
+      parameters:
+      - in: body
+        name: body
+        description: body for TrPublicarAsignaturas content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TrPublicarAsignaturas'
+      responses:
+        "201":
+          description: '{int} models.TrPublicarAsignaturas'
+        "400":
+          description: the request contains incorrect syntax
+  /tr_registrar_acta_seguimiento/:
+    post:
+      tags:
+      - tr_registrar_acta_seguimiento
+      description: create the TrRegistrarActaSeguimiento para registrar actas de seguimiento
+        en la modalidad de pasantia
+      operationId: TrRegistrarActaSeguimientoController.PostTrRegistrarActaSeguimiento
+      parameters:
+      - in: body
+        name: body
+        description: body for TrRegistrarActaSeguimiento content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TrRegistrarActaSeguimiento'
+      responses:
+        "201":
+          description: '{int} models.TrRegistrarActaSeguimiento'
+        "400":
+          description: the request contains incorrect syntax
   /tr_registrar_materias_posgrado/:
     post:
       tags:
@@ -4972,8 +5142,8 @@ paths:
       responses:
         "201":
           description: '{int} models.TrRegistrarMateriasPosgrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /tr_registrar_nota/:
     post:
       tags:
@@ -4990,8 +5160,8 @@ paths:
       responses:
         "201":
           description: '{int} models.TrRegistrarNota'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /tr_registrar_respuestas_solicitudes/:
     post:
       tags:
@@ -5004,10 +5174,28 @@ paths:
         description: body for TrSeleccionAdmitidos content
         required: true
         schema:
-          $ref: '#/definitions/.TrSeleccionAdmitidos'
+          $ref: '#/definitions/models.TrSeleccionAdmitidos'
       responses:
         "201":
           description: '{int} models.TrSeleccionAdmitidos'
+        "400":
+          description: the request contains incorrect syntax
+  /tr_registrar_revision_tg/:
+    post:
+      tags:
+      - tr_registrar_revision_tg
+      description: create the TrRegistrarRevisionTg
+      operationId: TrRegistrarRevisionTgController.PostTrRegistrarRevisionTg
+      parameters:
+      - in: body
+        name: body
+        description: body for TrRegistrarRevisionTg content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TrRegistrarRevisionTg'
+      responses:
+        "201":
+          description: '{int} models.TrRegistrarRevisionTg'
         "403":
           description: body is empty
   /tr_respuesta_solicitud/:
@@ -5026,6 +5214,24 @@ paths:
       responses:
         "201":
           description: '{int} models.TrRespuestaSolicitud'
+        "400":
+          description: the request contains incorrect syntax
+  /tr_revisar_tg/:
+    post:
+      tags:
+      - tr_revisar_tg
+      description: create the TrRevisarTg
+      operationId: TrRevisarTg.PostTrRevisarTg
+      parameters:
+      - in: body
+        name: body
+        description: body for TrRevisarTg content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TrRevisarTg'
+      responses:
+        "201":
+          description: '{int} models.TrRevisarTg'
         "403":
           description: body is empty
   /tr_solicitud/:
@@ -5044,8 +5250,8 @@ paths:
       responses:
         "201":
           description: '{int} models.TrSolicitud'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /tr_trabajo_grado/:
     post:
       tags:
@@ -5062,8 +5268,26 @@ paths:
       responses:
         "201":
           description: '{int} models.TrTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
+  /tr_vinculado_registrar_nota/:
+    post:
+      tags:
+      - tr_vinculado_registrar_nota
+      description: create the TrVinculadoRegistrarNota
+      operationId: TrVinculadoRegistrarNotaController.PostTrVinculadoRegistrarNota
+      parameters:
+      - in: body
+        name: body
+        description: body for TrVinculadoRegistrarNota content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TrVinculadoRegistrarNota'
+      responses:
+        "201":
+          description: '{int} models.TrVinculadoRegistrarNota'
+        "400":
+          description: the request contains incorrect syntax
   /trabajo_grado/:
     get:
       tags:
@@ -5101,8 +5325,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - trabajo_grado
@@ -5118,8 +5342,8 @@ paths:
       responses:
         "201":
           description: '{int} models.TrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /trabajo_grado/{id}:
     get:
       tags:
@@ -5137,8 +5361,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - trabajo_grado
@@ -5161,8 +5385,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - trabajo_grado
@@ -5177,8 +5401,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /usuario_solicitud/:
     get:
       tags:
@@ -5216,8 +5440,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.UsuarioSolicitud'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - usuario_solicitud
@@ -5233,8 +5457,8 @@ paths:
       responses:
         "201":
           description: '{int} models.UsuarioSolicitud'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /usuario_solicitud/{id}:
     get:
       tags:
@@ -5252,8 +5476,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.UsuarioSolicitud'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - usuario_solicitud
@@ -5276,8 +5500,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.UsuarioSolicitud'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - usuario_solicitud
@@ -5292,8 +5516,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /vinculacion_trabajo_grado/:
     get:
       tags:
@@ -5331,8 +5555,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.VinculacionTrabajoGrado'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - vinculacion_trabajo_grado
@@ -5348,8 +5572,8 @@ paths:
       responses:
         "201":
           description: '{int} models.VinculacionTrabajoGrado'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /vinculacion_trabajo_grado/{id}:
     get:
       tags:
@@ -5367,8 +5591,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.VinculacionTrabajoGrado'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - vinculacion_trabajo_grado
@@ -5391,8 +5615,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.VinculacionTrabajoGrado'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - vinculacion_trabajo_grado
@@ -5407,22 +5631,59 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
 definitions:
-  .AreasTrabajoGrado:
+  204134.<nil>.EspaciosAcademicosElegibles:
+    title: EspaciosAcademicosElegibles
     type: object
-  .DetalleSolicitud:
+  208097.<nil>.EspacioAcademicoInscrito:
+    title: EspacioAcademicoInscrito
     type: object
-  .EspacioAcademicoInscrito:
+  208156.<nil>.AsignaturaTrabajoGrado:
+    title: AsignaturaTrabajoGrado
     type: object
-  .EstudianteTrabajoGrado:
+  211622.<nil>.EspacioAcademicoInscrito:
+    title: EspacioAcademicoInscrito
     type: object
-  .TrSeleccionAdmitidos:
+  211683.<nil>.AsignaturaTrabajoGrado:
+    title: AsignaturaTrabajoGrado
     type: object
-  .UsuarioSolicitud:
+  214640.<nil>.Comentario:
+    title: Comentario
     type: object
-  .VinculacionTrabajoGrado:
+  216164.<nil>.VinculacionTrabajoGrado:
+    title: VinculacionTrabajoGrado
+    type: object
+  216557.<nil>.VinculacionTrabajoGrado:
+    title: VinculacionTrabajoGrado
+    type: object
+  216744.<nil>.VinculacionTrabajoGrado:
+    title: VinculacionTrabajoGrado
+    type: object
+  217158.<nil>.EspacioAcademicoInscrito:
+    title: EspacioAcademicoInscrito
+    type: object
+  236573.<nil>.Comentario:
+    title: Comentario
+    type: object
+  241642.<nil>.DetalleSolicitud:
+    title: DetalleSolicitud
+    type: object
+  241682.<nil>.UsuarioSolicitud:
+    title: UsuarioSolicitud
+    type: object
+  243129.<nil>.EstudianteTrabajoGrado:
+    title: EstudianteTrabajoGrado
+    type: object
+  243274.<nil>.AreasTrabajoGrado:
+    title: AreasTrabajoGrado
+    type: object
+  243321.<nil>.VinculacionTrabajoGrado:
+    title: VinculacionTrabajoGrado
+    type: object
+  243374.<nil>.AsignaturaTrabajoGrado:
+    title: AsignaturaTrabajoGrado
     type: object
   models.AreaConocimiento:
     title: AreaConocimiento
@@ -5514,6 +5775,8 @@ definitions:
       Id:
         type: integer
         format: int64
+      Nivel:
+        type: string
       Periodo:
         type: number
         format: double
@@ -5529,7 +5792,7 @@ definitions:
         $ref: '#/definitions/models.Correccion'
       Fecha:
         type: string
-        format: string
+        format: datetime
       Id:
         type: integer
         format: int64
@@ -5537,6 +5800,8 @@ definitions:
     title: Correccion
     type: object
     properties:
+      Documento:
+        type: boolean
       Id:
         type: integer
         format: int64
@@ -5848,7 +6113,7 @@ definitions:
     properties:
       FechaRealizacion:
         type: string
-        format: string
+        format: datetime
       Id:
         type: integer
         format: int64
@@ -5867,10 +6132,10 @@ definitions:
         format: int64
       FechaFin:
         type: string
-        format: string
+        format: datetime
       FechaInicio:
         type: string
-        format: string
+        format: datetime
       Formato:
         $ref: '#/definitions/models.Formato'
       Id:
@@ -5998,7 +6263,7 @@ definitions:
         $ref: '#/definitions/models.EstadoSolicitud'
       Fecha:
         type: string
-        format: string
+        format: datetime
       Id:
         type: integer
         format: int64
@@ -6019,10 +6284,10 @@ definitions:
         $ref: '#/definitions/models.EstadoRevisionTrabajoGrado'
       FechaRecepcion:
         type: string
-        format: string
+        format: datetime
       FechaRevision:
         type: string
-        format: string
+        format: datetime
       Id:
         type: integer
         format: int64
@@ -6052,7 +6317,7 @@ definitions:
     properties:
       Fecha:
         type: string
-        format: string
+        format: datetime
       Id:
         type: integer
         format: int64
@@ -6067,7 +6332,7 @@ definitions:
     properties:
       Fecha:
         type: string
-        format: string
+        format: datetime
       Id:
         type: integer
         format: int64
@@ -6122,12 +6387,38 @@ definitions:
         format: int64
       Nombre:
         type: string
+  models.TrActualizarDocumentoTg:
+    title: TrActualizarDocumentoTg
+    type: object
+    properties:
+      DocumentoEscrito:
+        $ref: '#/definitions/models.DocumentoEscrito'
+      DocumentoTrabajoGrado:
+        $ref: '#/definitions/models.DocumentoTrabajoGrado'
+      TrabajoGrado:
+        $ref: '#/definitions/models.TrabajoGrado'
+  models.TrPublicarAsignaturas:
+    title: TrPublicarAsignaturas
+    type: object
+    properties:
+      CarreraElegible:
+        $ref: '#/definitions/models.CarreraElegible'
+      EspaciosAcademicosElegibles:
+        $ref: '#/definitions/204134.<nil>.EspaciosAcademicosElegibles'
+  models.TrRegistrarActaSeguimiento:
+    title: TrRegistrarActaSeguimiento
+    type: object
+    properties:
+      Acta:
+        $ref: '#/definitions/models.DocumentoTrabajoGrado'
   models.TrRegistrarMateriasPosgrado:
     title: TrRegistrarMateriasPosgrado
     type: object
     properties:
+      AsignaturasDeTrabajoDeGrado:
+        $ref: '#/definitions/208156.<nil>.AsignaturaTrabajoGrado'
       EspaciosAcademicos:
-        $ref: '#/definitions/222439.<nil>.EspacioAcademicoInscrito'
+        $ref: '#/definitions/208097.<nil>.EspacioAcademicoInscrito'
       EstudianteTrabajoGrado:
         $ref: '#/definitions/models.EstudianteTrabajoGrado'
       RespuestaActualizada:
@@ -6140,16 +6431,30 @@ definitions:
     title: TrRegistrarNota
     type: object
     properties:
+      AsignaturasDeTrabajoDeGrado:
+        $ref: '#/definitions/211683.<nil>.AsignaturaTrabajoGrado'
       EspaciosAcademicosCalificados:
-        $ref: '#/definitions/42093.<nil>.EspacioAcademicoInscrito'
+        $ref: '#/definitions/211622.<nil>.EspacioAcademicoInscrito'
+      TrabajoDeGradoTerminado:
+        $ref: '#/definitions/models.TrabajoGrado'
+  models.TrRegistrarRevisionTg:
+    title: TrRegistrarRevisionTg
+    type: object
+    properties:
+      Comentarios:
+        $ref: '#/definitions/214640.<nil>.Comentario'
+      RevisionTrabajoGrado:
+        $ref: '#/definitions/models.RevisionTrabajoGrado'
   models.TrRespuestaSolicitud:
     title: TrRespuestaSolicitud
     type: object
     properties:
+      DetallesPasantia:
+        $ref: '#/definitions/models.DetallePasantia'
       DocumentoSolicitud:
         $ref: '#/definitions/models.DocumentoSolicitud'
       EspaciosAcademicos:
-        $ref: '#/definitions/169166.<nil>.EspacioAcademicoInscrito'
+        $ref: '#/definitions/217158.<nil>.EspacioAcademicoInscrito'
       EstudianteTrabajoGrado:
         $ref: '#/definitions/models.EstudianteTrabajoGrado'
       ModalidadTipoSolicitud:
@@ -6162,42 +6467,83 @@ definitions:
         $ref: '#/definitions/models.SolicitudTrabajoGrado'
       TipoSolicitud:
         $ref: '#/definitions/models.TipoSolicitud'
+      TrRevision:
+        $ref: '#/definitions/models.TrRevision'
       TrTrabajoGrado:
         $ref: '#/definitions/models.TrTrabajoGrado'
       TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
       Vinculaciones:
-        $ref: '#/definitions/168572.<nil>.VinculacionTrabajoGrado'
+        $ref: '#/definitions/216557.<nil>.VinculacionTrabajoGrado'
       VinculacionesCancelacion:
-        $ref: '#/definitions/168757.<nil>.VinculacionTrabajoGrado'
+        $ref: '#/definitions/216744.<nil>.VinculacionTrabajoGrado'
+  models.TrRevisarTg:
+    title: TrRevisarTg
+    type: object
+    properties:
+      Comentarios:
+        $ref: '#/definitions/236573.<nil>.Comentario'
+      RevisionTrabajoGrado:
+        $ref: '#/definitions/models.RevisionTrabajoGrado'
+      TrabajoGrado:
+        $ref: '#/definitions/models.TrabajoGrado'
+  models.TrRevision:
+    title: TrRevision
+    type: object
+    properties:
+      DocumentoEscrito:
+        $ref: '#/definitions/models.DocumentoEscrito'
+      DocumentoTrabajoGrado:
+        $ref: '#/definitions/models.DocumentoTrabajoGrado'
+      TrabajoGrado:
+        $ref: '#/definitions/models.TrabajoGrado'
+      Vinculaciones:
+        $ref: '#/definitions/216164.<nil>.VinculacionTrabajoGrado'
+  models.TrSeleccionAdmitidos:
+    title: TrSeleccionAdmitidos
+    type: object
   models.TrSolicitud:
     title: TrSolicitud
     type: object
     properties:
       DetallesSolicitud:
-        $ref: '#/definitions/136655.<nil>.DetalleSolicitud'
+        $ref: '#/definitions/241642.<nil>.DetalleSolicitud'
       Respuesta:
         $ref: '#/definitions/models.RespuestaSolicitud'
       Solicitud:
         $ref: '#/definitions/models.SolicitudTrabajoGrado'
       UsuariosSolicitud:
-        $ref: '#/definitions/136694.<nil>.UsuarioSolicitud'
+        $ref: '#/definitions/241682.<nil>.UsuarioSolicitud'
   models.TrTrabajoGrado:
     title: TrTrabajoGrado
     type: object
     properties:
       AreasTrabajoGrado:
-        $ref: '#/definitions/17692.<nil>.AreasTrabajoGrado'
+        $ref: '#/definitions/243274.<nil>.AreasTrabajoGrado'
+      AsignaturasTrabajoGrado:
+        $ref: '#/definitions/243374.<nil>.AsignaturaTrabajoGrado'
       DocumentoEscrito:
         $ref: '#/definitions/models.DocumentoEscrito'
       DocumentoTrabajoGrado:
         $ref: '#/definitions/models.DocumentoTrabajoGrado'
       EstudianteTrabajoGrado:
-        $ref: '#/definitions/17550.<nil>.EstudianteTrabajoGrado'
+        $ref: '#/definitions/243129.<nil>.EstudianteTrabajoGrado'
       TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
       VinculacionTrabajoGrado:
-        $ref: '#/definitions/17738.<nil>.VinculacionTrabajoGrado'
+        $ref: '#/definitions/243321.<nil>.VinculacionTrabajoGrado'
+  models.TrVinculadoRegistrarNota:
+    title: TrVinculadoRegistrarNota
+    type: object
+    properties:
+      DocumentoEscrito:
+        $ref: '#/definitions/models.DocumentoEscrito'
+      EvaluacionTrabajoGrado:
+        $ref: '#/definitions/models.EvaluacionTrabajoGrado'
+      TrabajoGrado:
+        $ref: '#/definitions/models.TrabajoGrado'
+      VinculacionTrabajoGrado:
+        $ref: '#/definitions/models.VinculacionTrabajoGrado'
   models.TrabajoGrado:
     title: TrabajoGrado
     type: object
@@ -6234,10 +6580,10 @@ definitions:
         type: boolean
       FechaFin:
         type: string
-        format: string
+        format: datetime
       FechaInicio:
         type: string
-        format: string
+        format: datetime
       Id:
         type: integer
         format: int64
@@ -6270,6 +6616,9 @@ tags:
 - name: detalle
   description: |
     DetalleController operations for Detalle
+- name: detalle_pasantia
+  description: |
+    DetallePasantiaController operations for DetallePasantia
 - name: detalle_tipo_solicitud
   description: |
     DetalleTipoSolicitudController operations for DetalleTipoSolicitud
@@ -6405,3 +6754,21 @@ tags:
 - name: tr_registrar_nota
   description: |
     operations for TrRegistrarNota
+- name: tr_revisar_tg
+  description: |
+    operations for TrRevisarTg
+- name: tr_actualizar_documento_tg
+  description: |
+    operations for TrActualizarDocumentoTg
+- name: tr_publicar_asignaturas
+  description: |
+    operations for TrTrabajoGrado
+- name: tr_registrar_acta_seguimiento
+  description: |
+    operations for TrRegistrarActaSeguimiento
+- name: tr_vinculado_registrar_nota
+  description: |
+    operations for TrVinculadoRegistrarNota
+- name: tr_registrar_revision_tg
+  description: |
+    operations for TrRegistrarRevisionTg
