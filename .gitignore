@@ -4,3 +4,4 @@ lastupdate.tmp
 coverage.xml
 report.xml
 test.xml
+.env
