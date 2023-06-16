@@ -7907,6 +7907,34 @@
                 }
             }
         },
+        "/tr_subir_arl/": {
+            "post": {
+                "tags": [
+                    "tr_subir_arl"
+                ],
+                "description": "create the TrSubirArl",
+                "operationId": "TrSubirArlController.PostTrSubirArl",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrSubirArl content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrSubirArl"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TrSubirArl"
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            }
+        },
         "/tr_trabajo_grado/": {
             "post": {
                 "tags": [
@@ -9749,7 +9777,19 @@
                     "$ref": "#/definitions/models.SolicitudTrabajoGrado"
                 },
                 "UsuariosSolicitud": {
-                    "$ref": "#/definitions/241682.\u003cnil\u003e.UsuarioSolicitud"
+                    "$ref": "#/definitions/233788.\u003cnil\u003e.UsuarioSolicitud"
+                }
+            }
+        },
+        "models.TrSubirArl": {
+            "title": "TrSubirArl",
+            "type": "object",
+            "properties": {
+                "DocumentoEscrito": {
+                    "$ref": "#/definitions/models.DocumentoEscrito"
+                },
+                "DocumentoTrabajoGrado": {
+                    "$ref": "#/definitions/models.DocumentoTrabajoGrado"
                 }
             }
         },
@@ -9814,6 +9854,9 @@
                 },
                 "Modalidad": {
                     "$ref": "#/definitions/models.Modalidad"
+                },
+                "Objetivo": {
+                    "type": "string"
                 },
                 "PeriodoAcademico": {
                     "type": "string"
