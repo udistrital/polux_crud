@@ -283,6 +283,16 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 		}
 	}
 
+	//Solicitud de cambio de objetivos del trabajo de grado
+	if m.TipoSolicitud.CodigoAbreviacion == "SCO" && m.TrabajoGrado != nil {
+		if _, err = o.Update(m.TrabajoGrado,"Objetivo"); err != nil {
+			fmt.Println(err)
+			err = o.Rollback()
+			alerta[0] = "Error"
+			alerta = append(alerta, "ERROR_RTA_SOLICITUD_19")
+		}
+	}
+
 	//Solicitud de cancelacion de modalidad
 	if m.EstudianteTrabajoGrado != nil {
 		var estudianteTrabajoGrado EstudianteTrabajoGrado
