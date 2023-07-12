@@ -374,6 +374,12 @@ func init() {
 			),
 		),
 
+		beego.NSNamespace("/detalle_trabajo_grado",
+			beego.NSInclude(
+				&controllers.DetalleTrabajoGradoController{},
+			),
+		),
+
 		beego.NSNamespace("/tr_subir_arl",
 			beego.NSInclude(
 				&controllers.TrSubirArlController{},
