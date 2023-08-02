@@ -12,6 +12,7 @@ type TrRevision struct {
 	Vinculaciones         *[]VinculacionTrabajoGrado //Cambio de director o evaluador
 	DocumentoEscrito      *DocumentoEscrito
 	DocumentoTrabajoGrado *DocumentoTrabajoGrado
+	DetalleTrabajoGrado   *[]DetalleTrabajoGrado //Solicitud inicial de TrabajoGrado
 }
 
 type TrRespuestaSolicitud struct {
@@ -29,7 +30,6 @@ type TrRespuestaSolicitud struct {
 	EspaciosAcademicos       *[]EspacioAcademicoInscrito //Solicitud de cambio de asignaturas
 	DetallesPasantia         *DetallePasantia            //SOlicitud inicial de pasantia
 	TrRevision               *TrRevision                 //Solicitud de revisión
-	DetalleTrabajoGrado      *[]DetalleTrabajoGrado      //Solicitud inicial de TrabajoGrado
 }
 
 // AddTransaccionRespuestaSolicitud funcion para dar respuesta a las solicitudes
@@ -143,19 +143,6 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 						err = o.Rollback()
 						alerta[0] = "Error"
 						alerta = append(alerta, "ERROR_RTA_SOLICITUD_15")
-					}
-				}
-
-				//INSERTA EN LA TABLA DETALLE TRABAJO GRADO
-				if m.DetalleTrabajoGrado != nil {
-					for _, data := range *m.DetalleTrabajoGrado {
-						data.TrabajoGrado.Id = int(id_TrabajoGrado)
-						if _, err = o.Insert(&data); err != nil {
-							fmt.Println(err)
-							err = o.Rollback()
-							alerta[0] = "Error"
-							alerta = append(alerta, "ERROR_RTA_SOLICITUD_20")
-						}
 					}
 				}
 			} else {
@@ -460,6 +447,19 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 			fmt.Println(err)
 			err = o.Rollback()
 		}
+
+		//INSERTA EN LA TABLA DETALLE TRABAJO GRADO
+		if m.TrRevision.DetalleTrabajoGrado != nil {
+			for _, data := range *m.TrRevision.DetalleTrabajoGrado {
+				if _, err = o.Insert(&data); err != nil {
+					fmt.Println(err)
+					err = o.Rollback()
+					alerta[0] = "Error"
+					alerta = append(alerta, "ERROR_RTA_SOLICITUD_20")
+				}
+			}
+		}
+
 		//Se inserta el documento final de la revisión y se relaciona con el trabajo grado
 		if id_documento, err := o.Insert(m.TrRevision.DocumentoEscrito); err == nil {
 			fmt.Println("Id documento final", id_documento)
@@ -514,6 +514,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 						alerta[0] = "Error"
 						alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
 					}
+
 				} else if err == orm.ErrNoRows {
 					// Si no se encuentra
 					fmt.Println("Se inserta vinculado", v)
@@ -538,7 +539,6 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 				}
 			}
 		}
-
 	}
 	err = o.Commit()
 	//err = o.Rollback()
