@@ -82,10 +82,13 @@ Pruebas unitarias
 
 ##Estado CI
 
-|Desarrollar|Relese 0.0.1|	Maestría|
-| - | - | - |
+| develop | release 0.0.1 | master |
+| -- | -- | -- |
+| [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/polux_crud/status.svg?ref=refs/heads/develop)](https://hubci.portaloas.udistrital.edu.co/udistrital/polux_crud) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/polux_crud/status.svg?ref=refs/heads/release/0.0.1)](https://hubci.portaloas.udistrital.edu.co/udistrital/polux_crud) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/polux_crud/status.svg?ref=refs/heads/master)](https://hubci.portaloas.udistrital.edu.co/udistrital/polux_crud) |
+
 ## Modelo de Datos
-.[Modelo de Datos ACTA RECIBIDO CRUD]_(https://drive.google.com/drive/folders/1Jkx2MlcxEPVQcYnMTbYJ7ov9gU5-wslu)
+
+[SVG](database/model.svg)
 
 Licencia
 Este archivo es parte de polux_crud.
