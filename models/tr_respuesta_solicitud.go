@@ -165,7 +165,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 		var idVinculadoNuevo int64
 		for _, v := range *m.Vinculaciones {
 			//Si esta activo es nuevo y se inserta sino se actualiza la fecha de fin y el activo
-			if v.Activo == true {
+			if v.Activo {
 				// Se busca si el docente ya estuvo vinculado y se actualiza
 				var vinculado VinculacionTrabajoGrado
 				if err = o.QueryTable(new(VinculacionTrabajoGrado)).RelatedSel().Filter("TrabajoGrado",v.TrabajoGrado).Filter("Usuario",v.Usuario).Filter("RolTrabajoGrado",v.RolTrabajoGrado).One(&vinculado); err == nil {
@@ -485,7 +485,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 		//Se actualizan las vinculaciones
 		for _, v := range *m.TrRevision.Vinculaciones {
 			//Si esta activo es nuevo y se inserta sino se actualiza la fecha de fin y el activo
-			if v.Activo == true {
+			if v.Activo {
 				// Se busca si el docente ya estuvo vinculado y se actualiza
 				var vinculado VinculacionTrabajoGrado
 				if err = o.QueryTable(new(VinculacionTrabajoGrado)).RelatedSel().Filter("TrabajoGrado",v.TrabajoGrado).Filter("Usuario",v.Usuario).Filter("RolTrabajoGrado",v.RolTrabajoGrado).One(&vinculado); err == nil {
