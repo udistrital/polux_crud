@@ -9451,8 +9451,8 @@
                     "format": "int64"
                 },
                 "NumeroRevision": {
-                    "type": "number",
-                    "format": "double"
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "VinculacionTrabajoGrado": {
                     "$ref": "#/definitions/models.VinculacionTrabajoGrado"
@@ -9671,7 +9671,10 @@
             "type": "object",
             "properties": {
                 "Comentarios": {
-                    "$ref": "#/definitions/214640.\u003cnil\u003e.Comentario"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Comentario"
+                    }
                 },
                 "RevisionTrabajoGrado": {
                     "$ref": "#/definitions/models.RevisionTrabajoGrado"

@@ -12,7 +12,7 @@ import (
 
 type RevisionTrabajoGrado struct {
 	Id                         int                         `orm:"column(id);pk;auto"`
-	NumeroRevision             float64                     `orm:"column(numero_revision)"`
+	NumeroRevision             int                         `orm:"column(numero_revision)"`
 	FechaRecepcion             time.Time                   `orm:"column(fecha_recepcion);type(timestamp without time zone)"`
 	FechaRevision              time.Time                   `orm:"column(fecha_revision);type(timestamp without time zone);null"`
 	EstadoRevisionTrabajoGrado *EstadoRevisionTrabajoGrado `orm:"column(estado_revision_trabajo_grado);rel(fk)"`
