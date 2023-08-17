@@ -1,4 +1,4 @@
-CREATE TABLE academica.detalle_trabajo_grado (
+CREATE TABLE IF NOT EXISTS academica.detalle_trabajo_grado (
 	id integer NOT NULL,
 	parametro integer NOT NULL,
 	valor text NOT NULL,

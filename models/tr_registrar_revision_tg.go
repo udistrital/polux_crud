@@ -49,7 +49,7 @@ func AddTransaccionRegistrarRevisionTg(m *TrRegistrarRevisionTg) (alerta []strin
 			Id: estado[0].(EstadoRevisionTrabajoGrado).Id,
 		}
 		m.RevisionTrabajoGrado.VinculacionTrabajoGrado.TrabajoGrado.EstadoTrabajoGrado = &EstadoTrabajoGrado{
-			Id: estadoTr[0].(EstadoRevisionTrabajoGrado).Id,
+			Id: estadoTr[0].(EstadoTrabajoGrado).Id,
 		}
 
 		// Se consulta el número de revisiones realizadas a la fecha
