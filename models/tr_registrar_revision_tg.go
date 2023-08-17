@@ -31,7 +31,6 @@ func AddTransaccionRegistrarRevisionTg(m *TrRegistrarRevisionTg) (alerta []strin
 	}()
 
 	alerta = append(alerta, "Success")
-	logs.Info("rechazar", m.RevisionTrabajoGrado.Id == 0)
 	if m.RevisionTrabajoGrado.Id == 0 {
 
 		// Se debe crear una nueva revisión
