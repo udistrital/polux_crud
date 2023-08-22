@@ -16,20 +16,21 @@ type TrRevision struct {
 }
 
 type TrRespuestaSolicitud struct {
-	RespuestaAnterior        *RespuestaSolicitud
-	RespuestaNueva           *RespuestaSolicitud
-	DocumentoSolicitud       *DocumentoSolicitud
-	TipoSolicitud            *TipoSolicitud
-	Vinculaciones            *[]VinculacionTrabajoGrado  //Cambio de director o evaluador..//Cancelación TG
-	EstudianteTrabajoGrado   *EstudianteTrabajoGrado     //Cancelación trabajo grado
-	VinculacionesCancelacion *[]VinculacionTrabajoGrado  //Vinculaciones para cancelacion de trabajo de grado
-	TrTrabajoGrado           *TrTrabajoGrado             //Solictudes iniciales
-	ModalidadTipoSolicitud   *ModalidadTipoSolicitud     //Para saber el tipo de solicitud inicial
-	TrabajoGrado             *TrabajoGrado               //Cambio Titulo
-	SolicitudTrabajoGrado    *SolicitudTrabajoGrado      //solicitud inicial
-	EspaciosAcademicos       *[]EspacioAcademicoInscrito //Solicitud de cambio de asignaturas
-	DetallesPasantia         *DetallePasantia            //SOlicitud inicial de pasantia
-	TrRevision               *TrRevision                 //Solicitud de revisión
+	RespuestaAnterior           *RespuestaSolicitud
+	RespuestaNueva              *RespuestaSolicitud
+	DocumentoSolicitud          *DocumentoSolicitud
+	TipoSolicitud               *TipoSolicitud
+	Vinculaciones               *[]VinculacionTrabajoGrado  //Cambio de director o evaluador..//Cancelación TG
+	EstudianteTrabajoGrado      *EstudianteTrabajoGrado     //Cancelación trabajo grado
+	VinculacionesCancelacion    *[]VinculacionTrabajoGrado  //Vinculaciones para cancelacion de trabajo de grado
+	TrTrabajoGrado              *TrTrabajoGrado             //Solictudes iniciales
+	ModalidadTipoSolicitud      *ModalidadTipoSolicitud     //Para saber el tipo de solicitud inicial
+	TrabajoGrado                *TrabajoGrado               //Cambio Titulo
+	SolicitudTrabajoGrado       *SolicitudTrabajoGrado      //solicitud inicial
+	EspaciosAcademicos          *[]EspacioAcademicoInscrito //Solicitud de cambio de asignaturas
+	DetallesPasantia            *DetallePasantia            //SOlicitud inicial de pasantia
+	TrRevision                  *TrRevision                 //Solicitud de revisión
+	EspaciosAcademicosInscritos *[]EspacioAcademicoInscrito //Espacios academicos inscritos
 }
 
 // AddTransaccionRespuestaSolicitud funcion para dar respuesta a las solicitudes
@@ -68,10 +69,11 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 	}
 
 	//solicitud inicial, se crea trabajo de grado
-	if m.TrTrabajoGrado != nil {
+	if (m.TrTrabajoGrado != nil && m.ModalidadTipoSolicitud.Modalidad.CodigoAbreviacion != "EAPOS") || m.RespuestaAnterior.EstadoSolicitud.CodigoAbreviacion == "ACPR" {
 		if id_TrabajoGrado, err := o.Insert(m.TrTrabajoGrado.TrabajoGrado); err == nil {
 			fmt.Println(id_TrabajoGrado)
 			//la solicitud inicial queda relacionada al trabajo de grado
+			fmt.Println(m.SolicitudTrabajoGrado.TrabajoGrado)
 			m.SolicitudTrabajoGrado.TrabajoGrado.Id = int(id_TrabajoGrado)
 			if id_sols, err := o.Update(m.SolicitudTrabajoGrado, "TrabajoGrado"); err == nil {
 				fmt.Println(id_sols)
@@ -95,45 +97,63 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 						alerta = append(alerta, "ERROR_RTA_SOLICITUD_9")
 					}
 				}
-				// Se agregan areas de conocimiento
-				for _, v := range *m.TrTrabajoGrado.AreasTrabajoGrado {
-					v.TrabajoGrado.Id = int(id_TrabajoGrado)
-					if _, err = o.Insert(&v); err != nil {
-						fmt.Println(err)
-						err = o.Rollback()
-						alerta[0] = "Error"
-						alerta = append(alerta, "ERROR_RTA_SOLICITUD_10")
+				// Se agregan areas de conocimiento si existen
+				if m.TrTrabajoGrado.AreasTrabajoGrado != nil {
+					for _, v := range *m.TrTrabajoGrado.AreasTrabajoGrado {
+						v.TrabajoGrado.Id = int(id_TrabajoGrado)
+						if _, err = o.Insert(&v); err != nil {
+							fmt.Println(err)
+							err = o.Rollback()
+							alerta[0] = "Error"
+							alerta = append(alerta, "ERROR_RTA_SOLICITUD_10")
+						}
 					}
 				}
 				// Se agregan vinculaciones
-				for _, v := range *m.TrTrabajoGrado.VinculacionTrabajoGrado {
-					v.TrabajoGrado.Id = int(id_TrabajoGrado)
-					if _, err = o.Insert(&v); err != nil {
-						fmt.Println(err)
-						err = o.Rollback()
-						alerta[0] = "Error"
-						alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
+				if m.TrTrabajoGrado.VinculacionTrabajoGrado != nil {
+					for _, v := range *m.TrTrabajoGrado.VinculacionTrabajoGrado {
+						v.TrabajoGrado.Id = int(id_TrabajoGrado)
+						if _, err = o.Insert(&v); err != nil {
+							fmt.Println(err)
+							err = o.Rollback()
+							alerta[0] = "Error"
+							alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
+						}
 					}
 				}
 				// Se agrega documento Estrito
-				if id_documento, err := o.Insert(m.TrTrabajoGrado.DocumentoEscrito); err == nil {
-					fmt.Println(id_documento)
-					m.TrTrabajoGrado.DocumentoTrabajoGrado.TrabajoGrado.Id = int(id_TrabajoGrado)
-					m.TrTrabajoGrado.DocumentoTrabajoGrado.DocumentoEscrito.Id = int(id_documento)
-					if id_documento, err := o.Insert(m.TrTrabajoGrado.DocumentoTrabajoGrado); err == nil {
+				if m.TrTrabajoGrado.DocumentoEscrito != nil {
+					if id_documento, err := o.Insert(m.TrTrabajoGrado.DocumentoEscrito); err == nil {
 						fmt.Println(id_documento)
-						//Se terminan de insertar
+						m.TrTrabajoGrado.DocumentoTrabajoGrado.TrabajoGrado.Id = int(id_TrabajoGrado)
+						m.TrTrabajoGrado.DocumentoTrabajoGrado.DocumentoEscrito.Id = int(id_documento)
+						if id_documento, err := o.Insert(m.TrTrabajoGrado.DocumentoTrabajoGrado); err == nil {
+							fmt.Println(id_documento)
+							//Se terminan de insertar
+						} else {
+							fmt.Println(err)
+							err = o.Rollback()
+							alerta[0] = "Error"
+							alerta = append(alerta, "ERROR_RTA_SOLICITUD_12")
+						}
 					} else {
 						fmt.Println(err)
 						err = o.Rollback()
 						alerta[0] = "Error"
-						alerta = append(alerta, "ERROR_RTA_SOLICITUD_12")
+						alerta = append(alerta, "ERROR_RTA_SOLICITUD_11")
 					}
-				} else {
-					fmt.Println(err)
-					err = o.Rollback()
-					alerta[0] = "Error"
-					alerta = append(alerta, "ERROR_RTA_SOLICITUD_11")
+				}
+				// Si la solicitud es de materias de posgrado se agregan los espacios academicos inscritos
+				if m.EspaciosAcademicosInscritos != nil {
+					for _, v := range *m.EspaciosAcademicosInscritos {
+						v.TrabajoGrado.Id = int(id_TrabajoGrado)
+						if _, err = o.Insert(&v); err != nil {
+							fmt.Println(err)
+							err = o.Rollback()
+							alerta[0] = "Error"
+							alerta = append(alerta, "ERROR_RTA_SOLICITUD_16")
+						}
+					}
 				}
 				// Si la solicitud es de pasantia se agrega el detalel de la pasantia
 				if m.DetallesPasantia != nil {
@@ -514,7 +534,6 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 						alerta[0] = "Error"
 						alerta = append(alerta, "ERROR_RTA_SOLICITUD_5")
 					}
-
 				} else if err == orm.ErrNoRows {
 					// Si no se encuentra
 					fmt.Println("Se inserta vinculado", v)
