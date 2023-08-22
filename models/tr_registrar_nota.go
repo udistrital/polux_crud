@@ -7,9 +7,10 @@ import (
 )
 
 type TrRegistrarNota struct {
-	EspaciosAcademicosCalificados			*[]EspacioAcademicoInscrito
-	AsignaturasDeTrabajoDeGrado				*[]AsignaturaTrabajoGrado
-	TrabajoDeGradoTerminado						*TrabajoGrado
+	EspaciosAcademicosCalificados *[]EspacioAcademicoInscrito
+	AsignaturasDeTrabajoDeGrado   *[]AsignaturaTrabajoGrado
+	TrabajoDeGradoTerminado       *TrabajoGrado
+	EvaluacionTrabajoGrado        *EvaluacionTrabajoGrado
 }
 
 // AddTransaccionRegistrarNota Función para la transaccion de notas obtenidas en espacios académicos de posgrado
@@ -19,7 +20,7 @@ func AddTransaccionRegistrarNota(m *TrRegistrarNota) (alerta []string, err error
 	alerta = append(alerta, "Success")
 
 	// Update del trabajo de grado
-	
+
 	if num, err := o.Update(m.TrabajoDeGradoTerminado); err == nil {
 		fmt.Println("Number of degree assigments updated in database:", num)
 		// Update de los espacios académicos inscritos
@@ -30,7 +31,7 @@ func AddTransaccionRegistrarNota(m *TrRegistrarNota) (alerta []string, err error
 			} else {
 				fmt.Println(err)
 				alerta[0] = "Error"
-				alerta = append(alerta, "ERROR_RTA_SOLICITUD_1")
+				alerta = append(alerta, "ERROR_RTA_SOLICITUD_2")
 				err = o.Rollback()
 			}
 		}
@@ -42,10 +43,19 @@ func AddTransaccionRegistrarNota(m *TrRegistrarNota) (alerta []string, err error
 			} else {
 				fmt.Println(err)
 				alerta[0] = "Error"
-				alerta = append(alerta, "ERROR_RTA_SOLICITUD_1")
+				alerta = append(alerta, "ERROR_RTA_SOLICITUD_3")
 				err = o.Rollback()
 			}
 		}
+		// Insert de evaluación trabajo grado
+		fmt.Println(m.EvaluacionTrabajoGrado)
+		if _, err = o.Insert(m.EvaluacionTrabajoGrado); err != nil {
+			fmt.Println(err)
+			err = o.Rollback()
+			alerta[0] = "Error"
+			alerta = append(alerta, "ERROR_RTA_SOLICITUD_4")
+		}
+
 		err = o.Commit()
 	} else {
 		fmt.Println(err)

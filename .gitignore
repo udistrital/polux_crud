@@ -5,3 +5,5 @@ coverage.xml
 report.xml
 test.xml
 .env
+5432
+*.exe
