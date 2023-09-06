@@ -90,38 +90,36 @@ func AddTransaccionRegistrarRevisionTg(m *TrRegistrarRevisionTg) (alerta []strin
 		_, err = o.Update(m.RevisionTrabajoGrado.VinculacionTrabajoGrado.TrabajoGrado, "EstadoTrabajoGrado")
 		if err != nil {
 			panic(err)
-
 		}
 
 		return alerta, nil
 	}
 
 	// Update de la revisión del trabajo de grado
-	if num, err := o.Update(m.RevisionTrabajoGrado, "EstadoRevisionTrabajoGrado", "FechaRevision"); err == nil {
-		fmt.Println("Number of reviews updated:", num)
-		// Insert de las correcciones y comentarios
-		for _, v := range m.Comentarios {
-			if idCorreccion, err := o.Insert(v.Correccion); err == nil {
-				v.Correccion.Id = int(idCorreccion)
-				if _, err := o.Insert(&v); err != nil {
-					fmt.Println(err)
-					err = o.Rollback()
-					alerta[0] = "Error"
-					alerta = append(alerta, "ERROR.INSERTANDO_REVISIONES")
-				}
-			} else {
-				fmt.Println(err)
-				err = o.Rollback()
-				alerta[0] = "Error"
-				alerta = append(alerta, "ERROR.INSERTANDO_REVISIONES")
-			}
-		}
-		err = o.Commit()
-	} else {
-		fmt.Println(err)
+	_, err = o.Update(&m.RevisionTrabajoGrado, "EstadoRevisionTrabajoGrado", "FechaRevision")
+	if err != nil {
 		alerta[0] = "Error"
 		alerta = append(alerta, "ERROR.REGISTRANDO_REVISION")
-		err = o.Rollback()
+		panic(err)
 	}
+
+	// Insert de las correcciones y comentarios
+	for _, v := range m.Comentarios {
+		idCorreccion, err := o.Insert(v.Correccion)
+		if err != nil {
+			alerta[0] = "Error"
+			alerta = append(alerta, "ERROR.INSERTANDO_REVISIONES")
+			panic(err)
+		}
+
+		v.Correccion = &Correccion{Id: int(idCorreccion)}
+		_, err = o.Insert(&v)
+		if err != nil {
+			alerta[0] = "Error"
+			alerta = append(alerta, "ERROR.INSERTANDO_REVISIONES")
+			panic(err)
+		}
+	}
+
 	return
 }
