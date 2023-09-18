@@ -31,6 +31,8 @@ type TrRespuestaSolicitud struct {
 	DetallesPasantia            *DetallePasantia            //SOlicitud inicial de pasantia
 	TrRevision                  *TrRevision                 //Solicitud de revisión
 	EspaciosAcademicosInscritos *[]EspacioAcademicoInscrito //Espacios academicos inscritos
+	CausaProrroga               *[]DetalleTrabajoGrado      //Solicitud de Prorroga
+	DetallesPasantiaExterna     *[]DetalleTrabajoGrado      //Solicitud Inicial PASANTÍA EXTERNA
 }
 
 // AddTransaccionRespuestaSolicitud funcion para dar respuesta a las solicitudes
@@ -155,7 +157,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 						}
 					}
 				}
-				// Si la solicitud es de pasantia se agrega el detalel de la pasantia
+				// Si la solicitud es de pasantia se agrega el detalle de la pasantia
 				if m.DetallesPasantia != nil {
 					m.DetallesPasantia.TrabajoGrado.Id = int(id_TrabajoGrado)
 					if _, err = o.Insert(m.DetallesPasantia); err != nil {
@@ -163,6 +165,19 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 						err = o.Rollback()
 						alerta[0] = "Error"
 						alerta = append(alerta, "ERROR_RTA_SOLICITUD_15")
+					}
+				}
+
+				//Si la solicitud es de pasantía externa se agregan los detalles a la tabla detalle trabajo grado
+				if m.DetallesPasantiaExterna != nil && m.ModalidadTipoSolicitud.Modalidad.Id == 1 {
+					for _, data := range *m.DetallesPasantiaExterna {
+						data.TrabajoGrado.Id = int(id_TrabajoGrado)
+						if _, err = o.Insert(&data); err != nil {
+							fmt.Println(err)
+							err = o.Rollback()
+							alerta[0] = "Error"
+							alerta = append(alerta, "ERROR_RTA_SOLICITUD_15")
+						}
 					}
 				}
 			} else {
@@ -311,6 +326,20 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 			err = o.Rollback()
 			alerta[0] = "Error"
 			alerta = append(alerta, "ERROR_RTA_SOLICITUD_19")
+		}
+	}
+
+	//Solicitud de Prorroga
+	if m.TipoSolicitud.CodigoAbreviacion == "SPR" {
+		if m.CausaProrroga != nil {
+			for _, data := range *m.CausaProrroga {
+				if _, err = o.Insert(&data); err != nil {
+					fmt.Println(err)
+					err = o.Rollback()
+					alerta[0] = "Error"
+					alerta = append(alerta, "ERROR_RTA_SOLICITUD_20")
+				}
+			}
 		}
 	}
 
