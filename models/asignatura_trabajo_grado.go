@@ -17,7 +17,7 @@ type AsignaturaTrabajoGrado struct {
 	Calificacion                 float64                       `orm:"column(calificacion);null"`
 	TrabajoGrado                 *TrabajoGrado                 `orm:"column(trabajo_grado);rel(fk)"`
 	EstadoAsignaturaTrabajoGrado *EstadoAsignaturaTrabajoGrado `orm:"column(estado_asignatura_trabajo_grado);rel(fk)"`
-	Activo                       bool                          `orm:"column(activo);pk;null"`
+	Activo                       bool                          `orm:"column(activo);null"`
 	FechaCreacion                string                        `orm:"column(fecha_creacion);type(timestamp without time zone);null"`
 	FechaModificacion            string                        `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
 }
