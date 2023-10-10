@@ -10,10 +10,13 @@ import (
 )
 
 type DetalleTrabajoGrado struct {
-	Id           int           `orm:"column(id);pk;auto"`
-	Parametro    string        `orm:"column(parametro);null"`
-	Valor        string        `orm:"column(valor);null"`
-	TrabajoGrado *TrabajoGrado `orm:"column(trabajo_grado);rel(fk);null"`
+	Id                int           `orm:"column(id);pk;auto"`
+	Parametro         string        `orm:"column(parametro);null"`
+	Valor             string        `orm:"column(valor);null"`
+	TrabajoGrado      *TrabajoGrado `orm:"column(trabajo_grado);rel(fk);null"`
+	Activo            bool          `orm:"column(activo);pk;null"`
+	FechaCreacion     string        `orm:"column(fecha_creacion);type(timestamp without time zone);null"`
+	FechaModificacion string        `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
 }
 
 func (t *DetalleTrabajoGrado) TableName() string {
