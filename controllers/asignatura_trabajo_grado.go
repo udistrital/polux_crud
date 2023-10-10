@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/udistrital/polux_crud/models"
+	"github.com/udistrital/utils_oas/time_bogota"
 
 	"github.com/astaxie/beego"
 )
@@ -35,6 +36,9 @@ func (c *AsignaturaTrabajoGradoController) URLMapping() {
 func (c *AsignaturaTrabajoGradoController) Post() {
 	var v models.AsignaturaTrabajoGrado
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		v.Activo = true
+		v.FechaCreacion = time_bogota.TiempoBogotaFormato()
+		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 		if _, err := models.AddAsignaturaTrabajoGrado(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
@@ -149,6 +153,8 @@ func (c *AsignaturaTrabajoGradoController) Put() {
 	id, _ := strconv.Atoi(idStr)
 	v := models.AsignaturaTrabajoGrado{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		v.FechaCreacion = time_bogota.TiempoCorreccionFormato(v.FechaCreacion)
+		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 		if err := models.UpdateAsignaturaTrabajoGradoById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
