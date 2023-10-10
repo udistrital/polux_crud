@@ -7,13 +7,13 @@ import (
 	"github.com/astaxie/beego/plugins/cors"
 	_ "github.com/lib/pq"
 	_ "github.com/udistrital/polux_crud/routers"
+	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
 	"github.com/udistrital/utils_oas/customerror"
-	"github.com/udistrital/utils_oas/apiStatusLib"
 )
 
 func init() {
 	if errorDriver := orm.RegisterDriver("postgres", orm.DRPostgres); errorDriver == nil {
-		if errorDB := orm.RegisterDataBase("default", "postgres", "postgres://"+beego.AppConfig.String("PGuser")+":"+beego.AppConfig.String("PGpass")+"@"+beego.AppConfig.String("PGurls")+"/"+beego.AppConfig.String("PGdb")+"?sslmode=disable&search_path="+beego.AppConfig.String("PGschemas")+""); errorDB == nil {
+		if errorDB := orm.RegisterDataBase("default", "postgres", "postgres://"+beego.AppConfig.String("PGuser")+":"+beego.AppConfig.String("PGpass")+"@"+beego.AppConfig.String("PGurls")+"/"+beego.AppConfig.String("PGdb")+"?sslmode=require&search_path="+beego.AppConfig.String("PGschemas")+""); errorDB == nil {
 			beego.Info("Success")
 		} else {
 			beego.Info(errorDB)
@@ -27,11 +27,11 @@ func main() {
 	logPath := "{\"filename\":\""
 	logPath += beego.AppConfig.String("logPath")
 	logPath += "\"}"
-	if err := logs.SetLogger(logs.AdapterFile, logPath); err != nil{
+	if err := logs.SetLogger(logs.AdapterFile, logPath); err != nil {
 		if err := logs.SetLogger("console", ""); err != nil {
 			logs.Warn("logPath not set")
 		}
-	} 
+	}
 	orm.Debug = true
 	if beego.BConfig.RunMode == "dev" {
 		beego.BConfig.WebConfig.DirectoryIndex = true
