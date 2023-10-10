@@ -14,7 +14,7 @@ type DetalleTrabajoGrado struct {
 	Parametro         string        `orm:"column(parametro);null"`
 	Valor             string        `orm:"column(valor);null"`
 	TrabajoGrado      *TrabajoGrado `orm:"column(trabajo_grado);rel(fk);null"`
-	Activo            bool          `orm:"column(activo);pk;null"`
+	Activo            bool          `orm:"column(activo);null"`
 	FechaCreacion     string        `orm:"column(fecha_creacion);type(timestamp without time zone);null"`
 	FechaModificacion string        `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
 }
