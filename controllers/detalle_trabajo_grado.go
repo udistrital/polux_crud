@@ -12,13 +12,13 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// AsignaturaTrabajoGradoController operations for AsignaturaTrabajoGrado
-type AsignaturaTrabajoGradoController struct {
+// DetalleTrabajoGradoController operations for DetalleTrabajoGrado
+type DetalleTrabajoGradoController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *AsignaturaTrabajoGradoController) URLMapping() {
+func (c *DetalleTrabajoGradoController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -28,18 +28,18 @@ func (c *AsignaturaTrabajoGradoController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create AsignaturaTrabajoGrado
-// @Param	body		body 	models.AsignaturaTrabajoGrado	true		"body for AsignaturaTrabajoGrado content"
-// @Success 201 {int} models.AsignaturaTrabajoGrado
+// @Description create DetalleTrabajoGrado
+// @Param	body		body 	models.DetalleTrabajoGrado	true		"body for DetalleTrabajoGrado content"
+// @Success 201 {int} models.DetalleTrabajoGrado
 // @Failure 400 the request contains incorrect syntax
 // @router / [post]
-func (c *AsignaturaTrabajoGradoController) Post() {
-	var v models.AsignaturaTrabajoGrado
+func (c *DetalleTrabajoGradoController) Post() {
+	var v models.DetalleTrabajoGrado
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		v.Activo = true
 		v.FechaCreacion = time_bogota.TiempoBogotaFormato()
 		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
-		if _, err := models.AddAsignaturaTrabajoGrado(&v); err == nil {
+		if _, err := models.AddDetalleTrabajoGrado(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -55,15 +55,15 @@ func (c *AsignaturaTrabajoGradoController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get AsignaturaTrabajoGrado by id
+// @Description get DetalleTrabajoGrado by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.AsignaturaTrabajoGrado
+// @Success 200 {object} models.DetalleTrabajoGrado
 // @Failure 404 not found resource
 // @router /:id [get]
-func (c *AsignaturaTrabajoGradoController) GetOne() {
+func (c *DetalleTrabajoGradoController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetAsignaturaTrabajoGradoById(id)
+	v, err := models.GetDetalleTrabajoGradoById(id)
 	if err != nil {
 		beego.Error(err)
 		c.Abort("404")
@@ -75,17 +75,17 @@ func (c *AsignaturaTrabajoGradoController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get AsignaturaTrabajoGrado
+// @Description get DetalleTrabajoGrado
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.AsignaturaTrabajoGrado
+// @Success 200 {object} models.DetalleTrabajoGrado
 // @Failure 404 not found resource
 // @router / [get]
-func (c *AsignaturaTrabajoGradoController) GetAll() {
+func (c *DetalleTrabajoGradoController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -127,7 +127,7 @@ func (c *AsignaturaTrabajoGradoController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllAsignaturaTrabajoGrado(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllDetalleTrabajoGrado(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		beego.Error(err)
 		c.Abort("404")
@@ -142,20 +142,20 @@ func (c *AsignaturaTrabajoGradoController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the AsignaturaTrabajoGrado
+// @Description update the DetalleTrabajoGrado
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.AsignaturaTrabajoGrado	true		"body for AsignaturaTrabajoGrado content"
-// @Success 200 {object} models.AsignaturaTrabajoGrado
+// @Param	body		body 	models.DetalleTrabajoGrado	true		"body for DetalleTrabajoGrado content"
+// @Success 200 {object} models.DetalleTrabajoGrado
 // @Failure 400 the request contains incorrect syntax
 // @router /:id [put]
-func (c *AsignaturaTrabajoGradoController) Put() {
+func (c *DetalleTrabajoGradoController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.AsignaturaTrabajoGrado{Id: id}
+	v := models.DetalleTrabajoGrado{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		v.FechaCreacion = time_bogota.TiempoCorreccionFormato(v.FechaCreacion)
 		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
-		if err := models.UpdateAsignaturaTrabajoGradoById(&v); err == nil {
+		if err := models.UpdateDetalleTrabajoGradoById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
 			beego.Error(err)
@@ -170,15 +170,15 @@ func (c *AsignaturaTrabajoGradoController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the AsignaturaTrabajoGrado
+// @Description delete the DetalleTrabajoGrado
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 404 not found resource
 // @router /:id [delete]
-func (c *AsignaturaTrabajoGradoController) Delete() {
+func (c *DetalleTrabajoGradoController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteAsignaturaTrabajoGrado(id); err == nil {
+	if err := models.DeleteDetalleTrabajoGrado(id); err == nil {
 		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
 		beego.Error(err)

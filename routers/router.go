@@ -337,7 +337,7 @@ func init() {
 				&controllers.TrRegistrarNota{},
 			),
 		),
-                           
+
 		beego.NSNamespace("/tr_revisar_tg",
 			beego.NSInclude(
 				&controllers.TrRevisarTg{},
@@ -347,9 +347,9 @@ func init() {
 		beego.NSNamespace("/tr_actualizar_documento_tg",
 			beego.NSInclude(
 				&controllers.TrActualizarDocumentoTg{},
-      ),
+			),
 		),
-                           
+
 		beego.NSNamespace("/tr_publicar_asignaturas",
 			beego.NSInclude(
 				&controllers.TrPublicarAsignaturasController{},
@@ -374,6 +374,17 @@ func init() {
 			),
 		),
 
+		beego.NSNamespace("/detalle_trabajo_grado",
+			beego.NSInclude(
+				&controllers.DetalleTrabajoGradoController{},
+			),
+		),
+
+		beego.NSNamespace("/tr_subir_arl",
+			beego.NSInclude(
+				&controllers.TrSubirArlController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }

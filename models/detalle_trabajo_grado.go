@@ -9,49 +9,49 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type TrabajoGrado struct {
-	Id                     int                     `orm:"column(id);pk;auto"`
-	Titulo                 string                  `orm:"column(titulo)"`
-	Modalidad              *Modalidad              `orm:"column(modalidad);rel(fk)"`
-	EstadoTrabajoGrado     *EstadoTrabajoGrado     `orm:"column(estado_trabajo_grado);rel(fk)"`
-	DistincionTrabajoGrado *DistincionTrabajoGrado `orm:"column(distincion_trabajo_grado);rel(fk);null"`
-	PeriodoAcademico       string                  `orm:"column(periodo_academico);null"`
-	Objetivo               string                  `orm:"column(objetivo);null"`
+type DetalleTrabajoGrado struct {
+	Id                int           `orm:"column(id);pk;auto"`
+	Parametro         string        `orm:"column(parametro);null"`
+	Valor             string        `orm:"column(valor);null"`
+	TrabajoGrado      *TrabajoGrado `orm:"column(trabajo_grado);rel(fk);null"`
+	Activo            bool          `orm:"column(activo);null"`
+	FechaCreacion     string        `orm:"column(fecha_creacion);type(timestamp without time zone);null"`
+	FechaModificacion string        `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
 }
 
-func (t *TrabajoGrado) TableName() string {
-	return "trabajo_grado"
+func (t *DetalleTrabajoGrado) TableName() string {
+	return "detalle_trabajo_grado"
 }
 
 func init() {
-	orm.RegisterModel(new(TrabajoGrado))
+	orm.RegisterModel(new(DetalleTrabajoGrado))
 }
 
-// AddTrabajoGrado insert a new TrabajoGrado into database and returns
+// AddDetalleTrabajoGrado insert a new DetalleTrabajoGrado into database and returns
 // last inserted Id on success.
-func AddTrabajoGrado(m *TrabajoGrado) (id int64, err error) {
+func AddDetalleTrabajoGrado(m *DetalleTrabajoGrado) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetTrabajoGradoById retrieves TrabajoGrado by Id. Returns error if
+// GetDetalleTrabajoGradoById retrieves DetalleTrabajoGrado by Id. Returns error if
 // Id doesn't exist
-func GetTrabajoGradoById(id int) (v *TrabajoGrado, err error) {
+func GetDetalleTrabajoGradoById(id int) (v *DetalleTrabajoGrado, err error) {
 	o := orm.NewOrm()
-	v = &TrabajoGrado{Id: id}
+	v = &DetalleTrabajoGrado{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllTrabajoGrado retrieves all TrabajoGrado matches certain condition. Returns empty list if
+// GetAllDetalleTrabajoGrado retrieves all DetalleTrabajoGrado matches certain condition. Returns empty list if
 // no records exist
-func GetAllTrabajoGrado(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllDetalleTrabajoGrado(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(TrabajoGrado)).RelatedSel()
+	qs := o.QueryTable(new(DetalleTrabajoGrado)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -101,7 +101,7 @@ func GetAllTrabajoGrado(query map[string]string, fields []string, sortby []strin
 		}
 	}
 
-	var l []TrabajoGrado
+	var l []DetalleTrabajoGrado
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -124,11 +124,11 @@ func GetAllTrabajoGrado(query map[string]string, fields []string, sortby []strin
 	return nil, err
 }
 
-// UpdateTrabajoGrado updates TrabajoGrado by Id and returns error if
+// UpdateDetalleTrabajoGrado updates DetalleTrabajoGrado by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateTrabajoGradoById(m *TrabajoGrado) (err error) {
+func UpdateDetalleTrabajoGradoById(m *DetalleTrabajoGrado) (err error) {
 	o := orm.NewOrm()
-	v := TrabajoGrado{Id: m.Id}
+	v := DetalleTrabajoGrado{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -139,15 +139,15 @@ func UpdateTrabajoGradoById(m *TrabajoGrado) (err error) {
 	return
 }
 
-// DeleteTrabajoGrado deletes TrabajoGrado by Id and returns error if
+// DeleteDetalleTrabajoGrado deletes DetalleTrabajoGrado by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteTrabajoGrado(id int) (err error) {
+func DeleteDetalleTrabajoGrado(id int) (err error) {
 	o := orm.NewOrm()
-	v := TrabajoGrado{Id: id}
+	v := DetalleTrabajoGrado{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&TrabajoGrado{Id: id}); err == nil {
+		if num, err = o.Delete(&DetalleTrabajoGrado{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
