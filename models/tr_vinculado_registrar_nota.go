@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/udistrital/utils_oas/time_bogota"
 )
 
 type TrVinculadoRegistrarNota struct {
@@ -128,6 +129,7 @@ func AddTransaccionVinculadoRegistrarNota(m *TrVinculadoRegistrarNota) (alerta [
 				}
 				//Se actualiza estado a cursado
 				v.EstadoAsignaturaTrabajoGrado.Id = 2
+				v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 				if num, err := o.Update(&v, "Calificacion", "EstadoAsignaturaTrabajoGrado"); err == nil {
 					fmt.Println("actualiza calificación TrabajoGrado")
 					fmt.Println("Number of records updated in database:", num)

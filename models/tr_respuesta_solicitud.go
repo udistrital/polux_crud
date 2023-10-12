@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/udistrital/utils_oas/time_bogota"
 )
 
 type TrRevision struct {
@@ -81,6 +82,9 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 				fmt.Println(id_sols)
 				// Se agregan asignaturas de trabajo de grado
 				for _, v := range *m.TrTrabajoGrado.AsignaturasTrabajoGrado {
+					v.Activo = true
+					v.FechaCreacion = time_bogota.TiempoBogotaFormato()
+					v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 					v.TrabajoGrado.Id = int(id_TrabajoGrado)
 					if _, err = o.Insert(&v); err != nil {
 						fmt.Println(err)
@@ -172,6 +176,9 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 				if m.DetallesPasantiaExterna != nil && m.ModalidadTipoSolicitud.Modalidad.Id == 1 {
 					for _, data := range *m.DetallesPasantiaExterna {
 						data.TrabajoGrado.Id = int(id_TrabajoGrado)
+						data.Activo = true
+						data.FechaCreacion = time_bogota.TiempoBogotaFormato()
+						data.FechaModificacion = time_bogota.TiempoBogotaFormato()
 						if _, err = o.Insert(&data); err != nil {
 							fmt.Println(err)
 							err = o.Rollback()
@@ -333,6 +340,9 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 	if m.TipoSolicitud.CodigoAbreviacion == "SPR" {
 		if m.CausaProrroga != nil {
 			for _, data := range *m.CausaProrroga {
+				data.Activo = true
+				data.FechaCreacion = time_bogota.TiempoBogotaFormato()
+				data.FechaModificacion = time_bogota.TiempoBogotaFormato()
 				if _, err = o.Insert(&data); err != nil {
 					fmt.Println(err)
 					err = o.Rollback()
@@ -500,6 +510,9 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 		//INSERTA EN LA TABLA DETALLE TRABAJO GRADO
 		if m.TrRevision.DetalleTrabajoGrado != nil {
 			for _, data := range *m.TrRevision.DetalleTrabajoGrado {
+				data.Activo = true
+				data.FechaCreacion = time_bogota.TiempoBogotaFormato()
+				data.FechaModificacion = time_bogota.TiempoBogotaFormato()
 				if _, err = o.Insert(&data); err != nil {
 					fmt.Println(err)
 					err = o.Rollback()
