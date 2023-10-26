@@ -1,0 +1,1 @@
+DELETE FROM academica.detalle WHERE nombre='Espacios academicos 2' and codigo_abreviacion='ESPELE2';
