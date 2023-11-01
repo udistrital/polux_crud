@@ -1,0 +1,1 @@
+DELETE FROM academica.estado_solicitud WHERE codigo_abreviacion='ACPO1' OR codigo_abreviacion='ACPO2' OR codigo_abreviacion='RCPO1' ORcodigo_abreviacion='RCPO2';
