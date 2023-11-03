@@ -1,0 +1,1 @@
+DELETE FROM academica.detalle WHERE nombre='Prioridad Espacio Academico' and codigo_abreviacion='PEAP';
