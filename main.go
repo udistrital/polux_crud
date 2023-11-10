@@ -32,8 +32,8 @@ func main() {
 			logs.Warn("logPath not set")
 		}
 	}
-	orm.Debug = true
 	if beego.BConfig.RunMode == "dev" {
+		orm.Debug = true
 		beego.BConfig.WebConfig.DirectoryIndex = true
 		beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 	}

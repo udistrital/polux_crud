@@ -136,6 +136,30 @@ func (c *SolicitudTrabajoGradoController) GetAll() {
 	c.ServeJSON()
 }
 
+// GetByUser ...
+// @Title Get By User
+// @Description get SolicitudTrabajoGrado by id
+// @Param	codigoEstudiante	query	string	false	"Código de estudiante que consulta"
+// @Param	documento			query	string	false	"Documento del usuario"
+// @Param	codigoCarrera		query	string	false	"Código de la carrera"
+// @Success 200 {object} models.SolicitudTrabajoGrado
+// @Failure 404 not found resource
+// @router /user/ [get]
+func (c *SolicitudTrabajoGradoController) GetByUser() {
+	estudiante := c.GetString("codigoEstudiante")
+	documento := c.GetString("documento")
+	carrera := c.GetString("codigoCarrera")
+
+	v, err := models.GetSolicitudesByUser(estudiante, documento, carrera)
+	if err != nil {
+		beego.Error(err)
+		c.Abort("404")
+	} else {
+		c.Data["json"] = v
+	}
+	c.ServeJSON()
+}
+
 // Put ...
 // @Title Put
 // @Description update the SolicitudTrabajoGrado

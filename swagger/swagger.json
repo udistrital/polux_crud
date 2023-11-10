@@ -7192,6 +7192,46 @@
                 }
             }
         },
+        "/solicitud_trabajo_grado/user/": {
+            "get": {
+                "tags": [
+                    "solicitud_trabajo_grado"
+                ],
+                "description": "get SolicitudTrabajoGrado by id",
+                "operationId": "SolicitudTrabajoGradoController.Get By User",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "codigoEstudiante",
+                        "description": "Código de estudiante que consulta",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "documento",
+                        "description": "Documento del usuario",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "codigoCarrera",
+                        "description": "Código de la carrera",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.SolicitudTrabajoGrado"
+                        }
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            }
+        },
         "/solicitud_trabajo_grado/{id}": {
             "get": {
                 "tags": [
