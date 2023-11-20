@@ -5744,64 +5744,64 @@ paths:
         "404":
           description: not found resource
 definitions:
-  209454.<nil>.EspaciosAcademicosElegibles:
+  211105.<nil>.EspaciosAcademicosElegibles:
     title: EspaciosAcademicosElegibles
     type: object
-  213417.<nil>.EspacioAcademicoInscrito:
+  215068.<nil>.EspacioAcademicoInscrito:
     title: EspacioAcademicoInscrito
     type: object
-  213476.<nil>.AsignaturaTrabajoGrado:
+  215127.<nil>.AsignaturaTrabajoGrado:
     title: AsignaturaTrabajoGrado
     type: object
-  216940.<nil>.EspacioAcademicoInscrito:
+  218591.<nil>.EspacioAcademicoInscrito:
     title: EspacioAcademicoInscrito
     type: object
-  217000.<nil>.AsignaturaTrabajoGrado:
+  218651.<nil>.AsignaturaTrabajoGrado:
     title: AsignaturaTrabajoGrado
     type: object
-  223749.<nil>.VinculacionTrabajoGrado:
+  225400.<nil>.VinculacionTrabajoGrado:
     title: VinculacionTrabajoGrado
     type: object
-  223922.<nil>.DetalleTrabajoGrado:
+  225573.<nil>.DetalleTrabajoGrado:
     title: DetalleTrabajoGrado
     type: object
-  224247.<nil>.VinculacionTrabajoGrado:
+  225898.<nil>.VinculacionTrabajoGrado:
     title: VinculacionTrabajoGrado
     type: object
-  224444.<nil>.VinculacionTrabajoGrado:
+  226095.<nil>.VinculacionTrabajoGrado:
     title: VinculacionTrabajoGrado
     type: object
-  224888.<nil>.EspacioAcademicoInscrito:
+  226539.<nil>.EspacioAcademicoInscrito:
     title: EspacioAcademicoInscrito
     type: object
-  225156.<nil>.EspacioAcademicoInscrito:
+  226807.<nil>.EspacioAcademicoInscrito:
     title: EspacioAcademicoInscrito
     type: object
-  225246.<nil>.DetalleTrabajoGrado:
+  226897.<nil>.DetalleTrabajoGrado:
     title: DetalleTrabajoGrado
     type: object
-  225328.<nil>.DetalleTrabajoGrado:
+  226979.<nil>.DetalleTrabajoGrado:
     title: DetalleTrabajoGrado
     type: object
-  247644.<nil>.Comentario:
+  249295.<nil>.Comentario:
     title: Comentario
     type: object
-  252716.<nil>.DetalleSolicitud:
+  254367.<nil>.DetalleSolicitud:
     title: DetalleSolicitud
     type: object
-  252756.<nil>.UsuarioSolicitud:
+  254407.<nil>.UsuarioSolicitud:
     title: UsuarioSolicitud
     type: object
-  255037.<nil>.EstudianteTrabajoGrado:
+  256688.<nil>.EstudianteTrabajoGrado:
     title: EstudianteTrabajoGrado
     type: object
-  255182.<nil>.AreasTrabajoGrado:
+  256833.<nil>.AreasTrabajoGrado:
     title: AreasTrabajoGrado
     type: object
-  255229.<nil>.VinculacionTrabajoGrado:
+  256880.<nil>.VinculacionTrabajoGrado:
     title: VinculacionTrabajoGrado
     type: object
-  255282.<nil>.AsignaturaTrabajoGrado:
+  256933.<nil>.AsignaturaTrabajoGrado:
     title: AsignaturaTrabajoGrado
     type: object
   models.AreaConocimiento:
@@ -6550,7 +6550,7 @@ definitions:
       CarreraElegible:
         $ref: '#/definitions/models.CarreraElegible'
       EspaciosAcademicosElegibles:
-        $ref: '#/definitions/209454.<nil>.EspaciosAcademicosElegibles'
+        $ref: '#/definitions/211105.<nil>.EspaciosAcademicosElegibles'
   models.TrRegistrarActaSeguimiento:
     title: TrRegistrarActaSeguimiento
     type: object
@@ -6562,9 +6562,9 @@ definitions:
     type: object
     properties:
       AsignaturasDeTrabajoDeGrado:
-        $ref: '#/definitions/213476.<nil>.AsignaturaTrabajoGrado'
+        $ref: '#/definitions/215127.<nil>.AsignaturaTrabajoGrado'
       EspaciosAcademicos:
-        $ref: '#/definitions/213417.<nil>.EspacioAcademicoInscrito'
+        $ref: '#/definitions/215068.<nil>.EspacioAcademicoInscrito'
       EstudianteTrabajoGrado:
         $ref: '#/definitions/models.EstudianteTrabajoGrado'
       RespuestaActualizada:
@@ -6578,9 +6578,9 @@ definitions:
     type: object
     properties:
       AsignaturasDeTrabajoDeGrado:
-        $ref: '#/definitions/217000.<nil>.AsignaturaTrabajoGrado'
+        $ref: '#/definitions/218651.<nil>.AsignaturaTrabajoGrado'
       EspaciosAcademicosCalificados:
-        $ref: '#/definitions/216940.<nil>.EspacioAcademicoInscrito'
+        $ref: '#/definitions/218591.<nil>.EspacioAcademicoInscrito'
       EvaluacionTrabajoGrado:
         $ref: '#/definitions/models.EvaluacionTrabajoGrado'
       TrabajoDeGradoTerminado:
@@ -6600,17 +6600,17 @@ definitions:
     type: object
     properties:
       CausaProrroga:
-        $ref: '#/definitions/225246.<nil>.DetalleTrabajoGrado'
+        $ref: '#/definitions/226897.<nil>.DetalleTrabajoGrado'
       DetallesPasantia:
         $ref: '#/definitions/models.DetallePasantia'
       DetallesPasantiaExterna:
-        $ref: '#/definitions/225328.<nil>.DetalleTrabajoGrado'
+        $ref: '#/definitions/226979.<nil>.DetalleTrabajoGrado'
       DocumentoSolicitud:
         $ref: '#/definitions/models.DocumentoSolicitud'
       EspaciosAcademicos:
-        $ref: '#/definitions/224888.<nil>.EspacioAcademicoInscrito'
+        $ref: '#/definitions/226539.<nil>.EspacioAcademicoInscrito'
       EspaciosAcademicosInscritos:
-        $ref: '#/definitions/225156.<nil>.EspacioAcademicoInscrito'
+        $ref: '#/definitions/226807.<nil>.EspacioAcademicoInscrito'
       EstudianteTrabajoGrado:
         $ref: '#/definitions/models.EstudianteTrabajoGrado'
       ModalidadTipoSolicitud:
@@ -6630,15 +6630,15 @@ definitions:
       TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
       Vinculaciones:
-        $ref: '#/definitions/224247.<nil>.VinculacionTrabajoGrado'
+        $ref: '#/definitions/225898.<nil>.VinculacionTrabajoGrado'
       VinculacionesCancelacion:
-        $ref: '#/definitions/224444.<nil>.VinculacionTrabajoGrado'
+        $ref: '#/definitions/226095.<nil>.VinculacionTrabajoGrado'
   models.TrRevisarTg:
     title: TrRevisarTg
     type: object
     properties:
       Comentarios:
-        $ref: '#/definitions/247644.<nil>.Comentario'
+        $ref: '#/definitions/249295.<nil>.Comentario'
       RevisionTrabajoGrado:
         $ref: '#/definitions/models.RevisionTrabajoGrado'
       TrabajoGrado:
@@ -6648,7 +6648,7 @@ definitions:
     type: object
     properties:
       DetalleTrabajoGrado:
-        $ref: '#/definitions/223922.<nil>.DetalleTrabajoGrado'
+        $ref: '#/definitions/225573.<nil>.DetalleTrabajoGrado'
       DocumentoEscrito:
         $ref: '#/definitions/models.DocumentoEscrito'
       DocumentoTrabajoGrado:
@@ -6656,7 +6656,7 @@ definitions:
       TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
       Vinculaciones:
-        $ref: '#/definitions/223749.<nil>.VinculacionTrabajoGrado'
+        $ref: '#/definitions/225400.<nil>.VinculacionTrabajoGrado'
   models.TrSeleccionAdmitidos:
     title: TrSeleccionAdmitidos
     type: object
@@ -6665,13 +6665,13 @@ definitions:
     type: object
     properties:
       DetallesSolicitud:
-        $ref: '#/definitions/252716.<nil>.DetalleSolicitud'
+        $ref: '#/definitions/254367.<nil>.DetalleSolicitud'
       Respuesta:
         $ref: '#/definitions/models.RespuestaSolicitud'
       Solicitud:
         $ref: '#/definitions/models.SolicitudTrabajoGrado'
       UsuariosSolicitud:
-        $ref: '#/definitions/252756.<nil>.UsuarioSolicitud'
+        $ref: '#/definitions/254407.<nil>.UsuarioSolicitud'
   models.TrSubirArl:
     title: TrSubirArl
     type: object
@@ -6685,19 +6685,19 @@ definitions:
     type: object
     properties:
       AreasTrabajoGrado:
-        $ref: '#/definitions/255182.<nil>.AreasTrabajoGrado'
+        $ref: '#/definitions/256833.<nil>.AreasTrabajoGrado'
       AsignaturasTrabajoGrado:
-        $ref: '#/definitions/255282.<nil>.AsignaturaTrabajoGrado'
+        $ref: '#/definitions/256933.<nil>.AsignaturaTrabajoGrado'
       DocumentoEscrito:
         $ref: '#/definitions/models.DocumentoEscrito'
       DocumentoTrabajoGrado:
         $ref: '#/definitions/models.DocumentoTrabajoGrado'
       EstudianteTrabajoGrado:
-        $ref: '#/definitions/255037.<nil>.EstudianteTrabajoGrado'
+        $ref: '#/definitions/256688.<nil>.EstudianteTrabajoGrado'
       TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
       VinculacionTrabajoGrado:
-        $ref: '#/definitions/255229.<nil>.VinculacionTrabajoGrado'
+        $ref: '#/definitions/256880.<nil>.VinculacionTrabajoGrado'
   models.TrVinculadoRegistrarNota:
     title: TrVinculadoRegistrarNota
     type: object
