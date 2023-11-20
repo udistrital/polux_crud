@@ -72,7 +72,8 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 	}
 
 	//solicitud inicial, se crea trabajo de grado
-	if m.TrTrabajoGrado != nil && (m.ModalidadTipoSolicitud.Modalidad.CodigoAbreviacion != "EAPOS" || m.RespuestaAnterior.EstadoSolicitud.CodigoAbreviacion == "ACPR") {
+	// se quema temporalmente los ids se debe modificar
+	if m.TrTrabajoGrado != nil && (m.ModalidadTipoSolicitud.Modalidad != 2 || m.RespuestaAnterior.EstadoSolicitud.CodigoAbreviacion == "ACPR") {
 		if id_TrabajoGrado, err := o.Insert(m.TrTrabajoGrado.TrabajoGrado); err == nil {
 			fmt.Println(id_TrabajoGrado)
 			//la solicitud inicial queda relacionada al trabajo de grado
@@ -173,7 +174,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 				}
 
 				//Si la solicitud es de pasantía externa se agregan los detalles a la tabla detalle trabajo grado
-				if m.DetallesPasantiaExterna != nil && m.ModalidadTipoSolicitud.Modalidad.Id == 1 {
+				if m.DetallesPasantiaExterna != nil && m.ModalidadTipoSolicitud.Modalidad == 1 {
 					for _, data := range *m.DetallesPasantiaExterna {
 						data.TrabajoGrado.Id = int(id_TrabajoGrado)
 						data.Activo = true
