@@ -59,7 +59,7 @@ func AddTransaccionRevisarTg(m *TrRevisarTg) (alerta []string, err error) {
 	}
 
 	// Si el anteproyecto es no viable, se cancela el trabajo de grado
-	if m.TrabajoGrado.EstadoTrabajoGrado.Id == 2 {
+	if m.TrabajoGrado.EstadoTrabajoGrado == 2 {
 		var estudiantesTrabajoGrado []EstudianteTrabajoGrado
 		//Se buscan los estudiantes relacionados con el trabajo de grado y se cambia el estado
 		if _, err := o.QueryTable(new(EstudianteTrabajoGrado)).RelatedSel().Filter("trabajo_grado", m.TrabajoGrado.Id).Filter("estado_estudiante_trabajo_grado", 1).All(&estudiantesTrabajoGrado); err == nil {
