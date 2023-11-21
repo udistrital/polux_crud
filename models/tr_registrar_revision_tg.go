@@ -48,9 +48,7 @@ func AddTransaccionRegistrarRevisionTg(m *TrRegistrarRevisionTg) (alerta []strin
 		m.RevisionTrabajoGrado.EstadoRevisionTrabajoGrado = &EstadoRevisionTrabajoGrado{
 			Id: estado[0].(EstadoRevisionTrabajoGrado).Id,
 		}
-		m.RevisionTrabajoGrado.VinculacionTrabajoGrado.TrabajoGrado.EstadoTrabajoGrado = &EstadoTrabajoGrado{
-			Id: estadoTr[0].(EstadoTrabajoGrado).Id,
-		}
+		m.RevisionTrabajoGrado.VinculacionTrabajoGrado.TrabajoGrado.EstadoTrabajoGrado = estadoTr[0].(EstadoTrabajoGrado).Id
 
 		// Se consulta el número de revisiones realizadas a la fecha
 		numRevisiones, err := o.QueryTable(new(RevisionTrabajoGrado)).Filter("DocumentoTrabajoGrado__TrabajoGrado__Id", fmt.Sprint(m.RevisionTrabajoGrado.DocumentoTrabajoGrado.TrabajoGrado.Id)).Count()

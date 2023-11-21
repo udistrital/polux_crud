@@ -143,7 +143,7 @@ func AddTransaccionVinculadoRegistrarNota(m *TrVinculadoRegistrarNota) (alerta [
 			}
 			//Se actualiza el estado del trabajo de grado
 			// a 19 Notificado a coordinación con calificación
-			m.TrabajoGrado.EstadoTrabajoGrado.Id = 19
+			m.TrabajoGrado.EstadoTrabajoGrado = 19
 		} else {
 			fmt.Println(err)
 			err = o.Rollback()
@@ -152,7 +152,7 @@ func AddTransaccionVinculadoRegistrarNota(m *TrVinculadoRegistrarNota) (alerta [
 		}
 	} else {
 		//Se actualiza el estado del trabajo de grado a 18 Sustentado
-		m.TrabajoGrado.EstadoTrabajoGrado.Id = 18
+		m.TrabajoGrado.EstadoTrabajoGrado = 18
 		fmt.Println("No se actualizarNotasTg")
 	}
 	//Se actualiza el estado del tg
