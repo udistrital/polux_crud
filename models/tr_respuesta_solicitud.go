@@ -379,7 +379,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 					}
 					//se cancela el trabajo de grado
 					tg := m.EstudianteTrabajoGrado.TrabajoGrado
-					tg.EstadoTrabajoGrado.Id = 2
+					tg.EstadoTrabajoGrado = 2
 					if num, err = o.Update(tg); err == nil {
 						fmt.Println("Number of records updated in database:", num)
 						//finalizan los inserts

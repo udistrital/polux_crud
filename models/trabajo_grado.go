@@ -13,7 +13,7 @@ type TrabajoGrado struct {
 	Id                     int                     `orm:"column(id);pk;auto"`
 	Titulo                 string                  `orm:"column(titulo)"`
 	Modalidad              int                     `orm:"column(modalidad)"`
-	EstadoTrabajoGrado     *EstadoTrabajoGrado     `orm:"column(estado_trabajo_grado);rel(fk)"`
+	EstadoTrabajoGrado     int                     `orm:"column(estado_trabajo_grado)"`
 	DistincionTrabajoGrado *DistincionTrabajoGrado `orm:"column(distincion_trabajo_grado);rel(fk);null"`
 	PeriodoAcademico       string                  `orm:"column(periodo_academico);null"`
 	Objetivo               string                  `orm:"column(objetivo);null"`
