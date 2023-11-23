@@ -64,7 +64,7 @@ func AddTransaccionRevisarTg(m *TrRevisarTg) (alerta []string, err error) {
 		//Se buscan los estudiantes relacionados con el trabajo de grado y se cambia el estado
 		if _, err := o.QueryTable(new(EstudianteTrabajoGrado)).RelatedSel().Filter("trabajo_grado", m.TrabajoGrado.Id).Filter("estado_estudiante_trabajo_grado", 1).All(&estudiantesTrabajoGrado); err == nil {
 			for _, v := range estudiantesTrabajoGrado {
-				v.EstadoEstudianteTrabajoGrado.Id = 3
+				v.EstadoEstudianteTrabajoGrado = 3
 				if _, err = o.Update(&v, "EstadoEstudianteTrabajoGrado"); err != nil {
 					fmt.Println(err)
 					err = o.Rollback()
