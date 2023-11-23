@@ -396,7 +396,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 						fmt.Println("asignaturasTrabajoGrado", asignaturasTrabajoGrado)
 						for _, v := range asignaturasTrabajoGrado {
 							//Id de la asignatura 3 o cancelado
-							v.EstadoAsignaturaTrabajoGrado.Id = 3
+							v.EstadoAsignaturaTrabajoGrado = 3
 							if _, err = o.Update(&v, "EstadoAsignaturaTrabajoGrado"); err != nil {
 								fmt.Println(err)
 								err = o.Rollback()
