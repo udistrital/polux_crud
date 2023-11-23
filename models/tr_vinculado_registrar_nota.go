@@ -89,7 +89,7 @@ func AddTransaccionVinculadoRegistrarNota(m *TrVinculadoRegistrarNota) (alerta [
 					promedioTem = 0
 					for _, v := range notasRegistradas {
 						promedioTem += v.Nota
-						if v.VinculacionTrabajoGrado.RolTrabajoGrado.CodigoAbreviacion == "DIRECTOR" {
+						if v.VinculacionTrabajoGrado.RolTrabajoGrado == 1 {
 							notaDirector = v.Nota
 						}
 					}

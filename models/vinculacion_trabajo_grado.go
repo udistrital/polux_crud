@@ -11,13 +11,13 @@ import (
 )
 
 type VinculacionTrabajoGrado struct {
-	Id              int              `orm:"column(id);pk;auto"`
-	Usuario         int              `orm:"column(usuario)"`
-	Activo          bool             `orm:"column(activo)"`
-	FechaInicio     time.Time        `orm:"column(fecha_inicio);type(timestamp without time zone)"`
-	FechaFin        time.Time        `orm:"column(fecha_fin);type(timestamp without time zone);null"`
-	RolTrabajoGrado *RolTrabajoGrado `orm:"column(rol_trabajo_grado);rel(fk)"`
-	TrabajoGrado    *TrabajoGrado    `orm:"column(trabajo_grado);rel(fk)"`
+	Id              int           `orm:"column(id);pk;auto"`
+	Usuario         int           `orm:"column(usuario)"`
+	Activo          bool          `orm:"column(activo)"`
+	FechaInicio     time.Time     `orm:"column(fecha_inicio);type(timestamp without time zone)"`
+	FechaFin        time.Time     `orm:"column(fecha_fin);type(timestamp without time zone);null"`
+	RolTrabajoGrado int           `orm:"column(rol_trabajo_grado)"`
+	TrabajoGrado    *TrabajoGrado `orm:"column(trabajo_grado);rel(fk)"`
 }
 
 func (t *VinculacionTrabajoGrado) TableName() string {
