@@ -417,7 +417,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 						fmt.Println("espaciosAcademicosInscritos", espaciosAcademicosInscritos)
 						for _, v := range espaciosAcademicosInscritos {
 							//Id del espacio 2  cancelado
-							v.EstadoEspacioAcademicoInscrito.Id = 2
+							v.EstadoEspacioAcademicoInscrito = 2
 							if _, err = o.Update(&v, "EstadoEspacioAcademicoInscrito"); err != nil {
 								fmt.Println(err)
 								err = o.Rollback()
@@ -452,9 +452,9 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 		var espacioNuevo EspacioAcademicoInscrito
 		for _, v := range *m.EspaciosAcademicos {
 			fmt.Println(v)
-			if v.EstadoEspacioAcademicoInscrito.Id == 1 {
+			if v.EstadoEspacioAcademicoInscrito == 1 {
 				espacioNuevo = v
-			} else if v.EstadoEspacioAcademicoInscrito.Id == 2 {
+			} else if v.EstadoEspacioAcademicoInscrito == 2 {
 				//espacio que se cancela
 				if err = o.QueryTable(new(EspacioAcademicoInscrito)).RelatedSel().Filter("TrabajoGrado", v.TrabajoGrado).Filter("EspaciosAcademicosElegibles__CodigoAsignatura", v.EspaciosAcademicosElegibles.CodigoAsignatura).One(&espacioActual); err == nil {
 					espacioActual.EstadoEspacioAcademicoInscrito = v.EstadoEspacioAcademicoInscrito
