@@ -82,7 +82,7 @@ func AddTransaccionRevisarTg(m *TrRevisarTg) (alerta []string, err error) {
 		var asignaturasTrabajoGrado []AsignaturaTrabajoGrado
 		if _, err := o.QueryTable(new(AsignaturaTrabajoGrado)).RelatedSel().Filter("trabajo_grado", m.TrabajoGrado.Id).Filter("estado_asignatura_trabajo_grado", 1).All(&asignaturasTrabajoGrado); err == nil {
 			for _, v := range asignaturasTrabajoGrado {
-				v.EstadoAsignaturaTrabajoGrado.Id = 3
+				v.EstadoAsignaturaTrabajoGrado = 3
 				if _, err = o.Update(&v, "EstadoAsignaturaTrabajoGrado"); err != nil {
 					fmt.Println(err)
 					err = o.Rollback()

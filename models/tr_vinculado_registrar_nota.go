@@ -128,7 +128,7 @@ func AddTransaccionVinculadoRegistrarNota(m *TrVinculadoRegistrarNota) (alerta [
 					v.Calificacion = promedio
 				}
 				//Se actualiza estado a cursado
-				v.EstadoAsignaturaTrabajoGrado.Id = 2
+				v.EstadoAsignaturaTrabajoGrado = 2
 				v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 				if num, err := o.Update(&v, "Calificacion", "EstadoAsignaturaTrabajoGrado"); err == nil {
 					fmt.Println("actualiza calificación TrabajoGrado")
