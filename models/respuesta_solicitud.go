@@ -16,7 +16,7 @@ type RespuestaSolicitud struct {
 	Justificacion         string                 `orm:"column(justificacion);null"`
 	EnteResponsable       int                    `orm:"column(ente_responsable);null"`
 	Usuario               int                    `orm:"column(usuario);null"`
-	EstadoSolicitud       *EstadoSolicitud       `orm:"column(estado_solicitud);rel(fk)"`
+	EstadoSolicitud       int                    `orm:"column(estado_solicitud)"`
 	SolicitudTrabajoGrado *SolicitudTrabajoGrado `orm:"column(solicitud_trabajo_grado);rel(fk)"`
 	Activo                bool                   `orm:"column(activo)"`
 }
@@ -52,9 +52,8 @@ func GetRespuestaSolicitudById(id int) (v *RespuestaSolicitud, err error) {
 // no records exist
 func GetAllRespuestaSolicitud(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64, exclude map[string]string) (ml []interface{}, err error) {
-	o := orm.NewOrm()	// query: k:v,k:v
+	o := orm.NewOrm() // query: k:v,k:v
 	qs := o.QueryTable(new(RespuestaSolicitud)).RelatedSel(4)
-
 
 	// query k=v
 	for k, v := range query {

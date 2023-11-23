@@ -73,7 +73,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 
 	//solicitud inicial, se crea trabajo de grado
 	// se quema temporalmente los ids se debe modificar
-	if m.TrTrabajoGrado != nil && (m.ModalidadTipoSolicitud.Modalidad != 2 || m.RespuestaAnterior.EstadoSolicitud.CodigoAbreviacion == "ACPR") {
+	if m.TrTrabajoGrado != nil && (m.ModalidadTipoSolicitud.Modalidad != 2 || m.RespuestaAnterior.EstadoSolicitud == 4631) {
 		if id_TrabajoGrado, err := o.Insert(m.TrTrabajoGrado.TrabajoGrado); err == nil {
 			fmt.Println(id_TrabajoGrado)
 			//la solicitud inicial queda relacionada al trabajo de grado
