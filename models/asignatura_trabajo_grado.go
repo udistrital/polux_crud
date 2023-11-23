@@ -10,16 +10,16 @@ import (
 )
 
 type AsignaturaTrabajoGrado struct {
-	Id                           int                           `orm:"column(id);pk;auto"`
-	CodigoAsignatura             int                           `orm:"column(codigo_asignatura)"`
-	Periodo                      float64                       `orm:"column(periodo)"`
-	Anio                         float64                       `orm:"column(anio)"`
-	Calificacion                 float64                       `orm:"column(calificacion);null"`
-	TrabajoGrado                 *TrabajoGrado                 `orm:"column(trabajo_grado);rel(fk)"`
-	EstadoAsignaturaTrabajoGrado *EstadoAsignaturaTrabajoGrado `orm:"column(estado_asignatura_trabajo_grado);rel(fk)"`
-	Activo                       bool                          `orm:"column(activo);null"`
-	FechaCreacion                string                        `orm:"column(fecha_creacion);type(timestamp without time zone);null"`
-	FechaModificacion            string                        `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
+	Id                           int           `orm:"column(id);pk;auto"`
+	CodigoAsignatura             int           `orm:"column(codigo_asignatura)"`
+	Periodo                      float64       `orm:"column(periodo)"`
+	Anio                         float64       `orm:"column(anio)"`
+	Calificacion                 float64       `orm:"column(calificacion);null"`
+	TrabajoGrado                 *TrabajoGrado `orm:"column(trabajo_grado);rel(fk)"`
+	EstadoAsignaturaTrabajoGrado int           `orm:"column(estado_asignatura_trabajo_grado)"`
+	Activo                       bool          `orm:"column(activo);null"`
+	FechaCreacion                string        `orm:"column(fecha_creacion);type(timestamp without time zone);null"`
+	FechaModificacion            string        `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
 }
 
 func (t *AsignaturaTrabajoGrado) TableName() string {
