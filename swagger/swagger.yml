@@ -4343,6 +4343,32 @@ paths:
           description: '{string} delete success!'
         "404":
           description: not found resource
+  /respuesta_solicitud/user/:
+    get:
+      tags:
+      - respuesta_solicitud
+      description: get SolicitudTrabajoGrado by id
+      operationId: RespuestaSolicitudController.Get By User
+      parameters:
+      - in: query
+        name: codigoEstudiante
+        description: Código de estudiante que consulta
+        type: string
+      - in: query
+        name: documento
+        description: Documento del usuario
+        type: string
+      - in: query
+        name: codigoCarrera
+        description: Código de la carrera
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.SolicitudTrabajoGrado'
+        "404":
+          description: not found resource
   /revision_trabajo_grado/:
     get:
       tags:
@@ -4797,32 +4823,6 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "404":
-          description: not found resource
-  /solicitud_trabajo_grado/user/:
-    get:
-      tags:
-      - solicitud_trabajo_grado
-      description: get SolicitudTrabajoGrado by id
-      operationId: SolicitudTrabajoGradoController.Get By User
-      parameters:
-      - in: query
-        name: codigoEstudiante
-        description: Código de estudiante que consulta
-        type: string
-      - in: query
-        name: documento
-        description: Documento del usuario
-        type: string
-      - in: query
-        name: codigoCarrera
-        description: Código de la carrera
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.SolicitudTrabajoGrado'
         "404":
           description: not found resource
   /tipo_detalle/:
