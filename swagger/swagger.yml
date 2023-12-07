@@ -6549,6 +6549,16 @@ definitions:
         $ref: '#/definitions/models.DocumentoTrabajoGrado'
       TrabajoGrado:
         $ref: '#/definitions/models.TrabajoGrado'
+  models.TrComentariosCorreccion:
+    title: TrComentariosCorreccion
+    type: object
+    properties:
+      Comentarios:
+        type: array
+        items:
+          $ref: '#/definitions/models.Comentario'
+      Correccion:
+        $ref: '#/definitions/models.Correccion'
   models.TrPublicarAsignaturas:
     title: TrPublicarAsignaturas
     type: object
@@ -6599,6 +6609,10 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/models.Comentario'
+      Correcciones:
+        type: array
+        items:
+          $ref: '#/definitions/models.TrComentariosCorreccion'
       RevisionTrabajoGrado:
         $ref: '#/definitions/models.RevisionTrabajoGrado'
   models.TrRespuestaSolicitud:

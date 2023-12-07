@@ -9876,6 +9876,21 @@
                 }
             }
         },
+        "models.TrComentariosCorreccion": {
+            "title": "TrComentariosCorreccion",
+            "type": "object",
+            "properties": {
+                "Comentarios": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Comentario"
+                    }
+                },
+                "Correccion": {
+                    "$ref": "#/definitions/models.Correccion"
+                }
+            }
+        },
         "models.TrPublicarAsignaturas": {
             "title": "TrPublicarAsignaturas",
             "type": "object",
@@ -9947,6 +9962,12 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/models.Comentario"
+                    }
+                },
+                "Correcciones": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.TrComentariosCorreccion"
                     }
                 },
                 "RevisionTrabajoGrado": {

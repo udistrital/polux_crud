@@ -14,7 +14,7 @@ type Correccion struct {
 	Observacion          string                `orm:"column(observacion)"`
 	Pagina               float64               `orm:"column(pagina);null"`
 	RevisionTrabajoGrado *RevisionTrabajoGrado `orm:"column(revision_trabajo_grado);rel(fk)"`
-	Documento             bool                 `orm:"column(documento);null"`
+	Documento            bool                  `orm:"column(documento);null"`
 }
 
 func (t *Correccion) TableName() string {
@@ -49,7 +49,7 @@ func GetCorreccionById(id int) (v *Correccion, err error) {
 func GetAllCorreccion(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Correccion)).RelatedSel()
+	qs := o.QueryTable(new(Correccion)).RelatedSel(3)
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
