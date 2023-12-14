@@ -8979,6 +8979,9 @@
                 "Documento": {
                     "type": "boolean"
                 },
+                "EnlaceDocumento": {
+                    "type": "string"
+                },
                 "Id": {
                     "type": "integer",
                     "format": "int64"

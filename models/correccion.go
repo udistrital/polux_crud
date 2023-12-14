@@ -15,6 +15,7 @@ type Correccion struct {
 	Pagina               float64               `orm:"column(pagina);null"`
 	RevisionTrabajoGrado *RevisionTrabajoGrado `orm:"column(revision_trabajo_grado);rel(fk)"`
 	Documento            bool                  `orm:"column(documento);null"`
+	EnlaceDocumento      string                `orm:"column(enlace_documento)"`
 }
 
 func (t *Correccion) TableName() string {
