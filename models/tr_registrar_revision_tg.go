@@ -10,7 +10,13 @@ import (
 
 type TrRegistrarRevisionTg struct {
 	Comentarios          []Comentario
+	Correcciones         []TrComentariosCorreccion
 	RevisionTrabajoGrado RevisionTrabajoGrado
+}
+
+type TrComentariosCorreccion struct {
+	Comentarios []Comentario
+	Correccion  Correccion
 }
 
 // Función para la transaccion de revisiones de anteproyectos
@@ -114,6 +120,29 @@ func AddTransaccionRegistrarRevisionTg(m *TrRegistrarRevisionTg) (alerta []strin
 			alerta[0] = "Error"
 			alerta = append(alerta, "ERROR.INSERTANDO_REVISIONES")
 			panic(err)
+		}
+	}
+
+	for _, c := range m.Correcciones {
+		c.Correccion.RevisionTrabajoGrado = &RevisionTrabajoGrado{
+			Id: m.RevisionTrabajoGrado.Id,
+		}
+
+		idCorreccion, err := o.Insert(&c.Correccion)
+		if err != nil {
+			alerta[0] = "Error"
+			alerta = append(alerta, "ERROR.REGISTRANDO_REVISION")
+			panic(err)
+		}
+
+		for _, com := range c.Comentarios {
+			com.Correccion = &Correccion{Id: int(idCorreccion)}
+			_, err = o.Insert(&com)
+			if err != nil {
+				alerta[0] = "Error"
+				alerta = append(alerta, "ERROR.INSERTANDO_REVISIONES")
+				panic(err)
+			}
 		}
 	}
 
