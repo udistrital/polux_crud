@@ -5744,9 +5744,6 @@ paths:
         "404":
           description: not found resource
 definitions:
-  210735.<nil>.EspaciosAcademicosElegibles:
-    title: EspaciosAcademicosElegibles
-    type: object
   214698.<nil>.EspacioAcademicoInscrito:
     title: EspacioAcademicoInscrito
     type: object
@@ -6568,7 +6565,9 @@ definitions:
       CarreraElegible:
         $ref: '#/definitions/models.CarreraElegible'
       EspaciosAcademicosElegibles:
-        $ref: '#/definitions/210735.<nil>.EspaciosAcademicosElegibles'
+        type: array
+        items:
+          $ref: '#/definitions/models.EspaciosAcademicosElegibles'
   models.TrRegistrarActaSeguimiento:
     title: TrRegistrarActaSeguimiento
     type: object

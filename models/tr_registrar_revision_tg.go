@@ -39,21 +39,6 @@ func AddTransaccionRegistrarRevisionTg(m *TrRegistrarRevisionTg) (alerta []strin
 	alerta = append(alerta, "Success")
 	if m.RevisionTrabajoGrado.Id == 0 {
 
-		// Se debe crear una nueva revisión
-		estado, err := GetAllEstadoRevisionTrabajoGrado(map[string]string{"CodigoAbreviacion": "FINALIZADA"}, nil, nil, nil, 0, 1)
-		if err != nil || len(estado) != 1 {
-			return nil, err
-		}
-
-		estadoTr, err := GetAllEstadoTrabajoGrado(map[string]string{"CodigoAbreviacion": "EC"}, nil, nil, nil, 0, 1)
-		if err != nil || len(estado) != 1 {
-			return nil, err
-		}
-
-		// Se consulta el estado de la nueva revisión
-		m.RevisionTrabajoGrado.EstadoRevisionTrabajoGrado = estado[0].(EstadoRevisionTrabajoGrado).Id
-		m.RevisionTrabajoGrado.VinculacionTrabajoGrado.TrabajoGrado.EstadoTrabajoGrado = estadoTr[0].(EstadoTrabajoGrado).Id
-
 		// Se consulta el número de revisiones realizadas a la fecha
 		numRevisiones, err := o.QueryTable(new(RevisionTrabajoGrado)).Filter("DocumentoTrabajoGrado__TrabajoGrado__Id", fmt.Sprint(m.RevisionTrabajoGrado.DocumentoTrabajoGrado.TrabajoGrado.Id)).Count()
 		if err != nil {

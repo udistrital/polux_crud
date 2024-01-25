@@ -8725,10 +8725,6 @@
         }
     },
     "definitions": {
-        "210735.\u003cnil\u003e.EspaciosAcademicosElegibles": {
-            "title": "EspaciosAcademicosElegibles",
-            "type": "object"
-        },
         "214698.\u003cnil\u003e.EspacioAcademicoInscrito": {
             "title": "EspacioAcademicoInscrito",
             "type": "object"
@@ -9902,7 +9898,10 @@
                     "$ref": "#/definitions/models.CarreraElegible"
                 },
                 "EspaciosAcademicosElegibles": {
-                    "$ref": "#/definitions/210735.\u003cnil\u003e.EspaciosAcademicosElegibles"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.EspaciosAcademicosElegibles"
+                    }
                 }
             }
         },
