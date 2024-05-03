@@ -63,6 +63,5 @@ func AddTransaccionRegistrarNota(m *TrRegistrarNota) (alerta []string, err error
 		alerta = append(alerta, "ERROR_RTA_SOLICITUD_1")
 		err = o.Rollback()
 	}
-
 	return
 }

@@ -46,7 +46,7 @@ cd  $ GOPATH /src/github.com/udistrital/polux_crud
 git pull origin desarrollar && git checkout desarrollar
 
 # 4. alimentar todas las variables de entorno que utiliza el proyecto. 
-AWS_DEFAULT_REGION=us-east-1 POLUX_CRUD__DB_USER=desarrollooas POLUX_CRUD__DB_PASS=W7Sz1lbWFwfE798b PARAMETER_STORE=preprod POLUX_CRUD__DB_NAME=udistrital_core_db POLUX_CRUD__DB_SCHEMA=academica POLUX_CRUD__DB_URL=pgtst.udistritaloas.edu.co POLUX_CRUD__HTTP_PORT=8001 bee run
+POLUX_CRUD__DB_USER=user POLUX_CRUD__DB_PASS=pass POLUX_CRUD__DB_NAME=db_name POLUX_CRUD__DB_SCHEMA=schema POLUX_CRUD__DB_URL=localhost POLUX_CRUD__HTTP_PORT=8001 bee run
 ###Ejecución Dockerfile
 ´´caparazon
 # docker build --tag = polux_crud. --no-cache 
