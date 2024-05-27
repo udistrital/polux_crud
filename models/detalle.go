@@ -10,13 +10,13 @@ import (
 )
 
 type Detalle struct {
-	Id                int          `orm:"column(id);pk;auto"`
-	Nombre            string       `orm:"column(nombre)"`
-	Enunciado         string       `orm:"column(enunciado)"`
-	Descripcion       string       `orm:"column(descripcion);null"`
-	CodigoAbreviacion string       `orm:"column(codigo_abreviacion);null"`
-	Activo            bool         `orm:"column(activo)"`
-	TipoDetalle       *TipoDetalle `orm:"column(tipo_detalle);rel(fk)"`
+	Id                int    `orm:"column(id);pk;auto"`
+	Nombre            string `orm:"column(nombre)"`
+	Enunciado         string `orm:"column(enunciado)"`
+	Descripcion       string `orm:"column(descripcion);null"`
+	CodigoAbreviacion string `orm:"column(codigo_abreviacion);null"`
+	Activo            bool   `orm:"column(activo)"`
+	TipoDetalle       int    `orm:"column(tipo_detalle)"`
 }
 
 func (t *Detalle) TableName() string {

@@ -16,7 +16,7 @@ type RespuestaSolicitud struct {
 	Justificacion         string                 `orm:"column(justificacion);null"`
 	EnteResponsable       int                    `orm:"column(ente_responsable);null"`
 	Usuario               int                    `orm:"column(usuario);null"`
-	EstadoSolicitud       *EstadoSolicitud       `orm:"column(estado_solicitud);rel(fk)"`
+	EstadoSolicitud       int                    `orm:"column(estado_solicitud)"`
 	SolicitudTrabajoGrado *SolicitudTrabajoGrado `orm:"column(solicitud_trabajo_grado);rel(fk)"`
 	Activo                bool                   `orm:"column(activo)"`
 }
@@ -52,9 +52,8 @@ func GetRespuestaSolicitudById(id int) (v *RespuestaSolicitud, err error) {
 // no records exist
 func GetAllRespuestaSolicitud(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64, exclude map[string]string) (ml []interface{}, err error) {
-	o := orm.NewOrm()	// query: k:v,k:v
+	o := orm.NewOrm() // query: k:v,k:v
 	qs := o.QueryTable(new(RespuestaSolicitud)).RelatedSel(4)
-
 
 	// query k=v
 	for k, v := range query {
@@ -173,5 +172,68 @@ func DeleteRespuestaSolicitud(id int) (err error) {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
+	return
+}
+
+func GetSolicitudesByUser(codigo, documento string, codigoCarrera string) (solicitudes []RespuestaSolicitud, err error) {
+
+	o := orm.NewOrm()
+	trabajos := []TrabajoGrado{}
+
+	// Estudiante
+	if codigo != "" {
+		var trabajosPropios []EstudianteTrabajoGrado
+		qs := o.QueryTable(new(EstudianteTrabajoGrado))
+		qs = qs.Filter("Estudiante", codigo)
+		_, err = qs.All(&trabajosPropios, "TrabajoGrado")
+		if err != nil {
+			return
+		}
+
+		for _, est := range trabajosPropios {
+			trabajos = append(trabajos, *est.TrabajoGrado)
+		}
+	}
+
+	if documento != "" {
+		// Docente/Revisor
+		var vinculaciones []VinculacionTrabajoGrado
+		qs := o.QueryTable(new(VinculacionTrabajoGrado))
+		qs = qs.Filter("Usuario", documento)
+		_, _ = qs.All(&vinculaciones, "TrabajoGrado")
+
+		for _, vinc := range vinculaciones {
+			trabajos = append(trabajos, *vinc.TrabajoGrado)
+		}
+	}
+
+	// Coordinador
+	if codigoCarrera != "" {
+		var solicitudesCarrera []TrabajoGrado
+		query := `
+		SELECT tg.*
+		FROM academica.estudiante_trabajo_grado etg,
+			academica.trabajo_grado tg,
+			academica.solicitud_trabajo_grado stg
+		WHERE SUBSTRING(etg.estudiante, 7,2) = ?
+			AND tg.id = etg.trabajo_grado
+			AND stg.trabajo_grado = tg.id;`
+		_, err = o.Raw(query, codigoCarrera).QueryRows(&solicitudesCarrera)
+		if err != nil {
+			return
+		}
+
+		trabajos = append(trabajos, solicitudesCarrera...)
+	}
+
+	solicitudes = []RespuestaSolicitud{}
+	if len(trabajos) > 0 {
+		qs := o.QueryTable(new(RespuestaSolicitud)).RelatedSel(3)
+		qs = qs.Filter("SolicitudTrabajoGrado__TrabajoGrado__Id__in", trabajos)
+		qs = qs.Filter("Activo", true)
+		qs = qs.OrderBy("-Id")
+		_, err = qs.All(&solicitudes)
+	}
+
 	return
 }

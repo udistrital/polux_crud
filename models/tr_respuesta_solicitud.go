@@ -72,7 +72,8 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 	}
 
 	//solicitud inicial, se crea trabajo de grado
-	if m.TrTrabajoGrado != nil && (m.ModalidadTipoSolicitud.Modalidad.CodigoAbreviacion != "EAPOS" || m.RespuestaAnterior.EstadoSolicitud.CodigoAbreviacion == "ACPR") {
+	// se quema temporalmente los ids se debe modificar
+	if m.TrTrabajoGrado != nil && (m.ModalidadTipoSolicitud.Modalidad != 2 || m.RespuestaAnterior.EstadoSolicitud == 4631) {
 		if id_TrabajoGrado, err := o.Insert(m.TrTrabajoGrado.TrabajoGrado); err == nil {
 			fmt.Println(id_TrabajoGrado)
 			//la solicitud inicial queda relacionada al trabajo de grado
@@ -173,7 +174,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 				}
 
 				//Si la solicitud es de pasantía externa se agregan los detalles a la tabla detalle trabajo grado
-				if m.DetallesPasantiaExterna != nil && m.ModalidadTipoSolicitud.Modalidad.Id == 1 {
+				if m.DetallesPasantiaExterna != nil && m.ModalidadTipoSolicitud.Modalidad == 1 {
 					for _, data := range *m.DetallesPasantiaExterna {
 						data.TrabajoGrado.Id = int(id_TrabajoGrado)
 						data.Activo = true
@@ -378,7 +379,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 					}
 					//se cancela el trabajo de grado
 					tg := m.EstudianteTrabajoGrado.TrabajoGrado
-					tg.EstadoTrabajoGrado.Id = 2
+					tg.EstadoTrabajoGrado = 2
 					if num, err = o.Update(tg); err == nil {
 						fmt.Println("Number of records updated in database:", num)
 						//finalizan los inserts
@@ -395,7 +396,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 						fmt.Println("asignaturasTrabajoGrado", asignaturasTrabajoGrado)
 						for _, v := range asignaturasTrabajoGrado {
 							//Id de la asignatura 3 o cancelado
-							v.EstadoAsignaturaTrabajoGrado.Id = 3
+							v.EstadoAsignaturaTrabajoGrado = 3
 							if _, err = o.Update(&v, "EstadoAsignaturaTrabajoGrado"); err != nil {
 								fmt.Println(err)
 								err = o.Rollback()
@@ -416,7 +417,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 						fmt.Println("espaciosAcademicosInscritos", espaciosAcademicosInscritos)
 						for _, v := range espaciosAcademicosInscritos {
 							//Id del espacio 2  cancelado
-							v.EstadoEspacioAcademicoInscrito.Id = 2
+							v.EstadoEspacioAcademicoInscrito = 2
 							if _, err = o.Update(&v, "EstadoEspacioAcademicoInscrito"); err != nil {
 								fmt.Println(err)
 								err = o.Rollback()
@@ -451,9 +452,9 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 		var espacioNuevo EspacioAcademicoInscrito
 		for _, v := range *m.EspaciosAcademicos {
 			fmt.Println(v)
-			if v.EstadoEspacioAcademicoInscrito.Id == 1 {
+			if v.EstadoEspacioAcademicoInscrito == 1 {
 				espacioNuevo = v
-			} else if v.EstadoEspacioAcademicoInscrito.Id == 2 {
+			} else if v.EstadoEspacioAcademicoInscrito == 2 {
 				//espacio que se cancela
 				if err = o.QueryTable(new(EspacioAcademicoInscrito)).RelatedSel().Filter("TrabajoGrado", v.TrabajoGrado).Filter("EspaciosAcademicosElegibles__CodigoAsignatura", v.EspaciosAcademicosElegibles.CodigoAsignatura).One(&espacioActual); err == nil {
 					espacioActual.EstadoEspacioAcademicoInscrito = v.EstadoEspacioAcademicoInscrito

@@ -7,9 +7,9 @@ import (
 )
 
 type TrActualizarDocumentoTg struct {
-	DocumentoEscrito						*DocumentoEscrito
-	DocumentoTrabajoGrado				*DocumentoTrabajoGrado
-	TrabajoGrado           			*TrabajoGrado
+	DocumentoEscrito      *DocumentoEscrito
+	DocumentoTrabajoGrado *DocumentoTrabajoGrado
+	TrabajoGrado          *TrabajoGrado
 }
 
 // Función para la transaccion de revisiones de anteproyectos
@@ -17,9 +17,9 @@ func AddTransaccionActualizarDocumentoTg(m *TrActualizarDocumentoTg) (alerta []s
 	o := orm.NewOrm()
 	err = o.Begin()
 	alerta = append(alerta, "Success")
-	
-	if (m.TrabajoGrado.EstadoTrabajoGrado.Id == 4 || m.TrabajoGrado.EstadoTrabajoGrado.Id == 15) {
-		fmt.Println("Degree work state (4 or 15):", m.TrabajoGrado.EstadoTrabajoGrado.Id)
+
+	if m.TrabajoGrado.EstadoTrabajoGrado == 4 || m.TrabajoGrado.EstadoTrabajoGrado == 15 {
+		fmt.Println("Degree work state (4 or 15):", m.TrabajoGrado.EstadoTrabajoGrado)
 		// Update del documento del trabajo de grado
 		if num, err := o.Update(m.DocumentoEscrito); err == nil {
 			fmt.Println("Number of degree work documents updated:", num)
@@ -38,8 +38,8 @@ func AddTransaccionActualizarDocumentoTg(m *TrActualizarDocumentoTg) (alerta []s
 			alerta = append(alerta, "ERROR_RTA_SOLICITUD_1")
 			err = o.Rollback()
 		}
-	} else if (m.TrabajoGrado.EstadoTrabajoGrado.Id == 13 || m.TrabajoGrado.EstadoTrabajoGrado.Id == 22) {
-		fmt.Println("Degree work state (13):", m.TrabajoGrado.EstadoTrabajoGrado.Id)
+	} else if m.TrabajoGrado.EstadoTrabajoGrado == 13 || m.TrabajoGrado.EstadoTrabajoGrado == 22 {
+		fmt.Println("Degree work state (13):", m.TrabajoGrado.EstadoTrabajoGrado)
 		// Insert del documento escrito
 		m.DocumentoEscrito.Id = 0
 		if idDocumentoEscrito, err := o.Insert(m.DocumentoEscrito); err == nil {
@@ -48,7 +48,7 @@ func AddTransaccionActualizarDocumentoTg(m *TrActualizarDocumentoTg) (alerta []s
 			m.DocumentoTrabajoGrado.DocumentoEscrito.Id = int(idDocumentoEscrito)
 			m.DocumentoTrabajoGrado.TrabajoGrado.Id = int(m.TrabajoGrado.Id)
 			if idDocumentoTg, err := o.Insert(m.DocumentoTrabajoGrado); err == nil {
-				fmt.Println("Degree work document created:", idDocumentoTg)// Update del trabajo de grado
+				fmt.Println("Degree work document created:", idDocumentoTg) // Update del trabajo de grado
 				if num, err := o.Update(m.TrabajoGrado); err == nil {
 					fmt.Println("Number of degree work records updated:", num)
 				} else {

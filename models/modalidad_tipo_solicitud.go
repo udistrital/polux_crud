@@ -9,10 +9,16 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type ModalidadTipoSolicitud struct {
+/*type ModalidadTipoSolicitud struct {
 	Id            int            `orm:"column(id);pk;auto"`
 	TipoSolicitud *TipoSolicitud `orm:"column(tipo_solicitud);rel(fk)"`
 	Modalidad     *Modalidad     `orm:"column(modalidad);rel(fk)"`
+}*/
+
+type ModalidadTipoSolicitud struct {
+	Id            int `orm:"column(id);pk;auto"`
+	TipoSolicitud int `orm:"column(tipo_solicitud);"`
+	Modalidad     int `orm:"column(modalidad);"`
 }
 
 func (t *ModalidadTipoSolicitud) TableName() string {
