@@ -7,3 +7,5 @@ test.xml
 .env
 5432
 *.exe
+go.mod
+go.sum

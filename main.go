@@ -10,6 +10,7 @@ import (
 	_ "github.com/udistrital/polux_crud/routers"
 	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
 	"github.com/udistrital/utils_oas/customerror"
+	"github.com/udistrital/utils_oas/xray"
 )
 
 /*func init() {
@@ -50,6 +51,7 @@ func main() {
 		AllowCredentials: true,
 	}))
 	beego.ErrorController(&customerror.CustomErrorController{})
+	xray.InitXRay()
 	apistatus.Init()
 	beego.Run()
 }
