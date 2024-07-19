@@ -1243,7 +1243,7 @@ func init() {
     beego.GlobalControllerRouter["github.com/udistrital/polux_crud/controllers:Estudiante_Vinculacion_Trabajo_GradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/polux_crud/controllers:Estudiante_Vinculacion_Trabajo_GradoController"],
         beego.ControllerComments{
             Method: "GetOne",
-            Router: "/:id",
+            Router: "/:documento",
             AllowHTTPMethods: []string{"get"},
             MethodParams: param.Make(),
             Filters: nil,
