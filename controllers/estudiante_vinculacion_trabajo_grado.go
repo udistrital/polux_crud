@@ -12,19 +12,29 @@ type Estudiante_Vinculacion_Trabajo_GradoController struct {
 
 // URLMapping ...
 func (c *Estudiante_Vinculacion_Trabajo_GradoController) URLMapping() {
-	c.Mapping("GetOne", c.GetOne)
+	c.Mapping("GetAll", c.GetAll)
 }
 
-// GetOne ...
-// @Title GetOne
-// @Description get Estudiante_Vinculacion_Trabajo_Grado by id
+// GetAll ...
+// @Title Get All
+// @Description get Estudiante_Vinculacion_Trabajo_Grado
 // @Param	documento		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.EstudianteVinculacionTrabajoGrado
 // @Failure 403 :documento is empty
-// @router /:documento [get]
-func (c *Estudiante_Vinculacion_Trabajo_GradoController) GetOne() {
-	documento := c.Ctx.Input.Param(":documento")
-	v, err := models.GetEstudianteVinculacionTrabajoGrado(documento)
+// @router / [get]
+func (c *Estudiante_Vinculacion_Trabajo_GradoController) GetAll() {
+	//Código del Usuario proveniente del Cliente
+	usuario := c.GetString("usuario")
+
+	// Validar parámetros
+	if usuario == "" {
+		c.Ctx.Output.SetStatus(400)
+		c.Data["json"] = "Usuario es un parámetro obligatorio"
+		c.ServeJSON()
+		return
+	}
+
+	v, err := models.GetEstudianteVinculacionTrabajoGrado(usuario)
 
 	if err != nil {
 		beego.Error(err)
