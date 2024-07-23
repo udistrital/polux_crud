@@ -4686,7 +4686,7 @@
                 }
             }
         },
-        "/estudiante_vinculacion_trabajo_grado/": {
+        "/estudiante_vinculacion_trabajo_grado/{documento}": {
             "get": {
                 "tags": [
                     "estudiante_vinculacion_trabajo_grado"

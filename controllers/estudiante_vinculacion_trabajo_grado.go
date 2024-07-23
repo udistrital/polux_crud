@@ -21,7 +21,7 @@ func (c *Estudiante_Vinculacion_Trabajo_GradoController) URLMapping() {
 // @Param	documento		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.EstudianteVinculacionTrabajoGrado
 // @Failure 403 :documento is empty
-// @router / [get]
+// @router /:documento [get]
 func (c *Estudiante_Vinculacion_Trabajo_GradoController) GetAll() {
 	//Código del Usuario proveniente del Cliente
 	usuario := c.GetString("usuario")
