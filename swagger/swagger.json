@@ -4686,7 +4686,7 @@
                 }
             }
         },
-        "/estudiante_vinculacion_trabajo_grado/{documento}": {
+        "/estudiante_vinculacion_trabajo_grado/{usuario}": {
             "get": {
                 "tags": [
                     "estudiante_vinculacion_trabajo_grado"
@@ -4696,7 +4696,7 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "documento",
+                        "name": "usuario",
                         "description": "The key for staticblock",
                         "required": true,
                         "type": "string"
@@ -4710,7 +4710,7 @@
                         }
                     },
                     "403": {
-                        "description": ":documento is empty"
+                        "description": ":usuario is empty"
                     }
                 }
             }

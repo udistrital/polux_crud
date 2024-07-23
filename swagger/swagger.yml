@@ -3089,7 +3089,7 @@ paths:
           description: '{string} delete success!'
         "404":
           description: not found resource
-  /estudiante_vinculacion_trabajo_grado/{documento}:
+  /estudiante_vinculacion_trabajo_grado/{usuario}:
     get:
       tags:
       - estudiante_vinculacion_trabajo_grado
@@ -3097,7 +3097,7 @@ paths:
       operationId: Estudiante_Vinculacion_Trabajo_GradoController.Get All
       parameters:
       - in: path
-        name: documento
+        name: usuario
         description: The key for staticblock
         required: true
         type: string
@@ -3107,7 +3107,7 @@ paths:
           schema:
             $ref: '#/definitions/models.EstudianteVinculacionTrabajoGrado'
         "403":
-          description: :documento is empty
+          description: :usuario is empty
   /evaluacion_trabajo_grado/:
     get:
       tags:
