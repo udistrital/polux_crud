@@ -20,11 +20,11 @@ func (c *Estudiante_Vinculacion_Trabajo_GradoController) URLMapping() {
 // @Description get Estudiante_Vinculacion_Trabajo_Grado
 // @Param	usuario		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.EstudianteVinculacionTrabajoGrado
-// @Failure 403 :usuario is empty
-// @router /:usuario [get]
+// @Failure 404 not found resource
+// @router / [get]
 func (c *Estudiante_Vinculacion_Trabajo_GradoController) GetAll() {
 	//Código del Usuario proveniente del Cliente
-	usuario := c.Ctx.Input.Param(":usuario")
+	usuario := c.GetString("usuario")
 
 	// Validar parámetros
 	if usuario == "" {
