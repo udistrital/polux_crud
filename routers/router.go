@@ -278,6 +278,12 @@ func init() {
 			),
 		),
 
+		beego.NSNamespace("/estudiante_vinculacion_trabajo_grado",
+			beego.NSInclude(
+				&controllers.Estudiante_Vinculacion_Trabajo_GradoController{},
+			),
+		),
+
 		beego.NSNamespace("/estado_asignatura_trabajo_grado",
 			beego.NSInclude(
 				&controllers.EstadoAsignaturaTrabajoGradoController{},
