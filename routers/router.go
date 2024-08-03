@@ -391,6 +391,12 @@ func init() {
 				&controllers.TrSubirArlController{},
 			),
 		),
+
+		beego.NSNamespace("/reporte_general",
+			beego.NSInclude(
+				&controllers.ReporteGeneralController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }
