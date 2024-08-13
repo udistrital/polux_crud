@@ -19,7 +19,7 @@ func (c *ReporteGeneralController) URLMapping() {
 // GetAll ...
 // @Title GetAll
 // @Description get ReporteGeneral
-// @Success 201 {object} models.ReportGeneral
+// @Success 201 {object} models.ReporteGeneral
 // @Failure 403
 // @router / [get]
 func (c *ReporteGeneralController) GetAll() {
