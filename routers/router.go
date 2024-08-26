@@ -278,6 +278,12 @@ func init() {
 			),
 		),
 
+		beego.NSNamespace("/estudiante_vinculacion_trabajo_grado",
+			beego.NSInclude(
+				&controllers.Estudiante_Vinculacion_Trabajo_GradoController{},
+			),
+		),
+
 		beego.NSNamespace("/estado_asignatura_trabajo_grado",
 			beego.NSInclude(
 				&controllers.EstadoAsignaturaTrabajoGradoController{},
@@ -383,6 +389,17 @@ func init() {
 		beego.NSNamespace("/tr_subir_arl",
 			beego.NSInclude(
 				&controllers.TrSubirArlController{},
+			),
+		),
+
+		beego.NSNamespace("/reporte_general",
+			beego.NSInclude(
+				&controllers.ReporteGeneralController{},
+			),
+		),
+		beego.NSNamespace("/reporte_solicitud",
+			beego.NSInclude(
+				&controllers.ReporteSolicitudController{},
 			),
 		),
 	)

@@ -1222,6 +1222,15 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["github.com/udistrital/polux_crud/controllers:Estudiante_Vinculacion_Trabajo_GradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/polux_crud/controllers:Estudiante_Vinculacion_Trabajo_GradoController"],
+        beego.ControllerComments{
+            Method: "GetAll",
+            Router: "/",
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["github.com/udistrital/polux_crud/controllers:EvaluacionTrabajoGradoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/polux_crud/controllers:EvaluacionTrabajoGradoController"],
         beego.ControllerComments{
             Method: "Post",
@@ -1533,6 +1542,24 @@ func init() {
             Method: "Delete",
             Router: "/:id",
             AllowHTTPMethods: []string{"delete"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/polux_crud/controllers:ReporteGeneralController"] = append(beego.GlobalControllerRouter["github.com/udistrital/polux_crud/controllers:ReporteGeneralController"],
+        beego.ControllerComments{
+            Method: "GetAll",
+            Router: "/",
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/polux_crud/controllers:ReporteSolicitudController"] = append(beego.GlobalControllerRouter["github.com/udistrital/polux_crud/controllers:ReporteSolicitudController"],
+        beego.ControllerComments{
+            Method: "GetAll",
+            Router: "/",
+            AllowHTTPMethods: []string{"get"},
             MethodParams: param.Make(),
             Filters: nil,
             Params: nil})

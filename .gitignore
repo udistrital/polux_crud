@@ -6,4 +6,6 @@ report.xml
 test.xml
 .env
 5432
-*.exe
+*.exe*
+go.mod
+go.sum

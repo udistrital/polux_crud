@@ -9,20 +9,10 @@ import (
 	_ "github.com/lib/pq"
 	_ "github.com/udistrital/polux_crud/routers"
 	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
+	auditoria "github.com/udistrital/utils_oas/auditoria"
 	"github.com/udistrital/utils_oas/customerror"
+	"github.com/udistrital/utils_oas/xray"
 )
-
-/*func init() {
-	if errorDriver := orm.RegisterDriver("postgres", orm.DRPostgres); errorDriver == nil {
-		if errorDB := orm.RegisterDataBase("default", "postgres", "postgres://"+beego.AppConfig.String("PGuser")+":"+beego.AppConfig.String("PGpass")+"@"+beego.AppConfig.String("PGurls")+"/"+beego.AppConfig.String("PGdb")+"?sslmode=require&search_path="+beego.AppConfig.String("PGschemas")+""); errorDB == nil {
-			beego.Info("Success")
-		} else {
-			beego.Info(errorDB)
-		}
-	} else {
-		beego.Info(errorDriver)
-	}
-}*/
 
 func main() {
 	orm.Debug = true
@@ -50,6 +40,8 @@ func main() {
 		AllowCredentials: true,
 	}))
 	beego.ErrorController(&customerror.CustomErrorController{})
+	xray.InitXRay()
 	apistatus.Init()
+	auditoria.InitMiddleware()
 	beego.Run()
 }
