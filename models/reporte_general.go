@@ -8,21 +8,27 @@ import (
 )
 
 type ReporteGeneral struct {
-	Id                 int
-	TrabajoGrado       int       `orm:"column(trabajo_grado)"`
-	Titulo             string    `orm:"column(titulo)"`
-	Modalidad          string    `orm:"column(modalidad)"`
-	EstadoTrabajoGrado string    `orm:"column(estado)"`
-	IdEstudiante       string    `orm:"column(id_estudiante)"`
-	IdCoestudiante     string    `orm:"column(id_coestudiante)"`
-	AreaConocimiento   string    `orm:"column(area_conocimiento)"`
-	DocenteDirector    int       `orm:"column(docente_director)"`
-	DocenteCodirector  int       `orm:"column(docente_codirector)"`
-	Evaluador          int       `orm:"column(evaluador)"`
-	FechaInicio        time.Time `orm:"column(fecha_inicio);type(timestamp without time zone)"`
-	FechaFin           time.Time `orm:"column(fecha_fin);type(timestamp without time zone);null"`
-	CalificacionUno    float32   `orm:"column(calificacion_1)"`
-	CalificacionDos    float32   `orm:"column(calificacion_2)"`
+	Id                      int
+	TrabajoGrado            int    `orm:"column(trabajo_grado)"`
+	Titulo                  string `orm:"column(titulo)"`
+	Modalidad               string `orm:"column(modalidad)"`
+	EstadoTrabajoGrado      string `orm:"column(estado)"`
+	IdEstudiante            string `orm:"column(id_estudiante)"`
+	NombreEstudiante        string
+	IdCoestudiante          string `orm:"column(id_coestudiante)"`
+	NombreCoestudiante      string
+	ProgramaAcademico       string
+	AreaConocimiento        string `orm:"column(area_conocimiento)"`
+	DocenteDirector         int    `orm:"column(docente_director)"`
+	NombreDocenteDirector   string
+	DocenteCodirector       int `orm:"column(docente_codirector)"`
+	NombreDocenteCodirector string
+	Evaluador               int `orm:"column(evaluador)"`
+	NombreEvaluador         string
+	FechaInicio             time.Time `orm:"column(fecha_inicio);type(timestamp without time zone)"`
+	FechaFin                time.Time `orm:"column(fecha_fin);type(timestamp without time zone);null"`
+	CalificacionUno         float32   `orm:"column(calificacion_1)"`
+	CalificacionDos         float32   `orm:"column(calificacion_2)"`
 }
 
 func init() {
@@ -55,7 +61,7 @@ func GetReporteGeneral() (map[string]interface{}, error) {
 			SELECT
 				trabajo_grado,
 				MAX(CASE WHEN rol_trabajo_grado = 4593 THEN usuario ELSE NULL END) AS docente_director,
-				MAX(CASE WHEN rol_trabajo_grado = 4594 THEN usuario ELSE NULL END) AS docente_codirector,
+				MAX(CASE WHEN rol_trabajo_grado = 4596 THEN usuario ELSE NULL END) AS docente_codirector,
 				MAX(CASE WHEN rol_trabajo_grado = 4595 THEN usuario ELSE NULL END) AS evaluador
 			FROM
 				academica.vinculacion_trabajo_grado
