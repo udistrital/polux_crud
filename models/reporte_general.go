@@ -60,9 +60,9 @@ func GetReporteGeneral() (map[string]interface{}, error) {
 		usuarios AS (
 			SELECT
 				trabajo_grado,
-				MAX(CASE WHEN rol_trabajo_grado = 4593 THEN usuario ELSE NULL END) AS docente_director,
-				MAX(CASE WHEN rol_trabajo_grado = 4596 THEN usuario ELSE NULL END) AS docente_codirector,
-				MAX(CASE WHEN rol_trabajo_grado = 4595 THEN usuario ELSE NULL END) AS evaluador
+				MAX(CASE WHEN codigo_abreviacion = 'DIRECTOR_PLX' THEN usuario ELSE NULL END) AS docente_director,
+				MAX(CASE WHEN codigo_abreviacion = 'CODIRECTOR_PLX' THEN usuario ELSE NULL END) AS docente_codirector,
+				MAX(CASE WHEN codigo_abreviacion = 'EVALUADOR_PLX' THEN usuario ELSE NULL END) AS evaluador
 			FROM
 				academica.vinculacion_trabajo_grado
 			GROUP BY
@@ -96,8 +96,17 @@ func GetReporteGeneral() (map[string]interface{}, error) {
 			usr.docente_director,
 			usr.docente_codirector,
 			usr.evaluador,
-			vtg.fecha_inicio,
-			vtg.fecha_fin,
+			(SELECT MAX(fecha_creacion)
+			 FROM academica.asignatura_trabajo_grado atg
+			 WHERE atg.trabajo_grado = tg.id
+			 AND atg.codigo_asignatura = 2) 
+			AS fecha_inicio,
+			(SELECT MAX(fecha_modificacion)
+			 FROM academica.asignatura_trabajo_grado atg
+			 WHERE atg.trabajo_grado = tg.id
+			 AND atg.codigo_asignatura = 2
+			 AND atg.calificacion > 0) 
+			AS fecha_fin,
 			notas.nota1 AS calificacion_1,
 			notas.nota2 AS calificacion_2
 		FROM
@@ -113,7 +122,7 @@ func GetReporteGeneral() (map[string]interface{}, error) {
 		LEFT JOIN
 			notas ON tg.id = notas.trabajo_grado
 		GROUP BY
-			tg.id, tg.titulo, tg.modalidad, tg.estado_trabajo_grado, est.id_estudiante, est.id_coestudiante, atg.area_conocimiento, usr.docente_director, usr.docente_codirector, usr.evaluador, vtg.fecha_inicio, vtg.fecha_fin, notas.nota1, notas.nota2
+			tg.id, tg.titulo, tg.modalidad, tg.estado_trabajo_grado, est.id_estudiante, est.id_coestudiante, atg.area_conocimiento, usr.docente_director, usr.docente_codirector, usr.evaluador, notas.nota1, notas.nota2
 		ORDER BY
 			tg.id DESC`).Values(&results)
 
