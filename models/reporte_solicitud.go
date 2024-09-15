@@ -61,9 +61,9 @@ func GetReporteSolicitud() (map[string]interface{}, error) {
 		usuarios AS (
 			SELECT
 				trabajo_grado,
-				MAX(CASE WHEN rol_trabajo_grado = 4593 THEN usuario ELSE NULL END) AS docente_director,
-				MAX(CASE WHEN rol_trabajo_grado = 4596 THEN usuario ELSE NULL END) AS docente_codirector,
-				MAX(CASE WHEN rol_trabajo_grado = 4595 THEN usuario ELSE NULL END) AS evaluador
+				MAX(CASE WHEN codigo_abreviacion = 'DIRECTOR_PLX' THEN usuario ELSE NULL END) AS docente_director,
+				MAX(CASE WHEN codigo_abreviacion = 'CODIRECTOR_PLX' THEN usuario ELSE NULL END) AS docente_codirector,
+				MAX(CASE WHEN codigo_abreviacion = 'EVALUADOR_PLX' THEN usuario ELSE NULL END) AS evaluador
 			FROM
 				academica.vinculacion_trabajo_grado
 			GROUP BY
