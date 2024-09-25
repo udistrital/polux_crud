@@ -2,7 +2,9 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 
+	"github.com/beego/beego/logs"
 	"github.com/udistrital/polux_crud/models"
 
 	"github.com/astaxie/beego"
@@ -25,16 +27,20 @@ func (c *TrSolicitudController) URLMapping() {
 // @router / [post]
 func (c *TrSolicitudController) Post() {
 	var v models.TrSolicitud
+	fmt.Println("ENTRANDO A FUNCIÓN")
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		fmt.Println("ENTRA OBJETO COMPLETO", v)
 		if response, err := models.AddTransaccionSolicitud(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = response
+			c.Data["json"] = map[string]interface{}{"Success": true, "Status": "201", "Message": "Registration successful", "Data": response}
 		} else {
-			beego.Error(err)
+			logs.Error(err)
+			c.Data["mesaage"] = "Error service POST: The request contains an incorrect data type or an invalid parameter"
 			c.Abort("400")
 		}
 	} else {
-		beego.Error(err)
+		logs.Error(err)
+		c.Data["mesaage"] = "Error service POST: The request contains an incorrect data type or an invalid parameter"
 		c.Abort("400")
 	}
 	c.ServeJSON()
