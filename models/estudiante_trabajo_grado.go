@@ -27,7 +27,6 @@ func init() {
 // AddEstudianteTrabajoGrado insert a new EstudianteTrabajoGrado into database and returns
 // last inserted Id on success.
 func AddEstudianteTrabajoGrado(m *EstudianteTrabajoGrado) (id int64, err error) {
-	fmt.Println("LLEGA A LA FUNCIÓN ADD ESTUDIANTE")
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
