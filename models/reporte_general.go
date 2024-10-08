@@ -133,8 +133,9 @@ func GetReporteGeneral() (map[string]interface{}, error) {
 	if len(results) == 0 {
 		return map[string]interface{}{
 			"Success": false,
-			"Data":    []interface{}{},
+			"Status":  404,
 			"Message": "No se encontraron Resultados",
+			"Data":    []interface{}{},
 		}, nil
 	}
 
@@ -212,6 +213,8 @@ func GetReporteGeneral() (map[string]interface{}, error) {
 
 	return map[string]interface{}{
 		"Success": true,
+		"Status":  201,
+		"Message": "Reporte General generado correctamente",
 		"Data":    reporteGeneral,
 	}, nil
 }
