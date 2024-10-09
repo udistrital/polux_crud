@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"github.com/beego/beego/logs"
 	"github.com/udistrital/polux_crud/models"
 
 	"github.com/astaxie/beego"
@@ -25,11 +26,17 @@ func (c *ReporteGeneralController) URLMapping() {
 func (c *ReporteGeneralController) GetAll() {
 	reporteGeneral, err := models.GetReporteGeneral()
 	if err == nil {
-		c.Data["json"] = reporteGeneral
-		c.Ctx.Output.SetStatus(201)
+		if reporteGeneral["Success"].(bool) {
+			c.Data["json"] = reporteGeneral
+			c.Ctx.Output.SetStatus(reporteGeneral["Status"].(int))
+		} else {
+			c.Data["json"] = reporteGeneral
+			c.Ctx.Output.SetStatus(reporteGeneral["Status"].(int))
+		}
 	} else {
-		c.Data["json"] = map[string]interface{}{"Success": false, "Message": err.Error()}
-		c.Ctx.Output.SetStatus(403)
+		logs.Error(err)
+		c.Data["message"] = "Error service GetAll: The request contains an incorrect parameter or no record exists"
+		c.Abort("404")
 	}
 	c.ServeJSON()
 }
