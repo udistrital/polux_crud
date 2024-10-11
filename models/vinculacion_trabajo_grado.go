@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
 )
@@ -14,8 +13,8 @@ type VinculacionTrabajoGrado struct {
 	Id              int           `orm:"column(id);pk;auto"`
 	Usuario         int           `orm:"column(usuario)"`
 	Activo          bool          `orm:"column(activo)"`
-	FechaInicio     time.Time     `orm:"column(fecha_inicio);type(timestamp without time zone)"`
-	FechaFin        time.Time     `orm:"column(fecha_fin);type(timestamp without time zone);null"`
+	FechaInicio     string     	  `orm:"column(fecha_inicio);type(timestamp without time zone)"`
+	FechaFin        *string     	  `orm:"column(fecha_fin);type(timestamp without time zone);null"`
 	RolTrabajoGrado int           `orm:"column(rol_trabajo_grado)"`
 	TrabajoGrado    *TrabajoGrado `orm:"column(trabajo_grado);rel(fk)"`
 }
