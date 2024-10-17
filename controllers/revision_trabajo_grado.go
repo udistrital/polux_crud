@@ -8,6 +8,7 @@ import (
 
 	"github.com/beego/beego/logs"
 	"github.com/udistrital/polux_crud/models"
+	"github.com/udistrital/utils_oas/time_bogota"
 
 	"github.com/astaxie/beego"
 )
@@ -36,6 +37,8 @@ func (c *RevisionTrabajoGradoController) URLMapping() {
 func (c *RevisionTrabajoGradoController) Post() {
 	var v models.RevisionTrabajoGrado
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		v.FechaRecepcion = time_bogota.TiempoBogotaFormato()
+		v.FechaRevision = nil
 		if _, err := models.AddRevisionTrabajoGrado(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = map[string]interface{}{"Success": true, "Status": "201", "Message": "Registration successful", "Data": v}
