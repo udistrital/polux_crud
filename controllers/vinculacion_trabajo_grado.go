@@ -157,6 +157,11 @@ func (c *VinculacionTrabajoGradoController) Put() {
 	id, _ := strconv.Atoi(idStr)
 	v := models.VinculacionTrabajoGrado{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+
+		v.FechaInicio = time_bogota.TiempoCorreccionFormato(v.FechaInicio)
+
+		var tiempof = time_bogota.TiempoBogotaFormato()
+		v.FechaFin = &tiempof
 		if err := models.UpdateVinculacionTrabajoGradoById(&v); err == nil {
 			c.Data["json"] = map[string]interface{}{"Success": true, "Status": "200", "Message": "Update successful", "Data": v}
 		} else {
