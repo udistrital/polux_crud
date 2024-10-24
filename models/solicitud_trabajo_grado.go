@@ -16,6 +16,7 @@ type SolicitudTrabajoGrado struct {
 	ModalidadTipoSolicitud *ModalidadTipoSolicitud `orm:"column(modalidad_tipo_solicitud);rel(fk)"`
 	TrabajoGrado           *TrabajoGrado           `orm:"column(trabajo_grado);rel(fk);null"`
 	PeriodoAcademico       string                  `orm:"column(periodo_academico);null"`
+	DatosPersonalesArl     string                  `orm:"column(datos_personales_arl);type(json);null"`
 }
 
 func (t *SolicitudTrabajoGrado) TableName() string {
