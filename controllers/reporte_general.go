@@ -26,13 +26,8 @@ func (c *ReporteGeneralController) URLMapping() {
 func (c *ReporteGeneralController) GetAll() {
 	reporteGeneral, err := models.GetReporteGeneral()
 	if err == nil {
-		if reporteGeneral["Success"].(bool) {
-			c.Data["json"] = reporteGeneral
-			c.Ctx.Output.SetStatus(reporteGeneral["Status"].(int))
-		} else {
-			c.Data["json"] = reporteGeneral
-			c.Ctx.Output.SetStatus(reporteGeneral["Status"].(int))
-		}
+		c.Data["json"] = reporteGeneral
+		c.Ctx.Output.SetStatus(reporteGeneral["Status"].(int))
 	} else {
 		logs.Error(err)
 		c.Data["message"] = "Error service GetAll: The request contains an incorrect parameter or no record exists"
