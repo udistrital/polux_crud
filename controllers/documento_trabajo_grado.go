@@ -3,11 +3,13 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"strconv"
 	"strings"
 
 	"github.com/beego/beego/logs"
 	"github.com/udistrital/polux_crud/models"
+	"github.com/udistrital/utils_oas/time_bogota"
 
 	"github.com/astaxie/beego"
 )
@@ -36,6 +38,9 @@ func (c *DocumentoTrabajoGradoController) URLMapping() {
 func (c *DocumentoTrabajoGradoController) Post() {
 	var v models.DocumentoTrabajoGrado
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		v.Activo = true
+		v.FechaCreacion = time_bogota.TiempoBogotaFormato()
+		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 		if _, err := models.AddDocumentoTrabajoGrado(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = map[string]interface{}{"Success": true, "Status": "201", "Message": "Registration successful", "Data": v}
@@ -154,6 +159,9 @@ func (c *DocumentoTrabajoGradoController) Put() {
 	id, _ := strconv.Atoi(idStr)
 	v := models.DocumentoTrabajoGrado{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		fmt.Println("PASA EL UNMARSHALL", v)
+		v.FechaCreacion = time_bogota.TiempoCorreccionFormato(v.FechaCreacion)
+		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 		if err := models.UpdateDocumentoTrabajoGradoById(&v); err == nil {
 			c.Data["json"] = map[string]interface{}{"Success": true, "Status": "200", "Message": "Update successful", "Data": v}
 		} else {
