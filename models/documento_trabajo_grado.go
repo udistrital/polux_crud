@@ -10,9 +10,12 @@ import (
 )
 
 type DocumentoTrabajoGrado struct {
-	Id               int               `orm:"column(id);pk;auto"`
-	TrabajoGrado     *TrabajoGrado     `orm:"column(trabajo_grado);rel(fk)"`
-	DocumentoEscrito *DocumentoEscrito `orm:"column(documento_escrito);rel(fk)"`
+	Id                int               `orm:"column(id);pk;auto"`
+	TrabajoGrado      *TrabajoGrado     `orm:"column(trabajo_grado);rel(fk)"`
+	DocumentoEscrito  *DocumentoEscrito `orm:"column(documento_escrito);rel(fk)"`
+	Activo            bool              `orm:"column(activo)"`
+	FechaCreacion     string            `orm:"column(fecha_creacion);type(timestamp without time zone);null"`
+	FechaModificacion string            `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
 }
 
 func (t *DocumentoTrabajoGrado) TableName() string {
