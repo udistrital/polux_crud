@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
+	"github.com/beego/beego/logs"
 	"github.com/udistrital/polux_crud/models"
 )
 
@@ -25,10 +26,11 @@ func (c *ReporteSolicitudController) GetAll() {
 	reporteSolicitud, err := models.GetReporteSolicitud()
 	if err == nil {
 		c.Data["json"] = reporteSolicitud
-		c.Ctx.Output.SetStatus(201)
+		c.Ctx.Output.SetStatus(reporteSolicitud["Status"].(int))
 	} else {
-		c.Data["json"] = map[string]interface{}{"Success": false, "Message": err.Error()}
-		c.Ctx.Output.SetStatus(403)
+		logs.Error(err)
+		c.Data["message"] = "Error service GetAll: The request contains an incorrect parameter or no record exists"
+		c.Abort("404")
 	}
 	c.ServeJSON()
 }

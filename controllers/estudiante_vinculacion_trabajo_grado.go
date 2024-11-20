@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
+	"github.com/beego/beego/logs"
 	"github.com/udistrital/polux_crud/models"
 )
 
@@ -37,10 +38,11 @@ func (c *Estudiante_Vinculacion_Trabajo_GradoController) GetAll() {
 	v, err := models.GetEstudianteVinculacionTrabajoGrado(usuario)
 
 	if err != nil {
-		beego.Error(err)
+		logs.Error(err)
+		c.Data["mesaage"] = "Error service GetAll: The request contains an incorrect parameter or no record exists"
 		c.Abort("404")
 	} else {
-		c.Data["json"] = v
+		c.Data["json"] = map[string]interface{}{"Success": true, "Status": "200", "Message": "Request successful", "Data": v}
 	}
 	c.ServeJSON()
 }

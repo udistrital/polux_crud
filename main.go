@@ -10,7 +10,7 @@ import (
 	_ "github.com/udistrital/polux_crud/routers"
 	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
 	auditoria "github.com/udistrital/utils_oas/auditoria"
-	"github.com/udistrital/utils_oas/customerror"
+	"github.com/udistrital/utils_oas/customerrorv2"
 	"github.com/udistrital/utils_oas/xray"
 )
 
@@ -39,8 +39,8 @@ func main() {
 		ExposeHeaders:    []string{"Content-Length", "Access-Control-Allow-Origin"},
 		AllowCredentials: true,
 	}))
-	beego.ErrorController(&customerror.CustomErrorController{})
 	xray.InitXRay()
+	beego.ErrorController(&customerrorv2.CustomErrorController{})
 	apistatus.Init()
 	auditoria.InitMiddleware()
 	beego.Run()

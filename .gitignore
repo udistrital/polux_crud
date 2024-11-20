@@ -9,3 +9,9 @@ test.xml
 *.exe*
 go.mod
 go.sum
+swagger/*.js
+swagger/*.png
+swagger/*.html
+swagger/*.map
+swagger/*.css
+swagger.zip

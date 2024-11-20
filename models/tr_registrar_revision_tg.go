@@ -46,8 +46,8 @@ func AddTransaccionRegistrarRevisionTg(m *TrRegistrarRevisionTg) (alerta []strin
 		}
 
 		m.RevisionTrabajoGrado.NumeroRevision = int(numRevisiones) + 1
-		m.RevisionTrabajoGrado.FechaRecepcion = time.Now()
-		m.RevisionTrabajoGrado.FechaRevision = time.Now()
+		//m.RevisionTrabajoGrado.FechaRecepcion = time.Now()
+		//m.RevisionTrabajoGrado.FechaRevision = time.Now()
 		_, err = o.Insert(&m.RevisionTrabajoGrado)
 		if err != nil {
 			panic(err)
