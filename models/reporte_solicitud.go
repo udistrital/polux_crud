@@ -36,12 +36,12 @@ func init() {
 	orm.RegisterModel(new(ReporteSolicitud))
 }
 
-func GetReporteSolicitud() (map[string]interface{}, error) {
+func GetReporteSolicitud(Filtro *FiltrosReporte) (map[string]interface{}, error) {
 	o := orm.NewOrm()
 
 	var results []orm.Params
 
-	_, err := o.Raw(`
+	var query = `
 		WITH estudiantes AS (
 			SELECT
 				trabajo_grado,
@@ -103,8 +103,24 @@ func GetReporteSolicitud() (map[string]interface{}, error) {
 		LEFT JOIN 
 			usuarios u
 			ON stg.trabajo_grado = u.trabajo_grado
-		ORDER BY
-			stg.id DESC`).Values(&results)
+		`
+
+	var f_i = Filtro.FechaInicio.Format("2006-01-02")
+	var f_f = Filtro.FechaFin.Format("2006-01-02")
+
+	//se aplica el filtro de fechas
+	query += `WHERE stg.fecha BETWEEN '`+ f_i + `' AND '`+ f_f+`'`
+
+	//se aplica el filtro de estado
+	if Filtro.Estado == "ACTIVOS" { //Si el estado seleccionado es activo, se traen todas las solicitudes con estado diferenta a aprobado o rechazado por coordinacion
+		query += ` AND NOT rs.estado_solicitud = `+ strconv.Itoa(Filtro.IdEstFinalizado) +` AND NOT rs.estado_solicitud = ` + strconv.Itoa(Filtro.IdEstCancelado)
+	} else if Filtro.Estado == "CULMINADOS" {///Si el estado seleccionado es culminado, se traen todas las solicitudes con estado aprobado o rechazado por coordinacion
+		query += ` AND (rs.estado_solicitud = ` + strconv.Itoa(Filtro.IdEstFinalizado) + ` OR rs.estado_solicitud = ` + strconv.Itoa(Filtro.IdEstCancelado) + `)`
+	}
+
+	query += ` ORDER BY stg.id DESC`
+	
+	_, err := o.Raw(query).Values(&results)
 
 	if err != nil {
 		return nil, err
@@ -113,7 +129,7 @@ func GetReporteSolicitud() (map[string]interface{}, error) {
 	if len(results) == 0 {
 		return map[string]interface{}{
 			"Success": false,
-			"Status":  404,
+			"Status":  "404",
 			"Message": "No se encontraron Resultados",
 			"Data":    []interface{}{},
 		}, nil
@@ -195,7 +211,7 @@ func GetReporteSolicitud() (map[string]interface{}, error) {
 
 	return map[string]interface{}{
 		"Success": true,
-		"Status":  201,
+		"Status":  "201",
 		"Message": "Reporte Solicitud generado correctamente",
 		"Data":    reporteSolicitud,
 	}, nil
