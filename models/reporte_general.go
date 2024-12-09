@@ -31,16 +31,25 @@ type ReporteGeneral struct {
 	CalificacionDos         float32   `orm:"column(calificacion_2)"`
 }
 
+type FiltrosReporte struct {
+	ProyectoCurricular	string
+	Estado				string
+	FechaInicio			time.Time
+	FechaFin			time.Time
+	IdEstFinalizado		int
+	IdEstCancelado		int
+}
+
 func init() {
 	orm.RegisterModel(new(ReporteGeneral))
 }
 
-func GetReporteGeneral() (map[string]interface{}, error) {
+func GetReporteGeneral(Filtro *FiltrosReporte) (map[string]interface{}, error) {
 	o := orm.NewOrm()
 
 	var results []orm.Params
 
-	_, err := o.Raw(`
+	var query = `
 		WITH estudiantes AS (
 			SELECT
 				trabajo_grado,
@@ -121,10 +130,25 @@ func GetReporteGeneral() (map[string]interface{}, error) {
 			usuarios usr ON tg.id = usr.trabajo_grado
 		LEFT JOIN
 			notas ON tg.id = notas.trabajo_grado
-		GROUP BY
-			tg.id, tg.titulo, tg.modalidad, tg.estado_trabajo_grado, est.id_estudiante, est.id_coestudiante, atg.area_conocimiento, usr.docente_director, usr.docente_codirector, usr.evaluador, notas.nota1, notas.nota2
-		ORDER BY
-			tg.id DESC`).Values(&results)
+		
+		`
+	var f_i = Filtro.FechaInicio.Format("2006-01-02")
+	var f_f = Filtro.FechaFin.Format("2006-01-02")
+
+	//se aplica el filtro de fechas
+	query += `WHERE fecha_inicio BETWEEN '`+ f_i + `' AND '`+ f_f+`'`
+
+	//se aplica el filtro de estado
+	if Filtro.Estado == "ACTIVOS" { //Si el estado seleccionado es activo, se traen todos los tg con estado diferenta a cancelado y calificado
+		query += ` AND NOT estado_trabajo_grado = `+ strconv.Itoa(Filtro.IdEstFinalizado) +` AND NOT estado_trabajo_grado = ` + strconv.Itoa(Filtro.IdEstCancelado)
+	} else if Filtro.Estado == "CULMINADOS" {//Si el estado seleccionado es culminado, se traen todos los tg con estado calificado
+		query += ` AND estado_trabajo_grado = `+ strconv.Itoa(Filtro.IdEstFinalizado)
+	}
+	
+	query += ` GROUP BY tg.id, tg.titulo, tg.modalidad, tg.estado_trabajo_grado, est.id_estudiante, est.id_coestudiante, atg.area_conocimiento, usr.docente_director, usr.docente_codirector, usr.evaluador, notas.nota1, notas.nota2
+			ORDER BY tg.id DESC`
+
+	_, err := o.Raw(query).Values(&results)
 
 	if err != nil {
 		return nil, err
@@ -133,7 +157,7 @@ func GetReporteGeneral() (map[string]interface{}, error) {
 	if len(results) == 0 {
 		return map[string]interface{}{
 			"Success": false,
-			"Status":  404,
+			"Status":  "404",
 			"Message": "No se encontraron Resultados",
 			"Data":    []interface{}{},
 		}, nil
@@ -213,7 +237,7 @@ func GetReporteGeneral() (map[string]interface{}, error) {
 
 	return map[string]interface{}{
 		"Success": true,
-		"Status":  201,
+		"Status":  "201",
 		"Message": "Reporte General generado correctamente",
 		"Data":    reporteGeneral,
 	}, nil
