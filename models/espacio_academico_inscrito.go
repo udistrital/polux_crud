@@ -10,11 +10,9 @@ import (
 )
 
 type EspacioAcademicoInscrito struct {
-	Id                             int                          `orm:"column(id);pk;auto"`
-	Nota                           float64                      `orm:"column(nota);null"`
-	EspaciosAcademicosElegibles    *EspaciosAcademicosElegibles `orm:"column(espacios_academicos_elegibles);rel(fk)"`
-	EstadoEspacioAcademicoInscrito int                          `orm:"column(estado_espacio_academico_inscrito)"`
-	TrabajoGrado                   *TrabajoGrado                `orm:"column(trabajo_grado);rel(fk)"`
+	Id                      int            `orm:"column(id);pk;auto"`
+	TrabajoGrado 			*TrabajoGrado  `orm:"column(trabajo_grado);rel(fk)"`
+	ProyectoCurricularTg 	int            `orm:"column(proyecto_curricular_tg)"`
 }
 
 func (t *EspacioAcademicoInscrito) TableName() string {
