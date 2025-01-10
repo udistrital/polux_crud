@@ -417,7 +417,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 						fmt.Println("espaciosAcademicosInscritos", espaciosAcademicosInscritos)
 						for _, v := range espaciosAcademicosInscritos {
 							//Id del espacio 2  cancelado
-							v.EstadoEspacioAcademicoInscrito = 2
+							//v.EstadoEspacioAcademicoInscrito = 2
 							if _, err = o.Update(&v, "EstadoEspacioAcademicoInscrito"); err != nil {
 								fmt.Println(err)
 								err = o.Rollback()
@@ -447,7 +447,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 	}
 
 	//Solicitud de cambio de materias
-	if m.EspaciosAcademicos != nil {
+	/*if m.EspaciosAcademicos != nil {
 		var espacioActual EspacioAcademicoInscrito
 		var espacioNuevo EspacioAcademicoInscrito
 		for _, v := range *m.EspaciosAcademicos {
@@ -494,7 +494,7 @@ func AddTransaccionRespuestaSolicitud(m *TrRespuestaSolicitud) (alerta []string,
 			alerta[0] = "Error"
 			alerta = append(alerta, "ERROR_RTA_SOLICITUD_13")
 		}
-	}
+	}*/
 
 	// Solicitud de revisión del trabajo de grado
 	if m.TrRevision != nil {
