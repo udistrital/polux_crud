@@ -48,10 +48,10 @@ steps:
     - push
 
 - name: go_build
-  image: golang:1.18
+  image: golang:1.24
   commands:
   - go mod init
-  - go get -t
+  - go mod tidy
   - GOOS=linux GOARCH=amd64 go build -o main
   when:
     branch:
@@ -61,25 +61,26 @@ steps:
     event:
     - push
 
-# - name: go_run_test
-#   image: golang:1.14
-#   commands:
-#   - go get -t
-#   - go get github.com/smartystreets/goconvey/convey
-#   - GO111MODULE=off go get -u gopkg.in/alecthomas/gometalinter.v1
-#   - GO111MODULE=off gometalinter.v1 --install
-#   - go get github.com/axw/gocov/...
-#   - go get github.com/AlekSi/gocov-xml
-#   - go get -u github.com/jstemmer/go-junit-report
-#   - GO111MODULE=off gometalinter.v1 ./... --checkstyle | tee report.xml
-#   # - gocov test ./... | gocov-xml > coverage.xml
-#   # - go test -v ./... | go-junit-report > test.xml
-#   when:
-#     branch:
-#     - develop
-#     - release/*
-#     event:
-#     - push
+- name: go_run_test
+  image: golang:1.24
+  commands:
+  - go get -t
+  - go install github.com/smartystreets/goconvey@latest
+  - go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+  - golangci-lint run --out-format=checkstyle --timeout=5m > report.xml || true
+  - cat report.xml
+  # - go install github.com/axw/gocov/...@latest
+  # - go install github.com/AlekSi/gocov-xml@latest
+  # - go install github.com/jstemmer/go-junit-report@latest
+  # - gocov test ./... | gocov-xml > coverage.xml
+  # - go test -v ./... | go-junit-report > test.xml
+  when:
+    branch:
+    - develop
+    - feature/*
+    - release/*
+    event:
+    - push
 
 - name: run_sonar_scanner
   image: aosapps/drone-sonar-plugin
@@ -89,49 +90,45 @@ steps:
     sonar_token:
       from_secret: SONAR_TOKEN
 
-#- name: beego_migrate
-#  image: golang:1.18
-#  failure: ignore
-#  environment:
-#    PG_MIGRATION_USER:
-#      from_secret: PG_MIGRATION_USER
-#    PG_MIGRATION_PASS:
-#      from_secret: PG_MIGRATION_PASS
-#    PG_MIGRATION_URL:
-#      from_secret: PG_MIGRATION_URL
-#    PG_MIGRATION_DBNAME:
-#      from_secret: PG_MIGRATION_DBNAME
-#  commands:
-#  - go get -t
-#  - go install github.com/beego/bee@v1.12.3
-#  - bee migrate -driver=postgres -conn="postgres://$${PG_MIGRATION_USER}:$${PG_MIGRATION_PASS}@$${PG_MIGRATION_URL}:5432/$${PG_MIGRATION_DBNAME}?sslmode=require"
-#  when:
-#    branch:
-#    - release/*
-#    event:
-#    - push
+- name: beego_migrate
+  image: golang:1.24
+  environment:
+    PG_MIGRATION_USER:
+      from_secret: PG_MIGRATION_USER
+    PG_MIGRATION_PASS:
+      from_secret: PG_MIGRATION_PASS
+    PG_MIGRATION_URL:
+      from_secret: PG_MIGRATION_URL
+    PG_MIGRATION_DBNAME:
+      from_secret: PG_MIGRATION_DBNAME
+  commands:
+  - go install github.com/beego/bee@latest
+  - bee migrate -driver=postgres -conn="postgres://$${PG_MIGRATION_USER}:$${PG_MIGRATION_PASS}@$${PG_MIGRATION_URL}:5432/$${PG_MIGRATION_DBNAME}?sslmode=disable"
+  when:
+    branch:
+    - release/*
+    event:
+    - push
 
-#- name: beego_rollback
-#  image: golang:1.18
-#  failure: ignore
-#  environment:
-#    PG_MIGRATION_USER:
-#      from_secret: PG_MIGRATION_USER
-#    PG_MIGRATION_PASS:
-#      from_secret: PG_MIGRATION_PASS
-#    PG_MIGRATION_URL:
-#      from_secret: PG_MIGRATION_URL
-#    PG_MIGRATION_DBNAME:
-#      from_secret: PG_MIGRATION_DBNAME
-#  commands:
-#  - go get -t
-#  - go install github.com/beego/bee@v1.12.3
-#  - bee migrate rollback -driver=postgres -conn="postgres://$${PG_MIGRATION_USER}:$${PG_MIGRATION_PASS}@$${PG_MIGRATION_URL}:5432/$${PG_MIGRATION_DBNAME}?sslmode=require"
-#  when:
-#    branch:
-#    - release/*
-#    status:
-#    - failure
+- name: beego_rollback
+  image: golang:1.24
+  environment:
+    PG_MIGRATION_USER:
+      from_secret: PG_MIGRATION_USER
+    PG_MIGRATION_PASS:
+      from_secret: PG_MIGRATION_PASS
+    PG_MIGRATION_URL:
+      from_secret: PG_MIGRATION_URL
+    PG_MIGRATION_DBNAME:
+      from_secret: PG_MIGRATION_DBNAME
+  commands:
+  - go install github.com/beego/bee@latest
+  - bee migrate rollback -driver=postgres -conn="postgres://$${PG_MIGRATION_USER}:$${PG_MIGRATION_PASS}@$${PG_MIGRATION_URL}:5432/$${PG_MIGRATION_DBNAME}?sslmode=disable"
+  when:
+    branch:
+    - release/*
+    status:
+    - failure
 
 - name: publish_to_ecr_release
   image: plugins/ecr
@@ -171,37 +168,31 @@ steps:
     event:
     - push
 
-- name: update_aws_ecs
-  image: golang:1.18
+- name: update_ecs_service
+  image: amazon/aws-cli:latest
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: AWS_ACCESS_KEY_ID
     AWS_SECRET_ACCESS_KEY:
       from_secret: AWS_SECRET_ACCESS_KEY
-    AWS_CONTAINER:
-      from_secret: AWS_CONTAINER
+    AWS_DEFAULT_REGION:
+      from_secret: AWS_REGION
   commands:
   - case ${DRONE_BRANCH} in
-       release/*)
-         AMBIENTE=test
-         CLUSTER=test
-         MYCONTAINER=$${AWS_CONTAINER}/${DRONE_REPO##udistrital/}:release
-         ;;
-       master)
-         AMBIENTE=prod
-         CLUSTER=oas
-         MYCONTAINER=$${AWS_CONTAINER}/${DRONE_REPO##udistrital/}:latest
-         ;;
+    master)
+    SUFFIX=prod
+    CLUSTER=oas
+      ;;
+    *)
+    SUFFIX=test
+    CLUSTER=test
+      ;;
     esac
-  - AWS_REGION=us-east-1
-  - SERVICE=${DRONE_REPO##udistrital/}_$AMBIENTE
-  - container_name=${DRONE_REPO##udistrital/}
-  - apt-get update
-  - apt-get install unzip
-  - wget https://github.com/Autodesk/go-awsecs/releases/download/v1.1/update-aws-ecs-service-linux-amd64.zip
-  - unzip update-aws-ecs-service-linux-amd64.zip -d /go/bin
-  - AWS_ACCESS_KEY_ID=$${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=$${AWS_SECRET_ACCESS_KEY} AWS_REGION=$AWS_REGION
-    $GOPATH/bin/update-aws-ecs-service -cluster $CLUSTER -service $SERVICE -container-image $MYCONTAINER
+  - aws ecs update-service
+    --cluster $${CLUSTER}
+    --service $${DRONE_REPO_NAME}_$${SUFFIX}
+    --force-new-deployment
+    --query "service.deployments[0].id"
   when:
     branch:
     - release/*
