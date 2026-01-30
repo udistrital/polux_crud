@@ -7,12 +7,12 @@ import (
 )
 
 type TrRegistrarMateriasPosgrado struct {
-	RespuestaPrevia        				*RespuestaSolicitud
-	RespuestaActualizada   				*RespuestaSolicitud
-	TrabajoGrado           				*TrabajoGrado
-	EstudianteTrabajoGrado 				*EstudianteTrabajoGrado
-	EspaciosAcademicos		 				*[]EspacioAcademicoInscrito
-	AsignaturasDeTrabajoDeGrado 	*[]AsignaturaTrabajoGrado
+	RespuestaPrevia             *RespuestaSolicitud
+	RespuestaActualizada        *RespuestaSolicitud
+	TrabajoGrado                *TrabajoGrado
+	EstudianteTrabajoGrado      *EstudianteTrabajoGrado
+	EspaciosAcademicos          *[]EspacioAcademicoInscrito
+	AsignaturasDeTrabajoDeGrado *[]AsignaturaTrabajoGrado
 }
 
 // Función para la transaccion de solicitudes de materias de posgrado
@@ -20,7 +20,7 @@ func AddTransaccionRegistrarMateriasPosgrado(m *TrRegistrarMateriasPosgrado) (al
 	o := orm.NewOrm()
 	err = o.Begin()
 	alerta = append(alerta, "Success")
-	
+
 	// Update de la respuesta previa
 	if num, err := o.Update(m.RespuestaPrevia, "Activo"); err == nil {
 		fmt.Println("Number of requests updated in database:", num)
@@ -93,7 +93,7 @@ func AddTransaccionRegistrarMateriasPosgrado(m *TrRegistrarMateriasPosgrado) (al
 		fmt.Println(err)
 		alerta[0] = "Error"
 		alerta = append(alerta, "ERROR_RTA_SOLICITUD_1")
-		err = o.Rollback();
+		err = o.Rollback()
 	}
 	return
 }

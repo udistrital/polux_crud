@@ -32,12 +32,12 @@ type ReporteGeneral struct {
 }
 
 type FiltrosReporte struct {
-	ProyectoCurricular	string
-	Estado				string
-	FechaInicio			time.Time
-	FechaFin			time.Time
-	IdEstFinalizado		int
-	IdEstCancelado		int
+	ProyectoCurricular string
+	Estado             string
+	FechaInicio        time.Time
+	FechaFin           time.Time
+	IdEstFinalizado    int
+	IdEstCancelado     int
 }
 
 func init() {
@@ -136,15 +136,15 @@ func GetReporteGeneral(Filtro *FiltrosReporte) (map[string]interface{}, error) {
 	var f_f = Filtro.FechaFin.Format("2006-01-02")
 
 	//se aplica el filtro de fechas
-	query += `WHERE fecha_inicio BETWEEN '`+ f_i + `' AND '`+ f_f+`'`
+	query += `WHERE fecha_inicio BETWEEN '` + f_i + `' AND '` + f_f + `'`
 
 	//se aplica el filtro de estado
 	if Filtro.Estado == "ACTIVOS" { //Si el estado seleccionado es activo, se traen todos los tg con estado diferenta a cancelado y calificado
-		query += ` AND NOT estado_trabajo_grado = `+ strconv.Itoa(Filtro.IdEstFinalizado) +` AND NOT estado_trabajo_grado = ` + strconv.Itoa(Filtro.IdEstCancelado)
-	} else if Filtro.Estado == "CULMINADOS" {//Si el estado seleccionado es culminado, se traen todos los tg con estado calificado
-		query += ` AND estado_trabajo_grado = `+ strconv.Itoa(Filtro.IdEstFinalizado)
+		query += ` AND NOT estado_trabajo_grado = ` + strconv.Itoa(Filtro.IdEstFinalizado) + ` AND NOT estado_trabajo_grado = ` + strconv.Itoa(Filtro.IdEstCancelado)
+	} else if Filtro.Estado == "CULMINADOS" { //Si el estado seleccionado es culminado, se traen todos los tg con estado calificado
+		query += ` AND estado_trabajo_grado = ` + strconv.Itoa(Filtro.IdEstFinalizado)
 	}
-	
+
 	query += ` GROUP BY tg.id, tg.titulo, tg.modalidad, tg.estado_trabajo_grado, est.id_estudiante, est.id_coestudiante, atg.area_conocimiento, usr.docente_director, usr.docente_codirector, usr.evaluador, notas.nota1, notas.nota2
 			ORDER BY tg.id DESC`
 
