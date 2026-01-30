@@ -7,11 +7,6 @@ test.xml
 .env
 5432
 *.exe*
-go.mod
-go.sum
-swagger/*.js
-swagger/*.png
-swagger/*.html
-swagger/*.map
-swagger/*.css
-swagger.zip
+swagger/**
+!swagger/swagger.json
+!swagger/swagger.yml

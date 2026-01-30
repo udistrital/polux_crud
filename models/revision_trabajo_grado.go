@@ -13,8 +13,8 @@ import (
 type RevisionTrabajoGrado struct {
 	Id                         int                      `orm:"column(id);pk;auto"`
 	NumeroRevision             int                      `orm:"column(numero_revision)"`
-	FechaRecepcion             string                	`orm:"column(fecha_recepcion);type(timestamp without time zone)"`
-	FechaRevision              *string                	`orm:"column(fecha_revision);type(timestamp without time zone);null"`
+	FechaRecepcion             string                   `orm:"column(fecha_recepcion);type(timestamp without time zone)"`
+	FechaRevision              *string                  `orm:"column(fecha_revision);type(timestamp without time zone);null"`
 	EstadoRevisionTrabajoGrado int                      `orm:"column(estado_revision_trabajo_grado)"`
 	DocumentoTrabajoGrado      *DocumentoTrabajoGrado   `orm:"column(documento_trabajo_grado);rel(fk)"`
 	VinculacionTrabajoGrado    *VinculacionTrabajoGrado `orm:"column(vinculacion_trabajo_grado);rel(fk)"`

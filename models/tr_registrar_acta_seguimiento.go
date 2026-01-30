@@ -21,7 +21,7 @@ func RegistrarActaSeguimiento(m *TrRegistrarActaSeguimiento) (alerta []string, e
 		m.Acta.DocumentoEscrito.Id = int(idDocumentoEscrito)
 		//Se inserta el documento trabajo de grado
 		if _, err := o.Insert(m.Acta); err == nil {
-			err = o.Commit();
+			err = o.Commit()
 		} else {
 			fmt.Println(err)
 			err = o.Rollback()
