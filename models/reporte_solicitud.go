@@ -109,17 +109,17 @@ func GetReporteSolicitud(Filtro *FiltrosReporte) (map[string]interface{}, error)
 	var f_f = Filtro.FechaFin.Format("2006-01-02")
 
 	//se aplica el filtro de fechas
-	query += `WHERE stg.fecha BETWEEN '`+ f_i + `' AND '`+ f_f+`'`
+	query += `WHERE stg.fecha BETWEEN '` + f_i + `' AND '` + f_f + `'`
 
 	//se aplica el filtro de estado
 	if Filtro.Estado == "ACTIVOS" { //Si el estado seleccionado es activo, se traen todas las solicitudes con estado diferenta a aprobado o rechazado por coordinacion
-		query += ` AND NOT rs.estado_solicitud = `+ strconv.Itoa(Filtro.IdEstFinalizado) +` AND NOT rs.estado_solicitud = ` + strconv.Itoa(Filtro.IdEstCancelado)
-	} else if Filtro.Estado == "CULMINADOS" {///Si el estado seleccionado es culminado, se traen todas las solicitudes con estado aprobado o rechazado por coordinacion
+		query += ` AND NOT rs.estado_solicitud = ` + strconv.Itoa(Filtro.IdEstFinalizado) + ` AND NOT rs.estado_solicitud = ` + strconv.Itoa(Filtro.IdEstCancelado)
+	} else if Filtro.Estado == "CULMINADOS" { ///Si el estado seleccionado es culminado, se traen todas las solicitudes con estado aprobado o rechazado por coordinacion
 		query += ` AND (rs.estado_solicitud = ` + strconv.Itoa(Filtro.IdEstFinalizado) + ` OR rs.estado_solicitud = ` + strconv.Itoa(Filtro.IdEstCancelado) + `)`
 	}
 
 	query += ` ORDER BY stg.id DESC`
-	
+
 	_, err := o.Raw(query).Values(&results)
 
 	if err != nil {

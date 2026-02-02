@@ -7,8 +7,8 @@ import (
 )
 
 type TrRegistrarRespuestasSolicitudes struct {
-	RespuestasNuevas         *[]RespuestaSolicitud
-	RespuestasAntiguas       *[]RespuestaSolicitud
+	RespuestasNuevas   *[]RespuestaSolicitud
+	RespuestasAntiguas *[]RespuestaSolicitud
 }
 
 // TransaccionRegistrarRespuestasSolicitudes Función para la transacción de registrar las respuestas de las solicitudes
@@ -31,7 +31,7 @@ func TransaccionRegistrarRespuestasSolicitudes(m *TrRegistrarRespuestasSolicitud
 	}
 
 	// Insert de las respuestas nuevas
-	for _, v := range *m.RespuestasNuevas{
+	for _, v := range *m.RespuestasNuevas {
 		if _, err = o.Insert(&v); err != nil {
 			fmt.Println(err)
 			alerta[0] = "Error"

@@ -10,9 +10,9 @@ import (
 )
 
 type EspacioAcademicoInscrito struct {
-	Id                      int            `orm:"column(id);pk;auto"`
-	TrabajoGrado 			*TrabajoGrado  `orm:"column(trabajo_grado);rel(fk)"`
-	ProyectoCurricularTg 	int            `orm:"column(proyecto_curricular_tg)"`
+	Id                   int           `orm:"column(id);pk;auto"`
+	TrabajoGrado         *TrabajoGrado `orm:"column(trabajo_grado);rel(fk)"`
+	ProyectoCurricularTg int           `orm:"column(proyecto_curricular_tg)"`
 }
 
 func (t *EspacioAcademicoInscrito) TableName() string {
