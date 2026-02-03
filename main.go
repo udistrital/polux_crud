@@ -8,7 +8,7 @@ import (
 	_ "github.com/lib/pq"
 	_ "github.com/udistrital/polux_crud/routers"
 	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
-	auditoria "github.com/udistrital/utils_oas/auditoriaPruebas"
+	"github.com/udistrital/utils_oas/auditoria"
 	"github.com/udistrital/utils_oas/customerrorv2"
 	"github.com/udistrital/utils_oas/database"
 	"github.com/udistrital/utils_oas/security"
@@ -16,7 +16,6 @@ import (
 )
 
 func main() {
-	//logs.Info("PGuser: %s", beego.AppConfig.String("PGuser"))
 	conn, err := database.BuildPostgresConnectionString()
 	if err != nil {
 		logs.Error("error consultando la cadena de conexión: %v", err)
